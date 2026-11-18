@@ -1,0 +1,235 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "003-salon",
+  "name": "La grande étagère",
+  "theme": "salon",
+  "difficulty": "easy",
+  "seed": 44001,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 2,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "livres",
+      "label": "Livres"
+    },
+    {
+      "id": "coussins",
+      "label": "Coussins et plaids"
+    },
+    {
+      "id": "plantes",
+      "label": "Plantes"
+    },
+    {
+      "id": "cadres",
+      "label": "Cadres"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-livres-1",
+      "category": "livres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-coussins-1",
+      "category": "coussins",
+      "capacity": 3
+    },
+    {
+      "id": "carton-cadres-1",
+      "category": "cadres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-plantes-1",
+      "category": "plantes",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "livre-1",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.121,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-2",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.343,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "cadre-3",
+      "category": "cadres",
+      "asset": "cadre-paysage",
+      "position": {
+        "x": 0.544,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-4",
+      "category": "plantes",
+      "asset": "plante-cactus",
+      "position": {
+        "x": 0.771,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "cadre-5",
+      "category": "cadres",
+      "asset": "cadre-paysage",
+      "position": {
+        "x": 0.211,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-1",
+        "livre-2"
+      ]
+    },
+    {
+      "id": "cadre-6",
+      "category": "cadres",
+      "asset": "cadre-paysage",
+      "position": {
+        "x": 0.43,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-2",
+        "cadre-3"
+      ]
+    },
+    {
+      "id": "plaid-7",
+      "category": "coussins",
+      "asset": "plaid-rose",
+      "position": {
+        "x": 0.666,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "cadre-3",
+        "plante-4"
+      ]
+    },
+    {
+      "id": "livre-8",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.892,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "plante-4"
+      ]
+    },
+    {
+      "id": "plante-9",
+      "category": "plantes",
+      "asset": "plante-fougere",
+      "position": {
+        "x": 0.099,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "cadre-5",
+        "cadre-6"
+      ]
+    },
+    {
+      "id": "plante-10",
+      "category": "plantes",
+      "asset": "plante-cactus",
+      "position": {
+        "x": 0.328,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "cadre-6",
+        "plaid-7"
+      ]
+    },
+    {
+      "id": "plaid-11",
+      "category": "coussins",
+      "asset": "plaid-canard",
+      "position": {
+        "x": 0.551,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "plaid-7",
+        "livre-8"
+      ]
+    },
+    {
+      "id": "coussin-12",
+      "category": "coussins",
+      "asset": "coussin-sauge",
+      "position": {
+        "x": 0.775,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "livre-8"
+      ],
+      "hidden": true
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 1,
+    "twoStarsMaxBuffered": 3
+  },
+  "meta": {
+    "solution": [
+      "livre-1",
+      "livre-2",
+      "plante-4",
+      "livre-8",
+      "cadre-3",
+      "cadre-5",
+      "cadre-6",
+      "plaid-7",
+      "plante-9",
+      "plante-10",
+      "plaid-11",
+      "coussin-12"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 62
+  }
+}

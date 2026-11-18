@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "012-chambre",
+  "name": "Un peu de tout",
+  "theme": "chambre",
+  "difficulty": "medium",
+  "seed": 53001,
+  "rules": {
+    "bufferCapacity": 3,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "peluches",
+      "label": "Peluches"
+    },
+    {
+      "id": "linge",
+      "label": "Vêtements et linge"
+    },
+    {
+      "id": "livres",
+      "label": "Livres"
+    },
+    {
+      "id": "veilleuses",
+      "label": "Veilleuses et bougies"
+    },
+    {
+      "id": "cadres",
+      "label": "Cadres"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-cadres-1",
+      "category": "cadres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-linge-1",
+      "category": "linge",
+      "capacity": 3
+    },
+    {
+      "id": "carton-livres-1",
+      "category": "livres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-peluches-1",
+      "category": "peluches",
+      "capacity": 3
+    },
+    {
+      "id": "carton-veilleuses-1",
+      "category": "veilleuses",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "bougie-1",
+      "category": "veilleuses",
+      "asset": "bougie-sauge",
+      "position": {
+        "x": 0.109,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "chaussette-2",
+      "category": "linge",
+      "asset": "chaussette-terracotta",
+      "position": {
+        "x": 0.291,
+        "y": 0.35
+      },
+      "layer": 9,
+      "blockedBy": [
+        "bougie-1"
+      ]
+    },
+    {
+      "id": "cadre-3",
+      "category": "cadres",
+      "asset": "cadre-lune",
+      "position": {
+        "x": 0.489,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "cadre-4",
+      "category": "cadres",
+      "asset": "cadre-fleur",
+      "position": {
+        "x": 0.699,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "cadre-5",
+      "category": "cadres",
+      "asset": "cadre-paysage",
+      "position": {
+        "x": 0.912,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-6",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.097,
+        "y": 0.55
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-7",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.3,
+        "y": 0.55
+      },
+      "layer": 9,
+      "blockedBy": [
+        "chaussette-2"
+      ]
+    },
+    {
+      "id": "ours-8",
+      "category": "peluches",
+      "asset": "ours-creme",
+      "position": {
+        "x": 0.507,
+        "y": 0.55
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "chaussette-9",
+      "category": "linge",
+      "asset": "chaussette-moutarde",
+      "position": {
+        "x": 0.709,
+        "y": 0.55
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-7"
+      ]
+    },
+    {
+      "id": "bougie-10",
+      "category": "veilleuses",
+      "asset": "bougie-rose",
+      "position": {
+        "x": 0.893,
+        "y": 0.55
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bougie-11",
+      "category": "veilleuses",
+      "asset": "bougie-rose",
+      "position": {
+        "x": 0.088,
+        "y": 0.75
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "chat-12",
+      "category": "peluches",
+      "asset": "chat-lavande",
+      "position": {
+        "x": 0.303,
+        "y": 0.75
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "tshirt-13",
+      "category": "linge",
+      "asset": "tshirt-ciel",
+      "position": {
+        "x": 0.504,
+        "y": 0.75
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "lapin-14",
+      "category": "peluches",
+      "asset": "lapin-ciel",
+      "position": {
+        "x": 0.705,
+        "y": 0.75
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-15",
+      "category": "livres",
+      "asset": "livre-terracotta",
+      "position": {
+        "x": 0.885,
+        "y": 0.75
+      },
+      "layer": 10,
+      "blockedBy": []
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 2,
+    "twoStarsMaxBuffered": 4
+  },
+  "meta": {
+    "solution": [
+      "cadre-3",
+      "cadre-4",
+      "cadre-5",
+      "tshirt-13",
+      "bougie-1",
+      "chaussette-2",
+      "livre-7",
+      "chaussette-9",
+      "livre-6",
+      "livre-15",
+      "ours-8",
+      "chat-12",
+      "lapin-14",
+      "bougie-10",
+      "bougie-11"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 758
+  }
+}

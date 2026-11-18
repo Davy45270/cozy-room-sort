@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "010-chambre",
+  "name": "Le tas de peluches",
+  "theme": "chambre",
+  "difficulty": "easy",
+  "seed": 51001,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 2,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "peluches",
+      "label": "Peluches"
+    },
+    {
+      "id": "linge",
+      "label": "Vêtements et linge"
+    },
+    {
+      "id": "veilleuses",
+      "label": "Veilleuses et bougies"
+    },
+    {
+      "id": "livres",
+      "label": "Livres"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-linge-1",
+      "category": "linge",
+      "capacity": 3
+    },
+    {
+      "id": "carton-peluches-2",
+      "category": "peluches",
+      "capacity": 2
+    },
+    {
+      "id": "carton-veilleuses-1",
+      "category": "veilleuses",
+      "capacity": 2
+    },
+    {
+      "id": "carton-livres-1",
+      "category": "livres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-peluches-1",
+      "category": "peluches",
+      "capacity": 2
+    }
+  ],
+  "objects": [
+    {
+      "id": "bougie-1",
+      "category": "veilleuses",
+      "asset": "bougie-creme",
+      "position": {
+        "x": 0.212,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-2",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.358,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "veilleuse-3",
+      "category": "veilleuses",
+      "asset": "veilleuse-lune",
+      "position": {
+        "x": 0.486,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-4",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.659,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "lapin-5",
+      "category": "peluches",
+      "asset": "lapin-ciel",
+      "position": {
+        "x": 0.814,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "tshirt-6",
+      "category": "linge",
+      "asset": "tshirt-sauge",
+      "position": {
+        "x": 0.127,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": []
+    },
+    {
+      "id": "chaussette-7",
+      "category": "linge",
+      "asset": "chaussette-terracotta",
+      "position": {
+        "x": 0.272,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "bougie-1"
+      ]
+    },
+    {
+      "id": "ours-8",
+      "category": "peluches",
+      "asset": "ours-creme",
+      "position": {
+        "x": 0.424,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "bougie-1",
+        "livre-2"
+      ]
+    },
+    {
+      "id": "livre-9",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.574,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-2",
+        "veilleuse-3"
+      ]
+    },
+    {
+      "id": "lapin-10",
+      "category": "peluches",
+      "asset": "lapin-creme",
+      "position": {
+        "x": 0.725,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "veilleuse-3",
+        "livre-4"
+      ]
+    },
+    {
+      "id": "tshirt-11",
+      "category": "linge",
+      "asset": "tshirt-sauge",
+      "position": {
+        "x": 0.868,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-4",
+        "lapin-5"
+      ]
+    },
+    {
+      "id": "ours-12",
+      "category": "peluches",
+      "asset": "ours-moutarde",
+      "position": {
+        "x": 0.492,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "livre-4",
+        "lapin-5"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 1,
+    "twoStarsMaxBuffered": 3
+  },
+  "meta": {
+    "solution": [
+      "lapin-5",
+      "tshirt-6",
+      "livre-4",
+      "tshirt-11",
+      "ours-12",
+      "bougie-1",
+      "veilleuse-3",
+      "livre-2",
+      "chaussette-7",
+      "ours-8",
+      "livre-9",
+      "lapin-10"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 100
+  }
+}

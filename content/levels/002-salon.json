@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "002-salon",
+  "name": "Coussins partout",
+  "theme": "salon",
+  "difficulty": "easy",
+  "seed": 43002,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "livres",
+      "label": "Livres"
+    },
+    {
+      "id": "coussins",
+      "label": "Coussins et plaids"
+    },
+    {
+      "id": "plantes",
+      "label": "Plantes"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-livres-1",
+      "category": "livres",
+      "capacity": 4
+    },
+    {
+      "id": "carton-plantes-1",
+      "category": "plantes",
+      "capacity": 3
+    },
+    {
+      "id": "carton-coussins-1",
+      "category": "coussins",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "livre-1",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.123,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "coussin-2",
+      "category": "coussins",
+      "asset": "coussin-ciel",
+      "position": {
+        "x": 0.362,
+        "y": 0.35
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-1"
+      ]
+    },
+    {
+      "id": "plaid-3",
+      "category": "coussins",
+      "asset": "plaid-canard",
+      "position": {
+        "x": 0.639,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-4",
+      "category": "plantes",
+      "asset": "plante-cactus",
+      "position": {
+        "x": 0.862,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-5",
+      "category": "plantes",
+      "asset": "plante-ronde",
+      "position": {
+        "x": 0.117,
+        "y": 0.55
+      },
+      "layer": 9,
+      "blockedBy": [
+        "plante-4"
+      ]
+    },
+    {
+      "id": "livre-6",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.368,
+        "y": 0.55
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-7",
+      "category": "livres",
+      "asset": "livre-lavande",
+      "position": {
+        "x": 0.612,
+        "y": 0.55
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-8",
+      "category": "plantes",
+      "asset": "plante-ronde",
+      "position": {
+        "x": 0.889,
+        "y": 0.55
+      },
+      "layer": 9,
+      "blockedBy": [
+        "plante-5"
+      ]
+    },
+    {
+      "id": "livre-9",
+      "category": "livres",
+      "asset": "livre-lavande",
+      "position": {
+        "x": 0.126,
+        "y": 0.75
+      },
+      "layer": 9,
+      "blockedBy": [
+        "plaid-3"
+      ]
+    },
+    {
+      "id": "plaid-10",
+      "category": "coussins",
+      "asset": "plaid-canard",
+      "position": {
+        "x": 0.383,
+        "y": 0.75
+      },
+      "layer": 10,
+      "blockedBy": []
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 1,
+    "twoStarsMaxBuffered": 3
+  },
+  "meta": {
+    "solution": [
+      "livre-1",
+      "livre-6",
+      "livre-7",
+      "plaid-3",
+      "livre-9",
+      "plante-4",
+      "plante-5",
+      "plante-8",
+      "coussin-2",
+      "plaid-10"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 50
+  }
+}

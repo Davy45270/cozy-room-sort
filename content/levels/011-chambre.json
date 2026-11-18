@@ -1,0 +1,263 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "011-chambre",
+  "name": "Bibliothèque de chambre",
+  "theme": "chambre",
+  "difficulty": "medium",
+  "seed": 52001,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "peluches",
+      "label": "Peluches"
+    },
+    {
+      "id": "linge",
+      "label": "Vêtements et linge"
+    },
+    {
+      "id": "livres",
+      "label": "Livres"
+    },
+    {
+      "id": "cadres",
+      "label": "Cadres"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-cadres-1",
+      "category": "cadres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-livres-1",
+      "category": "livres",
+      "capacity": 4
+    },
+    {
+      "id": "carton-linge-1",
+      "category": "linge",
+      "capacity": 4
+    },
+    {
+      "id": "carton-peluches-1",
+      "category": "peluches",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "chat-1",
+      "category": "peluches",
+      "asset": "chat-moutarde",
+      "position": {
+        "x": 0.102,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-2",
+      "category": "livres",
+      "asset": "livre-terracotta",
+      "position": {
+        "x": 0.263,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "cadre-3",
+      "category": "cadres",
+      "asset": "cadre-lune",
+      "position": {
+        "x": 0.464,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-4",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.624,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-5",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.823,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "cadre-6",
+      "category": "cadres",
+      "asset": "cadre-paysage",
+      "position": {
+        "x": 0.181,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "chat-1",
+        "livre-2"
+      ]
+    },
+    {
+      "id": "tshirt-7",
+      "category": "linge",
+      "asset": "tshirt-rose",
+      "position": {
+        "x": 0.361,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-2",
+        "cadre-3"
+      ]
+    },
+    {
+      "id": "cadre-8",
+      "category": "cadres",
+      "asset": "cadre-lune",
+      "position": {
+        "x": 0.537,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "cadre-3",
+        "livre-4"
+      ]
+    },
+    {
+      "id": "livre-9",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.725,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-4",
+        "livre-5"
+      ]
+    },
+    {
+      "id": "chat-10",
+      "category": "peluches",
+      "asset": "chat-creme",
+      "position": {
+        "x": 0.898,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-5"
+      ]
+    },
+    {
+      "id": "pull-11",
+      "category": "linge",
+      "asset": "pull-terracotta",
+      "position": {
+        "x": 0.092,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "cadre-6",
+        "tshirt-7"
+      ]
+    },
+    {
+      "id": "ours-12",
+      "category": "peluches",
+      "asset": "ours-bois",
+      "position": {
+        "x": 0.262,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "tshirt-7",
+        "cadre-8"
+      ]
+    },
+    {
+      "id": "pull-13",
+      "category": "linge",
+      "asset": "pull-canard",
+      "position": {
+        "x": 0.456,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "cadre-8",
+        "livre-9"
+      ]
+    },
+    {
+      "id": "chaussette-14",
+      "category": "linge",
+      "asset": "chaussette-lavande",
+      "position": {
+        "x": 0.623,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "livre-9",
+        "chat-10"
+      ],
+      "hidden": true
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 4,
+    "twoStarsMaxBuffered": 6
+  },
+  "meta": {
+    "solution": [
+      "cadre-3",
+      "livre-4",
+      "cadre-8",
+      "chat-1",
+      "livre-2",
+      "cadre-6",
+      "livre-5",
+      "livre-9",
+      "tshirt-7",
+      "pull-11",
+      "pull-13",
+      "chat-10",
+      "chaussette-14",
+      "ours-12"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 611
+  }
+}

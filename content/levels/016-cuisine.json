@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "016-cuisine",
+  "name": "La pile de vaisselle",
+  "theme": "cuisine",
+  "difficulty": "easy",
+  "seed": 57001,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "vaisselle",
+      "label": "Vaisselle"
+    },
+    {
+      "id": "ustensiles",
+      "label": "Ustensiles"
+    },
+    {
+      "id": "epicerie",
+      "label": "Épicerie"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-vaisselle-1",
+      "category": "vaisselle",
+      "capacity": 4
+    },
+    {
+      "id": "carton-epicerie-1",
+      "category": "epicerie",
+      "capacity": 4
+    },
+    {
+      "id": "carton-ustensiles-1",
+      "category": "ustensiles",
+      "capacity": 4
+    }
+  ],
+  "objects": [
+    {
+      "id": "fouet-1",
+      "category": "ustensiles",
+      "asset": "fouet-bois",
+      "position": {
+        "x": 0.212,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bol-2",
+      "category": "vaisselle",
+      "asset": "bol-lavande",
+      "position": {
+        "x": 0.346,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bocal-3",
+      "category": "epicerie",
+      "asset": "bocal-biscuits",
+      "position": {
+        "x": 0.497,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bol-4",
+      "category": "vaisselle",
+      "asset": "bol-sauge",
+      "position": {
+        "x": 0.653,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "pot-5",
+      "category": "epicerie",
+      "asset": "pot-terracotta",
+      "position": {
+        "x": 0.795,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "assiette-6",
+      "category": "vaisselle",
+      "asset": "assiette-ciel",
+      "position": {
+        "x": 0.128,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": []
+    },
+    {
+      "id": "spatule-7",
+      "category": "ustensiles",
+      "asset": "spatule-bois",
+      "position": {
+        "x": 0.281,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "fouet-1"
+      ]
+    },
+    {
+      "id": "boite-8",
+      "category": "epicerie",
+      "asset": "boite-canard",
+      "position": {
+        "x": 0.419,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "fouet-1",
+        "bol-2"
+      ]
+    },
+    {
+      "id": "fouet-9",
+      "category": "ustensiles",
+      "asset": "fouet-bois",
+      "position": {
+        "x": 0.564,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "bol-2",
+        "bocal-3"
+      ]
+    },
+    {
+      "id": "spatule-10",
+      "category": "ustensiles",
+      "asset": "spatule-sauge",
+      "position": {
+        "x": 0.73,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "bocal-3",
+        "bol-4"
+      ]
+    },
+    {
+      "id": "bocal-11",
+      "category": "epicerie",
+      "asset": "bocal-biscuits",
+      "position": {
+        "x": 0.871,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "bol-4",
+        "pot-5"
+      ]
+    },
+    {
+      "id": "bol-12",
+      "category": "vaisselle",
+      "asset": "bol-ciel",
+      "position": {
+        "x": 0.49,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "bol-4",
+        "pot-5"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 2,
+    "twoStarsMaxBuffered": 4
+  },
+  "meta": {
+    "solution": [
+      "bol-2",
+      "bol-4",
+      "assiette-6",
+      "pot-5",
+      "bol-12",
+      "bocal-3",
+      "bocal-11",
+      "fouet-1",
+      "boite-8",
+      "spatule-7",
+      "fouet-9",
+      "spatule-10"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 145
+  }
+}

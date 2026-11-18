@@ -1,0 +1,279 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "005-salon",
+  "name": "Après la fête",
+  "theme": "salon",
+  "difficulty": "medium",
+  "seed": 46001,
+  "rules": {
+    "bufferCapacity": 5,
+    "activeBoxCount": 2,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "livres",
+      "label": "Livres"
+    },
+    {
+      "id": "coussins",
+      "label": "Coussins et plaids"
+    },
+    {
+      "id": "plantes",
+      "label": "Plantes"
+    },
+    {
+      "id": "cadres",
+      "label": "Cadres"
+    },
+    {
+      "id": "lumieres",
+      "label": "Lumières"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-plantes-1",
+      "category": "plantes",
+      "capacity": 3
+    },
+    {
+      "id": "carton-cadres-1",
+      "category": "cadres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-coussins-1",
+      "category": "coussins",
+      "capacity": 3
+    },
+    {
+      "id": "carton-lumieres-1",
+      "category": "lumieres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-livres-1",
+      "category": "livres",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "livre-1",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.096,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-2",
+      "category": "plantes",
+      "asset": "plante-ronde",
+      "position": {
+        "x": 0.089,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-1"
+      ]
+    },
+    {
+      "id": "cadre-3",
+      "category": "cadres",
+      "asset": "cadre-paysage",
+      "position": {
+        "x": 0.091,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "plante-2"
+      ]
+    },
+    {
+      "id": "livre-4",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.309,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "lampe-5",
+      "category": "lumieres",
+      "asset": "lampe-moutarde",
+      "position": {
+        "x": 0.3,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-4"
+      ]
+    },
+    {
+      "id": "plante-6",
+      "category": "plantes",
+      "asset": "plante-fougere",
+      "position": {
+        "x": 0.312,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "lampe-5"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "plante-7",
+      "category": "plantes",
+      "asset": "plante-fougere",
+      "position": {
+        "x": 0.496,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "cadre-8",
+      "category": "cadres",
+      "asset": "cadre-lune",
+      "position": {
+        "x": 0.487,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "plante-7"
+      ]
+    },
+    {
+      "id": "coussin-9",
+      "category": "coussins",
+      "asset": "coussin-moutarde",
+      "position": {
+        "x": 0.513,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "cadre-8"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "livre-10",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.504,
+        "y": 0.38
+      },
+      "layer": 7,
+      "blockedBy": [
+        "coussin-9"
+      ]
+    },
+    {
+      "id": "coussin-11",
+      "category": "coussins",
+      "asset": "coussin-ciel",
+      "position": {
+        "x": 0.501,
+        "y": 0.22
+      },
+      "layer": 6,
+      "blockedBy": [
+        "livre-10"
+      ]
+    },
+    {
+      "id": "lampe-12",
+      "category": "lumieres",
+      "asset": "lampe-moutarde",
+      "position": {
+        "x": 0.497,
+        "y": 0.06
+      },
+      "layer": 5,
+      "blockedBy": [
+        "coussin-11"
+      ]
+    },
+    {
+      "id": "cadre-13",
+      "category": "cadres",
+      "asset": "cadre-lune",
+      "position": {
+        "x": 0.71,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "lampe-14",
+      "category": "lumieres",
+      "asset": "lampe-moutarde",
+      "position": {
+        "x": 0.691,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "cadre-13"
+      ]
+    },
+    {
+      "id": "plaid-15",
+      "category": "coussins",
+      "asset": "plaid-canard",
+      "position": {
+        "x": 0.895,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 3,
+    "twoStarsMaxBuffered": 5
+  },
+  "meta": {
+    "solution": [
+      "plante-7",
+      "cadre-8",
+      "cadre-13",
+      "livre-1",
+      "plante-2",
+      "cadre-3",
+      "coussin-9",
+      "plaid-15",
+      "livre-10",
+      "coussin-11",
+      "lampe-12",
+      "lampe-14",
+      "livre-4",
+      "lampe-5",
+      "plante-6"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 828
+  }
+}

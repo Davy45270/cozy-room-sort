@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "017-cuisine",
+  "name": "Les placards ouverts",
+  "theme": "cuisine",
+  "difficulty": "medium",
+  "seed": 58001,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 2,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "vaisselle",
+      "label": "Vaisselle"
+    },
+    {
+      "id": "ustensiles",
+      "label": "Ustensiles"
+    },
+    {
+      "id": "epicerie",
+      "label": "Épicerie"
+    },
+    {
+      "id": "torchons",
+      "label": "Torchons"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-vaisselle-1",
+      "category": "vaisselle",
+      "capacity": 2
+    },
+    {
+      "id": "carton-epicerie-1",
+      "category": "epicerie",
+      "capacity": 3
+    },
+    {
+      "id": "carton-vaisselle-2",
+      "category": "vaisselle",
+      "capacity": 2
+    },
+    {
+      "id": "carton-ustensiles-1",
+      "category": "ustensiles",
+      "capacity": 3
+    },
+    {
+      "id": "carton-torchons-1",
+      "category": "torchons",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "spatule-1",
+      "category": "ustensiles",
+      "asset": "spatule-sauge",
+      "position": {
+        "x": 0.118,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bocal-2",
+      "category": "epicerie",
+      "asset": "bocal-pates",
+      "position": {
+        "x": 0.115,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "spatule-1"
+      ]
+    },
+    {
+      "id": "bol-3",
+      "category": "vaisselle",
+      "asset": "bol-ciel",
+      "position": {
+        "x": 0.115,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "bocal-2"
+      ]
+    },
+    {
+      "id": "torchon-4",
+      "category": "torchons",
+      "asset": "torchon-rayures",
+      "position": {
+        "x": 0.387,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bocal-5",
+      "category": "epicerie",
+      "asset": "bocal-biscuits",
+      "position": {
+        "x": 0.372,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "torchon-4"
+      ]
+    },
+    {
+      "id": "torchon-6",
+      "category": "torchons",
+      "asset": "torchon-uni",
+      "position": {
+        "x": 0.389,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "bocal-5"
+      ]
+    },
+    {
+      "id": "louche-7",
+      "category": "ustensiles",
+      "asset": "louche-terracotta",
+      "position": {
+        "x": 0.621,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bol-8",
+      "category": "vaisselle",
+      "asset": "bol-ciel",
+      "position": {
+        "x": 0.624,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "louche-7"
+      ]
+    },
+    {
+      "id": "torchon-9",
+      "category": "torchons",
+      "asset": "torchon-uni",
+      "position": {
+        "x": 0.627,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "bol-8"
+      ]
+    },
+    {
+      "id": "bol-10",
+      "category": "vaisselle",
+      "asset": "bol-ciel",
+      "position": {
+        "x": 0.614,
+        "y": 0.38
+      },
+      "layer": 7,
+      "blockedBy": [
+        "torchon-9"
+      ]
+    },
+    {
+      "id": "bocal-11",
+      "category": "epicerie",
+      "asset": "bocal-biscuits",
+      "position": {
+        "x": 0.629,
+        "y": 0.22
+      },
+      "layer": 6,
+      "blockedBy": [
+        "bol-10"
+      ]
+    },
+    {
+      "id": "bol-12",
+      "category": "vaisselle",
+      "asset": "bol-lavande",
+      "position": {
+        "x": 0.887,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "fouet-13",
+      "category": "ustensiles",
+      "asset": "fouet-bois",
+      "position": {
+        "x": 0.875,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "bol-12"
+      ],
+      "hidden": true
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 3,
+    "twoStarsMaxBuffered": 5
+  },
+  "meta": {
+    "solution": [
+      "bol-12",
+      "spatule-1",
+      "bocal-2",
+      "bol-3",
+      "louche-7",
+      "bol-8",
+      "torchon-9",
+      "bol-10",
+      "bocal-11",
+      "fouet-13",
+      "torchon-4",
+      "bocal-5",
+      "torchon-6"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 479
+  }
+}

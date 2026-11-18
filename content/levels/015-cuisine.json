@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "015-cuisine",
+  "name": "La cuisine après le goûter",
+  "theme": "cuisine",
+  "difficulty": "easy",
+  "seed": 56001,
+  "rules": {
+    "bufferCapacity": 5,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "vaisselle",
+      "label": "Vaisselle"
+    },
+    {
+      "id": "ustensiles",
+      "label": "Ustensiles"
+    },
+    {
+      "id": "epicerie",
+      "label": "Épicerie"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-epicerie-1",
+      "category": "epicerie",
+      "capacity": 3
+    },
+    {
+      "id": "carton-vaisselle-1",
+      "category": "vaisselle",
+      "capacity": 3
+    },
+    {
+      "id": "carton-ustensiles-1",
+      "category": "ustensiles",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "bocal-1",
+      "category": "epicerie",
+      "asset": "bocal-riz",
+      "position": {
+        "x": 0.152,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "pot-2",
+      "category": "epicerie",
+      "asset": "pot-terracotta",
+      "position": {
+        "x": 0.415,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "louche-3",
+      "category": "ustensiles",
+      "asset": "louche-bois",
+      "position": {
+        "x": 0.708,
+        "y": 0.84
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bocal-4",
+      "category": "epicerie",
+      "asset": "bocal-riz",
+      "position": {
+        "x": 0.29,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "bocal-1",
+        "pot-2"
+      ]
+    },
+    {
+      "id": "bol-5",
+      "category": "vaisselle",
+      "asset": "bol-sauge",
+      "position": {
+        "x": 0.579,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "pot-2",
+        "louche-3"
+      ]
+    },
+    {
+      "id": "louche-6",
+      "category": "ustensiles",
+      "asset": "louche-terracotta",
+      "position": {
+        "x": 0.861,
+        "y": 0.6
+      },
+      "layer": 9,
+      "blockedBy": [
+        "louche-3"
+      ]
+    },
+    {
+      "id": "assiette-7",
+      "category": "vaisselle",
+      "asset": "assiette-creme",
+      "position": {
+        "x": 0.157,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "bocal-4",
+        "bol-5"
+      ]
+    },
+    {
+      "id": "louche-8",
+      "category": "ustensiles",
+      "asset": "louche-terracotta",
+      "position": {
+        "x": 0.44,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "bol-5",
+        "louche-6"
+      ]
+    },
+    {
+      "id": "tasse-9",
+      "category": "vaisselle",
+      "asset": "tasse-moutarde",
+      "position": {
+        "x": 0.7,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "louche-6"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 2,
+    "twoStarsMaxBuffered": 4
+  },
+  "meta": {
+    "solution": [
+      "bocal-1",
+      "pot-2",
+      "bocal-4",
+      "louche-3",
+      "bol-5",
+      "assiette-7",
+      "louche-6",
+      "tasse-9",
+      "louche-8"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 25
+  }
+}

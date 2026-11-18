@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "004-salon",
+  "name": "Le tas du canapé",
+  "theme": "salon",
+  "difficulty": "medium",
+  "seed": 45002,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "livres",
+      "label": "Livres"
+    },
+    {
+      "id": "coussins",
+      "label": "Coussins et plaids"
+    },
+    {
+      "id": "plantes",
+      "label": "Plantes"
+    },
+    {
+      "id": "lumieres",
+      "label": "Lumières"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-coussins-1",
+      "category": "coussins",
+      "capacity": 3
+    },
+    {
+      "id": "carton-plantes-1",
+      "category": "plantes",
+      "capacity": 3
+    },
+    {
+      "id": "carton-livres-1",
+      "category": "livres",
+      "capacity": 2
+    },
+    {
+      "id": "carton-lumieres-1",
+      "category": "lumieres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-livres-2",
+      "category": "livres",
+      "capacity": 2
+    }
+  ],
+  "objects": [
+    {
+      "id": "coussin-1",
+      "category": "coussins",
+      "asset": "coussin-rose",
+      "position": {
+        "x": 0.203,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-2",
+      "category": "livres",
+      "asset": "livre-terracotta",
+      "position": {
+        "x": 0.359,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "lampe-3",
+      "category": "lumieres",
+      "asset": "lampe-sauge",
+      "position": {
+        "x": 0.49,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-4",
+      "category": "plantes",
+      "asset": "plante-cactus",
+      "position": {
+        "x": 0.637,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-5",
+      "category": "plantes",
+      "asset": "plante-fougere",
+      "position": {
+        "x": 0.811,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "lampe-6",
+      "category": "lumieres",
+      "asset": "lampe-creme",
+      "position": {
+        "x": 0.111,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-7",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.273,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "coussin-1"
+      ]
+    },
+    {
+      "id": "livre-8",
+      "category": "livres",
+      "asset": "livre-terracotta",
+      "position": {
+        "x": 0.42,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "coussin-1",
+        "livre-2"
+      ]
+    },
+    {
+      "id": "livre-9",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.576,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-2",
+        "lampe-3"
+      ]
+    },
+    {
+      "id": "lampe-10",
+      "category": "lumieres",
+      "asset": "lampe-creme",
+      "position": {
+        "x": 0.735,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "lampe-3",
+        "plante-4"
+      ]
+    },
+    {
+      "id": "plante-11",
+      "category": "plantes",
+      "asset": "plante-ronde",
+      "position": {
+        "x": 0.873,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "plante-4",
+        "plante-5"
+      ]
+    },
+    {
+      "id": "plaid-12",
+      "category": "coussins",
+      "asset": "plaid-rose",
+      "position": {
+        "x": 0.43,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "plante-4",
+        "plante-5"
+      ]
+    },
+    {
+      "id": "plaid-13",
+      "category": "coussins",
+      "asset": "plaid-terracotta",
+      "position": {
+        "x": 0.573,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "plante-5",
+        "lampe-6"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 3,
+    "twoStarsMaxBuffered": 5
+  },
+  "meta": {
+    "solution": [
+      "coussin-1",
+      "plante-4",
+      "plante-5",
+      "plaid-12",
+      "lampe-6",
+      "plaid-13",
+      "plante-11",
+      "livre-2",
+      "livre-7",
+      "lampe-3",
+      "lampe-10",
+      "livre-8",
+      "livre-9"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 387
+  }
+}

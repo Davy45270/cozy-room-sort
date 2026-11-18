@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "007-salon",
+  "name": "Le grand rangement du salon",
+  "theme": "salon",
+  "difficulty": "expert",
+  "seed": 48001,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 2,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "livres",
+      "label": "Livres"
+    },
+    {
+      "id": "coussins",
+      "label": "Coussins et plaids"
+    },
+    {
+      "id": "plantes",
+      "label": "Plantes"
+    },
+    {
+      "id": "cadres",
+      "label": "Cadres"
+    },
+    {
+      "id": "lumieres",
+      "label": "Lumières"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-coussins-2",
+      "category": "coussins",
+      "capacity": 2
+    },
+    {
+      "id": "carton-lumieres-1",
+      "category": "lumieres",
+      "capacity": 4
+    },
+    {
+      "id": "carton-coussins-1",
+      "category": "coussins",
+      "capacity": 2
+    },
+    {
+      "id": "carton-livres-1",
+      "category": "livres",
+      "capacity": 4
+    },
+    {
+      "id": "carton-plantes-1",
+      "category": "plantes",
+      "capacity": 3
+    },
+    {
+      "id": "carton-cadres-1",
+      "category": "cadres",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "cadre-1",
+      "category": "cadres",
+      "asset": "cadre-fleur",
+      "position": {
+        "x": 0.111,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-2",
+      "category": "livres",
+      "asset": "livre-terracotta",
+      "position": {
+        "x": 0.267,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plaid-3",
+      "category": "coussins",
+      "asset": "plaid-terracotta",
+      "position": {
+        "x": 0.433,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-4",
+      "category": "plantes",
+      "asset": "plante-cactus",
+      "position": {
+        "x": 0.58,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "lampe-5",
+      "category": "lumieres",
+      "asset": "lampe-sauge",
+      "position": {
+        "x": 0.721,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-6",
+      "category": "livres",
+      "asset": "livre-terracotta",
+      "position": {
+        "x": 0.87,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-7",
+      "category": "plantes",
+      "asset": "plante-fougere",
+      "position": {
+        "x": 0.06,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": []
+    },
+    {
+      "id": "lampe-8",
+      "category": "lumieres",
+      "asset": "lampe-moutarde",
+      "position": {
+        "x": 0.188,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "cadre-1"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "cadre-9",
+      "category": "cadres",
+      "asset": "cadre-lune",
+      "position": {
+        "x": 0.345,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "cadre-1",
+        "livre-2"
+      ]
+    },
+    {
+      "id": "plante-10",
+      "category": "plantes",
+      "asset": "plante-fougere",
+      "position": {
+        "x": 0.489,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-2",
+        "plaid-3"
+      ]
+    },
+    {
+      "id": "lampe-11",
+      "category": "lumieres",
+      "asset": "lampe-sauge",
+      "position": {
+        "x": 0.648,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "plaid-3",
+        "plante-4"
+      ]
+    },
+    {
+      "id": "plaid-12",
+      "category": "coussins",
+      "asset": "plaid-terracotta",
+      "position": {
+        "x": 0.789,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "plante-4",
+        "lampe-5"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "livre-13",
+      "category": "livres",
+      "asset": "livre-canard",
+      "position": {
+        "x": 0.94,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "lampe-5",
+        "livre-6"
+      ]
+    },
+    {
+      "id": "lampe-14",
+      "category": "lumieres",
+      "asset": "lampe-creme",
+      "position": {
+        "x": 0.192,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "lampe-5",
+        "livre-6"
+      ]
+    },
+    {
+      "id": "cadre-15",
+      "category": "cadres",
+      "asset": "cadre-lune",
+      "position": {
+        "x": 0.357,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "livre-6",
+        "plante-7"
+      ]
+    },
+    {
+      "id": "coussin-16",
+      "category": "coussins",
+      "asset": "coussin-moutarde",
+      "position": {
+        "x": 0.509,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "plante-7",
+        "lampe-8"
+      ]
+    },
+    {
+      "id": "plaid-17",
+      "category": "coussins",
+      "asset": "plaid-rose",
+      "position": {
+        "x": 0.642,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "lampe-8",
+        "cadre-9"
+      ]
+    },
+    {
+      "id": "livre-18",
+      "category": "livres",
+      "asset": "livre-terracotta",
+      "position": {
+        "x": 0.792,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "cadre-9",
+        "plante-10"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 5,
+    "twoStarsMaxBuffered": 7
+  },
+  "meta": {
+    "solution": [
+      "plaid-3",
+      "lampe-5",
+      "plante-4",
+      "lampe-11",
+      "plaid-12",
+      "cadre-1",
+      "lampe-8",
+      "livre-6",
+      "lampe-14",
+      "livre-2",
+      "livre-13",
+      "plante-7",
+      "coussin-16",
+      "cadre-9",
+      "plaid-17",
+      "plante-10",
+      "cadre-15",
+      "livre-18"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 7412
+  }
+}

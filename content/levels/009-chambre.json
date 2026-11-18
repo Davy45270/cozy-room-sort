@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "009-chambre",
+  "name": "Les piles de linge",
+  "theme": "chambre",
+  "difficulty": "easy",
+  "seed": 50001,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "peluches",
+      "label": "Peluches"
+    },
+    {
+      "id": "linge",
+      "label": "Vêtements et linge"
+    },
+    {
+      "id": "livres",
+      "label": "Livres"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-livres-1",
+      "category": "livres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-peluches-1",
+      "category": "peluches",
+      "capacity": 4
+    },
+    {
+      "id": "carton-linge-1",
+      "category": "linge",
+      "capacity": 4
+    }
+  ],
+  "objects": [
+    {
+      "id": "chaussette-1",
+      "category": "linge",
+      "asset": "chaussette-moutarde",
+      "position": {
+        "x": 0.123,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "chaussette-2",
+      "category": "linge",
+      "asset": "chaussette-terracotta",
+      "position": {
+        "x": 0.136,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "chaussette-1"
+      ]
+    },
+    {
+      "id": "ours-3",
+      "category": "peluches",
+      "asset": "ours-moutarde",
+      "position": {
+        "x": 0.116,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "chaussette-2"
+      ]
+    },
+    {
+      "id": "lapin-4",
+      "category": "peluches",
+      "asset": "lapin-ciel",
+      "position": {
+        "x": 0.116,
+        "y": 0.38
+      },
+      "layer": 7,
+      "blockedBy": [
+        "ours-3"
+      ]
+    },
+    {
+      "id": "lapin-5",
+      "category": "peluches",
+      "asset": "lapin-rose",
+      "position": {
+        "x": 0.383,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "chaussette-6",
+      "category": "linge",
+      "asset": "chaussette-lavande",
+      "position": {
+        "x": 0.384,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "lapin-5"
+      ]
+    },
+    {
+      "id": "tshirt-7",
+      "category": "linge",
+      "asset": "tshirt-rose",
+      "position": {
+        "x": 0.377,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "chaussette-6"
+      ]
+    },
+    {
+      "id": "livre-8",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.619,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-9",
+      "category": "livres",
+      "asset": "livre-moutarde",
+      "position": {
+        "x": 0.627,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-8"
+      ]
+    },
+    {
+      "id": "livre-10",
+      "category": "livres",
+      "asset": "livre-lavande",
+      "position": {
+        "x": 0.877,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "lapin-11",
+      "category": "peluches",
+      "asset": "lapin-ciel",
+      "position": {
+        "x": 0.879,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "livre-10"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 2,
+    "twoStarsMaxBuffered": 4
+  },
+  "meta": {
+    "solution": [
+      "livre-8",
+      "livre-9",
+      "livre-10",
+      "lapin-5",
+      "lapin-11",
+      "chaussette-1",
+      "chaussette-2",
+      "ours-3",
+      "lapin-4",
+      "chaussette-6",
+      "tshirt-7"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 75
+  }
+}

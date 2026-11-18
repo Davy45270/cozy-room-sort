@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "018-cuisine",
+  "name": "Le plan de travail",
+  "theme": "cuisine",
+  "difficulty": "medium",
+  "seed": 59001,
+  "rules": {
+    "bufferCapacity": 3,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "vaisselle",
+      "label": "Vaisselle"
+    },
+    {
+      "id": "ustensiles",
+      "label": "Ustensiles"
+    },
+    {
+      "id": "epicerie",
+      "label": "Épicerie"
+    },
+    {
+      "id": "fleurs",
+      "label": "Fleurs"
+    },
+    {
+      "id": "torchons",
+      "label": "Torchons"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-torchons-1",
+      "category": "torchons",
+      "capacity": 3
+    },
+    {
+      "id": "carton-fleurs-1",
+      "category": "fleurs",
+      "capacity": 3
+    },
+    {
+      "id": "carton-epicerie-1",
+      "category": "epicerie",
+      "capacity": 3
+    },
+    {
+      "id": "carton-vaisselle-1",
+      "category": "vaisselle",
+      "capacity": 4
+    },
+    {
+      "id": "carton-ustensiles-1",
+      "category": "ustensiles",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "vase-1",
+      "category": "fleurs",
+      "asset": "vase-moutarde",
+      "position": {
+        "x": 0.114,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "fouet-2",
+      "category": "ustensiles",
+      "asset": "fouet-canard",
+      "position": {
+        "x": 0.291,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "torchon-3",
+      "category": "torchons",
+      "asset": "torchon-rayures",
+      "position": {
+        "x": 0.489,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bol-4",
+      "category": "vaisselle",
+      "asset": "bol-ciel",
+      "position": {
+        "x": 0.694,
+        "y": 0.35
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "louche-5",
+      "category": "ustensiles",
+      "asset": "louche-bois",
+      "position": {
+        "x": 0.893,
+        "y": 0.35
+      },
+      "layer": 9,
+      "blockedBy": [
+        "torchon-3"
+      ]
+    },
+    {
+      "id": "assiette-6",
+      "category": "vaisselle",
+      "asset": "assiette-creme",
+      "position": {
+        "x": 0.105,
+        "y": 0.5
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "bol-7",
+      "category": "vaisselle",
+      "asset": "bol-ciel",
+      "position": {
+        "x": 0.306,
+        "y": 0.5
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "pot-8",
+      "category": "epicerie",
+      "asset": "pot-terracotta",
+      "position": {
+        "x": 0.49,
+        "y": 0.5
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "pot-9",
+      "category": "epicerie",
+      "asset": "pot-moutarde",
+      "position": {
+        "x": 0.714,
+        "y": 0.5
+      },
+      "layer": 9,
+      "blockedBy": [
+        "fouet-2"
+      ]
+    },
+    {
+      "id": "vase-10",
+      "category": "fleurs",
+      "asset": "vase-lavande",
+      "position": {
+        "x": 0.906,
+        "y": 0.5
+      },
+      "layer": 9,
+      "blockedBy": [
+        "bol-7"
+      ]
+    },
+    {
+      "id": "torchon-11",
+      "category": "torchons",
+      "asset": "torchon-uni",
+      "position": {
+        "x": 0.103,
+        "y": 0.65
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "vase-12",
+      "category": "fleurs",
+      "asset": "vase-moutarde",
+      "position": {
+        "x": 0.286,
+        "y": 0.65
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "louche-13",
+      "category": "ustensiles",
+      "asset": "louche-bois",
+      "position": {
+        "x": 0.513,
+        "y": 0.65
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "assiette-14",
+      "category": "vaisselle",
+      "asset": "assiette-ciel",
+      "position": {
+        "x": 0.693,
+        "y": 0.65
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "torchon-15",
+      "category": "torchons",
+      "asset": "torchon-uni",
+      "position": {
+        "x": 0.915,
+        "y": 0.65
+      },
+      "layer": 9,
+      "blockedBy": [
+        "torchon-3"
+      ]
+    },
+    {
+      "id": "bocal-16",
+      "category": "epicerie",
+      "asset": "bocal-pates",
+      "position": {
+        "x": 0.104,
+        "y": 0.8
+      },
+      "layer": 10,
+      "blockedBy": []
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 2,
+    "twoStarsMaxBuffered": 4
+  },
+  "meta": {
+    "solution": [
+      "torchon-3",
+      "torchon-11",
+      "torchon-15",
+      "vase-1",
+      "vase-12",
+      "bol-7",
+      "vase-10",
+      "pot-8",
+      "bocal-16",
+      "fouet-2",
+      "pot-9",
+      "bol-4",
+      "assiette-6",
+      "assiette-14",
+      "louche-5",
+      "louche-13"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 1030
+  }
+}
