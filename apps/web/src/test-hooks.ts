@@ -7,6 +7,8 @@ export interface CozyTestHooks {
     objectCenter(id: string): { x: number; y: number } | null;
     state(): GameState;
     solution(): readonly string[];
+    /** Touche un objet par le même chemin que le pointeur, même s'il est recouvert. */
+    tapObject(id: string): void;
 }
 declare global { interface Window { __cozy?: CozyTestHooks } }
 
@@ -17,7 +19,8 @@ export function installTestHooks(current: () => { controller: Controller; scene:
     window.__cozy = {
         objectCenter: id => current().scene?.objectCenter(id) ?? null,
         state: () => current().controller.state,
-        solution: () => current().controller.level.meta?.solution ?? []
+        solution: () => current().controller.level.meta?.solution ?? [],
+        tapObject: id => current().scene?.tap(id)
     };
     return () => { delete window.__cozy; };
 }

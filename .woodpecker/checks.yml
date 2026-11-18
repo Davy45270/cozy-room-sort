@@ -1,4 +1,4 @@
-# Repris de six-de-chaque (.woodpecker/checks.yml), sans build ni e2e tant qu'il n'y a pas d'application.
+# Repris de six-de-chaque (.woodpecker/checks.yml). Les tests de bout en bout sont dans e2e.yml.
 # Chaque niveau de content/levels doit être valide et résolu par le solveur.
 # Node : l'image officielle node:26 via le proxy Harbor.
 labels:
@@ -32,6 +32,16 @@ steps:
     image: *node
     commands:
       - npm run level:validate -- content/levels
+  - name: build
+    image: *node
+    commands:
+      - npm run build
+      - sha256sum dist/index.html
+      - echo "empreinte dist $(cd dist && find . -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum | sha256sum | cut -c1-64)"
+  - name: check:precache
+    image: *node
+    commands:
+      - npm run check:precache
   - name: audit
     image: *node
     commands:

@@ -130,7 +130,8 @@ export class RoomScene extends Phaser.Scene {
         });
     }
 
-    private tap(id: string): void {
+    /** Toucher d'un objet : même chemin pour le pointeur et pour les tests. */
+    tap(id: string): void {
         const sprite = this.sprites.get(id);
         if (!sprite) return;
         if (sprite.getData('accessible') !== true) {
