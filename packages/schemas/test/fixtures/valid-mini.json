@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "mini-001",
+  "name": "Trois livres",
+  "theme": "salon",
+  "difficulty": "easy",
+  "seed": 1,
+  "rules": { "bufferCapacity": 1, "activeBoxCount": 1, "allowUndo": true, "allowHints": true, "timeLimitSeconds": null },
+  "categories": [{ "id": "books", "label": "Livres" }],
+  "boxes": [{ "id": "box-1", "category": "books", "capacity": 3 }],
+  "objects": [
+    { "id": "o1", "category": "books", "asset": "salon-livre-rouge", "position": { "x": 0.2, "y": 0.4 }, "layer": 2, "blockedBy": [] },
+    { "id": "o2", "category": "books", "asset": "salon-livre-bleu", "position": { "x": 0.2, "y": 0.5 }, "layer": 1, "blockedBy": ["o1"] },
+    { "id": "o3", "category": "books", "asset": "salon-livre-vert", "position": { "x": 0.2, "y": 0.6 }, "layer": 0, "blockedBy": ["o2"], "hidden": true }
+  ],
+  "scoring": { "threeStarsMaxMoves": 3, "twoStarsMaxMoves": 5 }
+}

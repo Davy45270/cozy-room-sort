@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cozy-room-sort.dav123.fr/level.schema.json",
+  "title": "Niveau Cozy Room Sort",
+  "description": "Structure d'un niveau. Les contraintes croisées (quotas par catégorie, bloqueurs existants, absence de cycle) ne sont vérifiées que par validateLevel.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "rulesVersion",
+    "id",
+    "name",
+    "theme",
+    "difficulty",
+    "seed",
+    "rules",
+    "categories",
+    "boxes",
+    "objects",
+    "scoring"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "rulesVersion": {
+      "const": "1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "theme": {
+      "type": "string",
+      "minLength": 1
+    },
+    "difficulty": {
+      "enum": [
+        "easy",
+        "medium",
+        "expert"
+      ]
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bufferCapacity",
+        "activeBoxCount",
+        "allowUndo",
+        "allowHints",
+        "timeLimitSeconds"
+      ],
+      "properties": {
+        "bufferCapacity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "activeBoxCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allowUndo": {
+          "type": "boolean"
+        },
+        "allowHints": {
+          "type": "boolean"
+        },
+        "timeLimitSeconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "undoLimit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "hintLimit": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "label"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "boxes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "category",
+          "capacity"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string"
+          },
+          "capacity": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "category",
+          "asset",
+          "position",
+          "layer",
+          "blockedBy"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string"
+          },
+          "asset": {
+            "type": "string",
+            "minLength": 1
+          },
+          "position": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "x",
+              "y"
+            ],
+            "properties": {
+              "x": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "y": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          },
+          "layer": {
+            "type": "integer"
+          },
+          "blockedBy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hidden": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "threeStarsMaxMoves",
+        "twoStarsMaxMoves"
+      ],
+      "properties": {
+        "threeStarsMaxMoves": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "twoStarsMaxMoves": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "solution": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "engineVersion": {
+          "type": "string"
+        },
+        "statesExplored": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
