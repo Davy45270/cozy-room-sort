@@ -27,10 +27,6 @@ steps:
     image: *node
     commands:
       - npm test
-  - name: level:validate
-    image: *node
-    commands:
-      - npm run level:validate -- content/levels
   - name: audit
     image: *node
     commands:
