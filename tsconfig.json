@@ -3,7 +3,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "lib": ["ES2022"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "types": ["node"],
     "strict": true,
     "resolveJsonModule": true,
@@ -14,5 +14,5 @@
     "noEmit": true,
     "allowImportingTsExtensions": true
   },
-  "include": ["packages/*/src", "packages/*/test", "tests", "tools", "scripts/**/*.ts", "*.ts"]
+  "include": ["packages/*/src", "packages/*/test", "apps/web/src", "apps/web/test", "apps/web/*.ts", "tests", "tools", "scripts/**/*.ts", "*.ts"]
 }

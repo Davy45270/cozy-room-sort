@@ -7,7 +7,8 @@
   "author": "David Sevin",
   "type": "module",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "engines": {
     "node": ">=26"
@@ -17,14 +18,25 @@
     "lint": "oxlint --max-warnings=0",
     "test": "vitest run --pool=threads --maxWorkers=2",
     "level:validate": "node tools/validate-levels.ts",
-    "level:solve": "node tools/solve-level.ts"
+    "level:solve": "node tools/solve-level.ts",
+    "dev": "vite apps/web",
+    "build": "tsc --noEmit && vite build apps/web",
+    "preview": "vite preview apps/web",
+    "check:precache": "node scripts/check-precache.js",
+    "test:e2e": "playwright test",
+    "art:sheet": "node tools/art-sheet.ts"
   },
   "devDependencies": {
+    "@playwright/test": "1.65.0",
     "@types/node": "26.6.6",
+    "fake-indexeddb": "6.2.8",
     "fast-check": "4.10.3",
+    "happy-dom": "21.0.4",
     "oxlint": "1.92.0",
     "oxlint-tsgolint": "7.0.2006",
     "typescript": "7.0.2",
+    "vite": "8.3.6",
+    "vite-plugin-pwa": "2.0.0",
     "vitest": "5.1.0"
   }
 }

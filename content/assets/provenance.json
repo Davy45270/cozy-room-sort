@@ -1,1 +1,1192 @@
-[]
+[
+  {
+    "id": "livre-terracotta",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "livre-canard",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "livre-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "livre-lavande",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "coussin-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "coussin-rose",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "coussin-sauge",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "coussin-ciel",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "plaid-rose",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "plaid-canard",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "plaid-terracotta",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "plante-fougere",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "plante-cactus",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "plante-ronde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "cadre-paysage",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "cadre-fleur",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "cadre-lune",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "lampe-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "lampe-creme",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "lampe-sauge",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "ours-bois",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "ours-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "ours-creme",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "lapin-creme",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "lapin-rose",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "lapin-ciel",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "chat-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "chat-lavande",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "chat-creme",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "pull-terracotta",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "pull-canard",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "pull-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "tshirt-ciel",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "tshirt-rose",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "tshirt-sauge",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "chaussette-lavande",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "chaussette-terracotta",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "chaussette-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "bougie-rose",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "bougie-creme",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "bougie-sauge",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "veilleuse-lune",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "veilleuse-etoile",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "assiette-ciel",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "assiette-creme",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "assiette-rose",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "tasse-terracotta",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "tasse-canard",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "tasse-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "bol-sauge",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "bol-ciel",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "bol-lavande",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "fouet-bois",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "fouet-canard",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "louche-bois",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "louche-terracotta",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "spatule-bois",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "spatule-sauge",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "bocal-pates",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "bocal-riz",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "bocal-biscuits",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "pot-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "pot-terracotta",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "boite-canard",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "boite-prune",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "boite-sauge",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "vase-rose",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "vase-moutarde",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "vase-lavande",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "torchon-carreaux",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "torchon-rayures",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "torchon-uni",
+    "kind": "objet",
+    "origin": "code",
+    "source": "packages/art/src/objects.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      0.9
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-book",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-cushion",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-plant",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-frame",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-lamp",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-teddy",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-shirt",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-candle",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-plate",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-whisk",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-jar",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-flower",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  },
+  {
+    "id": "carton-towel",
+    "kind": "carton",
+    "origin": "code",
+    "source": "packages/art/src/boxes.ts",
+    "viewBox": "0 0 128 128",
+    "anchor": [
+      0.5,
+      1
+    ],
+    "hitbox": "boîte englobante",
+    "license": "MIT",
+    "created": "2026-11-18"
+  }
+]

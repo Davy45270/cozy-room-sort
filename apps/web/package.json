@@ -1,0 +1,14 @@
+{
+  "name": "@cozy-room-sort/web",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@cozy-room-sort/art": "0.1.0",
+    "@cozy-room-sort/engine": "0.1.0",
+    "@cozy-room-sort/schemas": "0.1.0",
+    "@cozy-room-sort/solver": "0.1.0",
+    "phaser": "4.2.1"
+  }
+}
