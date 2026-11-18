@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "impossible",
+  "name": "Pile impossible",
+  "theme": "salon",
+  "difficulty": "easy",
+  "seed": 1,
+  "rules": {
+    "bufferCapacity": 1,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "a",
+      "label": "A"
+    },
+    {
+      "id": "b",
+      "label": "B"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "box-a",
+      "category": "a",
+      "capacity": 2
+    },
+    {
+      "id": "box-b",
+      "category": "b",
+      "capacity": 2
+    }
+  ],
+  "objects": [
+    {
+      "id": "b1",
+      "category": "b",
+      "asset": "salon-b1",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": []
+    },
+    {
+      "id": "b2",
+      "category": "b",
+      "asset": "salon-b2",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "b1"
+      ]
+    },
+    {
+      "id": "a1",
+      "category": "a",
+      "asset": "salon-a1",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "b2"
+      ]
+    },
+    {
+      "id": "a2",
+      "category": "a",
+      "asset": "salon-a2",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "a1"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxMoves": 4,
+    "twoStarsMaxMoves": 6
+  }
+}
