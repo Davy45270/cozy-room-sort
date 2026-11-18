@@ -1,0 +1,31 @@
+{
+  "id": "cuisine",
+  "label": "Cuisine",
+  "categories": [
+    {
+      "id": "vaisselle",
+      "label": "Vaisselle",
+      "picto": "plate"
+    },
+    {
+      "id": "ustensiles",
+      "label": "Ustensiles",
+      "picto": "whisk"
+    },
+    {
+      "id": "epicerie",
+      "label": "Épicerie",
+      "picto": "jar"
+    },
+    {
+      "id": "fleurs",
+      "label": "Fleurs",
+      "picto": "flower"
+    },
+    {
+      "id": "torchons",
+      "label": "Torchons",
+      "picto": "towel"
+    }
+  ]
+}

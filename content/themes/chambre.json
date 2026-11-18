@@ -1,0 +1,31 @@
+{
+  "id": "chambre",
+  "label": "Chambre",
+  "categories": [
+    {
+      "id": "peluches",
+      "label": "Peluches",
+      "picto": "teddy"
+    },
+    {
+      "id": "linge",
+      "label": "Vêtements et linge",
+      "picto": "shirt"
+    },
+    {
+      "id": "livres",
+      "label": "Livres",
+      "picto": "book"
+    },
+    {
+      "id": "veilleuses",
+      "label": "Veilleuses et bougies",
+      "picto": "candle"
+    },
+    {
+      "id": "cadres",
+      "label": "Cadres",
+      "picto": "frame"
+    }
+  ]
+}

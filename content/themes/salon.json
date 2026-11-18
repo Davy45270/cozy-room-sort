@@ -1,0 +1,31 @@
+{
+  "id": "salon",
+  "label": "Salon",
+  "categories": [
+    {
+      "id": "livres",
+      "label": "Livres",
+      "picto": "book"
+    },
+    {
+      "id": "coussins",
+      "label": "Coussins et plaids",
+      "picto": "cushion"
+    },
+    {
+      "id": "plantes",
+      "label": "Plantes",
+      "picto": "plant"
+    },
+    {
+      "id": "cadres",
+      "label": "Cadres",
+      "picto": "frame"
+    },
+    {
+      "id": "lumieres",
+      "label": "Lumières",
+      "picto": "lamp"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 # Repris de six-de-chaque (.woodpecker/checks.yml), sans build ni e2e tant qu'il n'y a pas d'application.
+# Chaque niveau de content/levels doit être valide et résolu par le solveur.
 # Node : l'image officielle node:26 via le proxy Harbor.
 labels:
   host: tank01
@@ -27,6 +28,10 @@ steps:
     image: *node
     commands:
       - npm test
+  - name: level:validate
+    image: *node
+    commands:
+      - npm run level:validate -- content/levels
   - name: audit
     image: *node
     commands:

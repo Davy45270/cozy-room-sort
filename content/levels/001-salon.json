@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "salon-001",
+  "name": "Le salon en désordre",
+  "theme": "salon",
+  "difficulty": "easy",
+  "seed": 42001,
+  "rules": {
+    "bufferCapacity": 5,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "livres",
+      "label": "Livres"
+    },
+    {
+      "id": "coussins",
+      "label": "Coussins et plaids"
+    },
+    {
+      "id": "plantes",
+      "label": "Plantes"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-livres",
+      "category": "livres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-coussins",
+      "category": "coussins",
+      "capacity": 3
+    },
+    {
+      "id": "carton-plantes",
+      "category": "plantes",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "livre-rouge",
+      "category": "livres",
+      "asset": "salon-livre-rouge",
+      "position": {
+        "x": 0.2,
+        "y": 0.35
+      },
+      "layer": 2,
+      "blockedBy": []
+    },
+    {
+      "id": "coussin-jaune",
+      "category": "coussins",
+      "asset": "salon-coussin-jaune",
+      "position": {
+        "x": 0.5,
+        "y": 0.35
+      },
+      "layer": 2,
+      "blockedBy": []
+    },
+    {
+      "id": "plante-verte",
+      "category": "plantes",
+      "asset": "salon-plante-verte",
+      "position": {
+        "x": 0.8,
+        "y": 0.35
+      },
+      "layer": 2,
+      "blockedBy": []
+    },
+    {
+      "id": "livre-bleu",
+      "category": "livres",
+      "asset": "salon-livre-bleu",
+      "position": {
+        "x": 0.2,
+        "y": 0.5
+      },
+      "layer": 1,
+      "blockedBy": [
+        "livre-rouge"
+      ]
+    },
+    {
+      "id": "plaid-rose",
+      "category": "coussins",
+      "asset": "salon-plaid-rose",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 1,
+      "blockedBy": [
+        "coussin-jaune"
+      ]
+    },
+    {
+      "id": "cactus",
+      "category": "plantes",
+      "asset": "salon-cactus",
+      "position": {
+        "x": 0.8,
+        "y": 0.5
+      },
+      "layer": 1,
+      "blockedBy": [
+        "plante-verte"
+      ]
+    },
+    {
+      "id": "livre-vert",
+      "category": "livres",
+      "asset": "salon-livre-vert",
+      "position": {
+        "x": 0.2,
+        "y": 0.65
+      },
+      "layer": 0,
+      "blockedBy": [
+        "livre-bleu"
+      ]
+    },
+    {
+      "id": "coussin-carreaux",
+      "category": "coussins",
+      "asset": "salon-coussin-carreaux",
+      "position": {
+        "x": 0.5,
+        "y": 0.65
+      },
+      "layer": 0,
+      "blockedBy": [
+        "plaid-rose"
+      ]
+    },
+    {
+      "id": "fougere",
+      "category": "plantes",
+      "asset": "salon-fougere",
+      "position": {
+        "x": 0.8,
+        "y": 0.65
+      },
+      "layer": 0,
+      "blockedBy": [
+        "cactus"
+      ],
+      "hidden": true
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxMoves": 9,
+    "twoStarsMaxMoves": 12
+  },
+  "meta": {
+    "solution": [
+      "livre-rouge",
+      "coussin-jaune",
+      "plante-verte",
+      "livre-bleu",
+      "plaid-rose",
+      "cactus",
+      "livre-vert",
+      "coussin-carreaux",
+      "fougere"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 163
+  }
+}
