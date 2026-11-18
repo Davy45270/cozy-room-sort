@@ -54,7 +54,8 @@ export class RoomScene extends Phaser.Scene {
         this.scale.on('resize', () => this.relayout());
         this.unsubscribe = this.opts.controller.subscribe((state, events) => this.reconcile(state, events));
         this.events.once('shutdown', () => this.unsubscribe?.());
-        void this.refreshTheme().then(() => { this.scale.refresh(); this.opts.onReady?.(); });
+        // Prêt après un pas complet : les objets créés ne deviennent touchables qu'au pas suivant leur création.
+        void this.refreshTheme().then(() => { this.scale.refresh(); this.events.once('postupdate', () => this.opts.onReady?.()); });
     }
 
     /** Recharge les textures du mode courant et redessine tout (changement de thème). */
@@ -189,17 +190,17 @@ export function startRoom(parent: HTMLElement, opts: RoomSceneOptions): { game: 
         scene: [scene]
     });
     // Repris d'oc-busfolie : RESIZE doit suivre le conteneur, et Phaser garde en cache la position du canvas pour
-    // convertir les touchers. Sans rafraîchissement, WebKit touche à côté (la barre du haut décale le canvas).
+    // convertir les touchers ; on la rafraîchit à chaque changement de taille du conteneur.
     const observer = new ResizeObserver(() => { game.scale.getParentBounds(); game.scale.refresh(); });
     observer.observe(parent);
-    // WebKit peut laisser en souffrance la première demande d'image de la boucle (mesuré en E2E, profil iPhone) :
-    // sans pas de jeu, ni dessin ni toucher. Un pas manuel relance la chaîne ; inutile dès que la boucle tourne.
-    const kick = (): void => {
-        if (game.loop.frame > 2 || !game.isRunning) return;
-        game.loop.step(performance.now());
-        window.setTimeout(kick, 100);
-    };
-    window.setTimeout(kick, 100);
+    // WebKit peut laisser en souffrance les demandes d'image de la boucle (mesuré en E2E, profil iPhone) : sans pas
+    // de jeu, ni dessin ni objet touchable. Chien de garde : page visible et boucle immobile ⇒ un pas manuel.
+    let lastFrame = -1;
+    const watchdog = window.setInterval(() => {
+        if (game.isRunning && document.visibilityState === 'visible' && game.loop.frame === lastFrame) game.loop.step(performance.now());
+        lastFrame = game.loop.frame;
+    }, 100);
+    game.events.once('destroy', () => window.clearInterval(watchdog));
     game.events.once('destroy', () => observer.disconnect());
     return { game, scene };
 }
