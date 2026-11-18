@@ -1,0 +1,41 @@
+# Repris de six-de-chaque (.woodpecker/checks.yml), sans build ni e2e tant qu'il n'y a pas d'application.
+# Node : l'image officielle node:26 via le proxy Harbor.
+labels:
+  host: tank01
+
+when:
+  - event: push
+    branch: main
+  - event: [pull_request, manual]
+
+steps:
+  - name: npm ci
+    image: &node harbor.pingfr.duckdns.org/dockerhub/library/node:26
+    pull: true
+    commands:
+      - node --version
+      - npm ci
+  - name: lint
+    image: *node
+    commands:
+      - npm run lint
+  - name: typecheck
+    image: *node
+    commands:
+      - npm run typecheck
+  - name: test
+    image: *node
+    commands:
+      - npm test
+  - name: level:validate
+    image: *node
+    commands:
+      - npm run level:validate -- content/levels
+  - name: audit
+    image: *node
+    commands:
+      - npm audit --audit-level=high
+  - name: secrets
+    image: harbor.pingfr.duckdns.org/dockerhub/zricethezav/gitleaks:v8.30.1
+    commands:
+      - gitleaks detect --source . --no-banner --redact

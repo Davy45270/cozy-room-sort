@@ -1,0 +1,30 @@
+{
+  "name": "cozy-room-sort",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cozy Room Sort : ranger une pièce en triant ses objets dans des cartons. Jeu hors ligne pour toute la famille.",
+  "license": "MIT",
+  "author": "David Sevin",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint --max-warnings=0",
+    "test": "vitest run --pool=threads --maxWorkers=2",
+    "level:validate": "node tools/validate-levels.ts",
+    "level:solve": "node tools/solve-level.ts"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "fast-check": "4.10.3",
+    "oxlint": "1.92.0",
+    "oxlint-tsgolint": "7.0.2006",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
+  }
+}
