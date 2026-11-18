@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { expect, type Page } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import type { GameState } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
 
@@ -18,11 +18,12 @@ export async function openLevel(page: Page, id: string): Promise<string[]> {
 
 export const state = (page: Page): Promise<GameState> => page.evaluate(() => (window.__cozy as NonNullable<Window['__cozy']>).state());
 
-/** Touche un objet là où la scène le dessine. */
+/** Touche un objet là où la scène le dessine : au doigt sur un profil tactile (WebKit iPhone n'envoie pas la souris à Phaser), sinon à la souris. */
 export async function tapObject(page: Page, id: string): Promise<void> {
     const at = await page.evaluate(i => window.__cozy?.objectCenter(i) ?? null, id);
     if (!at) throw new Error(`objet absent de la scène : ${id}`);
     const before = (await state(page)).moveCount;
-    await page.mouse.click(at.x, at.y);
+    if (test.info().project.use.hasTouch === true) await page.touchscreen.tap(at.x, at.y);
+    else await page.mouse.click(at.x, at.y);
     await expect.poll(async () => (await state(page)).moveCount).toBe(before + 1);
 }
