@@ -202,17 +202,18 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "threeStarsMaxMoves",
-        "twoStarsMaxMoves"
+        "threeStarsMaxBuffered",
+        "twoStarsMaxBuffered"
       ],
+      "description": "Étoiles comptées en passages par le tampon.",
       "properties": {
-        "threeStarsMaxMoves": {
+        "threeStarsMaxBuffered": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 0
         },
-        "twoStarsMaxMoves": {
+        "twoStarsMaxBuffered": {
           "type": "integer",
-          "minimum": 1
+          "minimum": 0
         }
       }
     },

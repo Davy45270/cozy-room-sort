@@ -85,7 +85,7 @@ describe('validateLevel', () => {
 
     it('rejette des seuils d\'étoiles inversés', () => {
         const level = mini();
-        expect(has(errorsOf({ ...level, scoring: { threeStarsMaxMoves: 6, twoStarsMaxMoves: 5 } }), 'scoring', 'trois étoiles')).toBe(true);
+        expect(has(errorsOf({ ...level, scoring: { threeStarsMaxBuffered: 3, twoStarsMaxBuffered: 2 } }), 'scoring', 'trois étoiles')).toBe(true);
     });
 
     it('cumule les erreurs au lieu de s\'arrêter à la première', () => {

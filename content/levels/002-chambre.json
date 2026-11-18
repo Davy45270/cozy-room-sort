@@ -159,22 +159,22 @@
     }
   ],
   "scoring": {
-    "threeStarsMaxMoves": 9,
-    "twoStarsMaxMoves": 12
+    "threeStarsMaxBuffered": 0,
+    "twoStarsMaxBuffered": 2
   },
   "meta": {
     "solution": [
       "ourson",
-      "pull",
-      "veilleuse-lune",
       "lapin",
-      "chaussettes",
-      "bougie",
       "chat-peluche",
+      "pull",
+      "chaussettes",
       "pyjama",
+      "veilleuse-lune",
+      "bougie",
       "guirlande"
     ],
     "engineVersion": "0.1.0",
-    "statesExplored": 163
+    "statesExplored": 10
   }
 }

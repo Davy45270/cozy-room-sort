@@ -20,7 +20,7 @@ if (result.kind !== 'solved') {
     console.log(`ÉCHEC ${parsed.level.id} : ${result.kind === 'unsolvable' ? 'insoluble' : 'non vérifié (budget dépassé)'}, ${result.statesExplored} états`);
     process.exit(1);
 }
-console.log(`${parsed.level.id} : ${result.trace.length} coups, ${result.statesExplored} états`);
+console.log(`${parsed.level.id} : ${result.trace.length} coups, ${result.buffered} passage(s) au tampon, ${result.statesExplored} états`);
 console.log(result.trace.join(' '));
 if (args.includes('--write')) {
     const { version } = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')) as { version: string };

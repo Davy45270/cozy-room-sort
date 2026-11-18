@@ -116,10 +116,10 @@ export function validateLevel(input: unknown): ValidationResult {
     const scoring = input['scoring'];
     if (!isObj(scoring)) err('scoring', 'objet attendu');
     else {
-        const three = scoring['threeStarsMaxMoves'];
-        const two = scoring['twoStarsMaxMoves'];
-        if (!isInt(three) || three < 1) err('scoring.threeStarsMaxMoves', 'entier ≥ 1 attendu');
-        if (!isInt(two) || two < 1) err('scoring.twoStarsMaxMoves', 'entier ≥ 1 attendu');
+        const three = scoring['threeStarsMaxBuffered'];
+        const two = scoring['twoStarsMaxBuffered'];
+        if (!isInt(three) || three < 0) err('scoring.threeStarsMaxBuffered', 'entier ≥ 0 attendu');
+        if (!isInt(two) || two < 0) err('scoring.twoStarsMaxBuffered', 'entier ≥ 0 attendu');
         if (isInt(three) && isInt(two) && three > two) err('scoring', 'le seuil trois étoiles doit être ≤ au seuil deux étoiles');
     }
 

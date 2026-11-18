@@ -47,7 +47,8 @@ export interface Level {
     categories: readonly Category[];
     boxes: readonly Box[];
     objects: readonly LevelObject[];
-    scoring: { threeStarsMaxMoves: number; twoStarsMaxMoves: number };
+    /** Étoiles comptées en passages par le tampon : chaque partie gagnée compte autant de coups que d'objets. */
+    scoring: { threeStarsMaxBuffered: number; twoStarsMaxBuffered: number };
     meta?: LevelMeta;
 }
 

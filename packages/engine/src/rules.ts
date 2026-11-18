@@ -42,9 +42,10 @@ export function legalMoves(level: Level, s: Snapshot): string[] {
     });
 }
 
-export function starsFor(level: Level, moveCount: number): 1 | 2 | 3 {
-    if (moveCount <= level.scoring.threeStarsMaxMoves) return 3;
-    if (moveCount <= level.scoring.twoStarsMaxMoves) return 2;
+/** Étoiles d'une partie gagnée, selon le nombre d'objets passés par le tampon. */
+export function starsFor(level: Level, bufferedCount: number): 1 | 2 | 3 {
+    if (bufferedCount <= level.scoring.threeStarsMaxBuffered) return 3;
+    if (bufferedCount <= level.scoring.twoStarsMaxBuffered) return 2;
     return 1;
 }
 
@@ -62,6 +63,7 @@ interface Working {
     completed: string[];
     fill: Record<string, number>;
     packedIn: Record<string, string>;
+    buffered: number;
     events: GameEvent[];
 }
 
@@ -108,12 +110,13 @@ export function step(level: Level, s: Snapshot, objectId: string): { snapshot: S
     if (!object) return { rejected: 'not-accessible' };
     const w: Working = {
         buffer: [...s.bufferObjectIds], active: [...s.activeBoxIds], pending: [...s.pendingBoxIds],
-        completed: [...s.completedBoxIds], fill: { ...s.boxFillCounts }, packedIn: { ...s.packedIn }, events: []
+        completed: [...s.completedBoxIds], fill: { ...s.boxFillCounts }, packedIn: { ...s.packedIn }, buffered: s.bufferedCount, events: []
     };
     const target = targetBox(level, s.activeBoxIds, object.category, w.fill);
     if (target !== undefined) pack(level, w, objectId, target, false);
     else if (w.buffer.length < level.rules.bufferCapacity) {
         w.buffer.push(objectId);
+        w.buffered++;
         w.events.push({ type: 'OBJECT_BUFFERED', objectId });
     } else return { rejected: 'buffer-full' };
     drain(level, w);
@@ -121,9 +124,9 @@ export function step(level: Level, s: Snapshot, objectId: string): { snapshot: S
         ...s,
         remainingObjectIds: s.remainingObjectIds.filter(id => id !== objectId),
         bufferObjectIds: w.buffer, activeBoxIds: w.active, pendingBoxIds: w.pending, completedBoxIds: w.completed,
-        boxFillCounts: w.fill, packedIn: w.packedIn, moveCount: s.moveCount + 1
+        boxFillCounts: w.fill, packedIn: w.packedIn, moveCount: s.moveCount + 1, bufferedCount: w.buffered
     };
     const status = statusOf(level, next);
-    if (status === 'won') w.events.push({ type: 'LEVEL_WON', moveCount: next.moveCount, stars: starsFor(level, next.moveCount) });
+    if (status === 'won') w.events.push({ type: 'LEVEL_WON', moveCount: next.moveCount, bufferedCount: next.bufferedCount, stars: starsFor(level, next.bufferedCount) });
     return { snapshot: { ...next, status }, events: w.events };
 }

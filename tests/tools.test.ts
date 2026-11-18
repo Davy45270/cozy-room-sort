@@ -20,7 +20,7 @@ describe('commandes en ligne', () => {
     it('level:validate accepte un niveau valide et soluble', () => {
         const r = run('validate-levels', `${fixtures}/valid-mini.json`);
         expect(r.code).toBe(0);
-        expect(r.out).toMatch(/^OK valid-mini 3 coups/);
+        expect(r.out).toMatch(/^OK valid-mini 3 objets, 0 passage/);
     });
 
     it('level:validate refuse un cycle et un niveau insoluble', () => {
@@ -30,6 +30,12 @@ describe('commandes en ligne', () => {
         const impossible = run('validate-levels', 'tests/fixtures/levels/impossible.json');
         expect(impossible.code).toBe(1);
         expect(impossible.out).toContain('insoluble');
+    });
+
+    it('level:validate refuse des étoiles plus exigeantes que l\'optimum', () => {
+        const r = run('validate-levels', 'tests/fixtures/levels/too-strict.json');
+        expect(r.code).toBe(1);
+        expect(r.out).toContain('trois étoiles à 0 passage(s)');
     });
 
     it('level:solve --write enregistre une solution rejouable', () => {

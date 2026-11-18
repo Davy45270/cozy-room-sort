@@ -20,6 +20,8 @@ export interface Snapshot {
     /** Objet rangé → carton qui le contient. */
     packedIn: Readonly<Record<string, string>>;
     moveCount: number;
+    /** Objets passés par le tampon : c'est ce que comptent les étoiles. */
+    bufferedCount: number;
     undoCount: number;
     hintCount: number;
     elapsedMs: number;
@@ -41,6 +43,7 @@ export function createInitialState(level: Level): GameState {
         boxFillCounts: Object.fromEntries(level.boxes.map(b => [b.id, 0])),
         packedIn: {},
         moveCount: 0,
+        bufferedCount: 0,
         undoCount: 0,
         hintCount: 0,
         elapsedMs: 0

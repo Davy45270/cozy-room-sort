@@ -21,7 +21,16 @@ describe('solveur', () => {
         expect(result.kind).toBe('solved');
         if (result.kind !== 'solved') return;
         expect(result.trace).toHaveLength(easy.objects.length);
+        // p1 et t1 recouvrent les deux livres : ils passent forcément par le tampon avant que le carton livres se ferme.
+        expect(result.buffered).toBe(2);
         expect(replayTrace(easy, result.trace)).toBe('won');
+    });
+
+    it('minimise les passages par le tampon, là où un parcours naïf en compterait un', () => {
+        // L'ordre du niveau propose b1 d'abord : le premier chemin trouvé passerait par le tampon.
+        const detour = makeLevel({ boxes: [['a', 1], ['b', 1]], objects: [['b1', 'b'], ['a1', 'a']] });
+        const result = solve(detour);
+        expect(result).toMatchObject({ kind: 'solved', trace: ['a1', 'b1'], buffered: 0 });
     });
 
     it('T-009 : un niveau impossible est rejeté comme insoluble', () => {

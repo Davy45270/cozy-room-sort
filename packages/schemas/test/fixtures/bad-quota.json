@@ -78,7 +78,7 @@
     }
   ],
   "scoring": {
-    "threeStarsMaxMoves": 3,
-    "twoStarsMaxMoves": 5
+    "threeStarsMaxBuffered": 0,
+    "twoStarsMaxBuffered": 2
   }
 }

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "too-strict",
+  "name": "Étoiles trop exigeantes",
+  "theme": "salon",
+  "difficulty": "easy",
+  "seed": 1,
+  "rules": {
+    "bufferCapacity": 1,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "a",
+      "label": "A"
+    },
+    {
+      "id": "b",
+      "label": "B"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "box-a",
+      "category": "a",
+      "capacity": 1
+    },
+    {
+      "id": "box-b",
+      "category": "b",
+      "capacity": 1
+    }
+  ],
+  "objects": [
+    {
+      "id": "b1",
+      "category": "b",
+      "asset": "salon-b1",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": []
+    },
+    {
+      "id": "a1",
+      "category": "a",
+      "asset": "salon-a1",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "b1"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 0,
+    "twoStarsMaxBuffered": 1
+  }
+}

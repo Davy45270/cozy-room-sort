@@ -36,7 +36,7 @@ export function arbLevel(options: ArbOptions = {}): fc.Arbitrary<Level> {
                 categories: capacities.map((_, c) => ({ id: `cat-${c}`, label: `Catégorie ${c}` })),
                 boxes: boxOrder,
                 objects,
-                scoring: { threeStarsMaxMoves: n, twoStarsMaxMoves: n + 5 }
+                scoring: { threeStarsMaxBuffered: n, twoStarsMaxBuffered: n + 5 }
             };
         });
     });

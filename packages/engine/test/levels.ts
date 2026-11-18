@@ -5,6 +5,7 @@ export interface MiniSpec {
     boxes: readonly (readonly [category: string, capacity: number])[];
     objects: readonly (readonly [id: string, category: string, blockedBy?: readonly string[], hidden?: boolean])[];
     rules?: Partial<Rules>;
+    /** Seuils d'étoiles en passages par le tampon. */
     stars?: readonly [three: number, two: number];
 }
 
@@ -18,6 +19,6 @@ export function makeLevel(spec: MiniSpec): Level {
         objects: spec.objects.map(([id, category, blockedBy = [], hidden], i) => ({
             id, category, asset: `test-${id}`, position: { x: 0.5, y: 0.5 }, layer: i, blockedBy, ...(hidden === undefined ? {} : { hidden })
         })),
-        scoring: { threeStarsMaxMoves: spec.stars?.[0] ?? 100, twoStarsMaxMoves: spec.stars?.[1] ?? 200 }
+        scoring: { threeStarsMaxBuffered: spec.stars?.[0] ?? 100, twoStarsMaxBuffered: spec.stars?.[1] ?? 200 }
     };
 }

@@ -159,22 +159,22 @@
     }
   ],
   "scoring": {
-    "threeStarsMaxMoves": 9,
-    "twoStarsMaxMoves": 12
+    "threeStarsMaxBuffered": 0,
+    "twoStarsMaxBuffered": 2
   },
   "meta": {
     "solution": [
       "livre-rouge",
-      "coussin-jaune",
-      "plante-verte",
       "livre-bleu",
-      "plaid-rose",
-      "cactus",
       "livre-vert",
+      "coussin-jaune",
+      "plaid-rose",
       "coussin-carreaux",
+      "plante-verte",
+      "cactus",
       "fougere"
     ],
     "engineVersion": "0.1.0",
-    "statesExplored": 163
+    "statesExplored": 10
   }
 }

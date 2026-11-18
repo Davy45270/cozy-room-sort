@@ -159,22 +159,22 @@
     }
   ],
   "scoring": {
-    "threeStarsMaxMoves": 9,
-    "twoStarsMaxMoves": 12
+    "threeStarsMaxBuffered": 0,
+    "twoStarsMaxBuffered": 2
   },
   "meta": {
     "solution": [
       "assiette",
-      "fouet",
-      "bocal-pates",
       "tasse",
-      "louche",
-      "pot-miel",
       "bol",
+      "fouet",
+      "louche",
       "spatule",
+      "bocal-pates",
+      "pot-miel",
       "boite-the"
     ],
     "engineVersion": "0.1.0",
-    "statesExplored": 163
+    "statesExplored": 10
   }
 }

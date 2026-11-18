@@ -1,6 +1,6 @@
 import { validateLevel } from '@cozy-room-sort/schemas';
 import { describe, expect, it } from 'vitest';
-import { applyAction, createInitialState, isAccessible, legalMoves, type GameState } from '../src/index.ts';
+import { applyAction, createInitialState, isAccessible, legalMoves, starsFor, type GameState } from '../src/index.ts';
 import { makeLevel, type MiniSpec } from './levels.ts';
 
 const play = (spec: MiniSpec, ...ids: string[]) => {
@@ -78,11 +78,21 @@ describe('SELECT_OBJECT', () => {
     });
 
     it('T-006 : le dernier objet rangé donne la victoire, une seule fois, avec les étoiles', () => {
-        const spec: MiniSpec = { boxes: [['books', 2]], objects: [['b1', 'books'], ['b2', 'books']], stars: [2, 3] };
+        const spec: MiniSpec = { boxes: [['books', 2]], objects: [['b1', 'books'], ['b2', 'books']], stars: [0, 1] };
         const { select } = play(spec, 'b1');
         const { state, events } = select('b2');
         expect(state.status).toBe('won');
-        expect(events.filter(e => e.type === 'LEVEL_WON')).toEqual([{ type: 'LEVEL_WON', moveCount: 2, stars: 3 }]);
+        expect(events.filter(e => e.type === 'LEVEL_WON')).toEqual([{ type: 'LEVEL_WON', moveCount: 2, bufferedCount: 0, stars: 3 }]);
+    });
+
+    it.each([[0, 3], [1, 2], [2, 1]] as const)('étoiles comptées en passages par le tampon : %i passage(s) donne %i étoile(s)', (passes, stars) => {
+        // Cartons dans l'ordre a, b, c ; ranger d'abord les objets des cartons suivants les fait passer par le tampon.
+        const spec: MiniSpec = { boxes: [['a', 1], ['b', 1], ['c', 1]], objects: [['a1', 'a'], ['b1', 'b'], ['c1', 'c']], stars: [0, 1] };
+        const order = passes === 0 ? ['a1', 'b1', 'c1'] : passes === 1 ? ['b1', 'a1', 'c1'] : ['c1', 'b1', 'a1'];
+        const { state } = play(spec, ...order);
+        expect(state.status).toBe('won');
+        expect(state.bufferedCount).toBe(passes);
+        expect(starsFor(makeLevel(spec), state.bufferedCount)).toBe(stars);
     });
 
     it('refuse tout coup après la victoire', () => {

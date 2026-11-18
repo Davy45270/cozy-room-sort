@@ -52,6 +52,13 @@ describe('UNDO, RESTART, TICK, HINT_USED', () => {
         expect(after).toEqual({ ...before, undoCount: 1 });
     });
 
+    it('UNDO restaure aussi le compte des passages par le tampon', () => {
+        const level = makeLevel({ boxes: [['a', 1], ['b', 1]], objects: [['a1', 'a'], ['b1', 'b']] });
+        const buffered = run(level, sel('b1'));
+        expect(buffered.bufferedCount).toBe(1);
+        expect(run(level, [{ type: 'UNDO' }], buffered).bufferedCount).toBe(0);
+    });
+
     it('UNDO après une victoire repasse en jeu, et rejouer réémet LEVEL_WON', () => {
         const level = makeLevel({ boxes: [['books', 2]], objects: [['b1', 'books'], ['b2', 'books']] });
         const won = run(level, sel('b1', 'b2'));

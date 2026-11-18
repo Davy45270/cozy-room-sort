@@ -5,7 +5,7 @@ import { withMode } from '@cozy-room-sort/engine';
 import { parseLevel } from '@cozy-room-sort/schemas';
 import { replayTrace, solve } from '@cozy-room-sort/solver';
 
-type Verdict = { ok: true; moves: number; states: number } | { ok: false; problem: string };
+type Verdict = { ok: true; objects: number; buffered: number; states: number } | { ok: false; problem: string };
 
 const files = (path: string): string[] => statSync(path).isDirectory()
     ? readdirSync(path).filter(f => f.endsWith('.json')).sort().flatMap(f => files(join(path, f)))
@@ -19,10 +19,10 @@ function check(path: string): Verdict {
     const result = solve(withMode(level, 'classique'));
     if (result.kind === 'unsolvable') return { ok: false, problem: `insoluble (${result.statesExplored} états)` };
     if (result.kind === 'unverified') return { ok: false, problem: `non vérifié (budget dépassé après ${result.statesExplored} états)` };
-    if (level.scoring.threeStarsMaxMoves < result.trace.length) {
-        return { ok: false, problem: `trois étoiles à ${level.scoring.threeStarsMaxMoves} coups, mais la solution la plus courte en compte ${result.trace.length}` };
+    if (level.scoring.threeStarsMaxBuffered < result.buffered) {
+        return { ok: false, problem: `trois étoiles à ${level.scoring.threeStarsMaxBuffered} passage(s) par le tampon, mais la meilleure solution en demande ${result.buffered}` };
     }
-    return { ok: true, moves: result.trace.length, states: result.statesExplored };
+    return { ok: true, objects: level.objects.length, buffered: result.buffered, states: result.statesExplored };
 }
 
 const args = process.argv.slice(2);
@@ -34,7 +34,7 @@ let failed = 0;
 for (const path of args.flatMap(files)) {
     const id = basename(path, '.json');
     const verdict = check(path);
-    if (verdict.ok) console.log(`OK ${id} ${verdict.moves} coups, ${verdict.states} états`);
+    if (verdict.ok) console.log(`OK ${id} ${verdict.objects} objets, ${verdict.buffered} passage(s) au tampon au mieux, ${verdict.states} états`);
     else {
         failed++;
         console.log(`ÉCHEC ${id} : ${verdict.problem}`);
