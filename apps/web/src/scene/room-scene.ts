@@ -54,7 +54,7 @@ export class RoomScene extends Phaser.Scene {
         this.scale.on('resize', () => this.relayout());
         this.unsubscribe = this.opts.controller.subscribe((state, events) => this.reconcile(state, events));
         this.events.once('shutdown', () => this.unsubscribe?.());
-        void this.refreshTheme().then(() => this.opts.onReady?.());
+        void this.refreshTheme().then(() => { this.scale.refresh(); this.opts.onReady?.(); });
     }
 
     /** Recharge les textures du mode courant et redessine tout (changement de thème). */
@@ -120,8 +120,8 @@ export class RoomScene extends Phaser.Scene {
             if (!sprite) {
                 sprite = this.add.image(at.x, at.y, key).setDepth(depth + 1).setInteractive({ useHandCursor: true });
                 sprite.on('pointerdown', () => this.tap(id));
-                sprite.setAlpha(0);
-                this.tweens.add({ targets: sprite, alpha: 1, duration: 140 });
+                // Pas de fondu d'apparition : Phaser ignore au toucher un objet d'opacité nulle, et sur WebKit la
+                // boucle de jeu peut tarder à faire avancer l'interpolation (objet intouchable, mesuré en E2E).
                 this.sprites.set(id, sprite);
             } else if (sprite.texture.key !== key) sprite.setTexture(key);
             sprite.setPosition(at.x, at.y).setDisplaySize(at.size, at.size);
@@ -188,5 +188,18 @@ export function startRoom(parent: HTMLElement, opts: RoomSceneOptions): { game: 
         banner: false,
         scene: [scene]
     });
+    // Repris d'oc-busfolie : RESIZE doit suivre le conteneur, et Phaser garde en cache la position du canvas pour
+    // convertir les touchers. Sans rafraîchissement, WebKit touche à côté (la barre du haut décale le canvas).
+    const observer = new ResizeObserver(() => { game.scale.getParentBounds(); game.scale.refresh(); });
+    observer.observe(parent);
+    // WebKit peut laisser en souffrance la première demande d'image de la boucle (mesuré en E2E, profil iPhone) :
+    // sans pas de jeu, ni dessin ni toucher. Un pas manuel relance la chaîne ; inutile dès que la boucle tourne.
+    const kick = (): void => {
+        if (game.loop.frame > 2 || !game.isRunning) return;
+        game.loop.step(performance.now());
+        window.setTimeout(kick, 100);
+    };
+    window.setTimeout(kick, 100);
+    game.events.once('destroy', () => observer.disconnect());
     return { game, scene };
 }
