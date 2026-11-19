@@ -24,7 +24,7 @@ function migrateScoring(raw: Record<string, unknown>): unknown {
 }
 
 /**
- * Migre un document vers le format courant, puis vers la version courante des règles : le contenu d'un niveau écrit pour
+ * Migre un niveau vers le format courant, puis vers la version courante des règles : le contenu d'un niveau écrit pour
  * les règles 1 se joue sous les règles 2 (seule la fin de partie sans annulation disponible change). Les journaux de
  * partie, eux, portent la version des règles dans leur empreinte : ceux des règles 1 reprennent au début.
  */
