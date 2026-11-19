@@ -122,7 +122,9 @@ la spécification est conservé dans les fixtures. Ses quotas incomplets sont si
 
 - **1** : sans coup légal, la partie est bloquée dès que le mode autorise l’annulation.
 - **2** : sans coup légal, la partie n’est bloquée que si une annulation reste disponible (quota non épuisé,
-  historique non vide) ; sinon elle est perdue. Un niveau déclaré en règles 1 est migré en règles 2 à la lecture
+  historique non vide) ; sinon elle est perdue. Seule une partie perdue refuse l’annulation : le coup gagnant
+  s’annule (R-008). En détente, aucun quota cumulé d’annulations ; seule la profondeur de l’historique
+  (200 coups) borne ce qu’on peut défaire. Ces trois changements forment ensemble la version 2, publiée en une fois. Un niveau déclaré en règles 1 est migré en règles 2 à la lecture
   (son contenu ne change pas). La version des règles entre dans l’empreinte des journaux de partie : un journal
   écrit sous les règles 1 reprend au début, avec l’annonce du niveau changé ; les étoiles et niveaux terminés restent.
 
