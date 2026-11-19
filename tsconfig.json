@@ -14,5 +14,5 @@
     "noEmit": true,
     "allowImportingTsExtensions": true
   },
-  "include": ["packages/*/src", "packages/*/test", "apps/web/src", "apps/web/test", "apps/web/*.ts", "tests", "tools", "scripts/**/*.ts", "*.ts"]
+  "include": ["packages/*/src", "apps/web/src", "apps/web/*.ts", "tests", "tools", "scripts/**/*.ts", "*.ts"]
 }

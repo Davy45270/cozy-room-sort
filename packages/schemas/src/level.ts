@@ -1,3 +1,5 @@
+import type { SCHEMA_VERSION } from './migrate.ts';
+
 // Contrat d'un niveau : ce que le moteur, le solveur et les outils lisent.
 export type Difficulty = 'easy' | 'medium' | 'expert';
 
@@ -33,10 +35,14 @@ export interface LevelMeta {
     solution?: readonly string[];
     engineVersion?: string;
     statesExplored?: number;
+    nonTrivialDecisions?: number;
+    legalMoves?: number;
+    blockingMoves?: number;
+    blockingMoveShare?: number;
 }
 
 export interface Level {
-    schemaVersion: '1.0';
+    schemaVersion: typeof SCHEMA_VERSION;
     rulesVersion: '1';
     id: string;
     name: string;

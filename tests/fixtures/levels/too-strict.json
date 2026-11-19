@@ -7,7 +7,7 @@
   "difficulty": "easy",
   "seed": 1,
   "rules": {
-    "bufferCapacity": 1,
+    "bufferCapacity": 5,
     "activeBoxCount": 1,
     "allowUndo": true,
     "allowHints": true,
@@ -16,11 +16,15 @@
   "categories": [
     {
       "id": "a",
-      "label": "A"
+      "label": "a"
     },
     {
       "id": "b",
-      "label": "B"
+      "label": "b"
+    },
+    {
+      "id": "c",
+      "label": "c"
     }
   ],
   "boxes": [
@@ -32,14 +36,32 @@
     {
       "id": "box-b",
       "category": "b",
-      "capacity": 1
+      "capacity": 6
+    },
+    {
+      "id": "box-c",
+      "category": "c",
+      "capacity": 2
     }
   ],
   "objects": [
     {
+      "id": "a1",
+      "category": "a",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "b5"
+      ]
+    },
+    {
       "id": "b1",
       "category": "b",
-      "asset": "salon-b1",
+      "asset": "livres-trio",
       "position": {
         "x": 0.5,
         "y": 0.5
@@ -48,9 +70,9 @@
       "blockedBy": []
     },
     {
-      "id": "a1",
-      "category": "a",
-      "asset": "salon-a1",
+      "id": "b2",
+      "category": "b",
+      "asset": "livres-trio",
       "position": {
         "x": 0.5,
         "y": 0.5
@@ -59,10 +81,88 @@
       "blockedBy": [
         "b1"
       ]
+    },
+    {
+      "id": "b3",
+      "category": "b",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "b2"
+      ]
+    },
+    {
+      "id": "b4",
+      "category": "b",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "b3"
+      ]
+    },
+    {
+      "id": "b5",
+      "category": "b",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "b4"
+      ]
+    },
+    {
+      "id": "b6",
+      "category": "b",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": []
+    },
+    {
+      "id": "c1",
+      "category": "c",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "b5",
+        "b6",
+        "a1"
+      ]
+    },
+    {
+      "id": "c2",
+      "category": "c",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "c1"
+      ]
     }
   ],
   "scoring": {
     "threeStarsMaxBuffered": 0,
-    "twoStarsMaxBuffered": 1
+    "twoStarsMaxBuffered": 2
   }
 }

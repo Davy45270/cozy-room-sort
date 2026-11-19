@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "mini-001",
+  "name": "Trois livres",
+  "theme": "salon",
+  "difficulty": "easy",
+  "seed": 1,
+  "rules": {
+    "bufferCapacity": 5,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "books",
+      "label": "Livres"
+    },
+    {
+      "id": "plants",
+      "label": "plants"
+    },
+    {
+      "id": "toys",
+      "label": "toys"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "box-1",
+      "category": "books",
+      "capacity": 3
+    },
+    {
+      "id": "box-plants",
+      "capacity": 3,
+      "category": "plants"
+    },
+    {
+      "id": "box-toys",
+      "capacity": 3,
+      "category": "toys"
+    }
+  ],
+  "objects": [
+    {
+      "id": "o1",
+      "category": "books",
+      "asset": "salon-livre-rouge",
+      "position": {
+        "x": 0.2,
+        "y": 0.4
+      },
+      "layer": 2,
+      "blockedBy": []
+    },
+    {
+      "id": "o2",
+      "category": "books",
+      "asset": "salon-livre-bleu",
+      "position": {
+        "x": 0.2,
+        "y": 0.5
+      },
+      "layer": 1,
+      "blockedBy": [
+        "o1"
+      ]
+    },
+    {
+      "id": "o3",
+      "category": "books",
+      "asset": "salon-livre-vert",
+      "position": {
+        "x": 0.2,
+        "y": 0.6
+      },
+      "layer": 0,
+      "blockedBy": [
+        "o2"
+      ]
+    },
+    {
+      "id": "plants1",
+      "category": "plants",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": []
+    },
+    {
+      "id": "plants2",
+      "category": "plants",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "plants1"
+      ]
+    },
+    {
+      "id": "plants3",
+      "category": "plants",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "plants2"
+      ]
+    },
+    {
+      "id": "toys1",
+      "category": "toys",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": []
+    },
+    {
+      "id": "toys2",
+      "category": "toys",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "toys1"
+      ]
+    },
+    {
+      "id": "toys3",
+      "category": "toys",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 0,
+      "blockedBy": [
+        "toys2"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 0,
+    "twoStarsMaxBuffered": 2
+  }
+}

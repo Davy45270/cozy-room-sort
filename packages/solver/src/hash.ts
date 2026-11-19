@@ -1,9 +1,11 @@
-// Empreinte d'un état pour la recherche : deux états qui ne diffèrent que par l'ordre de la pièce sont le même.
-// L'ordre du tampon compte, lui : le vidage suit l'ordre d'arrivée.
+// La pièce est un ensemble. L'ordre du tampon et celui des cartons affectent le prochain coup.
 import type { Snapshot } from '@cozy-room-sort/engine';
 
 export function stateKey(s: Snapshot): string {
-    const room = [...s.remainingObjectIds].sort().join(',');
-    const active = s.activeBoxIds.map(id => `${id}:${s.boxFillCounts[id] ?? 0}`).join(',');
-    return `${room}|${s.bufferObjectIds.join(',')}|${active}|${s.completedBoxIds.length}`;
+    return JSON.stringify([
+        [...s.remainingObjectIds].sort(),
+        s.bufferObjectIds,
+        s.activeBoxIds.map(id => [id, s.boxFillCounts[id] ?? 0]),
+        s.pendingBoxIds
+    ]);
 }

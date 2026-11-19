@@ -1,11 +1,11 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "rulesVersion": "1",
   "id": "015-salle-de-bain",
   "name": "La salle de bain après le bain",
   "theme": "salle-de-bain",
   "difficulty": "easy",
-  "seed": 56001,
+  "seed": 57000,
   "rules": {
     "bufferCapacity": 5,
     "activeBoxCount": 1,
@@ -15,150 +15,194 @@
   },
   "categories": [
     {
+      "id": "flacons",
+      "label": "Flacons"
+    },
+    {
       "id": "serviettes",
       "label": "Serviettes et linge"
     },
     {
       "id": "accessoires",
       "label": "Accessoires"
-    },
-    {
-      "id": "flacons",
-      "label": "Flacons"
     }
   ],
   "boxes": [
     {
-      "id": "carton-flacons-1",
+      "id": "carton-1",
       "category": "flacons",
       "capacity": 3
     },
     {
-      "id": "carton-serviettes-1",
+      "id": "carton-2",
       "category": "serviettes",
-      "capacity": 3
+      "capacity": 4
     },
     {
-      "id": "carton-accessoires-1",
+      "id": "carton-3",
       "category": "accessoires",
-      "capacity": 3
+      "capacity": 5
     }
   ],
   "objects": [
     {
-      "id": "objet-1",
+      "id": "objet-57000-1",
       "category": "flacons",
       "asset": "flacon-rose",
+      "blockedBy": [],
       "position": {
-        "x": 0.146,
-        "y": 0.84
+        "x": 0.875,
+        "y": 0.167
       },
-      "layer": 10,
-      "blockedBy": []
+      "layer": 12
     },
     {
-      "id": "objet-2",
-      "category": "flacons",
-      "asset": "flacon-pompe",
-      "position": {
-        "x": 0.428,
-        "y": 0.84
-      },
-      "layer": 10,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-3",
-      "category": "accessoires",
-      "asset": "eponge",
-      "position": {
-        "x": 0.7,
-        "y": 0.84
-      },
-      "layer": 10,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-4",
+      "id": "objet-57000-4",
       "category": "flacons",
       "asset": "flacon-rose",
+      "blockedBy": [],
       "position": {
-        "x": 0.281,
-        "y": 0.6
+        "x": 0.625,
+        "y": 0.167
       },
-      "layer": 9,
+      "layer": 11
+    },
+    {
+      "id": "objet-57000-7",
+      "category": "flacons",
+      "asset": "flacon-rose",
       "blockedBy": [
-        "objet-1",
-        "objet-2"
-      ]
+        "objet-57000-1",
+        "objet-57000-4",
+        "objet-57000-2"
+      ],
+      "position": {
+        "x": 0.375,
+        "y": 0.167
+      },
+      "layer": 10
     },
     {
-      "id": "objet-5",
+      "id": "objet-57000-2",
       "category": "serviettes",
-      "asset": "serviette-anneau",
+      "asset": "serviette-barre",
+      "blockedBy": [],
       "position": {
-        "x": 0.573,
-        "y": 0.6
+        "x": 0.125,
+        "y": 0.167
       },
-      "layer": 9,
-      "blockedBy": [
-        "objet-2",
-        "objet-3"
-      ]
+      "layer": 9
     },
     {
-      "id": "objet-6",
+      "id": "objet-57000-5",
+      "category": "serviettes",
+      "asset": "panier-serviette",
+      "blockedBy": [],
+      "position": {
+        "x": 0.125,
+        "y": 0.5
+      },
+      "layer": 8
+    },
+    {
+      "id": "objet-57000-8",
+      "category": "serviettes",
+      "asset": "serviette-barre",
+      "blockedBy": [],
+      "position": {
+        "x": 0.375,
+        "y": 0.5
+      },
+      "layer": 7
+    },
+    {
+      "id": "objet-57000-10",
+      "category": "serviettes",
+      "asset": "serviette-barre",
+      "blockedBy": [
+        "objet-57000-7",
+        "objet-57000-2",
+        "objet-57000-5",
+        "objet-57000-8",
+        "objet-57000-9"
+      ],
+      "position": {
+        "x": 0.625,
+        "y": 0.5
+      },
+      "layer": 6
+    },
+    {
+      "id": "objet-57000-3",
       "category": "accessoires",
       "asset": "brosse",
-      "position": {
-        "x": 0.867,
-        "y": 0.6
-      },
-      "layer": 9,
       "blockedBy": [
-        "objet-3"
-      ]
+        "objet-57000-7"
+      ],
+      "position": {
+        "x": 0.875,
+        "y": 0.5
+      },
+      "layer": 5
     },
     {
-      "id": "objet-7",
-      "category": "serviettes",
-      "asset": "peignoir",
-      "position": {
-        "x": 0.142,
-        "y": 0.36
-      },
-      "layer": 8,
-      "blockedBy": [
-        "objet-4",
-        "objet-5"
-      ]
-    },
-    {
-      "id": "objet-8",
+      "id": "objet-57000-6",
       "category": "accessoires",
-      "asset": "fleur-douche",
-      "position": {
-        "x": 0.433,
-        "y": 0.36
-      },
-      "layer": 8,
+      "asset": "gobelet-brosses",
       "blockedBy": [
-        "objet-5",
-        "objet-6"
-      ]
+        "objet-57000-10"
+      ],
+      "position": {
+        "x": 0.875,
+        "y": 0.833
+      },
+      "layer": 4
     },
     {
-      "id": "objet-9",
-      "category": "serviettes",
-      "asset": "serviettes-pile",
-      "position": {
-        "x": 0.715,
-        "y": 0.36
-      },
-      "layer": 8,
+      "id": "objet-57000-9",
+      "category": "accessoires",
+      "asset": "eponge",
       "blockedBy": [
-        "objet-6"
-      ]
+        "objet-57000-7"
+      ],
+      "position": {
+        "x": 0.625,
+        "y": 0.833
+      },
+      "layer": 3,
+      "hidden": true
+    },
+    {
+      "id": "objet-57000-11",
+      "category": "accessoires",
+      "asset": "peigne",
+      "blockedBy": [
+        "objet-57000-10",
+        "objet-57000-3",
+        "objet-57000-6"
+      ],
+      "position": {
+        "x": 0.375,
+        "y": 0.833
+      },
+      "layer": 2
+    },
+    {
+      "id": "objet-57000-12",
+      "category": "accessoires",
+      "asset": "canard",
+      "blockedBy": [
+        "objet-57000-10",
+        "objet-57000-3",
+        "objet-57000-6",
+        "objet-57000-9",
+        "objet-57000-11"
+      ],
+      "position": {
+        "x": 0.125,
+        "y": 0.833
+      },
+      "layer": 1
     }
   ],
   "scoring": {
@@ -167,17 +211,24 @@
   },
   "meta": {
     "solution": [
-      "objet-1",
-      "objet-2",
-      "objet-4",
-      "objet-3",
-      "objet-5",
-      "objet-7",
-      "objet-6",
-      "objet-9",
-      "objet-8"
+      "objet-57000-1",
+      "objet-57000-4",
+      "objet-57000-2",
+      "objet-57000-7",
+      "objet-57000-5",
+      "objet-57000-8",
+      "objet-57000-9",
+      "objet-57000-10",
+      "objet-57000-3",
+      "objet-57000-6",
+      "objet-57000-11",
+      "objet-57000-12"
     ],
     "engineVersion": "0.1.0",
-    "statesExplored": 25
+    "statesExplored": 58,
+    "nonTrivialDecisions": 40,
+    "legalMoves": 180,
+    "blockingMoves": 0,
+    "blockingMoveShare": 0
   }
 }

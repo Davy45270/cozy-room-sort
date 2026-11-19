@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0",
+  "id": "living-room-001",
+  "name": "Le salon en désordre",
+  "theme": "cozy-living-room",
+  "difficulty": "easy",
+  "seed": 42001,
+  "rules": {
+    "bufferCapacity": 3,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {"id":"books","label":"Livres"},
+    {"id":"toys","label":"Jouets"},
+    {"id":"decor","label":"Décoration"}
+  ],
+  "boxes": [
+    {"id":"box-1","category":"books","capacity":3},
+    {"id":"box-2","category":"toys","capacity":3},
+    {"id":"box-3","category":"decor","capacity":3}
+  ],
+  "objects": [
+    {"id":"book-1","category":"books","asset":"book-red","position":{"x":0.2,"y":0.4},"layer":2,"blockedBy":[]}
+  ],
+  "scoring":{"threeStarsMaxMoves":12,"twoStarsMaxMoves":18}
+}

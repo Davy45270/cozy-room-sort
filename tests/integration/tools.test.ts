@@ -1,0 +1,73 @@
+import { spawnSync } from 'node:child_process';
+import { copyFileSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import type { Level } from '@cozy-room-sort/schemas';
+import { replayTrace } from '@cozy-room-sort/solver';
+import { describe, expect, it } from 'vitest';
+
+const fixtures = 'tests/fixtures/levels';
+const run = (tool: string, ...args: string[]): { code: number; out: string; err: string } => {
+    const result = spawnSync(process.execPath, [`tools/${tool}.ts`, ...args], { encoding: 'utf8' });
+    if (result.error) throw result.error;
+    return { code: result.status ?? 1, out: result.stdout, err: result.stderr };
+};
+
+describe('commandes en ligne', () => {
+    it('level:validate accepte un niveau valide et soluble', () => {
+        const r = run('validate-levels', `${fixtures}/valid-mini.json`);
+        expect(r.code).toBe(0);
+        expect(r.out).toMatch(/^OK valid-mini 9 objets, 0 passage/);
+    });
+
+    it('level:validate refuse un cycle et un niveau insoluble', () => {
+        const cycle = run('validate-levels', `${fixtures}/cycle.json`);
+        expect(cycle.code).toBe(1);
+        expect(cycle.out).toContain('ÉCHEC');
+        const impossible = run('validate-levels', 'tests/fixtures/levels/impossible-publication.json');
+        expect(impossible.code).toBe(1);
+        expect(impossible.out).toContain('insoluble');
+    });
+
+    it('level:validate refuse des étoiles plus exigeantes que l\'optimum', () => {
+        const r = run('validate-levels', 'tests/fixtures/levels/too-strict.json');
+        expect(r.code).toBe(1);
+        expect(r.out).toContain('trois étoiles à 0 passage(s)');
+    });
+
+    it('level:solve --write enregistre une solution rejouable', () => {
+        const dir = mkdtempSync(join(tmpdir(), 'cozy-solve-'));
+        try {
+            const copy = join(dir, 'mini.json');
+            copyFileSync(`${fixtures}/valid-mini.json`, copy);
+            expect(run('solve-level', copy, '--write').code).toBe(0);
+            const level = JSON.parse(readFileSync(copy, 'utf8')) as Level;
+            expect(level.meta?.solution).toHaveLength(9);
+            expect(level.meta?.engineVersion).toBe('0.1.0');
+            expect(replayTrace(level, level.meta?.solution ?? [])).toBe('won');
+        } finally { rmSync(dir, { recursive: true, force: true }); }
+    });
+});
+
+it('génère uniquement des niveaux validés, avec les alias des pièces', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'cozy-generate-'));
+    try {
+        const args = ['--difficulty', 'easy', '--count', '2', '--seed', '42', '--out', dir];
+        expect(run('generate-levels', '--theme', 'living-room', ...args).code).toBe(0);
+        expect(run('validate-levels', dir).code).toBe(0);
+        const missing = run('generate-levels', '--theme', 'kitchen', ...args);
+        expect(missing.code).toBe(1);
+        expect(missing.out).toContain('univers absent');
+    } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+it('mesure les décisions et les issues bloquantes sur un petit niveau', () => {
+    const { code, out, err } = run('benchmark-solver', 'tests/fixtures/levels/benchmark.json');
+    expect(code).toBe(0);
+    expect(JSON.parse(out)).toEqual([expect.objectContaining({
+        status: 'solved', statesExplored: 25, optimalLength: 9, nonTrivialDecisions: 5,
+        legalMoves: 24, blockingMoves: 15, blockingMoveShare: 15 / 24
+    })]);
+    expect(err).toContain('Décisions');
+    expect(err).toContain('62.5 %');
+});

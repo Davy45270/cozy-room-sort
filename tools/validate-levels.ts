@@ -1,20 +1,13 @@
 // npm run level:validate -- <fichier|dossier>… : structure valide ET résolu par le solveur en mode classique.
-import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { basename } from 'node:path';
 import { withMode } from '@cozy-room-sort/engine';
-import { parseLevel } from '@cozy-room-sort/schemas';
+import { levelFiles, readLevel } from '@cozy-room-sort/level-tools/files';
 import { replayTrace, solve } from '@cozy-room-sort/solver';
 
 type Verdict = { ok: true; objects: number; buffered: number; states: number } | { ok: false; problem: string };
 
-const files = (path: string): string[] => statSync(path).isDirectory()
-    ? readdirSync(path).filter(f => f.endsWith('.json')).sort().flatMap(f => files(join(path, f)))
-    : [path];
-
 function check(path: string): Verdict {
-    const parsed = parseLevel(readFileSync(path, 'utf8'));
-    if (!parsed.ok) return { ok: false, problem: parsed.errors.map(e => `${e.path} : ${e.message}`).join(' ; ') };
-    const level = parsed.level;
+    const level = readLevel(path);
     if (level.meta?.solution && replayTrace(level, level.meta.solution) !== 'won') return { ok: false, problem: 'la solution enregistrée ne mène pas à la victoire' };
     const result = solve(withMode(level, 'classique'));
     if (result.kind === 'unsolvable') return { ok: false, problem: `insoluble (${result.statesExplored} états)` };
@@ -30,14 +23,28 @@ if (args.length === 0) {
     console.error('usage : level:validate <fichier|dossier>…');
     process.exit(2);
 }
-let failed = 0;
-for (const path of args.flatMap(files)) {
+function report(path: string): boolean {
     const id = basename(path, '.json');
-    const verdict = check(path);
-    if (verdict.ok) console.log(`OK ${id} ${verdict.objects} objets, ${verdict.buffered} passage(s) au tampon au mieux, ${verdict.states} états`);
-    else {
-        failed++;
+    try {
+        const verdict = check(path);
+        if (verdict.ok) {
+            console.log(`OK ${id} ${verdict.objects} objets, ${verdict.buffered} passage(s) au tampon au mieux, ${verdict.states} états`);
+            return true;
+        }
         console.log(`ÉCHEC ${id} : ${verdict.problem}`);
+    } catch (error) {
+        console.log(`ÉCHEC ${id} : ${error instanceof Error ? error.message : String(error)}`);
+    }
+    return false;
+}
+
+for (const path of args) {
+    try {
+        const files = levelFiles(path);
+        if (files.length === 0) throw new Error('aucun niveau JSON');
+        for (const file of files) if (!report(file)) process.exitCode = 1;
+    } catch (error) {
+        console.log(`ÉCHEC ${path} : ${error instanceof Error ? error.message : String(error)}`);
+        process.exitCode = 1;
     }
 }
-process.exit(failed === 0 ? 0 : 1);

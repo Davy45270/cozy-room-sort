@@ -1,365 +1,452 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "rulesVersion": "1",
   "id": "014-chambre",
   "name": "Le grand rangement de la chambre",
   "theme": "chambre",
-  "difficulty": "expert",
-  "seed": 55001,
+  "difficulty": "medium",
+  "seed": 56000,
   "rules": {
     "bufferCapacity": 4,
-    "activeBoxCount": 2,
+    "activeBoxCount": 1,
     "allowUndo": true,
     "allowHints": true,
     "timeLimitSeconds": null
   },
   "categories": [
     {
-      "id": "peluches",
-      "label": "Peluches"
+      "id": "livres",
+      "label": "Livres"
     },
     {
       "id": "coussins",
       "label": "Coussins"
     },
     {
-      "id": "livres",
-      "label": "Livres"
+      "id": "cadres",
+      "label": "Cadres"
+    },
+    {
+      "id": "peluches",
+      "label": "Peluches"
     },
     {
       "id": "veilleuses",
       "label": "Veilleuses et bougies"
-    },
-    {
-      "id": "cadres",
-      "label": "Cadres"
     }
   ],
   "boxes": [
     {
-      "id": "carton-peluches-1",
-      "category": "peluches",
-      "capacity": 2
-    },
-    {
-      "id": "carton-cadres-1",
-      "category": "cadres",
-      "capacity": 4
-    },
-    {
-      "id": "carton-veilleuses-1",
-      "category": "veilleuses",
-      "capacity": 4
-    },
-    {
-      "id": "carton-coussins-1",
-      "category": "coussins",
-      "capacity": 4
-    },
-    {
-      "id": "carton-livres-1",
+      "id": "carton-1",
       "category": "livres",
       "capacity": 4
     },
     {
-      "id": "carton-peluches-2",
+      "id": "carton-2",
+      "category": "coussins",
+      "capacity": 7
+    },
+    {
+      "id": "carton-3",
+      "category": "cadres",
+      "capacity": 5
+    },
+    {
+      "id": "carton-4",
       "category": "peluches",
-      "capacity": 2
+      "capacity": 5
+    },
+    {
+      "id": "carton-5",
+      "category": "veilleuses",
+      "capacity": 4
     }
   ],
   "objects": [
     {
-      "id": "objet-1",
+      "id": "objet-56000-1",
       "category": "livres",
-      "asset": "livres-trio",
+      "asset": "livres-pile",
+      "blockedBy": [],
       "position": {
-        "x": 0.136,
-        "y": 0.86
+        "x": 0.1,
+        "y": 0.1
       },
-      "layer": 10,
-      "blockedBy": []
+      "layer": 25
     },
     {
-      "id": "objet-2",
-      "category": "coussins",
-      "asset": "coussins-duo",
+      "id": "objet-56000-6",
+      "category": "livres",
+      "asset": "livres-pile",
+      "blockedBy": [],
       "position": {
-        "x": 0.263,
-        "y": 0.86
+        "x": 0.3,
+        "y": 0.1
       },
-      "layer": 10,
-      "blockedBy": []
+      "layer": 24
     },
     {
-      "id": "objet-3",
-      "category": "coussins",
-      "asset": "coussin-creme",
+      "id": "objet-56000-16",
+      "category": "livres",
+      "asset": "livres-pile",
+      "blockedBy": [],
       "position": {
-        "x": 0.435,
-        "y": 0.86
+        "x": 0.5,
+        "y": 0.1
       },
-      "layer": 10,
-      "blockedBy": []
+      "layer": 23
     },
     {
-      "id": "objet-4",
-      "category": "coussins",
-      "asset": "coussin-creme",
-      "position": {
-        "x": 0.577,
-        "y": 0.86
-      },
-      "layer": 10,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-5",
-      "category": "veilleuses",
-      "asset": "bougie-ruban",
-      "position": {
-        "x": 0.711,
-        "y": 0.86
-      },
-      "layer": 10,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-6",
-      "category": "veilleuses",
-      "asset": "diffuseur",
-      "position": {
-        "x": 0.873,
-        "y": 0.86
-      },
-      "layer": 10,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-7",
-      "category": "veilleuses",
-      "asset": "bougie-pot",
-      "position": {
-        "x": 0.06,
-        "y": 0.71
-      },
-      "layer": 9,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-8",
-      "category": "peluches",
-      "asset": "canard",
-      "position": {
-        "x": 0.192,
-        "y": 0.71
-      },
-      "layer": 9,
-      "blockedBy": [
-        "objet-1"
-      ]
-    },
-    {
-      "id": "objet-9",
-      "category": "veilleuses",
-      "asset": "bougie-pot",
-      "position": {
-        "x": 0.343,
-        "y": 0.71
-      },
-      "layer": 9,
-      "blockedBy": [
-        "objet-1",
-        "objet-2"
-      ],
-      "hidden": true
-    },
-    {
-      "id": "objet-10",
-      "category": "peluches",
-      "asset": "ours",
-      "position": {
-        "x": 0.506,
-        "y": 0.71
-      },
-      "layer": 9,
-      "blockedBy": [
-        "objet-2",
-        "objet-3"
-      ]
-    },
-    {
-      "id": "objet-11",
+      "id": "objet-56000-21",
       "category": "livres",
       "asset": "livres-plante",
-      "position": {
-        "x": 0.65,
-        "y": 0.71
-      },
-      "layer": 9,
       "blockedBy": [
-        "objet-3",
-        "objet-4"
+        "objet-56000-1",
+        "objet-56000-6",
+        "objet-56000-16",
+        "objet-56000-2"
       ],
+      "position": {
+        "x": 0.7,
+        "y": 0.1
+      },
+      "layer": 22,
       "hidden": true
     },
     {
-      "id": "objet-12",
-      "category": "peluches",
-      "asset": "ours-panier",
+      "id": "objet-56000-2",
+      "category": "coussins",
+      "asset": "coussin-creme",
+      "blockedBy": [],
       "position": {
-        "x": 0.815,
-        "y": 0.71
+        "x": 0.9,
+        "y": 0.1
       },
-      "layer": 9,
-      "blockedBy": [
-        "objet-4",
-        "objet-5"
-      ]
+      "layer": 21
     },
     {
-      "id": "objet-13",
-      "category": "cadres",
-      "asset": "cadre-montagne",
+      "id": "objet-56000-7",
+      "category": "coussins",
+      "asset": "coussin-creme",
+      "blockedBy": [],
       "position": {
-        "x": 0.94,
-        "y": 0.71
+        "x": 0.9,
+        "y": 0.3
       },
-      "layer": 9,
-      "blockedBy": [
-        "objet-5",
-        "objet-6"
-      ],
-      "hidden": true
+      "layer": 20
     },
     {
-      "id": "objet-14",
-      "category": "cadres",
-      "asset": "miroir-rond",
+      "id": "objet-56000-11",
+      "category": "coussins",
+      "asset": "coussin-patte",
+      "blockedBy": [],
       "position": {
-        "x": 0.06,
-        "y": 0.56
+        "x": 0.7,
+        "y": 0.3
       },
-      "layer": 8,
-      "blockedBy": [
-        "objet-5",
-        "objet-6"
-      ]
+      "layer": 19
     },
     {
-      "id": "objet-15",
-      "category": "livres",
-      "asset": "livres-trio",
-      "position": {
-        "x": 0.204,
-        "y": 0.56
-      },
-      "layer": 8,
-      "blockedBy": [
-        "objet-6",
-        "objet-7"
-      ]
-    },
-    {
-      "id": "objet-16",
-      "category": "cadres",
-      "asset": "miroir-rond",
-      "position": {
-        "x": 0.342,
-        "y": 0.56
-      },
-      "layer": 8,
-      "blockedBy": [
-        "objet-7",
-        "objet-8"
-      ]
-    },
-    {
-      "id": "objet-17",
-      "category": "peluches",
-      "asset": "lapin",
-      "position": {
-        "x": 0.491,
-        "y": 0.56
-      },
-      "layer": 8,
-      "blockedBy": [
-        "objet-8",
-        "objet-9"
-      ]
-    },
-    {
-      "id": "objet-18",
-      "category": "cadres",
-      "asset": "cadre-suspendu",
-      "position": {
-        "x": 0.651,
-        "y": 0.56
-      },
-      "layer": 8,
-      "blockedBy": [
-        "objet-9",
-        "objet-10"
-      ],
-      "hidden": true
-    },
-    {
-      "id": "objet-19",
+      "id": "objet-56000-12",
       "category": "coussins",
       "asset": "coussins-duo",
-      "position": {
-        "x": 0.787,
-        "y": 0.56
-      },
-      "layer": 8,
       "blockedBy": [
-        "objet-10",
-        "objet-11"
+        "objet-56000-21",
+        "objet-56000-2",
+        "objet-56000-7",
+        "objet-56000-11"
       ],
+      "position": {
+        "x": 0.5,
+        "y": 0.3
+      },
+      "layer": 18,
       "hidden": true
     },
     {
-      "id": "objet-20",
-      "category": "livres",
-      "asset": "livres-trio",
+      "id": "objet-56000-17",
+      "category": "coussins",
+      "asset": "coussin-creme",
+      "blockedBy": [],
       "position": {
-        "x": 0.94,
-        "y": 0.56
+        "x": 0.3,
+        "y": 0.3
       },
-      "layer": 8,
+      "layer": 17
+    },
+    {
+      "id": "objet-56000-22",
+      "category": "coussins",
+      "asset": "coussin-creme",
+      "blockedBy": [],
+      "position": {
+        "x": 0.1,
+        "y": 0.3
+      },
+      "layer": 16
+    },
+    {
+      "id": "objet-56000-25",
+      "category": "coussins",
+      "asset": "coussins-duo",
       "blockedBy": [
-        "objet-11",
-        "objet-12"
-      ]
+        "objet-56000-21",
+        "objet-56000-2",
+        "objet-56000-7",
+        "objet-56000-11",
+        "objet-56000-12",
+        "objet-56000-17",
+        "objet-56000-22"
+      ],
+      "position": {
+        "x": 0.1,
+        "y": 0.5
+      },
+      "layer": 15
+    },
+    {
+      "id": "objet-56000-3",
+      "category": "cadres",
+      "asset": "cadre-chat",
+      "blockedBy": [
+        "objet-56000-25"
+      ],
+      "position": {
+        "x": 0.3,
+        "y": 0.5
+      },
+      "layer": 14
+    },
+    {
+      "id": "objet-56000-8",
+      "category": "cadres",
+      "asset": "cadre-chat",
+      "blockedBy": [
+        "objet-56000-21"
+      ],
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 13
+    },
+    {
+      "id": "objet-56000-13",
+      "category": "cadres",
+      "asset": "cadre-chat",
+      "blockedBy": [
+        "objet-56000-25",
+        "objet-56000-3",
+        "objet-56000-8"
+      ],
+      "position": {
+        "x": 0.7,
+        "y": 0.5
+      },
+      "layer": 12,
+      "hidden": true
+    },
+    {
+      "id": "objet-56000-18",
+      "category": "cadres",
+      "asset": "cadre-suspendu",
+      "blockedBy": [
+        "objet-56000-21"
+      ],
+      "position": {
+        "x": 0.9,
+        "y": 0.5
+      },
+      "layer": 11
+    },
+    {
+      "id": "objet-56000-23",
+      "category": "cadres",
+      "asset": "cadre-chat",
+      "blockedBy": [
+        "objet-56000-25",
+        "objet-56000-3",
+        "objet-56000-8",
+        "objet-56000-13",
+        "objet-56000-18",
+        "objet-56000-4",
+        "objet-56000-19",
+        "objet-56000-14"
+      ],
+      "position": {
+        "x": 0.9,
+        "y": 0.7
+      },
+      "layer": 10
+    },
+    {
+      "id": "objet-56000-4",
+      "category": "peluches",
+      "asset": "canard",
+      "blockedBy": [
+        "objet-56000-25"
+      ],
+      "position": {
+        "x": 0.7,
+        "y": 0.7
+      },
+      "layer": 9
+    },
+    {
+      "id": "objet-56000-9",
+      "category": "peluches",
+      "asset": "ours",
+      "blockedBy": [
+        "objet-56000-25"
+      ],
+      "position": {
+        "x": 0.5,
+        "y": 0.7
+      },
+      "layer": 8
+    },
+    {
+      "id": "objet-56000-14",
+      "category": "peluches",
+      "asset": "ours",
+      "blockedBy": [
+        "objet-56000-25"
+      ],
+      "position": {
+        "x": 0.3,
+        "y": 0.7
+      },
+      "layer": 7,
+      "hidden": true
+    },
+    {
+      "id": "objet-56000-19",
+      "category": "peluches",
+      "asset": "canard",
+      "blockedBy": [
+        "objet-56000-25"
+      ],
+      "position": {
+        "x": 0.1,
+        "y": 0.7
+      },
+      "layer": 6
+    },
+    {
+      "id": "objet-56000-24",
+      "category": "peluches",
+      "asset": "ours-panier",
+      "blockedBy": [
+        "objet-56000-23",
+        "objet-56000-4",
+        "objet-56000-9",
+        "objet-56000-14",
+        "objet-56000-19",
+        "objet-56000-10",
+        "objet-56000-5",
+        "objet-56000-15"
+      ],
+      "position": {
+        "x": 0.1,
+        "y": 0.9
+      },
+      "layer": 5
+    },
+    {
+      "id": "objet-56000-5",
+      "category": "veilleuses",
+      "asset": "bougie-pot",
+      "blockedBy": [
+        "objet-56000-23"
+      ],
+      "position": {
+        "x": 0.3,
+        "y": 0.9
+      },
+      "layer": 4
+    },
+    {
+      "id": "objet-56000-10",
+      "category": "veilleuses",
+      "asset": "bougie-pot",
+      "blockedBy": [
+        "objet-56000-23"
+      ],
+      "position": {
+        "x": 0.5,
+        "y": 0.9
+      },
+      "layer": 3
+    },
+    {
+      "id": "objet-56000-15",
+      "category": "veilleuses",
+      "asset": "bougie-pot",
+      "blockedBy": [
+        "objet-56000-23"
+      ],
+      "position": {
+        "x": 0.7,
+        "y": 0.9
+      },
+      "layer": 2,
+      "hidden": true
+    },
+    {
+      "id": "objet-56000-20",
+      "category": "veilleuses",
+      "asset": "diffuseur",
+      "blockedBy": [
+        "objet-56000-24",
+        "objet-56000-5",
+        "objet-56000-10",
+        "objet-56000-15"
+      ],
+      "position": {
+        "x": 0.9,
+        "y": 0.9
+      },
+      "layer": 1,
+      "hidden": true
     }
   ],
   "scoring": {
-    "threeStarsMaxBuffered": 3,
-    "twoStarsMaxBuffered": 5
+    "threeStarsMaxBuffered": 7,
+    "twoStarsMaxBuffered": 9
   },
   "meta": {
     "solution": [
-      "objet-1",
-      "objet-8",
-      "objet-2",
-      "objet-3",
-      "objet-10",
-      "objet-5",
-      "objet-6",
-      "objet-7",
-      "objet-9",
-      "objet-4",
-      "objet-13",
-      "objet-14",
-      "objet-16",
-      "objet-18",
-      "objet-11",
-      "objet-15",
-      "objet-19",
-      "objet-12",
-      "objet-17",
-      "objet-20"
+      "objet-56000-1",
+      "objet-56000-16",
+      "objet-56000-2",
+      "objet-56000-6",
+      "objet-56000-21",
+      "objet-56000-7",
+      "objet-56000-11",
+      "objet-56000-12",
+      "objet-56000-17",
+      "objet-56000-22",
+      "objet-56000-25",
+      "objet-56000-3",
+      "objet-56000-8",
+      "objet-56000-18",
+      "objet-56000-14",
+      "objet-56000-4",
+      "objet-56000-19",
+      "objet-56000-13",
+      "objet-56000-23",
+      "objet-56000-5",
+      "objet-56000-10",
+      "objet-56000-15",
+      "objet-56000-9",
+      "objet-56000-24",
+      "objet-56000-20"
     ],
     "engineVersion": "0.1.0",
-    "statesExplored": 1017
+    "statesExplored": 2416,
+    "nonTrivialDecisions": 908,
+    "legalMoves": 6236,
+    "blockingMoves": 480,
+    "blockingMoveShare": 0.07697241821680564
   }
 }

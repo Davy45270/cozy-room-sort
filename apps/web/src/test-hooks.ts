@@ -20,7 +20,7 @@ export function demonstration(): 'gagner' | 'bloquer' | undefined {
 }
 
 export const BLOCKED_LEVEL = '004-salon';
-export const BLOCKED_MOVES = ['objet-1', 'objet-2', 'objet-3', 'objet-4', 'objet-6'] as const;
+export const BLOCKED_MOVES = ['objet-46224-1', 'objet-46224-2', 'objet-46224-6', 'objet-46224-9', 'objet-46224-13'] as const;
 
 export function installTestHooks(controller: Controller, scene: RoomScene): () => void {
     if (!testMode()) return () => undefined;

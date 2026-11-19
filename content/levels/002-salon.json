@@ -1,13 +1,13 @@
 {
-  "schemaVersion": "1.0",
+  "schemaVersion": "1.1",
   "rulesVersion": "1",
   "id": "002-salon",
   "name": "Coussins partout",
   "theme": "salon",
   "difficulty": "easy",
-  "seed": 43002,
+  "seed": 44000,
   "rules": {
-    "bufferCapacity": 4,
+    "bufferCapacity": 5,
     "activeBoxCount": 1,
     "allowUndo": true,
     "allowHints": true,
@@ -19,149 +19,159 @@
       "label": "Livres"
     },
     {
-      "id": "coussins",
-      "label": "Coussins et plaids"
-    },
-    {
       "id": "plantes",
       "label": "Plantes et fleurs"
+    },
+    {
+      "id": "cadres",
+      "label": "Cadres"
     }
   ],
   "boxes": [
     {
-      "id": "carton-livres-1",
+      "id": "carton-1",
       "category": "livres",
       "capacity": 4
     },
     {
-      "id": "carton-plantes-1",
+      "id": "carton-2",
       "category": "plantes",
       "capacity": 3
     },
     {
-      "id": "carton-coussins-1",
-      "category": "coussins",
+      "id": "carton-3",
+      "category": "cadres",
       "capacity": 3
     }
   ],
   "objects": [
     {
-      "id": "objet-1",
-      "category": "livres",
-      "asset": "livres-pile",
-      "position": {
-        "x": 0.132,
-        "y": 0.35
-      },
-      "layer": 10,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-2",
-      "category": "coussins",
-      "asset": "plaid-bleu",
-      "position": {
-        "x": 0.371,
-        "y": 0.35
-      },
-      "layer": 9,
-      "blockedBy": [
-        "objet-1"
-      ]
-    },
-    {
-      "id": "objet-3",
-      "category": "coussins",
-      "asset": "coussin-creme",
-      "position": {
-        "x": 0.634,
-        "y": 0.35
-      },
-      "layer": 10,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-4",
-      "category": "plantes",
-      "asset": "bouquet-blanc",
-      "position": {
-        "x": 0.879,
-        "y": 0.35
-      },
-      "layer": 10,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-5",
-      "category": "plantes",
-      "asset": "bouquet-blanc",
-      "position": {
-        "x": 0.113,
-        "y": 0.55
-      },
-      "layer": 9,
-      "blockedBy": [
-        "objet-4"
-      ]
-    },
-    {
-      "id": "objet-6",
-      "category": "livres",
-      "asset": "livres-trio",
-      "position": {
-        "x": 0.365,
-        "y": 0.55
-      },
-      "layer": 10,
-      "blockedBy": []
-    },
-    {
-      "id": "objet-7",
+      "id": "objet-44000-1",
       "category": "livres",
       "asset": "livres-plante",
+      "blockedBy": [],
       "position": {
-        "x": 0.617,
-        "y": 0.55
+        "x": 0.875,
+        "y": 0.167
       },
-      "layer": 10,
-      "blockedBy": []
+      "layer": 10
     },
     {
-      "id": "objet-8",
-      "category": "plantes",
-      "asset": "hortensias",
+      "id": "objet-44000-4",
+      "category": "livres",
+      "asset": "livres-plante",
+      "blockedBy": [],
       "position": {
-        "x": 0.872,
-        "y": 0.55
+        "x": 0.625,
+        "y": 0.167
       },
-      "layer": 9,
-      "blockedBy": [
-        "objet-5"
-      ]
+      "layer": 9
     },
     {
-      "id": "objet-9",
+      "id": "objet-44000-7",
+      "category": "livres",
+      "asset": "livres-plante",
+      "blockedBy": [],
+      "position": {
+        "x": 0.375,
+        "y": 0.167
+      },
+      "layer": 8
+    },
+    {
+      "id": "objet-44000-10",
       "category": "livres",
       "asset": "livres-trio",
-      "position": {
-        "x": 0.126,
-        "y": 0.75
-      },
-      "layer": 9,
       "blockedBy": [
-        "objet-3"
-      ]
+        "objet-44000-1",
+        "objet-44000-4",
+        "objet-44000-7"
+      ],
+      "position": {
+        "x": 0.125,
+        "y": 0.167
+      },
+      "layer": 7
     },
     {
-      "id": "objet-10",
-      "category": "coussins",
-      "asset": "coussin-creme",
+      "id": "objet-44000-2",
+      "category": "plantes",
+      "asset": "cactus",
+      "blockedBy": [],
       "position": {
-        "x": 0.385,
-        "y": 0.75
+        "x": 0.125,
+        "y": 0.5
       },
-      "layer": 10,
-      "blockedBy": []
+      "layer": 6
+    },
+    {
+      "id": "objet-44000-5",
+      "category": "plantes",
+      "asset": "bouquet-blanc",
+      "blockedBy": [],
+      "position": {
+        "x": 0.375,
+        "y": 0.5
+      },
+      "layer": 5
+    },
+    {
+      "id": "objet-44000-8",
+      "category": "plantes",
+      "asset": "hortensias",
+      "blockedBy": [
+        "objet-44000-10",
+        "objet-44000-2",
+        "objet-44000-5",
+        "objet-44000-6"
+      ],
+      "position": {
+        "x": 0.625,
+        "y": 0.5
+      },
+      "layer": 4,
+      "hidden": true
+    },
+    {
+      "id": "objet-44000-3",
+      "category": "cadres",
+      "asset": "cadre-feuille",
+      "blockedBy": [
+        "objet-44000-8"
+      ],
+      "position": {
+        "x": 0.875,
+        "y": 0.5
+      },
+      "layer": 3
+    },
+    {
+      "id": "objet-44000-6",
+      "category": "cadres",
+      "asset": "cadre-chat",
+      "blockedBy": [
+        "objet-44000-10"
+      ],
+      "position": {
+        "x": 0.875,
+        "y": 0.833
+      },
+      "layer": 2
+    },
+    {
+      "id": "objet-44000-9",
+      "category": "cadres",
+      "asset": "cadre-collines",
+      "blockedBy": [
+        "objet-44000-8",
+        "objet-44000-3",
+        "objet-44000-6"
+      ],
+      "position": {
+        "x": 0.625,
+        "y": 0.833
+      },
+      "layer": 1
     }
   ],
   "scoring": {
@@ -170,18 +180,22 @@
   },
   "meta": {
     "solution": [
-      "objet-1",
-      "objet-6",
-      "objet-7",
-      "objet-3",
-      "objet-9",
-      "objet-4",
-      "objet-5",
-      "objet-8",
-      "objet-2",
-      "objet-10"
+      "objet-44000-1",
+      "objet-44000-4",
+      "objet-44000-7",
+      "objet-44000-10",
+      "objet-44000-2",
+      "objet-44000-5",
+      "objet-44000-6",
+      "objet-44000-8",
+      "objet-44000-3",
+      "objet-44000-9"
     ],
     "engineVersion": "0.1.0",
-    "statesExplored": 50
+    "statesExplored": 35,
+    "nonTrivialDecisions": 24,
+    "legalMoves": 112,
+    "blockingMoves": 0,
+    "blockingMoveShare": 0
   }
 }

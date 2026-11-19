@@ -1,0 +1,16 @@
+{
+  "name": "@cozy-room-sort/level-tools",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./files": "./src/files.ts"
+  },
+  "dependencies": {
+    "@cozy-room-sort/engine": "0.1.0",
+    "@cozy-room-sort/generator": "0.1.0",
+    "@cozy-room-sort/schemas": "0.1.0"
+  },
+  "devDependencies": { "@playwright/test": "1.65.0" }
+}

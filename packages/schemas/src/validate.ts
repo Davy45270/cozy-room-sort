@@ -1,11 +1,12 @@
 // Validateur écrit à la main : aucune dépendance d'exécution. Il cumule toutes les erreurs et ne lève jamais.
 import type { Level, LevelError, ValidationResult } from './level.ts';
 
-type Obj = Record<string, unknown>;
-const isObj = (v: unknown): v is Obj => typeof v === 'object' && v !== null && !Array.isArray(v);
+import { isObject as isObj, migrateLevel, SCHEMA_VERSION } from './migrate.ts';
+import { DIFFICULTIES, isDifficulty } from './difficulty.ts';
 const isInt = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v);
 const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
 const isStr = (v: unknown): v is string => typeof v === 'string' && v.length > 0;
+const textOf = (v: unknown): string => typeof v === 'string' ? v : '(identifiant invalide)';
 
 export function parseLevel(text: string): ValidationResult {
     let data: unknown;
@@ -17,20 +18,35 @@ export function parseLevel(text: string): ValidationResult {
     return validateLevel(data);
 }
 
-export function validateLevel(input: unknown): ValidationResult {
+export function validateLevel(raw: unknown): ValidationResult {
+    const input = migrateLevel(raw);
     const errors: LevelError[] = [];
     const err = (path: string, message: string): void => { errors.push({ path, message }); };
     if (!isObj(input)) return { ok: false, errors: [{ path: '$', message: 'le niveau doit être un objet JSON' }] };
 
-    if (input['schemaVersion'] !== '1.0') err('schemaVersion', 'version de schéma attendue : "1.0"');
+    if (input['schemaVersion'] !== SCHEMA_VERSION) err('schemaVersion', `version de schéma attendue : "${SCHEMA_VERSION}"`);
     if (input['rulesVersion'] !== '1') err('rulesVersion', 'version des règles attendue : "1"');
     for (const key of ['id', 'name', 'theme']) if (!isStr(input[key])) err(key, 'texte non vide attendu');
-    if (!['easy', 'medium', 'expert'].includes(input['difficulty'] as string)) err('difficulty', 'attendu : easy, medium ou expert');
+    const difficulty = input['difficulty'];
+    if (!isDifficulty(difficulty)) err('difficulty', 'attendu : easy, medium ou expert');
     if (!isInt(input['seed'])) err('seed', 'entier attendu');
 
     const categories = Array.isArray(input['categories']) ? input['categories'] as unknown[] : (err('categories', 'liste attendue'), []);
     const boxes = Array.isArray(input['boxes']) ? input['boxes'] as unknown[] : (err('boxes', 'liste attendue'), []);
     const objects = Array.isArray(input['objects']) ? input['objects'] as unknown[] : (err('objects', 'liste attendue'), []);
+
+    const thresholds = isDifficulty(difficulty) ? DIFFICULTIES[difficulty] : undefined;
+    if (thresholds) {
+        for (const [path, entries] of [['objects', objects], ['categories', categories]] as const) {
+            const [min, max] = thresholds[path];
+            if (entries.length < min || entries.length > max) err(path, `entre ${min} et ${max} entrées pour la difficulté ${String(difficulty)}`);
+        }
+        const hidden = objects.filter(o => isObj(o) && o['hidden'] === true).length;
+        const [min, max] = thresholds.hiddenPercent;
+        if (hidden * 100 < min * objects.length || hidden * 100 > max * objects.length) {
+            err('objects', `entre ${min} et ${max} % d’objets masqués pour la difficulté ${String(difficulty)}`);
+        }
+    }
 
     const ids = new Set<string>();
     const unique = (path: string, id: unknown): void => {
@@ -46,7 +62,7 @@ export function validateLevel(input: unknown): ValidationResult {
         if (!isStr(c['label'])) err(`categories[${i}].label`, 'texte non vide attendu');
     });
     const knownCategory = (path: string, category: unknown): void => {
-        if (!isStr(category) || !categoryIds.has(category)) err(path, `catégorie inconnue : ${String(category)}`);
+        if (!isStr(category) || !categoryIds.has(category)) err(path, `catégorie inconnue : ${textOf(category)}`);
     };
 
     const capacityByCategory = new Map<string, number>();
@@ -78,22 +94,26 @@ export function validateLevel(input: unknown): ValidationResult {
             if (!isNum(v) || v < 0 || v > 1) err(`objects[${i}].position.${axis}`, 'nombre entre 0 et 1 attendu');
         }
         if (!Array.isArray(o['blockedBy'])) err(`objects[${i}].blockedBy`, 'liste attendue');
-        else if (isStr(o['id'])) blockers.set(o['id'], (o['blockedBy'] as unknown[]).filter(isStr));
+        else {
+            if (o['hidden'] === true && o['blockedBy'].length === 0) err(`objects[${i}].hidden`, 'un objet masqué doit avoir un bloqueur');
+            if (isStr(o['id'])) blockers.set(o['id'], (o['blockedBy'] as unknown[]).filter(isStr));
+        }
     });
     objects.forEach((o, i) => {
         if (!isObj(o) || !Array.isArray(o['blockedBy'])) return;
         (o['blockedBy'] as unknown[]).forEach((b, j) => {
-            if (!isStr(b) || !objectIds.has(b)) err(`objects[${i}].blockedBy[${j}]`, `objet bloquant inconnu : ${String(b)}`);
+            if (!isStr(b) || !objectIds.has(b)) err(`objects[${i}].blockedBy[${j}]`, `objet bloquant inconnu : ${textOf(b)}`);
             else if (b === o['id']) err(`objects[${i}].blockedBy[${j}]`, 'un objet ne peut pas se bloquer lui-même');
         });
     });
-    const cycle = findCycle(blockers);
+    const cycle = objects.length <= DIFFICULTIES.expert.objects[1] ? findCycle(blockers) : null;
     if (cycle) err('objects', `cycle de blocage : ${cycle.join(' → ')}`);
 
     categories.forEach((c, i) => {
         if (!isObj(c) || !isStr(c['id'])) return;
         const count = countByCategory.get(c['id']) ?? 0;
         const capacity = capacityByCategory.get(c['id']) ?? 0;
+        if (count === 0 && capacity === 0) err(`categories[${i}]`, 'la catégorie doit avoir des objets et un carton');
         if (count !== capacity) err(`categories[${i}]`, `${count} objets « ${c['id']} » pour une capacité ${capacity} de cartons`);
     });
 
@@ -102,6 +122,9 @@ export function validateLevel(input: unknown): ValidationResult {
     else {
         const buffer = rules['bufferCapacity'];
         if (!isInt(buffer) || buffer < 1 || buffer > 8) err('rules.bufferCapacity', 'entier entre 1 et 8 attendu');
+        if (thresholds && buffer !== thresholds.bufferCapacity) {
+            err('rules.bufferCapacity', `${thresholds.bufferCapacity} places pour la difficulté ${String(difficulty)}`);
+        }
         const active = rules['activeBoxCount'];
         if (!isInt(active) || active < 1 || active > boxes.length) err('rules.activeBoxCount', `entier entre 1 et ${boxes.length} attendu`);
         for (const key of ['allowUndo', 'allowHints']) if (typeof rules[key] !== 'boolean') err(`rules.${key}`, 'booléen attendu');
@@ -116,6 +139,9 @@ export function validateLevel(input: unknown): ValidationResult {
     const scoring = input['scoring'];
     if (!isObj(scoring)) err('scoring', 'objet attendu');
     else {
+        if (scoring['threeStarsMaxMoves'] !== undefined || scoring['twoStarsMaxMoves'] !== undefined) {
+            err('scoring', 'recalibrer les anciens seuils en coups avec des seuils en passages par le tampon');
+        }
         const three = scoring['threeStarsMaxBuffered'];
         const two = scoring['twoStarsMaxBuffered'];
         if (!isInt(three) || three < 0) err('scoring.threeStarsMaxBuffered', 'entier ≥ 0 attendu');
@@ -126,7 +152,16 @@ export function validateLevel(input: unknown): ValidationResult {
     const meta = input['meta'];
     if (meta !== undefined) {
         if (!isObj(meta)) err('meta', 'objet attendu');
-        else if (meta['solution'] !== undefined && !(Array.isArray(meta['solution']) && meta['solution'].every(isStr))) err('meta.solution', 'liste d\'identifiants attendue');
+        else {
+            if (meta['solution'] !== undefined && !(Array.isArray(meta['solution']) && meta['solution'].every(isStr))) err('meta.solution', 'liste d\'identifiants attendue');
+            if (meta['engineVersion'] !== undefined && !isStr(meta['engineVersion'])) err('meta.engineVersion', 'texte non vide attendu');
+            for (const key of ['statesExplored', 'nonTrivialDecisions', 'legalMoves', 'blockingMoves']) {
+                const value = meta[key];
+                if (value !== undefined && (!isInt(value) || value < 0)) err(`meta.${key}`, 'entier ≥ 0 attendu');
+            }
+            const share = meta['blockingMoveShare'];
+            if (share !== undefined && (!isNum(share) || share < 0 || share > 1)) err('meta.blockingMoveShare', 'nombre entre 0 et 1 attendu');
+        }
     }
 
     return errors.length === 0 ? { ok: true, level: input as unknown as Level } : { ok: false, errors };
