@@ -84,12 +84,18 @@ export function renderQuotas(container: HTMLElement, level: Level, state: GameSt
 /**
  * Intérieur du cadre « barre-progression » (pixels de sa partie utile 256 × 61), mesuré sur le cadre : la piste va du
  * bord gauche (x 8) jusqu'avant l'étoile, de y 19 à 52. L'étoile commence en x 191 au plus tôt sur ces lignes (contour
- * compris) ; la piste s'arrête en x 190 exclu, avec 1 px de garde. La planche y dessine une partie verte (x 8 à 112, bout
- * arrondi compris) puis une partie sombre (x 145 à 190, unie en largeur). Aucun aplat ni dégradé : la piste vide montre
- * la partie sombre étirée, le remplissage la partie verte étirée à la largeur de la progression, du même atlas.
+ * compris) ; la piste s'arrête en x 190 exclu, avec 1 px de garde. La planche y dessine une partie verte, une transition
+ * vers le brun, puis une partie sombre (x 145 à 190, unie en largeur). Aucun aplat ni dégradé : la piste vide montre la
+ * partie sombre étirée, le remplissage la partie verte et sa transition étirées à la largeur de la progression.
+ *
+ * Fin de la transition, mesurée le 19/11/2026 sur l'atlas p01-panneaux.webp décodé (Python, PIL) : premier x à partir
+ * duquel la ligne reste à moins de 8 (distance RGB) du brun médian de x 145 à 189. Ligne y 34 : x 137 (x 135 vaut
+ * (139, 141, 83), x 136 (145, 138, 85), brun (151, 134, 90)) ; lignes 30 à 38 : 135 à 138, médiane 136 ; lignes 21 à
+ * 49 : 127 à 142, la limite penche. Le remplissage va de x 8 à 136 exclu : la transition entière sur la médiane, sans la
+ * piste brune. Pixels de référence : tests/fixtures/jauge-p01-lignes.json.
  */
 export const PROGRESS_TRACK: Readonly<Rectangle> = { x: 8, y: 19, w: 182, h: 33 };
-export const PROGRESS_FILLED: Readonly<Rectangle> = { x: 8, y: 19, w: 104, h: 33 };
+export const PROGRESS_FILLED: Readonly<Rectangle> = { x: 8, y: 19, w: 128, h: 33 };
 export const PROGRESS_EMPTY: Readonly<Rectangle> = { x: 145, y: 19, w: 45, h: 33 };
 
 /** Part des objets rangés, en pour cent, bornée à [0, 100]. */
