@@ -6,7 +6,7 @@ it('T10 : quatre sons courts sont livrés en OGG et MP3 sous 30 ko', () => {
     const names = ['selection', 'rangement', 'carton-ferme', 'victoire'];
     const files = readdirSync('apps/web/public/sons').sort();
     expect(files).toEqual(names.flatMap(name => [`${name}.mp3`, `${name}.ogg`]).sort());
-    const audio = provenance.filter(entry => entry.fichiers !== undefined);
+    const audio = provenance.filter(entry => entry.fichiers?.some(fichier => fichier.startsWith('apps/web/public/sons/')));
     expect(audio.flatMap(entry => entry.fichiers).sort()).toEqual(files.map(file => `apps/web/public/sons/${file}`));
     for (const entry of audio) {
         expect(entry.origine).toBe('Synthétisé par tools/synth-sons.ts');
