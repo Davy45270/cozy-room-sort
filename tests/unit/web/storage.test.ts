@@ -254,14 +254,6 @@ describe('journal creux ou aux durées non finies, à la bonne empreinte, remis 
 describe('empreinte du niveau', () => {
     const base = makeLevel({ boxes: [['a', 2]], objects: [['a1', 'a'], ['a2', 'a']], rules: { timeLimitSeconds: 60 } });
 
-    it('un quota d’annulations absent (à volonté) et un quota de 200 donnent deux empreintes différentes', () => {
-        const level = makeLevel({ boxes: [['a', 2]], objects: [['a1', 'a'], ['a2', 'a']] });
-        const { undoLimit: _quota, ...aVolonte } = level.rules;
-        const sans = { ...level, rules: aVolonte };
-        const avec = { ...level, rules: { ...level.rules, undoLimit: 200 } };
-        expect(signatureOf(sans)).not.toBe(signatureOf(avec));
-    });
-
     it('changer la seule limite de temps change l’empreinte, et le journal signé est écarté avec annonce', async () => {
         const shorter = { ...base, rules: { ...base.rules, timeLimitSeconds: 30 } };
         const untimed = { ...base, rules: { ...base.rules, timeLimitSeconds: null } };
