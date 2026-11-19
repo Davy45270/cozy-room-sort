@@ -23,6 +23,27 @@ function manualTimers() {
 }
 
 describe('horloge de partie', () => {
+    it('des rappels à l’heure fractionnaire transmettent des millisecondes entières : le journal se rejoue à l’identique', async () => {
+        // Scénario de la relecture : 0,3 ms, un coup, puis 90,3 et 909,4 ms. En direct, la partie atteint la limite de 1 s ;
+        // avec des durées fractionnaires fusionnées dans le journal, le rejeu restait juste sous la limite.
+        const level = makeLevel({ ...spec, rules: { timeLimitSeconds: 1 } });
+        const saves: SavedGame[] = [];
+        const controller = createController(level, 'classique', { save: s => { saves.push(s); return Promise.resolve(); }, now: () => 0 });
+        const { timers, fire, wait } = manualTimers();
+        startClock(controller, timers);
+        wait(0.3);
+        controller.select('a1');
+        fire(90.3);
+        fire(909.4);
+        expect(controller.state.status).toBe('lost');
+        await controller.idle();
+        const actions = saves.at(-1)?.actions ?? [];
+        for (const action of actions) if (action.type === 'TICK') expect(Number.isInteger(action.ms)).toBe(true);
+        const resumed = createController(level, 'classique', { save: () => Promise.resolve(), now: () => 0 }, saves.at(-1));
+        expect(resumed.state.status).toBe(controller.state.status);
+        expect(resumed.state.elapsedMs).toBe(controller.state.elapsedMs);
+    });
+
     it('limite de 2 s : les TICK font perdre la partie, puis l’horloge s’arrête', async () => {
         const saves: SavedGame[] = [];
         const controller = createController(makeLevel({ ...spec, rules: { timeLimitSeconds: 2 } }), 'classique',

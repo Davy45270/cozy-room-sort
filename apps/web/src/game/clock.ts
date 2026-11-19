@@ -17,13 +17,16 @@ export const CLOCK_PERIOD_MS = 1000;
  */
 export function startClock(controller: Controller, timers: ClockTimers, periodMs = CLOCK_PERIOD_MS): () => void {
     if (controller.level.rules.timeLimitSeconds === null) return () => undefined;
-    let last = timers.now();
+    // Relevés arrondis à la milliseconde : chaque durée transmise est entière (le journal se rejoue à l'identique, sans
+    // erreur d'arrondi), et la somme des durées vaut exactement l'écart entre le premier et le dernier relevé.
+    const read = (): number => Math.round(timers.now());
+    let last = read();
     let handle: number | undefined;
     let stopped = false;
     const ended = (): boolean => controller.state.status === 'won' || controller.state.status === 'lost';
     /** Temps écoulé depuis le dernier relevé ; le relevé suivant part de maintenant. */
     const elapsed = (): number => {
-        const now = timers.now();
+        const now = read();
         const ms = now - last;
         last = now;
         return ms;
@@ -35,7 +38,7 @@ export function startClock(controller: Controller, timers: ClockTimers, periodMs
     };
     const run = (): void => {
         if (stopped || handle !== undefined || ended()) return;
-        last = timers.now();
+        last = read();
         handle = timers.setInterval(() => {
             if (ended()) { pause(); return; }
             controller.tick(elapsed());
