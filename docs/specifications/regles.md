@@ -23,7 +23,10 @@
 - La victoire demande une pièce et un tampon vides ainsi que tous les quotas satisfaits. Sans coup légal restant,
   le statut est `blocked` dans un mode qui autorise l’annulation. Le joueur peut annuler selon son historique et
   son quota, ou recommencer. Le statut est `lost` dans un mode sans annulation, ou quand la partie atteint sa
-  limite de temps si le niveau en fixe une.
+  limite de temps si le niveau en fixe une. Pour un tel niveau, l’écran de jeu envoie au contrôleur une action
+  `TICK` portant le temps écoulé, chaque seconde (`apps/web/src/game/clock.ts`), jusqu’à la fin de la partie ou la
+  sortie de l’écran ; les `TICK` consécutifs se fusionnent dans le journal. Sans limite (`null`, tous les niveaux
+  livrés), aucune horloge ne tourne.
 - Le mode détente ajoute une place au tampon et autorise jusqu’à 200 annulations. Le mode classique autorise
   trois annulations et trois indices. Le mode expert désactive ces deux aides. Le mode de jeu et la difficulté
   inscrite dans le niveau sont réglés indépendamment.

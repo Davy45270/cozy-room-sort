@@ -4,6 +4,7 @@ import type { Level } from '@cozy-room-sort/schemas';
 import type { AppContext, Screen } from '../app-context.ts';
 import { levelNumber, nextLevel, themeOf } from '../content.ts';
 import { h, iconButton, stars } from '../dom.ts';
+import { startClock } from '../game/clock.ts';
 import { createController } from '../game/controller.ts';
 import { createProgress, renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachable, renderScore } from '../hud.ts';
 import { PACK_MS, reducedMotion, startRoom, type RoomScene } from '../scene/room-scene.ts';
@@ -41,6 +42,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
     let endTimer: number | undefined;
     let demoTimer: number | undefined;
     let removeHooks: (() => void) | undefined;
+    let stopClock: (() => void) | undefined;
     let disposed = false;
     const say = (text: string): void => { live.textContent = text; };
     const hint = iconButton('btn-indice', 'Indice', () => {
@@ -159,9 +161,16 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
                 }
             }));
             removeHooks = installTestHooks(controller, scene);
+            // Niveau chronométré seulement : l'horloge s'arrête d'elle-même à la fin de la partie, et à la sortie de l'écran.
+            if (!trace) stopClock = startClock(controller, {
+                now: () => performance.now(),
+                setInterval: (callback, ms) => window.setInterval(callback, ms),
+                clearInterval: handle => { window.clearInterval(handle); }
+            });
         },
         dispose: () => {
             disposed = true;
+            stopClock?.();
             window.clearTimeout(demoTimer);
             window.clearTimeout(endTimer);
             unsubscribe();

@@ -20,6 +20,8 @@ export interface Controller {
     undo(): void;
     redo(): void;
     restart(): void;
+    /** Temps écoulé, pour un niveau chronométré : sans limite de temps ou partie finie, rien n'est fait. */
+    tick(ms: number): void;
     hint(): HintResult;
     subscribe(listener: Listener): () => void;
     /** Résolu quand toutes les sauvegardes en file sont écrites. */
@@ -71,7 +73,12 @@ export function createController(baseLevel: Level, mode: Mode, deps: ControllerD
         if (action.type === 'UNDO') redoId = recoveredObject(state, transition.state);
         if (action.type === 'SELECT_OBJECT' || action.type === 'RESTART') redoId = undefined;
         state = transition.state;
-        record = action.type === 'RESTART' ? { ...record, actions: [] } : { ...recordAction(record, action), levelSignature };
+        const previous = record.actions.at(-1);
+        // Deux TICK consécutifs se fusionnent : le journal ne grossit pas à chaque seconde, et le rejeu donne le même état.
+        record = action.type === 'RESTART' ? { ...record, actions: [] }
+            : action.type === 'TICK' && previous?.type === 'TICK'
+                ? { ...record, levelSignature, actions: [...record.actions.slice(0, -1), { type: 'TICK', ms: previous.ms + action.ms }] }
+                : { ...recordAction(record, action), levelSignature };
         persist();
         for (const l of listeners) l(state, transition.events);
         return transition.events;
@@ -87,6 +94,10 @@ export function createController(baseLevel: Level, mode: Mode, deps: ControllerD
         undo: () => { dispatch({ type: 'UNDO' }); },
         redo: () => { if (redoId !== undefined) dispatch({ type: 'SELECT_OBJECT', objectId: redoId }); },
         restart: () => { dispatch({ type: 'RESTART' }); },
+        tick: ms => {
+            if (level.rules.timeLimitSeconds === null || state.status === 'won' || state.status === 'lost' || !(ms > 0)) return;
+            dispatch({ type: 'TICK', ms });
+        },
         hint: () => {
             if (state.status === 'blocked') return { none: 'blocked' };
             if (!level.rules.allowHints || state.status !== 'playing' || state.hintCount >= (level.rules.hintLimit ?? Infinity)) return { none: 'unavailable' };
