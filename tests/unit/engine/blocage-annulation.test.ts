@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { applyAction, createInitialState, type GameState } from '../../../packages/engine/src/index.ts';
+import { applyAction, createInitialState, HISTORY_CAP, withMode, type GameState } from '../../../packages/engine/src/index.ts';
 import { makeLevel, type MiniSpec } from './levels.ts';
 
 const makeBlockedLevel = (rules: MiniSpec['rules']) => makeLevel({
@@ -36,6 +36,20 @@ describe('R-006 : blocage et annulation', () => {
             state: { ...initial, undoCount: 1 },
             events: []
         });
+    });
+
+    it('en détente, un blocage reste réversible après avoir annulé plus de coups que la profondeur de l’historique', () => {
+        const level = withMode(makeBlockedLevel({ bufferCapacity: 0 }), 'detente');
+        let state = createInitialState(level);
+        for (let i = 0; i <= HISTORY_CAP; i++) {
+            const blocked = applyAction(level, state, select('b1')).state;
+            expect(blocked.status).toBe('blocked');
+            const restored = applyAction(level, blocked, undo);
+            expect(restored.events).toEqual([]);
+            expect(restored.state.status).toBe('playing');
+            state = restored.state;
+        }
+        expect(state.undoCount).toBe(HISTORY_CAP + 1);
     });
 
     it('un nouveau blocage entraîne la défaite après épuisement du quota', () => {

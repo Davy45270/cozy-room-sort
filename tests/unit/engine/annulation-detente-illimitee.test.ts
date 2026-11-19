@@ -1,6 +1,5 @@
-// Oracle (R-008, réglage « annulations à volonté ») : en détente, le dernier coup s'annule toujours, quel que soit le
-// nombre d'annulations déjà faites dans la partie. Aujourd'hui le mode plafonne à 200 annulations cumulées : le cas
-// marqué `it.fails` est vert tant que le défaut existe ; il faudra le passer en `it` une fois le moteur corrigé.
+// En détente, « annulations à volonté » permet de revenir sur les coups conservés dans l'historique,
+// quel que soit le nombre d'annulations déjà faites dans la partie.
 import { describe, expect, it } from 'vitest';
 import { applyAction, createInitialState, withMode, type GameAction, type GameState } from '../../../packages/engine/src/index.ts';
 import { makeLevel } from './levels.ts';
@@ -10,7 +9,7 @@ const apply = (s: GameState, a: GameAction) => applyAction(level, s, a);
 const rejected = (events: readonly { type: string }[]) => events.some(e => e.type === 'ACTION_REJECTED');
 
 describe('annulation en détente', () => {
-    it.fails('après 250 allers-retours, le dernier coup s’annule encore', () => {
+    it('après 250 allers-retours, le dernier coup s’annule encore', () => {
         let s = createInitialState(level);
         for (let i = 0; i < 250; i++) {
             s = apply(s, { type: 'SELECT_OBJECT', objectId: 'a1' }).state;

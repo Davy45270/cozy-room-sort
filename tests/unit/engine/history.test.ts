@@ -1,6 +1,6 @@
 import type { Level } from '@cozy-room-sort/schemas';
 import { describe, expect, it } from 'vitest';
-import { applyAction, createInitialState, withMode, type GameAction, type GameState } from '../../../packages/engine/src/index.ts';
+import { applyAction, createInitialState, HISTORY_CAP, withMode, type GameAction, type GameState } from '../../../packages/engine/src/index.ts';
 import { makeLevel, type MiniSpec } from './levels.ts';
 
 const run = (level: Level, actions: readonly GameAction[], from: GameState = createInitialState(level)): GameState =>
@@ -95,6 +95,22 @@ describe('UNDO, RESTART, TICK, HINT_USED', () => {
         expect(state.moveCount).toBe(1);
     });
 
+    it('en détente, seuls les derniers coups dans la limite de l’historique sont annulables', () => {
+        const objects = Array.from({ length: HISTORY_CAP + 2 }, (_, i) => [`b${i}`, 'books'] as const);
+        const level = withMode(makeLevel({ boxes: [['books', objects.length]], objects }), 'detente');
+        const state = run(level, sel(...objects.slice(0, -1).map(([id]) => id)));
+        expect(state.moveCount).toBe(HISTORY_CAP + 1);
+        expect(state.history).toHaveLength(HISTORY_CAP);
+
+        const oldest = run(level, Array.from({ length: HISTORY_CAP }, () => ({ type: 'UNDO' })), state);
+        expect(oldest.moveCount).toBe(1);
+        expect(oldest.history).toHaveLength(0);
+        expect(applyAction(level, oldest, { type: 'UNDO' })).toEqual({
+            state: oldest,
+            events: [{ type: 'ACTION_REJECTED', reason: 'undo-unavailable' }]
+        });
+    });
+
     it('RESTART rend l\'état initial', () => {
         const level = makeLevel(books);
         const state = run(level, [...sel('b1', 'b2'), { type: 'UNDO' }, { type: 'HINT_USED' }, { type: 'RESTART' }]);
@@ -121,7 +137,9 @@ describe('UNDO, RESTART, TICK, HINT_USED', () => {
 
     it('withMode applique les valeurs de départ et ne touche pas au niveau d\'origine', () => {
         const level = makeLevel(books);
-        expect(withMode(level, 'detente').rules).toMatchObject({ bufferCapacity: 4, undoLimit: 200, allowUndo: true });
+        const detente = withMode({ ...level, rules: { ...level.rules, undoLimit: 1 } }, 'detente');
+        expect(detente.rules).toMatchObject({ bufferCapacity: 4, allowUndo: true });
+        expect(detente.rules).not.toHaveProperty('undoLimit');
         expect(withMode(level, 'classique').rules).toMatchObject({ bufferCapacity: 3, undoLimit: 3, hintLimit: 3 });
         expect(withMode(level, 'expert').rules).toMatchObject({ allowUndo: false, allowHints: false });
         expect(level.rules.undoLimit).toBeUndefined();
