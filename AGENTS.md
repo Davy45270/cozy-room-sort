@@ -46,7 +46,8 @@ la conception détaillée et les plans de travail sont tenus hors de ce dépôt.
   (`tests/unit/web/styles.test.ts`). À partir de 1024 px de large, le panneau latéral grandit : texte de 15 px au moins,
   cases du tampon de 64 px au moins ; les portraits ne changent pas. En portrait de 320 px, tout tient en 320 × 568
   sans défilement : pièce de 150 px au plus bas (zone tactile vérifiée par `tests/unit/web/layout.test.ts`), quotas de
-  plus de 4 catégories sur une colonne en 13 px. Les cases du tampon gardent la proportion du cadre
+  plus de 4 catégories sur une colonne en 13 px, titre « Quotas » réservé aux lecteurs d'écran. Sur grand écran aussi, les
+  quotas tiennent sur une colonne. L'interligne des libellés est un nombre entier de pixels (`--quota-line`). Les cases du tampon gardent la proportion du cadre
   affiché (`case-tampon` 256 × 88, `case-tampon-aide` 256 × 123).
 - **Changements visuels** vérifiés par captures Playwright (à partir de l'application web).
 

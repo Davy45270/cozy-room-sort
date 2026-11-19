@@ -67,6 +67,7 @@ export const QUOTA_ONE_COLUMN_MAX = 4;
 export function renderQuotas(container: HTMLElement, level: Level, state: GameState): void {
     const twoColumns = level.categories.length > QUOTA_ONE_COLUMN_MAX;
     const panel = quotaPanelOf(level);
+    container.dataset['panel'] = panel.asset;
     container.replaceChildren(atlasBorder(panel.asset, panel.slice, .75, 'quota-frame'), h('div', { class: 'quota-content' }, h('h2', { text: 'Quotas' }),
         h('ul', { class: 'quota-list', 'data-columns': twoColumns ? 2 : undefined }, ...level.categories.map(category => {
             const boxes = level.boxes.filter(box => box.category === category.id);

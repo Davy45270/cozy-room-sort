@@ -126,3 +126,27 @@ it('à partir de 1024 px de large, le panneau latéral grandit : texte d’au mo
         if (size) expect(px(size), `${item.selectorText} ${size}`).toBeGreaterThanOrEqual(15);
     }
 });
+
+it('l’interligne des libellés de quotas est un nombre entier de pixels, au-dessus de la zone de contenu de la police', () => {
+    const label = allRules().filter(rule => rule.selectorText === '.quota-label');
+    expect(label.map(rule => rule.style.getPropertyValue('line-height'))).toEqual(['var(--quota-line)']);
+    // Chaque taille de police des quotas vient avec son interligne : entier, et au moins 1,17 em (DejaVu Sans : ~1,164 em).
+    const sized = allRules().filter(rule => /(^|\s)\.quota$/.test(rule.selectorText) && rule.style.getPropertyValue('font-size'));
+    expect(sized.length).toBeGreaterThan(0);
+    for (const rule of sized) {
+        const size = rule.style.getPropertyValue('font-size');
+        const font = size.endsWith('rem') ? Number.parseFloat(size) * 16 : Number.parseFloat(size);
+        const line = rule.style.getPropertyValue('--quota-line').trim();
+        expect(line, rule.selectorText).toMatch(/^\d+px$/);
+        expect(Number.parseFloat(line), `${rule.selectorText} ${size}`).toBeGreaterThanOrEqual(font * 1.17);
+    }
+});
+
+it('à partir de 1024 px, les quotas tiennent sur une colonne, icônes bornées en hauteur', () => {
+    const wide = mediaRules(/min-width:\s*1024px/);
+    expect(wide.find(rule => rule.selectorText === '.quota-list[data-columns="2"]')?.style.getPropertyValue('flex-direction')).toBe('column');
+    // happy-dom ne lit pas `min()` mêlé à `var()` : la déclaration est cherchée dans le texte du bloc.
+    const css = readFileSync('apps/web/src/styles.css', 'utf8');
+    const block = css.slice(css.indexOf('@media (min-width: 1024px)'));
+    expect(block.slice(0, block.indexOf('\n}'))).toMatch(/\.quota-icon \{ width: min\(24px, 22px \* var\(--frame-ratio\)\)/);
+});

@@ -174,12 +174,13 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
 .quota-content { position: relative; }
 .quota-content h2 { margin-bottom: 4px; color: var(--crs-ink); }
 .quota-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 3px; }
-.quota { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto 14px; align-items: center; gap: 3px; font-size: .875rem; line-height: 1.1; }
+.quota { --quota-line: 17px; display: grid; grid-template-columns: 16px minmax(0, 1fr) auto 14px; align-items: center; gap: 3px; font-size: .875rem; line-height: 1.1; }
 .quota-icon { width: 16px; }
 /* Un libellé trop long passe à la ligne (entre les mots d'abord) ; l'icône, le compteur et la coche restent centrés sur lui. */
-/* Interligne explicite à 1,2 : sous 1,16 em, la zone de contenu de la police (DejaVu Sans en CI) déborde de la ligne et
-   Firefox inclut ce débordement dans `scrollHeight` (32 pour 31 sur deux lignes en 14 px). */
-.quota-label { min-width: 0; overflow-wrap: break-word; hyphens: auto; line-height: 1.2; }
+/* Interligne en pixels entiers (`--quota-line`, posé avec chaque taille de police des quotas), au-dessus de la zone de
+   contenu de la police (DejaVu Sans en CI, environ 1,16 em) : une ligne de libellé ne déborde pas, et un libellé de
+   deux ou trois lignes a une hauteur entière, sans arrondi qui ferait passer `scrollHeight` au-dessus de `clientHeight`. */
+.quota-label { min-width: 0; overflow-wrap: break-word; hyphens: auto; line-height: var(--quota-line); }
 .quota-check { width: 14px; }
 /* Plus de 4 catégories : deux colonnes ; un libellé trop long tient sur deux lignes, jamais abrégé. */
 .quota-list[data-columns="2"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 10px; }
@@ -231,22 +232,24 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
    (5 cases au plus : 420 − 2 × 22 − 4 × 8 = 344 px, soit 68 px par case). Les portraits ne sont pas concernés. */
 @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
     .play { grid-template-columns: minmax(0, 1fr) 420px; }
-    .tray { padding: 22px; gap: 14px; }
-    .tray h2 { font-size: 1.2rem; }
+    .tray { padding: 18px; gap: 10px; }
+    .tray h2 { font-size: 1.1rem; }
     .boxes { gap: 6px 8px; margin-top: 6px; }
     /* 88 px : un carton en attente, réduit à 76 %, garde 66 px. */
     .box-picture { width: min(100%, 104px); height: 88px; }
     .box-art { width: min(100%, 100px); }
-    .box-count { font-size: 17px; }
+    .box-count { font-size: 17px; line-height: 1.2; }
     .quotas { padding: 14px 16px 13px; }
     .quota-content h2 { margin-bottom: 6px; }
     .quota-list { gap: 5px; }
-    .quota { grid-template-columns: 24px minmax(0, 1fr) auto 20px; gap: 6px; font-size: 17px; line-height: 1.15; }
-    .quota-icon { width: 24px; }
+    .quota { --quota-line: 21px; grid-template-columns: 24px minmax(0, 1fr) auto 20px; gap: 6px; font-size: 17px; line-height: 1.15; }
+    /* Icônes bornées à 22 px de haut (les pictos de la salle de bain sont hauts : flacon 1,78). */
+    .quota-icon { width: min(24px, 22px * var(--frame-ratio)); justify-self: center; }
     .quota-check { width: 20px; }
-    .quota-list[data-columns="2"] { gap: 5px 12px; }
+    /* Une seule colonne : en deux colonnes de 170 px, un libellé de 17 px passait sur trois lignes. */
+    .quota-list[data-columns="2"] { display: flex; flex-direction: column; gap: 5px; }
     .buffer { grid-template-columns: repeat(var(--slot-count), minmax(0, 1fr)); gap: 8px; margin-top: 6px; }
-    .score { font-size: 16px; gap: 10px; }
+    .score { font-size: 16px; line-height: 1.2; gap: 10px; }
     .score .star { width: 24px; }
 }
 
@@ -270,11 +273,11 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
     .boxes { grid-template-columns: repeat(var(--box-count), minmax(0, 1fr)); max-width: none; }
     .box-picture { width: min(100%, var(--carton)); height: calc(min(var(--carton), (100vw - 24px) / var(--box-count) - 4px) * .87); }
     .box-art { width: 100%; }
-    .quota { grid-template-columns: 20px minmax(0, 1fr) auto 18px; gap: 6px; font-size: 16px; }
+    .quota { --quota-line: 20px; grid-template-columns: 20px minmax(0, 1fr) auto 18px; gap: 6px; font-size: 16px; }
     .quota-icon { width: 20px; }
     .quota-check { width: 18px; }
     .quota-list[data-columns="2"] { gap: 2px 8px; }
-    .quota-list[data-columns="2"] .quota { grid-template-columns: 18px minmax(0, 1fr) auto 16px; gap: 4px; font-size: 14px; }
+    .quota-list[data-columns="2"] .quota { --quota-line: 17px; grid-template-columns: 18px minmax(0, 1fr) auto 16px; gap: 4px; font-size: 14px; }
     .quota-list[data-columns="2"] .quota-icon { width: 18px; }
     .quota-list[data-columns="2"] .quota-check { width: 16px; }
 }
@@ -282,7 +285,7 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
 /* Portrait très étroit (320 px) : tout tient sans défilement en 320 × 568, sans texte coupé. La pièce descend jusqu'à
    150 px de haut (plus petite zone où chaque objet accessible garde une zone propre, `tests/unit/web/layout.test.ts`),
    les cartons jusqu'à 34 px, et les quotas de plus de 4 catégories passent sur une seule colonne en 13 px, icônes
-   bornées à 15 px de haut : chaque libellé tient sur une ligne. */
+   bornées à 15 px de haut : chaque libellé tient sur une ligne. Le titre « Quotas » n'est plus que lu. */
 @media (max-width: 355px) and (orientation: portrait) {
     .play {
         --carton: clamp(34px, (100dvh - 99vw - 346px) * 1.15, 88px);
@@ -292,9 +295,12 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
     .tray h2 { font-size: 15px; }
     .box-count { font-size: 13px; line-height: 1.2; }
     .score { line-height: 1.2; }
-    .quota-content h2 { margin-bottom: 2px; }
+    /* Le titre « Quotas » reste lu par les lecteurs d'écran (et la section garde son nom) ; il ne prend plus de hauteur. */
+    .quota-content h2 { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+    /* Salle de bain : marges ramenées au plus près des tranches de son cadre (7,5 et 6,75 px une fois réduites). */
+    .quotas[data-panel="panneau-quotas-sdb"] { padding: 8px 12px 7px; }
     .quota-list[data-columns="2"] { display: flex; flex-direction: column; gap: 1px; }
-    .quota-list[data-columns="2"] .quota { grid-template-columns: 16px minmax(0, 1fr) auto 14px; gap: 4px; font-size: 13px; }
+    .quota-list[data-columns="2"] .quota { --quota-line: 16px; grid-template-columns: 16px minmax(0, 1fr) auto 14px; gap: 4px; font-size: 13px; }
     .quota-list[data-columns="2"] .quota-icon { width: min(16px, 15px * var(--frame-ratio)); justify-self: center; }
     .quota-list[data-columns="2"] .quota-check { width: 14px; }
 }
