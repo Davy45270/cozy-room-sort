@@ -33,3 +33,12 @@ it('rejette un candidat structurellement valide mais insoluble', () => {
 it('rejette un candidat non vérifié quand le budget est épuisé', () => {
     expect(() => generateLevel(request, { attempts: 1, maxStates: 1 })).toThrow('unverified');
 });
+
+it('écarte un candidat soluble dont les positions contredisent les blocages', () => {
+    expect(() => generateLevel(request, {
+        attempts: 1,
+        candidate: level => ({
+            ...level, objects: level.objects.map(object => ({ ...object, position: { x: .5, y: .5 } }))
+        })
+    })).toThrow('recouvrement');
+});

@@ -2,9 +2,13 @@
 
 ## Pièce, cartons et tampon
 
-- Les positions sont normalisées de 0 à 1. `layer` donne un ordre de dessin. Le rendu place un recouvreur
-  devant les objets qu’il bloque. Un objet devient accessible quand tous ses `blockedBy` ont quitté la pièce,
-  y compris par le tampon. Un objet `hidden` a au moins un bloqueur et apparaît en silhouette jusqu’à sa libération.
+- **R-001.** Les positions sont normalisées de 0 à 1. Si A nomme B dans `blockedBy`, B a une couche
+  `layer` supérieure à celle de A et le recouvre d’au moins 25 % de l’aire de la plus petite boîte utile.
+  Deux objets sans lien direct dans un sens ou dans l’autre se recouvrent de moins de 10 % de la plus petite
+  boîte. Ces mesures utilisent la projection du rendu dans une zone de référence de 360 × 360 px et les
+  boîtes délimitant les pixels non transparents, issues de la provenance des cadres.
+- Un objet devient accessible quand tous ses bloqueurs ont quitté la pièce, y compris par le tampon.
+  Un objet `hidden` a au moins un bloqueur et apparaît en silhouette sous ses bloqueurs jusqu’à sa libération.
 - La sélection range l’objet dans le premier carton actif compatible, selon l’ordre des emplacements. Sinon,
   elle le place en fin de tampon si une place est libre. Un tampon plein fait refuser le coup incompatible
   sans mutation. Les autres coups légaux restent jouables.
@@ -30,8 +34,11 @@ par le nombre total d’objets. Les bornes sont inclusives.
 | Moyen (`medium`) | 16–30 | 4–6 | 4 | 10–25 % |
 | Expert (`expert`) | 31–60 | 6–10 | 3 | 25–45 % |
 
-Le validateur applique ces seuils et vérifie quotas, identifiants et dépendances. Le générateur signale
-explicitement un thème qui manque de catégories. Chaque pièce jouable en fournit au moins six.
+Le validateur structurel applique ces seuils et vérifie quotas, identifiants et dépendances. La commande
+`level:validate` contrôle aussi les couches et les recouvrements avec les boîtes de la provenance, puis résout
+le niveau. Le générateur construit les dépendances par piles, les place sur les meubles et le sol et écarte
+les candidats qui échouent au contrôle visuel ou à la résolution. Il signale explicitement un thème qui
+manque de catégories. Chaque pièce jouable en fournit au moins six.
 Dans les trois pièces livrées, le générateur réserve la catégorie Rangements à la difficulté expert
 pour conserver les niveaux faciles et moyens existants.
 
@@ -42,7 +49,9 @@ nombre d’objets et le solveur minimise les passages au tampon. Le niveau gén�
 optimum, deux étoiles jusqu’à deux passages supplémentaires, puis une étoile au-delà.
 Les écrans de partie et de victoire calculent les étoiles avec le compteur de passages. Un objet rangé
 directement ne l’incrémente pas. Les cartes de niveau affichent la meilleure note enregistrée pour chaque
-identifiant de niveau. Une réédition qui conserve cet identifiant conserve la note.
+identifiant de niveau. Une réédition qui conserve cet identifiant conserve la note. Les objets des niveaux
+réédités ont de nouveaux identifiants. Une ancienne partie en cours qui contient leurs anciens identifiants
+reprend depuis le début.
 
 En mode `auto`, la recherche utilise BFS à coûts 0 et 1 sous 16 objets restants, et A* à partir de 16.
 A* compte une sélection par objet restant et un passage de plus si le prochain coup doit aller au tampon.

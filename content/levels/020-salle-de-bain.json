@@ -15,12 +15,16 @@
   },
   "categories": [
     {
+      "id": "soins",
+      "label": "Pots et soins"
+    },
+    {
       "id": "parfums",
       "label": "Bougies et parfums"
     },
     {
-      "id": "rangements",
-      "label": "Rangements"
+      "id": "serviettes",
+      "label": "Serviettes et linge"
     },
     {
       "id": "flacons",
@@ -31,818 +35,882 @@
       "label": "Accessoires"
     },
     {
-      "id": "serviettes",
-      "label": "Serviettes et linge"
-    },
-    {
-      "id": "soins",
-      "label": "Pots et soins"
+      "id": "rangements",
+      "label": "Rangements"
     }
   ],
   "boxes": [
     {
       "id": "carton-1",
-      "category": "parfums",
+      "category": "soins",
       "capacity": 8
     },
     {
       "id": "carton-2",
-      "category": "rangements",
-      "capacity": 8
+      "category": "parfums",
+      "capacity": 11
     },
     {
       "id": "carton-3",
-      "category": "flacons",
-      "capacity": 7
-    },
-    {
-      "id": "carton-4",
-      "category": "accessoires",
-      "capacity": 9
-    },
-    {
-      "id": "carton-5",
       "category": "serviettes",
       "capacity": 6
     },
     {
+      "id": "carton-4",
+      "category": "flacons",
+      "capacity": 7
+    },
+    {
+      "id": "carton-5",
+      "category": "accessoires",
+      "capacity": 8
+    },
+    {
       "id": "carton-6",
-      "category": "soins",
-      "capacity": 10
+      "category": "rangements",
+      "capacity": 8
     }
   ],
   "objects": [
     {
-      "id": "objet-62001-1",
-      "category": "parfums",
-      "asset": "bougie-rose",
+      "id": "pile-1",
+      "category": "soins",
+      "asset": "cotons",
       "blockedBy": [],
       "position": {
-        "x": 0.071,
-        "y": 0.071
+        "x": 0.236,
+        "y": 0.396
       },
-      "layer": 48
+      "layer": 8
     },
     {
-      "id": "objet-62001-7",
-      "category": "parfums",
-      "asset": "bougie-verre",
-      "blockedBy": [],
-      "position": {
-        "x": 0.214,
-        "y": 0.071
-      },
-      "layer": 47
-    },
-    {
-      "id": "objet-62001-13",
-      "category": "parfums",
-      "asset": "bougie-verre",
-      "blockedBy": [],
-      "position": {
-        "x": 0.357,
-        "y": 0.071
-      },
-      "layer": 46
-    },
-    {
-      "id": "objet-62001-19",
-      "category": "parfums",
-      "asset": "diffuseur-bambou",
+      "id": "pile-7",
+      "category": "soins",
+      "asset": "pot-creme",
       "blockedBy": [
-        "objet-62001-1",
-        "objet-62001-7",
-        "objet-62001-13"
+        "pile-1"
       ],
       "position": {
-        "x": 0.5,
-        "y": 0.071
+        "x": 0.231,
+        "y": 0.367
       },
-      "layer": 45
-    },
-    {
-      "id": "objet-62001-25",
-      "category": "parfums",
-      "asset": "bougie-verre",
-      "blockedBy": [
-        "objet-62001-1",
-        "objet-62001-7",
-        "objet-62001-13"
-      ],
-      "position": {
-        "x": 0.643,
-        "y": 0.071
-      },
-      "layer": 44,
+      "layer": 7,
       "hidden": true
     },
     {
-      "id": "objet-62001-37",
-      "category": "parfums",
-      "asset": "plante-blanche",
+      "id": "pile-13",
+      "category": "soins",
+      "asset": "pot-bleu",
       "blockedBy": [
-        "objet-62001-1",
-        "objet-62001-7",
-        "objet-62001-13"
+        "pile-1",
+        "pile-7"
       ],
       "position": {
-        "x": 0.786,
-        "y": 0.071
+        "x": 0.226,
+        "y": 0.359
       },
-      "layer": 43
+      "layer": 6
     },
     {
-      "id": "objet-62001-41",
-      "category": "parfums",
-      "asset": "diffuseur-bambou",
+      "id": "pile-19",
+      "category": "soins",
+      "asset": "pot-bleu",
       "blockedBy": [
-        "objet-62001-19",
-        "objet-62001-25",
-        "objet-62001-37"
+        "pile-1",
+        "pile-7",
+        "pile-13"
       ],
       "position": {
-        "x": 0.929,
-        "y": 0.071
+        "x": 0.222,
+        "y": 0.343
       },
-      "layer": 42
-    },
-    {
-      "id": "objet-62001-43",
-      "category": "parfums",
-      "asset": "bougie-rose",
-      "blockedBy": [
-        "objet-62001-1",
-        "objet-62001-7",
-        "objet-62001-13",
-        "objet-62001-19",
-        "objet-62001-25",
-        "objet-62001-37",
-        "objet-62001-41",
-        "objet-62001-32"
-      ],
-      "position": {
-        "x": 0.929,
-        "y": 0.214
-      },
-      "layer": 41
-    },
-    {
-      "id": "objet-62001-2",
-      "category": "rangements",
-      "asset": "boite-sdb-bois",
-      "blockedBy": [],
-      "position": {
-        "x": 0.786,
-        "y": 0.214
-      },
-      "layer": 40
-    },
-    {
-      "id": "objet-62001-8",
-      "category": "rangements",
-      "asset": "boite-sdb-bois",
-      "blockedBy": [
-        "objet-62001-43"
-      ],
-      "position": {
-        "x": 0.643,
-        "y": 0.214
-      },
-      "layer": 39,
+      "layer": 5,
       "hidden": true
     },
     {
-      "id": "objet-62001-14",
-      "category": "rangements",
-      "asset": "boite-sdb-bois",
+      "id": "pile-31",
+      "category": "soins",
+      "asset": "sels-peche",
       "blockedBy": [
-        "objet-62001-43"
+        "pile-1",
+        "pile-7",
+        "pile-13",
+        "pile-19"
       ],
       "position": {
-        "x": 0.5,
-        "y": 0.214
+        "x": 0.218,
+        "y": 0.332
       },
-      "layer": 38,
-      "hidden": true
+      "layer": 4
     },
     {
-      "id": "objet-62001-15",
-      "category": "rangements",
-      "asset": "boite-sdb-creme",
-      "blockedBy": [],
-      "position": {
-        "x": 0.357,
-        "y": 0.214
-      },
-      "layer": 37
-    },
-    {
-      "id": "objet-62001-20",
-      "category": "rangements",
-      "asset": "boite-sdb-creme",
+      "id": "pile-37",
+      "category": "soins",
+      "asset": "tube-creme",
       "blockedBy": [
-        "objet-62001-43",
-        "objet-62001-2",
-        "objet-62001-8",
-        "objet-62001-14"
+        "pile-1",
+        "pile-7",
+        "pile-13",
+        "pile-19",
+        "pile-31"
       ],
       "position": {
         "x": 0.214,
-        "y": 0.214
+        "y": 0.315
       },
-      "layer": 36
-    },
-    {
-      "id": "objet-62001-32",
-      "category": "rangements",
-      "asset": "boite-sdb-peche",
-      "blockedBy": [],
-      "position": {
-        "x": 0.071,
-        "y": 0.214
-      },
-      "layer": 35
-    },
-    {
-      "id": "objet-62001-38",
-      "category": "rangements",
-      "asset": "boite-sdb-creme",
-      "blockedBy": [],
-      "position": {
-        "x": 0.071,
-        "y": 0.357
-      },
-      "layer": 34
-    },
-    {
-      "id": "objet-62001-44",
-      "category": "rangements",
-      "asset": "boite-sdb-bois",
-      "blockedBy": [
-        "objet-62001-43",
-        "objet-62001-2",
-        "objet-62001-8",
-        "objet-62001-14",
-        "objet-62001-15",
-        "objet-62001-20",
-        "objet-62001-32",
-        "objet-62001-38",
-        "objet-62001-27",
-        "objet-62001-31"
-      ],
-      "position": {
-        "x": 0.214,
-        "y": 0.357
-      },
-      "layer": 33
-    },
-    {
-      "id": "objet-62001-3",
-      "category": "flacons",
-      "asset": "flacon-pompe",
-      "blockedBy": [
-        "objet-62001-44"
-      ],
-      "position": {
-        "x": 0.357,
-        "y": 0.357
-      },
-      "layer": 32,
+      "layer": 3,
       "hidden": true
     },
     {
-      "id": "objet-62001-9",
-      "category": "flacons",
-      "asset": "flacon-rose",
+      "id": "pile-43",
+      "category": "soins",
+      "asset": "sels-peche",
       "blockedBy": [
-        "objet-62001-44"
+        "pile-1",
+        "pile-7",
+        "pile-13",
+        "pile-19",
+        "pile-31",
+        "pile-37"
       ],
       "position": {
-        "x": 0.5,
-        "y": 0.357
+        "x": 0.21,
+        "y": 0.299
       },
-      "layer": 31
-    },
-    {
-      "id": "objet-62001-21",
-      "category": "flacons",
-      "asset": "flacon-pompe",
-      "blockedBy": [
-        "objet-62001-44",
-        "objet-62001-3",
-        "objet-62001-9"
-      ],
-      "position": {
-        "x": 0.643,
-        "y": 0.357
-      },
-      "layer": 30
-    },
-    {
-      "id": "objet-62001-27",
-      "category": "flacons",
-      "asset": "flacon-rose",
-      "blockedBy": [
-        "objet-62001-43"
-      ],
-      "position": {
-        "x": 0.786,
-        "y": 0.357
-      },
-      "layer": 29
-    },
-    {
-      "id": "objet-62001-31",
-      "category": "flacons",
-      "asset": "flacon-rose",
-      "blockedBy": [
-        "objet-62001-43"
-      ],
-      "position": {
-        "x": 0.929,
-        "y": 0.357
-      },
-      "layer": 28
-    },
-    {
-      "id": "objet-62001-33",
-      "category": "flacons",
-      "asset": "flacon-pompe",
-      "blockedBy": [
-        "objet-62001-44",
-        "objet-62001-21",
-        "objet-62001-27"
-      ],
-      "position": {
-        "x": 0.929,
-        "y": 0.5
-      },
-      "layer": 27,
+      "layer": 2,
       "hidden": true
     },
     {
-      "id": "objet-62001-39",
-      "category": "flacons",
-      "asset": "flacon-pompe",
+      "id": "pile-47",
+      "category": "soins",
+      "asset": "tube-creme",
       "blockedBy": [
-        "objet-62001-44",
-        "objet-62001-3",
-        "objet-62001-9",
-        "objet-62001-21",
-        "objet-62001-27",
-        "objet-62001-31",
-        "objet-62001-33",
-        "objet-62001-40",
-        "objet-62001-4"
+        "pile-1",
+        "pile-7",
+        "pile-13",
+        "pile-19",
+        "pile-31",
+        "pile-37",
+        "pile-43"
       ],
       "position": {
-        "x": 0.786,
-        "y": 0.5
+        "x": 0.206,
+        "y": 0.283
       },
-      "layer": 26,
+      "layer": 1,
       "hidden": true
     },
     {
-      "id": "objet-62001-4",
-      "category": "accessoires",
-      "asset": "seche-cheveux",
-      "blockedBy": [
-        "objet-62001-44"
-      ],
-      "position": {
-        "x": 0.643,
-        "y": 0.5
-      },
-      "layer": 25
-    },
-    {
-      "id": "objet-62001-10",
-      "category": "accessoires",
-      "asset": "rasoir",
-      "blockedBy": [
-        "objet-62001-39"
-      ],
-      "position": {
-        "x": 0.5,
-        "y": 0.5
-      },
-      "layer": 24,
-      "hidden": true
-    },
-    {
-      "id": "objet-62001-16",
-      "category": "accessoires",
-      "asset": "brosse",
-      "blockedBy": [
-        "objet-62001-39"
-      ],
-      "position": {
-        "x": 0.357,
-        "y": 0.5
-      },
-      "layer": 23
-    },
-    {
-      "id": "objet-62001-22",
-      "category": "accessoires",
-      "asset": "fleur-douche",
-      "blockedBy": [
-        "objet-62001-39",
-        "objet-62001-4",
-        "objet-62001-10",
-        "objet-62001-16"
-      ],
-      "position": {
-        "x": 0.214,
-        "y": 0.5
-      },
-      "layer": 22,
-      "hidden": true
-    },
-    {
-      "id": "objet-62001-26",
-      "category": "accessoires",
-      "asset": "fleur-douche",
-      "blockedBy": [
-        "objet-62001-39",
-        "objet-62001-4",
-        "objet-62001-10",
-        "objet-62001-16"
-      ],
-      "position": {
-        "x": 0.071,
-        "y": 0.5
-      },
-      "layer": 21,
-      "hidden": true
-    },
-    {
-      "id": "objet-62001-28",
-      "category": "accessoires",
-      "asset": "fleur-douche",
-      "blockedBy": [
-        "objet-62001-39",
-        "objet-62001-4",
-        "objet-62001-10",
-        "objet-62001-16"
-      ],
-      "position": {
-        "x": 0.071,
-        "y": 0.643
-      },
-      "layer": 20
-    },
-    {
-      "id": "objet-62001-34",
-      "category": "accessoires",
-      "asset": "eponge",
-      "blockedBy": [
-        "objet-62001-39",
-        "objet-62001-22",
-        "objet-62001-26",
-        "objet-62001-28"
-      ],
-      "position": {
-        "x": 0.214,
-        "y": 0.643
-      },
-      "layer": 19
-    },
-    {
-      "id": "objet-62001-40",
-      "category": "accessoires",
-      "asset": "brosse",
-      "blockedBy": [
-        "objet-62001-44"
-      ],
-      "position": {
-        "x": 0.357,
-        "y": 0.643
-      },
-      "layer": 18
-    },
-    {
-      "id": "objet-62001-46",
-      "category": "accessoires",
-      "asset": "rasoir",
-      "blockedBy": [
-        "objet-62001-39",
-        "objet-62001-4",
-        "objet-62001-10",
-        "objet-62001-16",
-        "objet-62001-22",
-        "objet-62001-26",
-        "objet-62001-28",
-        "objet-62001-34",
-        "objet-62001-40",
-        "objet-62001-35",
-        "objet-62001-5"
-      ],
-      "position": {
-        "x": 0.5,
-        "y": 0.643
-      },
-      "layer": 17,
-      "hidden": true
-    },
-    {
-      "id": "objet-62001-5",
+      "id": "pile-27",
       "category": "serviettes",
-      "asset": "serviette-barre",
-      "blockedBy": [
-        "objet-62001-39"
-      ],
+      "asset": "panier-serviette",
+      "blockedBy": [],
       "position": {
-        "x": 0.643,
-        "y": 0.643
-      },
-      "layer": 16
-    },
-    {
-      "id": "objet-62001-11",
-      "category": "serviettes",
-      "asset": "serviette-anneau",
-      "blockedBy": [
-        "objet-62001-39"
-      ],
-      "position": {
-        "x": 0.786,
-        "y": 0.643
-      },
-      "layer": 15
-    },
-    {
-      "id": "objet-62001-23",
-      "category": "serviettes",
-      "asset": "peignoir",
-      "blockedBy": [
-        "objet-62001-46"
-      ],
-      "position": {
-        "x": 0.929,
-        "y": 0.643
-      },
-      "layer": 14
-    },
-    {
-      "id": "objet-62001-35",
-      "category": "serviettes",
-      "asset": "serviette-barre",
-      "blockedBy": [
-        "objet-62001-39"
-      ],
-      "position": {
-        "x": 0.929,
-        "y": 0.786
+        "x": 0.205,
+        "y": 0.875
       },
       "layer": 13
     },
     {
-      "id": "objet-62001-45",
+      "id": "pile-28",
       "category": "serviettes",
-      "asset": "serviette-anneau",
+      "asset": "peignoir",
       "blockedBy": [
-        "objet-62001-39"
+        "pile-27"
       ],
       "position": {
-        "x": 0.786,
-        "y": 0.786
+        "x": 0.208,
+        "y": 0.866
       },
       "layer": 12
     },
     {
-      "id": "objet-62001-47",
-      "category": "serviettes",
-      "asset": "serviettes-pile",
+      "id": "pile-2",
+      "category": "parfums",
+      "asset": "plante-blanche",
       "blockedBy": [
-        "objet-62001-46",
-        "objet-62001-5",
-        "objet-62001-11",
-        "objet-62001-23",
-        "objet-62001-35",
-        "objet-62001-45",
-        "objet-62001-29",
-        "objet-62001-12",
-        "objet-62001-30"
+        "pile-27",
+        "pile-28"
       ],
       "position": {
-        "x": 0.643,
-        "y": 0.786
+        "x": 0.211,
+        "y": 0.856
       },
-      "layer": 11,
-      "hidden": true
+      "layer": 11
     },
     {
-      "id": "objet-62001-6",
-      "category": "soins",
-      "asset": "cotons",
+      "id": "pile-8",
+      "category": "parfums",
+      "asset": "diffuseur-bambou",
       "blockedBy": [
-        "objet-62001-47"
+        "pile-27",
+        "pile-28",
+        "pile-2"
       ],
       "position": {
-        "x": 0.5,
-        "y": 0.786
+        "x": 0.213,
+        "y": 0.847
       },
       "layer": 10,
       "hidden": true
     },
     {
-      "id": "objet-62001-12",
-      "category": "soins",
-      "asset": "sels-roses",
+      "id": "pile-14",
+      "category": "parfums",
+      "asset": "bougie-verre",
       "blockedBy": [
-        "objet-62001-46"
+        "pile-27",
+        "pile-28",
+        "pile-2",
+        "pile-8"
       ],
       "position": {
-        "x": 0.357,
-        "y": 0.786
+        "x": 0.216,
+        "y": 0.837
       },
       "layer": 9
     },
     {
-      "id": "objet-62001-17",
-      "category": "soins",
-      "asset": "pot-creme",
+      "id": "pile-20",
+      "category": "parfums",
+      "asset": "bougie-verre",
       "blockedBy": [
-        "objet-62001-47",
-        "objet-62001-6",
-        "objet-62001-12"
+        "pile-27",
+        "pile-28",
+        "pile-2",
+        "pile-8",
+        "pile-14"
       ],
       "position": {
-        "x": 0.214,
-        "y": 0.786
+        "x": 0.218,
+        "y": 0.828
       },
-      "layer": 8,
-      "hidden": true
+      "layer": 8
     },
     {
-      "id": "objet-62001-18",
-      "category": "soins",
-      "asset": "pot-bleu",
+      "id": "pile-26",
+      "category": "parfums",
+      "asset": "bougie-rose",
       "blockedBy": [
-        "objet-62001-47",
-        "objet-62001-6",
-        "objet-62001-12"
+        "pile-27",
+        "pile-28",
+        "pile-2",
+        "pile-8",
+        "pile-14",
+        "pile-20"
       ],
       "position": {
-        "x": 0.071,
-        "y": 0.786
+        "x": 0.221,
+        "y": 0.819
       },
       "layer": 7
     },
     {
-      "id": "objet-62001-24",
-      "category": "soins",
-      "asset": "tube-creme",
+      "id": "pile-29",
+      "category": "parfums",
+      "asset": "bougie-rose",
       "blockedBy": [
-        "objet-62001-47",
-        "objet-62001-17",
-        "objet-62001-18"
+        "pile-27",
+        "pile-28",
+        "pile-2",
+        "pile-8",
+        "pile-14",
+        "pile-20",
+        "pile-26"
       ],
       "position": {
-        "x": 0.071,
-        "y": 0.929
+        "x": 0.223,
+        "y": 0.809
+      },
+      "layer": 6
+    },
+    {
+      "id": "pile-32",
+      "category": "parfums",
+      "asset": "bougie-rose",
+      "blockedBy": [
+        "pile-27",
+        "pile-28",
+        "pile-2",
+        "pile-8",
+        "pile-14",
+        "pile-20",
+        "pile-26",
+        "pile-29"
+      ],
+      "position": {
+        "x": 0.226,
+        "y": 0.8
+      },
+      "layer": 5
+    },
+    {
+      "id": "pile-33",
+      "category": "parfums",
+      "asset": "bougie-verre",
+      "blockedBy": [
+        "pile-27",
+        "pile-28",
+        "pile-2",
+        "pile-8",
+        "pile-14",
+        "pile-20",
+        "pile-26",
+        "pile-29",
+        "pile-32"
+      ],
+      "position": {
+        "x": 0.228,
+        "y": 0.791
+      },
+      "layer": 4
+    },
+    {
+      "id": "pile-38",
+      "category": "parfums",
+      "asset": "plante-blanche",
+      "blockedBy": [
+        "pile-27",
+        "pile-28",
+        "pile-2",
+        "pile-8",
+        "pile-14",
+        "pile-20",
+        "pile-26",
+        "pile-29",
+        "pile-32",
+        "pile-33"
+      ],
+      "position": {
+        "x": 0.231,
+        "y": 0.781
+      },
+      "layer": 3
+    },
+    {
+      "id": "pile-44",
+      "category": "parfums",
+      "asset": "bougie-rose",
+      "blockedBy": [
+        "pile-27",
+        "pile-28",
+        "pile-2",
+        "pile-8",
+        "pile-14",
+        "pile-20",
+        "pile-26",
+        "pile-29",
+        "pile-32",
+        "pile-33",
+        "pile-38"
+      ],
+      "position": {
+        "x": 0.233,
+        "y": 0.772
+      },
+      "layer": 2,
+      "hidden": true
+    },
+    {
+      "id": "pile-45",
+      "category": "parfums",
+      "asset": "bougie-rose",
+      "blockedBy": [
+        "pile-27",
+        "pile-28",
+        "pile-2",
+        "pile-8",
+        "pile-14",
+        "pile-20",
+        "pile-26",
+        "pile-29",
+        "pile-32",
+        "pile-33",
+        "pile-38",
+        "pile-44"
+      ],
+      "position": {
+        "x": 0.236,
+        "y": 0.763
+      },
+      "layer": 1,
+      "hidden": true
+    },
+    {
+      "id": "pile-3",
+      "category": "serviettes",
+      "asset": "serviettes-pile",
+      "blockedBy": [],
+      "position": {
+        "x": 0.485,
+        "y": 0.863
+      },
+      "layer": 4
+    },
+    {
+      "id": "pile-9",
+      "category": "serviettes",
+      "asset": "serviette-barre",
+      "blockedBy": [
+        "pile-3"
+      ],
+      "position": {
+        "x": 0.495,
+        "y": 0.826
+      },
+      "layer": 3,
+      "hidden": true
+    },
+    {
+      "id": "pile-15",
+      "category": "serviettes",
+      "asset": "serviettes-pile",
+      "blockedBy": [
+        "pile-3",
+        "pile-9"
+      ],
+      "position": {
+        "x": 0.505,
+        "y": 0.788
+      },
+      "layer": 2
+    },
+    {
+      "id": "pile-21",
+      "category": "serviettes",
+      "asset": "serviette-barre",
+      "blockedBy": [
+        "pile-3",
+        "pile-9",
+        "pile-15"
+      ],
+      "position": {
+        "x": 0.515,
+        "y": 0.751
+      },
+      "layer": 1,
+      "hidden": true
+    },
+    {
+      "id": "pile-41",
+      "category": "accessoires",
+      "asset": "eponge",
+      "blockedBy": [],
+      "position": {
+        "x": 0.795,
+        "y": 0.458
+      },
+      "layer": 8
+    },
+    {
+      "id": "pile-4",
+      "category": "flacons",
+      "asset": "flacon-pompe",
+      "blockedBy": [
+        "pile-41"
+      ],
+      "position": {
+        "x": 0.791,
+        "y": 0.476
+      },
+      "layer": 7,
+      "hidden": true
+    },
+    {
+      "id": "pile-10",
+      "category": "flacons",
+      "asset": "flacon-rose",
+      "blockedBy": [
+        "pile-41",
+        "pile-4"
+      ],
+      "position": {
+        "x": 0.787,
+        "y": 0.46
+      },
+      "layer": 6
+    },
+    {
+      "id": "pile-16",
+      "category": "flacons",
+      "asset": "flacon-creme",
+      "blockedBy": [
+        "pile-41",
+        "pile-4",
+        "pile-10"
+      ],
+      "position": {
+        "x": 0.783,
+        "y": 0.443
+      },
+      "layer": 5,
+      "hidden": true
+    },
+    {
+      "id": "pile-18",
+      "category": "flacons",
+      "asset": "flacon-creme",
+      "blockedBy": [
+        "pile-41",
+        "pile-4",
+        "pile-10",
+        "pile-16"
+      ],
+      "position": {
+        "x": 0.778,
+        "y": 0.427
+      },
+      "layer": 4,
+      "hidden": true
+    },
+    {
+      "id": "pile-22",
+      "category": "flacons",
+      "asset": "flacon-bleu",
+      "blockedBy": [
+        "pile-41",
+        "pile-4",
+        "pile-10",
+        "pile-16",
+        "pile-18"
+      ],
+      "position": {
+        "x": 0.774,
+        "y": 0.411
+      },
+      "layer": 3,
+      "hidden": true
+    },
+    {
+      "id": "pile-40",
+      "category": "flacons",
+      "asset": "flacon-creme",
+      "blockedBy": [
+        "pile-41",
+        "pile-4",
+        "pile-10",
+        "pile-16",
+        "pile-18",
+        "pile-22"
+      ],
+      "position": {
+        "x": 0.77,
+        "y": 0.395
+      },
+      "layer": 2
+    },
+    {
+      "id": "pile-46",
+      "category": "flacons",
+      "asset": "flacon-creme",
+      "blockedBy": [
+        "pile-41",
+        "pile-4",
+        "pile-10",
+        "pile-16",
+        "pile-18",
+        "pile-22",
+        "pile-40"
+      ],
+      "position": {
+        "x": 0.766,
+        "y": 0.379
+      },
+      "layer": 1
+    },
+    {
+      "id": "pile-48",
+      "category": "rangements",
+      "asset": "boite-sdb-bois",
+      "blockedBy": [],
+      "position": {
+        "x": 0.795,
+        "y": 0.981
+      },
+      "layer": 8
+    },
+    {
+      "id": "pile-5",
+      "category": "accessoires",
+      "asset": "canard",
+      "blockedBy": [
+        "pile-48"
+      ],
+      "position": {
+        "x": 0.791,
+        "y": 0.999
+      },
+      "layer": 7
+    },
+    {
+      "id": "pile-11",
+      "category": "accessoires",
+      "asset": "rasoir",
+      "blockedBy": [
+        "pile-48",
+        "pile-5"
+      ],
+      "position": {
+        "x": 0.786,
+        "y": 0.982
+      },
+      "layer": 6
+    },
+    {
+      "id": "pile-17",
+      "category": "accessoires",
+      "asset": "seche-cheveux",
+      "blockedBy": [
+        "pile-48",
+        "pile-5",
+        "pile-11"
+      ],
+      "position": {
+        "x": 0.783,
+        "y": 0.966
+      },
+      "layer": 5
+    },
+    {
+      "id": "pile-23",
+      "category": "accessoires",
+      "asset": "seche-cheveux",
+      "blockedBy": [
+        "pile-48",
+        "pile-5",
+        "pile-11",
+        "pile-17"
+      ],
+      "position": {
+        "x": 0.778,
+        "y": 0.95
+      },
+      "layer": 4
+    },
+    {
+      "id": "pile-34",
+      "category": "accessoires",
+      "asset": "seche-cheveux",
+      "blockedBy": [
+        "pile-48",
+        "pile-5",
+        "pile-11",
+        "pile-17",
+        "pile-23"
+      ],
+      "position": {
+        "x": 0.774,
+        "y": 0.934
+      },
+      "layer": 3
+    },
+    {
+      "id": "pile-35",
+      "category": "accessoires",
+      "asset": "eponge",
+      "blockedBy": [
+        "pile-48",
+        "pile-5",
+        "pile-11",
+        "pile-17",
+        "pile-23",
+        "pile-34"
+      ],
+      "position": {
+        "x": 0.769,
+        "y": 0.884
+      },
+      "layer": 2,
+      "hidden": true
+    },
+    {
+      "id": "pile-39",
+      "category": "accessoires",
+      "asset": "fleur-douche",
+      "blockedBy": [
+        "pile-48",
+        "pile-5",
+        "pile-11",
+        "pile-17",
+        "pile-23",
+        "pile-34",
+        "pile-35"
+      ],
+      "position": {
+        "x": 0.766,
+        "y": 0.902
+      },
+      "layer": 1
+    },
+    {
+      "id": "pile-6",
+      "category": "rangements",
+      "asset": "boite-sdb-creme",
+      "blockedBy": [],
+      "position": {
+        "x": 0.485,
+        "y": 0.304
+      },
+      "layer": 7
+    },
+    {
+      "id": "pile-12",
+      "category": "rangements",
+      "asset": "boite-sdb-bois",
+      "blockedBy": [
+        "pile-6"
+      ],
+      "position": {
+        "x": 0.49,
+        "y": 0.279
       },
       "layer": 6,
       "hidden": true
     },
     {
-      "id": "objet-62001-29",
-      "category": "soins",
-      "asset": "sels-roses",
+      "id": "pile-24",
+      "category": "rangements",
+      "asset": "boite-sdb-creme",
       "blockedBy": [
-        "objet-62001-46"
+        "pile-6",
+        "pile-12"
       ],
       "position": {
-        "x": 0.214,
-        "y": 0.929
+        "x": 0.495,
+        "y": 0.266
       },
       "layer": 5
     },
     {
-      "id": "objet-62001-30",
-      "category": "soins",
-      "asset": "cotons",
+      "id": "pile-25",
+      "category": "rangements",
+      "asset": "panier-anse",
       "blockedBy": [
-        "objet-62001-46"
+        "pile-6",
+        "pile-12",
+        "pile-24"
       ],
       "position": {
-        "x": 0.357,
-        "y": 0.929
+        "x": 0.5,
+        "y": 0.275
       },
       "layer": 4
     },
     {
-      "id": "objet-62001-36",
-      "category": "soins",
-      "asset": "pot-bleu",
+      "id": "pile-30",
+      "category": "rangements",
+      "asset": "boite-sdb-creme",
       "blockedBy": [
-        "objet-62001-47",
-        "objet-62001-24",
-        "objet-62001-29"
+        "pile-6",
+        "pile-12",
+        "pile-24",
+        "pile-25"
       ],
       "position": {
-        "x": 0.5,
-        "y": 0.929
+        "x": 0.505,
+        "y": 0.229
       },
-      "layer": 3
+      "layer": 3,
+      "hidden": true
     },
     {
-      "id": "objet-62001-42",
-      "category": "soins",
-      "asset": "sels-peche",
+      "id": "pile-36",
+      "category": "rangements",
+      "asset": "boite-sdb-peche",
       "blockedBy": [
-        "objet-62001-46"
+        "pile-6",
+        "pile-12",
+        "pile-24",
+        "pile-25",
+        "pile-30"
       ],
       "position": {
-        "x": 0.643,
-        "y": 0.929
+        "x": 0.51,
+        "y": 0.222
       },
-      "layer": 2
+      "layer": 2,
+      "hidden": true
     },
     {
-      "id": "objet-62001-48",
-      "category": "soins",
-      "asset": "pot-bleu",
+      "id": "pile-42",
+      "category": "rangements",
+      "asset": "boite-sdb-peche",
       "blockedBy": [
-        "objet-62001-47",
-        "objet-62001-6",
-        "objet-62001-12",
-        "objet-62001-17",
-        "objet-62001-18",
-        "objet-62001-24",
-        "objet-62001-29",
-        "objet-62001-30",
-        "objet-62001-36",
-        "objet-62001-42"
+        "pile-6",
+        "pile-12",
+        "pile-24",
+        "pile-25",
+        "pile-30",
+        "pile-36"
       ],
       "position": {
-        "x": 0.786,
-        "y": 0.929
+        "x": 0.515,
+        "y": 0.203
       },
-      "layer": 1
+      "layer": 1,
+      "hidden": true
     }
   ],
   "scoring": {
-    "threeStarsMaxBuffered": 10,
-    "twoStarsMaxBuffered": 12
+    "threeStarsMaxBuffered": 4,
+    "twoStarsMaxBuffered": 6
   },
   "meta": {
     "solution": [
-      "objet-62001-1",
-      "objet-62001-7",
-      "objet-62001-13",
-      "objet-62001-19",
-      "objet-62001-25",
-      "objet-62001-37",
-      "objet-62001-32",
-      "objet-62001-41",
-      "objet-62001-43",
-      "objet-62001-2",
-      "objet-62001-8",
-      "objet-62001-14",
-      "objet-62001-20",
-      "objet-62001-38",
-      "objet-62001-31",
-      "objet-62001-15",
-      "objet-62001-27",
-      "objet-62001-44",
-      "objet-62001-3",
-      "objet-62001-9",
-      "objet-62001-21",
-      "objet-62001-33",
-      "objet-62001-40",
-      "objet-62001-4",
-      "objet-62001-39",
-      "objet-62001-10",
-      "objet-62001-16",
-      "objet-62001-22",
-      "objet-62001-26",
-      "objet-62001-28",
-      "objet-62001-34",
-      "objet-62001-5",
-      "objet-62001-35",
-      "objet-62001-46",
-      "objet-62001-23",
-      "objet-62001-45",
-      "objet-62001-29",
-      "objet-62001-12",
-      "objet-62001-30",
-      "objet-62001-11",
-      "objet-62001-47",
-      "objet-62001-6",
-      "objet-62001-17",
-      "objet-62001-18",
-      "objet-62001-24",
-      "objet-62001-36",
-      "objet-62001-42",
-      "objet-62001-48"
+      "pile-1",
+      "pile-7",
+      "pile-13",
+      "pile-19",
+      "pile-31",
+      "pile-37",
+      "pile-43",
+      "pile-47",
+      "pile-27",
+      "pile-28",
+      "pile-2",
+      "pile-8",
+      "pile-14",
+      "pile-20",
+      "pile-26",
+      "pile-29",
+      "pile-32",
+      "pile-33",
+      "pile-38",
+      "pile-44",
+      "pile-45",
+      "pile-3",
+      "pile-9",
+      "pile-15",
+      "pile-21",
+      "pile-41",
+      "pile-4",
+      "pile-10",
+      "pile-16",
+      "pile-18",
+      "pile-22",
+      "pile-40",
+      "pile-48",
+      "pile-46",
+      "pile-5",
+      "pile-11",
+      "pile-17",
+      "pile-23",
+      "pile-34",
+      "pile-35",
+      "pile-39",
+      "pile-6",
+      "pile-12",
+      "pile-24",
+      "pile-25",
+      "pile-30",
+      "pile-36",
+      "pile-42"
     ],
     "engineVersion": "0.1.0",
-    "statesExplored": 1493,
-    "nonTrivialDecisions": 532,
-    "legalMoves": 4363,
-    "blockingMoves": 1152,
-    "blockingMoveShare": 0.26403850561540226
+    "statesExplored": 1461,
+    "nonTrivialDecisions": 263,
+    "legalMoves": 3427,
+    "blockingMoves": 2249,
+    "blockingMoveShare": 0.6562591187627662
   }
 }

@@ -46,143 +46,140 @@
   ],
   "objects": [
     {
-      "id": "objet-52000-1",
+      "id": "pile-1",
       "category": "peluches",
-      "asset": "canard",
+      "asset": "ours-panier",
       "blockedBy": [],
       "position": {
-        "x": 0.833,
-        "y": 0.167
-      },
-      "layer": 9
-    },
-    {
-      "id": "objet-52000-4",
-      "category": "peluches",
-      "asset": "lapin",
-      "blockedBy": [],
-      "position": {
-        "x": 0.5,
-        "y": 0.167
-      },
-      "layer": 8
-    },
-    {
-      "id": "objet-52000-7",
-      "category": "peluches",
-      "asset": "ours",
-      "blockedBy": [
-        "objet-52000-1",
-        "objet-52000-4"
-      ],
-      "position": {
-        "x": 0.167,
-        "y": 0.167
-      },
-      "layer": 7
-    },
-    {
-      "id": "objet-52000-2",
-      "category": "coussins",
-      "asset": "coussins-duo",
-      "blockedBy": [],
-      "position": {
-        "x": 0.167,
-        "y": 0.5
-      },
-      "layer": 6
-    },
-    {
-      "id": "objet-52000-5",
-      "category": "coussins",
-      "asset": "coussin-creme",
-      "blockedBy": [
-        "objet-52000-7"
-      ],
-      "position": {
-        "x": 0.5,
-        "y": 0.5
-      },
-      "layer": 5
-    },
-    {
-      "id": "objet-52000-8",
-      "category": "coussins",
-      "asset": "coussin-creme",
-      "blockedBy": [
-        "objet-52000-7",
-        "objet-52000-2",
-        "objet-52000-5",
-        "objet-52000-6"
-      ],
-      "position": {
-        "x": 0.833,
-        "y": 0.5
-      },
-      "layer": 4
-    },
-    {
-      "id": "objet-52000-3",
-      "category": "cadres",
-      "asset": "cadre-suspendu",
-      "blockedBy": [
-        "objet-52000-7"
-      ],
-      "position": {
-        "x": 0.833,
-        "y": 0.833
+        "x": 0.235,
+        "y": 0.917
       },
       "layer": 3
     },
     {
-      "id": "objet-52000-6",
-      "category": "cadres",
-      "asset": "miroir-rond",
+      "id": "pile-4",
+      "category": "peluches",
+      "asset": "ours-panier",
       "blockedBy": [
-        "objet-52000-7"
+        "pile-1"
       ],
       "position": {
-        "x": 0.5,
-        "y": 0.833
+        "x": 0.22,
+        "y": 0.86
       },
       "layer": 2
     },
     {
-      "id": "objet-52000-9",
-      "category": "cadres",
-      "asset": "cadre-montagne",
+      "id": "pile-7",
+      "category": "peluches",
+      "asset": "lapin",
       "blockedBy": [
-        "objet-52000-8",
-        "objet-52000-3",
-        "objet-52000-6"
+        "pile-1",
+        "pile-4"
       ],
       "position": {
-        "x": 0.167,
-        "y": 0.833
+        "x": 0.206,
+        "y": 0.804
+      },
+      "layer": 1
+    },
+    {
+      "id": "pile-2",
+      "category": "coussins",
+      "asset": "coussin-creme",
+      "blockedBy": [],
+      "position": {
+        "x": 0.205,
+        "y": 0.445
+      },
+      "layer": 3
+    },
+    {
+      "id": "pile-5",
+      "category": "coussins",
+      "asset": "coussin-patte",
+      "blockedBy": [
+        "pile-2"
+      ],
+      "position": {
+        "x": 0.22,
+        "y": 0.383
+      },
+      "layer": 2
+    },
+    {
+      "id": "pile-8",
+      "category": "coussins",
+      "asset": "coussin-patte",
+      "blockedBy": [
+        "pile-2",
+        "pile-5"
+      ],
+      "position": {
+        "x": 0.235,
+        "y": 0.327
+      },
+      "layer": 1
+    },
+    {
+      "id": "pile-3",
+      "category": "cadres",
+      "asset": "cadre-suspendu",
+      "blockedBy": [],
+      "position": {
+        "x": 0.795,
+        "y": 0.354
+      },
+      "layer": 3
+    },
+    {
+      "id": "pile-6",
+      "category": "cadres",
+      "asset": "cadre-chat",
+      "blockedBy": [
+        "pile-3"
+      ],
+      "position": {
+        "x": 0.781,
+        "y": 0.298
+      },
+      "layer": 2
+    },
+    {
+      "id": "pile-9",
+      "category": "cadres",
+      "asset": "cadre-chat",
+      "blockedBy": [
+        "pile-3",
+        "pile-6"
+      ],
+      "position": {
+        "x": 0.766,
+        "y": 0.242
       },
       "layer": 1
     }
   ],
   "scoring": {
-    "threeStarsMaxBuffered": 1,
-    "twoStarsMaxBuffered": 3
+    "threeStarsMaxBuffered": 0,
+    "twoStarsMaxBuffered": 2
   },
   "meta": {
     "solution": [
-      "objet-52000-1",
-      "objet-52000-4",
-      "objet-52000-7",
-      "objet-52000-2",
-      "objet-52000-5",
-      "objet-52000-6",
-      "objet-52000-8",
-      "objet-52000-3",
-      "objet-52000-9"
+      "pile-1",
+      "pile-4",
+      "pile-7",
+      "pile-2",
+      "pile-5",
+      "pile-8",
+      "pile-3",
+      "pile-6",
+      "pile-9"
     ],
     "engineVersion": "0.1.0",
-    "statesExplored": 23,
-    "nonTrivialDecisions": 12,
-    "legalMoves": 55,
+    "statesExplored": 10,
+    "nonTrivialDecisions": 96,
+    "legalMoves": 315,
     "blockingMoves": 0,
     "blockingMoveShare": 0
   }

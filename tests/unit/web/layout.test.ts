@@ -1,3 +1,5 @@
+import { generateLevel } from '@cozy-room-sort/generator';
+import { activeThemes } from '../../../content/themes/index.ts';
 import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type { Level } from '@cozy-room-sort/schemas';
@@ -99,3 +101,33 @@ describe('projection de la pièce', () => {
         }
     });
 });
+
+it('les recouvrements et les couches expliquent tous les blocages du catalogue', () => {
+    const errors = levels.flatMap(geometryErrors);
+    expect(errors.slice(0, 10)).toEqual([]);
+});
+
+it('les recouvrements expliquent les blocages de cinquante niveaux générés', () => {
+    const errors = Array.from({ length: 50 }, (_, i) => geometryErrors(generateLevel({
+        theme: activeThemes[Math.floor(i / difficulties.length) % activeThemes.length]!.id,
+        difficulty: difficulties[i % difficulties.length]!,
+        seed: 42001 + i, index: i + 1
+    }))).flat();
+    expect(errors.slice(0, 10)).toEqual([]);
+}, 60_000);
+
+const difficulties = ['easy', 'medium', 'expert'] as const;
+function geometryErrors(level: Level): string[] {
+    const placed = layoutRoom(level, { width: 360, height: 360 });
+    const objects = level.objects.map(o => ({ ...o, bounds: box(placed.get(o.id)!, boundsOf(o.asset)) }));
+    const errors: string[] = [];
+    for (const [i, a] of objects.entries()) for (const b of objects.slice(i + 1)) {
+        const ratio = overlapRatio(a.bounds, b.bounds);
+        const behind = a.blockedBy.includes(b.id) ? a : b.blockedBy.includes(a.id) ? b : undefined;
+        const front = behind === a ? b : a;
+        if (behind ? ratio < .25 || front.layer <= behind.layer : ratio >= .10) {
+            errors.push(`${level.id} ${a.id} / ${b.id} : ${ratio.toFixed(3)} (couches ${a.layer}, ${b.layer})`);
+        }
+    }
+    return errors;
+}

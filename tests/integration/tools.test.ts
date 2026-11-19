@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import type { Level } from '@cozy-room-sort/schemas';
@@ -95,5 +95,20 @@ it('level:generate --catalog --theme : régénère les six niveaux du troisième
         expect(generated.code, generated.out + generated.err).toBe(0);
         expect(readdirSync(dir).sort()).toEqual(Array.from({ length: 6 }, (_, i) => `0${15 + i}-${theme.id}.json`));
         expect(run('validate-levels', dir).code).toBe(0);
+    } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+it('level:validate refuse un bloqueur dont la couche ne le place pas devant', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'cozy-superposition-'));
+    try {
+        const level = JSON.parse(readFileSync('content/levels/001-salon.json', 'utf8')) as Level;
+        const blocked = level.objects.find(object => object.blockedBy.length > 0)!;
+        const blocker = level.objects.find(object => object.id === blocked.blockedBy[0])!;
+        blocker.layer = blocked.layer;
+        const path = join(dir, 'couche.json');
+        writeFileSync(path, JSON.stringify(level));
+        const verdict = run('validate-levels', path);
+        expect(verdict.code).toBe(1);
+        expect(verdict.out).toContain(`${blocker.id} doit être devant ${blocked.id}`);
     } finally { rmSync(dir, { recursive: true, force: true }); }
 });
