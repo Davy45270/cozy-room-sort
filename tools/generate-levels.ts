@@ -1,9 +1,34 @@
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, linkSync, mkdirSync, mkdtempSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { findTheme, generateLevel } from '@cozy-room-sort/generator';
-import { isDifficulty } from '@cozy-room-sort/schemas';
+import { isDifficulty, type Level } from '@cozy-room-sort/schemas';
 import { RECIPES } from './catalog-recipes.ts';
+
+function writeLevels(out: string, levels: readonly Level[], replace: boolean): void {
+    const entries = levels.map(level => ({ level, name: `${level.id}.json` }));
+    if (!replace) {
+        const existing = entries.find(({ name }) => existsSync(join(out, name)));
+        if (existing) throw new Error(`fichier déjà présent : ${join(out, existing.name)}`);
+    }
+    mkdirSync(out, { recursive: true });
+    const pending = mkdtempSync(join(out, '.generation-'));
+    try {
+        for (const { level, name } of entries) {
+            writeFileSync(join(pending, name), `${JSON.stringify(level, null, 2)}\n`);
+        }
+        for (const { level, name } of entries) {
+            const source = join(pending, name);
+            const destination = join(out, name);
+            // Le fichier est complet avant de devenir visible. Le lien réserve le nom sans l'écraser.
+            if (replace) renameSync(source, destination);
+            else linkSync(source, destination);
+            console.log(`${destination} : ${level.objects.length} objets, graine ${level.seed}`);
+        }
+    } finally {
+        rmSync(pending, { recursive: true, force: true });
+    }
+}
 
 function main(): void {
     const { values } = parseArgs({ options: {
@@ -34,12 +59,7 @@ function main(): void {
         out = values.out ?? 'generated-levels';
         levels = Array.from({ length: count }, (_, i) => generateLevel({ theme, difficulty, seed: seed + i, index: i + 1 }));
     }
-    mkdirSync(out, { recursive: true });
-    for (const level of levels) {
-        const file = join(out, `${level.id}.json`);
-        writeFileSync(file, `${JSON.stringify(level, null, 2)}\n`, { flag: values.catalog ? 'w' : 'wx' });
-        console.log(`${file} : ${level.objects.length} objets, graine ${level.seed}`);
-    }
+    writeLevels(out, levels, values.catalog === true);
 }
 
 try { main(); }

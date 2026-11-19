@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import type { Level } from '@cozy-room-sort/schemas';
@@ -58,6 +58,19 @@ it('génère uniquement des niveaux validés, avec les alias des pièces', () =>
         const missing = run('generate-levels', '--theme', 'kitchen', ...args);
         expect(missing.code).toBe(1);
         expect(missing.out).toContain('univers absent');
+    } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+it('refuse un lot qui écraserait un fichier avant de publier les nouveaux niveaux', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'cozy-generate-'));
+    try {
+        const existing = join(dir, '002-salon.json');
+        copyFileSync(`${fixtures}/valid-mini.json`, existing);
+        const before = readFileSync(existing, 'utf8');
+        const args = ['--theme', 'salon', '--difficulty', 'easy', '--count', '2', '--out', dir];
+        expect(run('generate-levels', ...args).code).toBe(1);
+        expect(readFileSync(existing, 'utf8')).toBe(before);
+        expect(existsSync(join(dir, '001-salon.json'))).toBe(false);
     } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
