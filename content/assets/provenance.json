@@ -5737,5 +5737,30 @@
     ],
     "origine": "Synthétisé par tools/synth-sons.ts",
     "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "choix-salle-de-bain-normal",
+    "fichiers": [
+      "content/assets/planches/derives/choix-salle-de-bain-normal.webp"
+    ],
+    "derive_de": "p04-selecteur/sprite-choix-salle-de-bain",
+    "dimensions": {
+      "w": 200,
+      "h": 200
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        169,
+        178,
+        1354,
+        8
+      ],
+      "transformations": [
+        "État normal dérivé de l’état sélectionné par transformation de couleur : teinte bleue du cadre et de la pastille ramenée au crème/brun des vignettes normales de la même planche (référence choix-chambre), clarté inversée dans la pastille ; aucun trait redessiné ; WebP q85"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   }
 ]

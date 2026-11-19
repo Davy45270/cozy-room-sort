@@ -10,7 +10,7 @@ test.describe('petit téléphone', () => {
         const tabs = levels.getByRole('tab');
         await expect(tabs).toHaveCount(3);
         for (const tab of await tabs.all()) {
-            const art = tab.locator('[data-frame^="sprite-choix-"]');
+            const art = tab.locator('[data-frame^="sprite-choix-"], [data-frame^="derive-choix-"]');
             await expect(art).toBeVisible();
             expect((await art.boundingBox())!.width).toBeGreaterThanOrEqual(88);
         }
@@ -72,7 +72,7 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 360, height: 740 }
             await expect(view).toBeVisible();
             const hero = (await view.boundingBox())!;
             expect(hero.width).toBeGreaterThanOrEqual(300);
-            const choices = home.locator('.home-rooms [data-frame^="sprite-choix-"]');
+            const choices = home.locator('.home-rooms .room-choice > .atlas-frame');
             await expect(choices).toHaveCount(3);
             const elements = [title, view, ...await choices.all(), home.getByTestId('jouer'),
                 home.getByRole('button', { name: 'Choisir un niveau' }), home.getByRole('button', { name: 'Réglages' })];

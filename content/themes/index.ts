@@ -9,6 +9,10 @@ export interface Theme {
     readonly vue: string;
     readonly sol: string;
     readonly selecteur: string;
+    /** Vignette non sélectionnée, quand la planche ne dessine que l’état sélectionné (chemin sous planches/). */
+    readonly selecteur_normal?: string;
+    /** Hauteur du fondu de bas de vue, en fraction de la vue (vue coupée par une base plate). */
+    readonly vue_fondu_bas?: number;
     readonly actif?: boolean;
     readonly remplace?: string;
     readonly categories: readonly {

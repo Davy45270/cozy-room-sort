@@ -4,6 +4,8 @@
   "vue": "vue-salle-de-bain",
   "sol": "sol-carreaux",
   "selecteur": "choix-salle-de-bain",
+  "selecteur_normal": "derives/choix-salle-de-bain-normal.webp",
+  "vue_fondu_bas": 0.07,
   "categories": [
     {
       "id": "serviettes",

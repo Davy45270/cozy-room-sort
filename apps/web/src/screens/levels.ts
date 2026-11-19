@@ -1,6 +1,6 @@
 import type { AppContext, Screen } from '../app-context.ts';
 import { isUnlocked, levelNumber, LEVELS, ROOM_ORDER, THEMES } from '../content.ts';
-import { atlasImage, h, iconButton, stars } from '../dom.ts';
+import { h, iconButton, roomChoiceImage, stars } from '../dom.ts';
 
 export async function levelsScreen(ctx: AppContext, room?: string): Promise<Screen> {
     const progress = await ctx.store.progress();
@@ -11,7 +11,7 @@ export async function levelsScreen(ctx: AppContext, room?: string): Promise<Scre
     const tabs = ROOM_ORDER.map(id => h('button', {
         type: 'button', class: 'room-choice', id: `onglet-${id}`, 'data-testid': `onglet-${id}`,
         'aria-label': THEMES[id]!.label, role: 'tab', 'aria-controls': `piece-${id}`
-    }, atlasImage(THEMES[id]!.selecteur)));
+    }));
     const panels = ROOM_ORDER.map(id => h('section', {
         id: `piece-${id}`, role: 'tabpanel', 'aria-labelledby': `onglet-${id}`,
         style: `--room-accent: var(--crs-room-${id}, var(--crs-accent))`
@@ -32,6 +32,7 @@ export async function levelsScreen(ctx: AppContext, room?: string): Promise<Scre
         tabs.forEach((tab, index) => {
             const active = selected === index;
             tab.setAttribute('aria-selected', String(active));
+            tab.replaceChildren(roomChoiceImage(THEMES[ROOM_ORDER[index]!]!, active));
             tab.tabIndex = active ? 0 : -1;
             panels[index]!.hidden = !active;
         });

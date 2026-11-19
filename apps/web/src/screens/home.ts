@@ -1,6 +1,6 @@
 import type { AppContext, Screen } from '../app-context.ts';
 import { isUnlocked, levelById, LEVELS, ROOM_ORDER, THEMES, themeOf } from '../content.ts';
-import { atlasImage, h, iconButton } from '../dom.ts';
+import { atlasImage, h, iconButton, roomChoiceImage } from '../dom.ts';
 
 export async function homeScreen(ctx: AppContext): Promise<Screen> {
     const progress = await ctx.store.progress();
@@ -15,7 +15,7 @@ export async function homeScreen(ctx: AppContext): Promise<Screen> {
             h('div', { class: 'home-rooms' }, ...ROOM_ORDER.map(room => {
                 const theme = THEMES[room]!;
                 return h('button', { type: 'button', class: 'room-choice', 'aria-label': theme.label,
-                    onclick: () => ctx.go({ screen: 'levels', room }) }, atlasImage(theme.selecteur));
+                    onclick: () => ctx.go({ screen: 'levels', room }) }, roomChoiceImage(theme, false));
             })),
             iconButton('btn-jouer', last && target === last ? 'Continuer' : 'Jouer',
                 () => { if (target) ctx.go({ screen: 'play', level: target }); },
