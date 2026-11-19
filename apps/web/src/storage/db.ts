@@ -1,5 +1,5 @@
 // Progression, parties en cours et réglages dans IndexedDB. Chaque écriture attend la fin de sa transaction.
-import { applyAction, createInitialState, withMode, type GameState, type Mode } from '@cozy-room-sort/engine';
+import { withMode, type Mode } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
 import { isGameJournal, signatureOf, type ReadableSave, type SignedSave } from '../game/save-signature.ts';
 import type { ThemePreference } from '../theme/tokens.ts';
@@ -45,16 +45,6 @@ const isSave = (v: unknown): v is ReadableSave => typeof v === 'object' && v !==
     && typeof (v as ReadableSave).levelId === 'string' && typeof (v as ReadableSave).rulesVersion === 'string'
     && isGameJournal((v as ReadableSave).actions)
     && ((v as ReadableSave).levelSignature === undefined || typeof (v as ReadableSave).levelSignature === 'string');
-/** Un journal antérieur à l'empreinte se reprend s'il se rejoue entièrement : aucun coup refusé par le moteur. */
-const replaysCleanly = (level: Level, save: ReadableSave): boolean => {
-    let state: GameState = createInitialState(level);
-    for (const action of save.actions) {
-        const transition = applyAction(level, state, action);
-        if (transition.events.some(event => event.type === 'ACTION_REJECTED')) return false;
-        state = transition.state;
-    }
-    return true;
-};
 const better = (a: LevelResult, b: LevelResult): boolean => a.stars > b.stars || (a.stars === b.stars && a.bestBuffered < b.bestBuffered);
 
 export function openStore(name = 'cozy-room-sort'): Promise<Store> {
@@ -107,16 +97,13 @@ function wrap(db: IDBDatabase): Store {
             await done(tx);
         },
         loadSave(level, mode) {
-            const played = withMode(level, mode);
-            const levelSignature = signatureOf(played);
+            const levelSignature = signatureOf(withMode(level, mode));
             return readJournal<SaveLoadResult>(level.id, raw => {
                 if (raw === undefined) return { value: { kind: 'empty', save: undefined }, discard: false };
                 if (!isSave(raw) || raw.levelId !== level.id) return { value: { kind: 'invalid', save: undefined }, discard: true };
-                // Sans empreinte (version précédente) : repris s'il se rejoue sur le niveau actuel, signé à la prochaine écriture.
-                const compatible = raw.levelSignature === undefined
-                    ? raw.rulesVersion === level.rulesVersion && replaysCleanly(played, raw)
-                    : raw.levelSignature === levelSignature;
-                if (!compatible) return { value: { kind: 'level-changed', save: undefined }, discard: true };
+                // Sans empreinte (version précédente) : traité comme un niveau changé. Un journal qui se rejoue encore peut
+                // donner un autre état (mêmes identifiants, cartons dans un autre ordre) ; rien ne prouve qu'il est le même.
+                if (raw.levelSignature !== levelSignature) return { value: { kind: 'level-changed', save: undefined }, discard: true };
                 if (raw.rulesVersion !== level.rulesVersion) return { value: { kind: 'invalid', save: undefined }, discard: true };
                 return { value: { kind: 'ready', save: { ...raw, levelSignature } }, discard: false };
             });

@@ -97,8 +97,8 @@ it.each(['same', 'changed', 'missing'] as const)('compatibilité du journal en b
     // Le chargement destiné à l'écran annonce et supprime atomiquement un journal incompatible.
     const loaded = await store.loadSave(target, 'classique');
     const resumed = createController(target, 'classique', deps, loaded.save);
-    // Sans empreinte mais rejouable sur le même contenu : la partie est reprise.
-    const kept = kind !== 'changed';
+    // Seul un journal à l'empreinte du niveau est repris ; sans empreinte, il est traité comme un niveau changé.
+    const kept = kind === 'same';
     expect(resumed.state).toEqual(kept
         ? original.state
         : createController(target, 'classique', deps).state);
@@ -132,20 +132,36 @@ describe('journal sans empreinte (version précédente)', () => {
         expect((await store.loadSave(salon, 'classique')).kind).toBe('empty');
     });
 
-    it('la même forme rejouable sur le niveau actuel est reprise au même coup, puis signée', async () => {
+    it('la même forme, encore rejouable sur le niveau actuel, est écartée avec annonce ; les étoiles restent', async () => {
         expect(firstMove).toBe('pile-8');
+        await store.recordResult(salon.id, { stars: 2, bestBuffered: 4 });
         await store.writeRaw('saves', published.cle, { ...published.valeur, actions: [{ type: 'SELECT_OBJECT', objectId: firstMove }] });
         const loaded = await store.loadSave(salon, 'classique');
-        expect(loaded.kind).toBe('ready');
-        expect(saveLoadAnnouncement(loaded)).toBeUndefined();
+        expect(loaded.kind).toBe('level-changed');
+        expect(saveLoadAnnouncement(loaded)).toBe('Ce niveau a changé : la partie reprend au début.');
         const resumed = createController(salon, 'classique', deps, loaded.save);
-        expect(resumed.state.moveCount).toBe(1);
-        resumed.select(salon.meta?.solution?.[1] ?? '');
-        await resumed.idle();
-        // Signé sur disque : sur un niveau aux règles changées, le même journal, encore rejouable, n'est plus repris
-        // (un journal resté sans empreinte le serait).
-        const revised = { ...salon, rules: { ...salon.rules, bufferCapacity: salon.rules.bufferCapacity + 1 } };
-        expect((await store.loadSave(revised, 'classique')).kind).toBe('level-changed');
+        expect(resumed.state.moveCount).toBe(0);
+        expect((await store.loadSave(salon, 'classique')).kind).toBe('empty');
+        expect(await store.progress()).toEqual({ [salon.id]: { stars: 2, bestBuffered: 4 } });
+    });
+
+    it('mêmes identifiants, cartons dans l’autre ordre : le journal sans empreinte ne restaure aucun état', async () => {
+        // Un seul carton actif : le premier coup range a1 sur le niveau d'origine, le met au tampon sur l'autre.
+        const original = { ...makeLevel({ boxes: [['a', 1], ['b', 1]], objects: [['a1', 'a'], ['b1', 'b']] }), id: '090-salon' };
+        const swapped = { ...original, boxes: [...original.boxes].reverse() };
+        const journal = [{ type: 'SELECT_OBJECT', objectId: 'a1' } as const];
+        const offline: ControllerDeps = { save: () => Promise.resolve(), now: () => 0 };
+        const onOriginal = createController(original, 'classique', offline);
+        onOriginal.select('a1');
+        const onSwapped = createController(swapped, 'classique', offline);
+        onSwapped.select('a1');
+        expect(onOriginal.state.packedIn).toEqual({ a1: 'box-1' });
+        expect(onSwapped.state.bufferObjectIds).toEqual(['a1']);
+        await store.writeRaw('saves', swapped.id, { levelId: swapped.id, rulesVersion: swapped.rulesVersion, actions: journal });
+        const loaded = await store.loadSave(swapped, 'classique');
+        expect(loaded.kind).toBe('level-changed');
+        expect(loaded.save).toBeUndefined();
+        expect(createController(swapped, 'classique', offline, loaded.save).state).toEqual(createController(swapped, 'classique', offline).state);
     });
 
     it('un journal sans empreinte dont un coup est refusé est écarté avec annonce', async () => {
@@ -219,5 +235,21 @@ describe('journal creux ou aux durées non finies, à la bonne empreinte, remis 
         expect(loaded.kind).toBe('invalid');
         const resumed = createController(level, 'classique', { save: () => Promise.resolve(), now: () => 0 }, loaded.save);
         expect(resumed.state.moveCount).toBe(0);
+    });
+});
+
+describe('empreinte du niveau', () => {
+    const base = makeLevel({ boxes: [['a', 2]], objects: [['a1', 'a'], ['a2', 'a']], rules: { timeLimitSeconds: 60 } });
+
+    it('changer la seule limite de temps change l’empreinte, et le journal signé est écarté avec annonce', async () => {
+        const shorter = { ...base, rules: { ...base.rules, timeLimitSeconds: 30 } };
+        const untimed = { ...base, rules: { ...base.rules, timeLimitSeconds: null } };
+        const signatures = [base, shorter, untimed].map(level => signatureOf(withMode(level, 'classique')));
+        expect(new Set(signatures).size).toBe(3);
+        await store.writeRaw('saves', base.id, { levelId: base.id, rulesVersion: base.rulesVersion, levelSignature: signatures[0],
+            actions: [{ type: 'SELECT_OBJECT', objectId: 'a1' }, { type: 'TICK', ms: 40_000 }] });
+        const loaded = await store.loadSave(shorter, 'classique');
+        expect(loaded.kind).toBe('level-changed');
+        expect(saveLoadAnnouncement(loaded)).toBe('Ce niveau a changé : la partie reprend au début.');
     });
 });

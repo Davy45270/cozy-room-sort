@@ -30,7 +30,7 @@ test('une partie enregistrée pour une autre version du niveau reprend au début
     await expect(levelScreen(page).locator('[role="status"]')).toHaveText('Ce niveau a changé : la partie reprend au début.');
 });
 
-test('une partie sans empreinte qui se rejoue sur le niveau actuel reprend au même coup, sans annonce', async ({ page }) => {
+test('une partie sans empreinte, même encore rejouable sur le niveau actuel, reprend au début et le jeu l’annonce', async ({ page }) => {
     const id = '002-salon';
     const level = levelFile(id);
     const first = level.meta?.solution?.[0];
@@ -39,6 +39,6 @@ test('une partie sans empreinte qui se rejoue sur le niveau actuel reprend au m�
     await writeLegacySave(page, id, level.rulesVersion, [{ type: 'SELECT_OBJECT', objectId: first }]);
     await page.reload();
     await expect(levelScreen(page)).toHaveAttribute('data-ready', 'true', { timeout: 20_000 });
-    expect((await state(page)).moveCount).toBe(1);
-    await expect(levelScreen(page).locator('[role="status"]')).not.toHaveText('Ce niveau a changé : la partie reprend au début.');
+    expect((await state(page)).moveCount).toBe(0);
+    await expect(levelScreen(page).locator('[role="status"]')).toHaveText('Ce niveau a changé : la partie reprend au début.');
 });
