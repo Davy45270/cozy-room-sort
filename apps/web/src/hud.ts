@@ -44,12 +44,30 @@ export function renderBuffer(container: HTMLElement, level: Level, state: GameSt
  */
 export const QUOTA_SLICE = [14, 16, 12, 16] as const;
 
+/**
+ * Tranches du cadre « panneau-quotas-sdb » de la planche 04 (haut, droite, bas, gauche, en pixels de sa partie utile
+ * 256 × 217). Mesurées sur le cadre : le contenu imprimé (icônes, coches et leur fond pâle) le plus proche d'un bord en est
+ * à 12 px en haut, 26 à droite, 11 en bas et 38 à gauche ; les coins arrondis s'étendent sur 24 px de large. Les tranches
+ * restent en deçà du contenu, et celles de côté prennent le coin entier en largeur. Le centre n'est pas repris.
+ */
+export const QUOTA_SLICE_SDB = [10, 24, 9, 24] as const;
+
+type Slice = readonly [number, number, number, number];
+
+/** Panneau des quotas d'une pièce : la salle de bain a le sien (planche 04), les autres celui de la planche 01. */
+export function quotaPanelOf(level: Level): { asset: string; slice: Slice } {
+    return level.theme === 'salle-de-bain'
+        ? { asset: 'panneau-quotas-sdb', slice: QUOTA_SLICE_SDB }
+        : { asset: 'panneau-quotas', slice: QUOTA_SLICE };
+}
+
 /** Au-delà de ce nombre de catégories, les quotas passent sur deux colonnes. */
 export const QUOTA_ONE_COLUMN_MAX = 4;
 
 export function renderQuotas(container: HTMLElement, level: Level, state: GameState): void {
     const twoColumns = level.categories.length > QUOTA_ONE_COLUMN_MAX;
-    container.replaceChildren(atlasBorder('panneau-quotas', QUOTA_SLICE, .75, 'quota-frame'), h('div', { class: 'quota-content' }, h('h2', { text: 'Quotas' }),
+    const panel = quotaPanelOf(level);
+    container.replaceChildren(atlasBorder(panel.asset, panel.slice, .75, 'quota-frame'), h('div', { class: 'quota-content' }, h('h2', { text: 'Quotas' }),
         h('ul', { class: 'quota-list', 'data-columns': twoColumns ? 2 : undefined }, ...level.categories.map(category => {
             const boxes = level.boxes.filter(box => box.category === category.id);
             const total = boxes.reduce((sum, box) => sum + box.capacity, 0);

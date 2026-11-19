@@ -44,3 +44,7 @@ reçoivent le focus après la navigation et les boutons illustrés affichent un 
 Le panneau de jeu projette la file du moteur dans l’ordre du niveau. Les cartons en attente portent leur
 pictogramme sur un carton fermé, réduit et grisé. Une coche identifie chaque carton rempli. La scène inscrit
 la vue carrée dans la zone de jeu et réutilise cette projection pour les objets.
+
+Le panneau des quotas est bordé par le cadre de la planche de sa pièce : `panneau-quotas-sdb` (planche 04, atlas
+`p04-quotas`) pour la salle de bain, `panneau-quotas` (planche 01) ailleurs. Le choix est synchrone (`quotaPanelOf`
+dans `apps/web/src/hud.ts`) : les deux atlas sont au précache, donc affichés hors ligne dès la première visite.

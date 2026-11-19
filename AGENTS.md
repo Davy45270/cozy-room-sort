@@ -36,8 +36,12 @@ la conception détaillée et les plans de travail sont tenus hors de ce dépôt.
   mesurée sur ce cadre** (`#FDE9CB`). Le fondu de la salle de bain est le seul dégradé dessiné par code : une
   texture de canevas posée dans la scène entre la vue et les objets, nommée dans la liste blanche de
   `tests/integration/no-code-art.test.ts` ; tout autre dessin ou dégradé fait échouer ce test.
-  Limite connue : la salle de bain borde ses quotas avec le panneau de la **planche 01** ; son propre panneau
-  (`panneau-quotas-sdb`, planche 04) est dans l'atlas `p04-ui`, exclu du build faute de place au précache.
+  Panneau par pièce (`quotaPanelOf`) : la salle de bain borde ses quotas avec son propre cadre `panneau-quotas-sdb`
+  (planche 04, tranches `QUOTA_SLICE_SDB`, centre `#FCECCF`), tiré de l'atlas dédié `p04-quotas` qui est au précache
+  (`scripts/check-precache.js` l'exige) ; les autres pièces gardent `panneau-quotas` de la planche 01. Choix synchrone,
+  sans repli ni chargement à la demande. L'atlas `p04-ui` reste une bibliothèque hors build.
+- **Atlas WebP** : encodés par la chaîne hors dépôt depuis le PNG sans perte, `cwebp -q 92 -m 6` sans `-exact` ;
+  chaque cadre décodé reste à RMSE ≤ 0,02 contre sa planche. Les atlas du dépôt sont la copie exacte de la chaîne.
 - **Panneau de jeu** : un libellé de quota n'est jamais abrégé (ni ellipse, ni `nowrap`) ; il passe sur deux lignes
   (`tests/unit/web/styles.test.ts`). À partir de 1024 px de large, le panneau latéral grandit : texte de 15 px au moins,
   cases du tampon de 64 px au moins ; les portraits ne changent pas. Les cases du tampon gardent la proportion du cadre

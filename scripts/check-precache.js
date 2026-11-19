@@ -24,6 +24,8 @@ for (const file of atlasFiles) {
     assert(url, `Atlas absent du précache : ${file}`);
     atlasUrls.add(url);
 }
+// Le panneau des quotas de la salle de bain s'affiche hors ligne dès la première visite : il est au précache.
+assert(atlasFiles.includes('p04-quotas.webp'), 'Atlas du panneau de la salle de bain absent du précache : p04-quotas.webp');
 
 let raw = 0;
 let compressed = 0;

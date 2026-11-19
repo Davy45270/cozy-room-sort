@@ -167,6 +167,8 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
 .quotas { position: relative; display: grid; align-items: center; padding: 11px 13px 10px; color: var(--crs-ink); }
 .atlas-border { position: absolute; inset: 0; display: grid; pointer-events: none; }
 .atlas-border::before { content: ""; grid-area: 2 / 2; background: #FDE9CB; }
+/* Salle de bain : bords du cadre « panneau-quotas-sdb » de la planche 04, centre de sa crème (#FCECCF, mesurée sur le cadre). */
+.atlas-border[data-frame="sprite-panneau-quotas-sdb"]::before { background: #FCECCF; }
 .border-cell { position: relative; overflow: hidden; }
 .border-cell img { position: absolute; display: block; max-width: none; user-select: none; }
 .quota-content { position: relative; }

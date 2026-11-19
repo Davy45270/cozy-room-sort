@@ -3,7 +3,7 @@ import { expect, it } from 'vitest';
 import { levelById } from '../../../apps/web/src/content.ts';
 import { createController } from '../../../apps/web/src/game/controller.ts';
 import { spriteOf } from '../../../apps/web/src/atlas.ts';
-import { QUOTA_SLICE, renderBoxes, renderBuffer, renderQuotas } from '../../../apps/web/src/hud.ts';
+import { QUOTA_SLICE, QUOTA_SLICE_SDB, quotaPanelOf, renderBoxes, renderBuffer, renderQuotas } from '../../../apps/web/src/hud.ts';
 
 function setup(id = '001-salon') {
     const level = levelById(id);
@@ -172,4 +172,35 @@ it('chaque tranche du panneau est posée dans la cellule de grille de la partie 
         seen.add(area);
     }
     expect(seen.size).toBe(8);
+});
+
+it('la salle de bain borde ses quotas avec son propre panneau (planche 04), les autres pièces avec celui de la planche 01', () => {
+    for (const [id, asset, slice] of [
+        ['001-salon', 'panneau-quotas', QUOTA_SLICE],
+        ['011-chambre', 'panneau-quotas', QUOTA_SLICE],
+        ['015-salle-de-bain', 'panneau-quotas-sdb', QUOTA_SLICE_SDB],
+        ['020-salle-de-bain', 'panneau-quotas-sdb', QUOTA_SLICE_SDB]
+    ] as const) {
+        const controller = setup(id);
+        expect(quotaPanelOf(controller.level), id).toEqual({ asset, slice });
+        const quotas = document.createElement('div');
+        renderQuotas(quotas, controller.level, controller.state);
+        const border = quotas.querySelector<HTMLElement>('.atlas-border');
+        expect(border?.getAttribute('data-frame'), id).toBe(`sprite-${asset}`);
+        expect(border?.getAttribute('data-slice'), id).toBe(slice.join(' '));
+        // Choix synchrone : chaque tranche montre l'atlas du cadre choisi, déjà connu au rendu.
+        for (const img of border!.querySelectorAll('img')) expect(img.getAttribute('src'), id).toBe(spriteOf(asset).atlas.image);
+    }
+    expect(spriteOf('panneau-quotas-sdb').atlas.key).toBe('p04-quotas');
+});
+
+it('les tranches du panneau de la salle de bain restent en deçà du contenu mesuré sur son cadre', () => {
+    // Mesures sur la partie utile 256 × 217 du cadre : contenu le plus proche à 12 px en haut, 26 à droite, 11 en bas, 38 à gauche.
+    const { hitbox } = spriteOf('panneau-quotas-sdb');
+    expect({ w: hitbox.w, h: hitbox.h }).toEqual({ w: 256, h: 217 });
+    const [top, right, bottom, left] = QUOTA_SLICE_SDB;
+    expect(top).toBeLessThan(12);
+    expect(right).toBeLessThan(26);
+    expect(bottom).toBeLessThan(11);
+    expect(left).toBeLessThan(38);
 });
