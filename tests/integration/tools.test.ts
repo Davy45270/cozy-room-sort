@@ -114,16 +114,15 @@ it('level:validate refuse un bloqueur dont la couche ne le place pas devant', ()
 });
 
 
-it('level:validate accepte le salon publié en 1.1 avec un avertissement, même après level:solve --write', () => {
+it('level:validate refuse le salon historique en 1.1 : format migré, contrôle géométrique appliqué, même après level:solve --write', () => {
     const dir = mkdtempSync(join(tmpdir(), 'cozy-salon-historique-'));
     try {
         const path = join(dir, 'salon.json');
         copyFileSync(`${fixtures}/salon-format-1.1.json`, path);
         const check = (): void => {
             const verdict = run('validate-levels', path);
-            expect(verdict.code, verdict.out + verdict.err).toBe(0);
-            expect(verdict.err).toMatch(/AVERTISSEMENT .*1\.1.*contrôle géométrique ignoré/);
-            expect(verdict.out).toMatch(/^OK .*9 objets/);
+            expect(verdict.code, verdict.out + verdict.err).toBe(1);
+            expect(verdict.out).toMatch(/ÉCHEC salon : format 1\.1 migré ; contrôle géométrique appliqué : .*recouvrement de objet-43004-1 et objet-43004-7/);
         };
         check();
         expect(run('solve-level', path, '--write').code).toBe(0);

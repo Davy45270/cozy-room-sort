@@ -15,6 +15,14 @@ const files = readdirSync('content/levels').filter(f => f.endsWith('.json')).sor
 const levels = files.map(f => JSON.parse(readFileSync(`content/levels/${f}`, 'utf8')) as Level);
 
 describe('niveaux livrés', () => {
+    it('tous au format courant 1.2 : aucun niveau publié ne passe par la migration', () => {
+        expect(levels.map(l => [l.id, l.schemaVersion as string]).filter(([, version]) => version !== '1.2')).toEqual([]);
+        for (const level of levels) {
+            const result = validateLevel(level);
+            expect(result.ok && result.migratedFrom, level.id).toBeUndefined();
+        }
+    });
+
     it('vingt niveaux répartis sur les trois pièces', () => {
         expect(levels).toHaveLength(20);
         const byRoom = (room: string): number => levels.filter(l => l.theme === room).length;

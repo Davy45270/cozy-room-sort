@@ -83,10 +83,12 @@ La projection utilise la même échelle pour les positions et les tailles. Le to
 opaque le plus en avant, puis cherche la boîte utile la plus proche dans un rayon de 22 px.
 
 `migrateLevel` précède la validation structurelle et migre en mémoire les niveaux `"1.0"` et `"1.1"`.
-Pour un fichier historique, la CLI émet un avertissement et saute le contrôle géométrique. Elle vérifie
-la structure, le rejeu de la solution enregistrée si elle existe, la résolution et le seuil de trois étoiles.
-`level:solve --write` conserve la version du fichier. Pour publier une disposition historique en 1.2,
-il faut la mettre en conformité avec les seuils et valider le fichier en 1.2.
+Pour un fichier historique, la CLI émet un avertissement « format 1.1 migré ; contrôle géométrique appliqué » :
+la version déclarée ne dispense d'aucun contrôle. Elle vérifie la géométrie, la structure, le rejeu de la
+solution enregistrée si elle existe, la résolution et le seuil de trois étoiles. Un niveau historique dont les
+recouvrements contredisent ses dépendances est refusé, avec ce même préfixe suivi de l'erreur de recouvrement.
+`level:solve --write` conserve la version du fichier. Les niveaux de `content/levels` sont tous en 1.2
+(`tests/integration/levels.test.ts`).
 
 Pour les données en `"1.0"`, la migration conserve le score en passages déjà présent et complète
 `rulesVersion` si nécessaire. Pour l’ancien score en coups, elle soustrait le quota total des cartons

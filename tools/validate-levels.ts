@@ -10,12 +10,11 @@ type Verdict = { ok: true; objects: number; buffered: number; states: number } |
 
 function check(path: string): Verdict {
     const { level, migratedFrom } = readLevelWithVersion(path);
-    if (migratedFrom) {
-        console.warn(`AVERTISSEMENT ${basename(path, '.json')} : format ${migratedFrom} migré en mémoire, contrôle géométrique ignoré`);
-    } else {
-        const geometry = roomGeometryError(level, boundsOf);
-        if (geometry) return { ok: false, problem: geometry };
-    }
+    // La géométrie s'applique à tout niveau, quelle que soit sa version déclarée : la migration n'en dispense pas.
+    const migrated = migratedFrom ? `format ${migratedFrom} migré ; contrôle géométrique appliqué` : undefined;
+    if (migrated) console.warn(`AVERTISSEMENT ${basename(path, '.json')} : ${migrated}`);
+    const geometry = roomGeometryError(level, boundsOf);
+    if (geometry) return { ok: false, problem: migrated ? `${migrated} : ${geometry}` : geometry };
     if (level.meta?.solution && replayTrace(level, level.meta.solution) !== 'won') return { ok: false, problem: 'la solution enregistrée ne mène pas à la victoire' };
     const result = solve(withMode(level, 'classique'));
     if (result.kind === 'unsolvable') return { ok: false, problem: `insoluble (${result.statesExplored} états)` };
