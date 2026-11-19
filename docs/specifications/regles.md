@@ -107,6 +107,19 @@ des deux seuils. Ce supplément devient la marge de passages au tampon. La migra
 est indépendante de la version des règles du moteur et du format de ses instantanés. L’exemple historique de
 la spécification est conservé dans les fixtures. Ses quotas incomplets sont signalés à la validation.
 
+### Historique du format
+
+- **1.0** : contrat de la spécification d’origine. Seuils d’étoiles en coups (`threeStarsMaxMoves`,
+  `twoStarsMaxMoves`), `rulesVersion` facultatif. Migré en mémoire : seuils convertis en passages au tampon,
+  `rulesVersion` complété.
+- **1.1** : seuils en passages au tampon (`threeStarsMaxBuffered`, `twoStarsMaxBuffered`), bornes de difficulté
+  (objets, catégories, tampon) dans le schéma, mesures du générateur dans `meta`. Migré en mémoire vers 1.2 sans
+  changement de contenu.
+- **1.2** : exigences géométriques de la pièce (couches des bloqueurs, recouvrements des boîtes utiles) ;
+  contrôle géométrique appliqué à tout niveau, quelle que soit la version déclarée ; un champ inconnu hors de
+  `meta` est refusé, par le validateur comme par le schéma publié ; un objet masqué a au moins un bloqueur, et
+  `meta.solution` et `meta.engineVersion` n’acceptent pas de texte vide, dans le schéma comme dans le validateur.
+
 ## Bibliothèque et activation de la cuisine
 
 Le catalogue de cadres dans `content/catalog/objets.json` est destiné à la création de contenu.
