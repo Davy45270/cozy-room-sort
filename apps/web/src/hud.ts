@@ -43,13 +43,17 @@ export function renderBuffer(container: HTMLElement, level: Level, state: GameSt
  */
 export const QUOTA_SLICE = [14, 16, 12, 16] as const;
 
+/** Au-delà de ce nombre de catégories, les quotas passent sur deux colonnes. */
+export const QUOTA_ONE_COLUMN_MAX = 4;
+
 export function renderQuotas(container: HTMLElement, level: Level, state: GameState): void {
+    const twoColumns = level.categories.length > QUOTA_ONE_COLUMN_MAX;
     container.replaceChildren(atlasBorder('panneau-quotas', QUOTA_SLICE, .75, 'quota-frame'), h('div', { class: 'quota-content' }, h('h2', { text: 'Quotas' }),
-        h('ul', { class: 'quota-list' }, ...level.categories.map(category => {
+        h('ul', { class: 'quota-list', 'data-columns': twoColumns ? 2 : undefined }, ...level.categories.map(category => {
             const boxes = level.boxes.filter(box => box.category === category.id);
             const total = boxes.reduce((sum, box) => sum + box.capacity, 0);
             const packed = boxes.reduce((sum, box) => sum + (state.boxFillCounts[box.id] ?? 0), 0);
-            return h('li', { class: 'quota', 'aria-label': `${category.label}, ${packed} sur ${total}` },
+            return h('li', { class: 'quota', 'aria-label': `${category.label}, ${packed} sur ${total}`, title: twoColumns ? category.label : undefined },
                 atlasImage(pictoOf(level, category.id), '', 'quota-icon'),
                 h('span', { class: 'quota-label', text: category.label }),
                 h('span', { class: 'quota-count', text: `${packed}/${total}` }),

@@ -62,3 +62,14 @@ it('la provenance décrit le fichier dérivé, son empreinte de planche et sa tr
     expect(bytes.byteLength).toBe(13_656);
     expect(createHash('sha256').update(bytes).digest('hex')).toBe('a50a0d43a54589c87655e64e1e6032515365c67c042875ea48428825c25227fd');
 });
+
+it('l’état normal est cadré comme le cadre de la planche : même partie utile, sans décalage', async () => {
+    const { element } = await homeScreen(context());
+    const frame = element.querySelector('.room-choice[aria-label="Salle de bain"] .atlas-frame') as HTMLElement;
+    const img = frame.querySelector('img')!;
+    // Oracles écrits ici : fichier dérivé 200 × 200, partie utile x 5, y 0, 190 × 200.
+    expect(Number.parseFloat(img.style.width)).toBeCloseTo(200 / 190 * 100, 3);
+    expect(Number.parseFloat(img.style.left)).toBeCloseTo(-5 / 190 * 100, 3);
+    expect(Number.parseFloat(img.style.top)).toBeCloseTo(0, 3);
+    expect(Number.parseFloat(frame.style.getPropertyValue('--frame-ratio'))).toBeCloseTo(190 / 200, 4);
+});

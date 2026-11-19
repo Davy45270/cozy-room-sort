@@ -131,3 +131,45 @@ it('après chaque coup d’une trace rejouée, chaque quota affiche le compte du
         expect(controller.state.status).toBe('won');
     }
 });
+
+it('au-delà de 4 catégories, les quotas passent sur deux colonnes et gardent le libellé entier en titre', () => {
+    for (const [id, columns] of [['001-salon', null], ['004-salon', null], ['006-salon', '2'], ['020-salle-de-bain', '2']] as const) {
+        const controller = setup(id);
+        const quotas = document.createElement('div');
+        renderQuotas(quotas, controller.level, controller.state);
+        expect(quotas.querySelector('.quota-list')?.getAttribute('data-columns'), id).toBe(columns);
+        for (const [index, row] of [...quotas.querySelectorAll('.quota')].entries()) {
+            const label = controller.level.categories[index]!.label;
+            expect(row.querySelector('.quota-label')?.textContent).toBe(label);
+            expect(row.getAttribute('title'), `${id} ${label}`).toBe(columns ? label : null);
+        }
+    }
+});
+
+it('chaque tranche du panneau est posée dans la cellule de grille de la partie du cadre qu’elle montre', () => {
+    const controller = setup();
+    const quotas = document.createElement('div');
+    renderQuotas(quotas, controller.level, controller.state);
+    // Oracles écrits ici : partie utile 256 × 248 du cadre, tranches haut 14, droite 16, bas 12, gauche 16, échelle 0,75.
+    const columnOf: Record<number, number> = { 0: 1, 16: 2, 240: 3 };
+    const rowOf: Record<number, number> = { 0: 1, 14: 2, 236: 3 };
+    const { atlas, frame } = spriteOf('panneau-quotas');
+    const border = quotas.querySelector<HTMLElement>('.atlas-border')!;
+    expect(border.style.gridTemplateColumns).toMatch(/^12px minmax\(0,\s*1fr\) 12px$/);
+    expect(border.style.gridTemplateRows).toMatch(/^10\.5px minmax\(0,\s*1fr\) 9px$/);
+    const seen = new Set<string>();
+    for (const cell of quotas.querySelectorAll<HTMLElement>('.border-cell')) {
+        const img = cell.querySelector('img')!;
+        const width = Number.parseFloat(img.style.width) / 100;
+        const height = Number.parseFloat(img.style.height) / 100;
+        // L'image de l'atlas est agrandie de atlas.w / w ; son décalage donne le début de la tranche dans l'atlas.
+        const sliceW = atlas.w / width;
+        const sliceH = atlas.h / height;
+        const sx = Math.round(-Number.parseFloat(img.style.left) / 100 * sliceW - frame.x);
+        const sy = Math.round(-Number.parseFloat(img.style.top) / 100 * sliceH - frame.y - 4);
+        const area = cell.style.gridArea.replace(/\s/g, '').split('/').slice(0, 2).join('/');
+        expect(area, `tranche (${sx}, ${sy})`).toBe(`${rowOf[sy]}/${columnOf[sx]}`);
+        seen.add(area);
+    }
+    expect(seen.size).toBe(8);
+});

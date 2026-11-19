@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { capture, levelScreen, openLevel, state, thirdRoom } from './helpers';
+import { capture, levelFile, levelScreen, openLevel, state, thirdRoom } from './helpers';
 
 test.describe('petit téléphone', () => {
     test.use({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
@@ -87,6 +87,28 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 360, height: 740 }
             await capture(page, `accueil-${viewport.width}`);
         });
     });
+}
+
+/**
+ * Chaque case du tampon occupe toute sa colonne, garde la proportion de son dessin (256 × 88, à 5 % près) et au moins
+ * `minHeight` px de haut ; l'objet rangé y tient.
+ */
+async function expectSlotsDrawnToScale(page: Page, minHeight: number): Promise<void> {
+    const slots = levelScreen(page).locator('.slot');
+    expect(await slots.count()).toBeGreaterThan(0);
+    for (const slot of await slots.all()) {
+        const cell = (await slot.boundingBox())!;
+        const art = (await slot.locator('.slot-art').boundingBox())!;
+        expect(art.width).toBeGreaterThanOrEqual(cell.width - 1);
+        expect(Math.abs(art.height / art.width - 88 / 256)).toBeLessThanOrEqual(88 / 256 * .05);
+        expect(art.height).toBeGreaterThanOrEqual(minHeight);
+        const object = slot.locator('.slot-object');
+        if (await object.count()) {
+            const box = (await object.boundingBox())!;
+            expect(box.y).toBeGreaterThanOrEqual(art.y - .5);
+            expect(box.y + box.height).toBeLessThanOrEqual(art.y + art.height + .5);
+        }
+    }
 }
 
 async function expectReadableText(page: Page): Promise<void> {
@@ -203,12 +225,12 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 360, height: 740 }
                 bottom = Math.max(bottom, block.y + block.height);
             }
             expect(viewport.height - bottom).toBeLessThanOrEqual(40);
-            // Les éléments du panneau grandissent : cartons jusqu'à 88 px, cases de 52 px, quotas en 16 px.
+            // Les éléments du panneau grandissent : cartons jusqu'à 88 px, quotas en 16 px ; les cases suivent leur dessin.
             for (const picture of await screen.locator('.box-picture').all()) {
                 expect((await picture.boundingBox())!.width).toBeLessThanOrEqual(88.5);
             }
             if (viewport.width === 390) expect((await screen.locator('.box-picture').first().boundingBox())!.width).toBeGreaterThanOrEqual(80);
-            for (const slot of await screen.locator('.slot').all()) expect((await slot.boundingBox())!.height).toBeGreaterThanOrEqual(52);
+            await expectSlotsDrawnToScale(page, viewport.width === 360 ? 20 : 0);
             await expect(screen.locator('.quota').first()).toHaveCSS('font-size', '16px');
             // Cadre des quotas : les bords de la planche, sans le cadre entier ni son centre.
             const border = screen.locator('.quotas .atlas-border[data-frame="sprite-panneau-quotas"]');
@@ -220,6 +242,41 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 360, height: 740 }
             expect(images.find(image => image.id === 'chat')).toMatchObject({ frame: 'sprite-chat-dort', visible: true, alpha: 1 });
             await capture(page, `jeu-salon-${viewport.width}x${viewport.height}`);
         });
+    });
+}
+
+for (const viewport of [{ width: 360, height: 740 }, { width: 320, height: 568 }]) {
+    test.describe(`petit écran ${viewport.width}×${viewport.height}`, () => {
+        test.use({ viewport, reducedMotion: 'reduce' });
+
+        for (const id of ['001-salon', '020-salle-de-bain']) {
+            test(`${id} : le tampon tient dans la fenêtre sans défilement`, async ({ page }) => {
+                await openLevel(page, id);
+                const screen = levelScreen(page);
+                const scroll = await page.evaluate(() => ({ height: document.scrollingElement!.scrollHeight, y: scrollY }));
+                expect(scroll.y).toBe(0);
+                expect(scroll.height).toBeLessThanOrEqual(viewport.height + .5);
+                const slots = await screen.locator('.slot').all();
+                expect(slots.length).toBeGreaterThan(0);
+                for (const slot of slots) {
+                    const box = (await slot.boundingBox())!;
+                    expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + .5);
+                }
+                // Au-delà de 4 catégories, deux colonnes de quotas ; le texte reste à 14 px au moins.
+                const level = levelFile(id);
+                const list = screen.locator('.quota-list');
+                const tracks = (await list.evaluate(node => getComputedStyle(node).gridTemplateColumns)).split(' ').filter(Boolean);
+                if (level.categories.length > 4) {
+                    expect(tracks).toHaveLength(2);
+                    for (const [index, row] of (await screen.locator('.quota').all()).entries()) {
+                        await expect(row).toHaveAttribute('title', level.categories[index]!.label);
+                    }
+                }
+                await expectReadableText(page);
+                if (viewport.width === 360) await expectSlotsDrawnToScale(page, 20);
+                await capture(page, `petit-ecran-${id}-${viewport.width}x${viewport.height}`);
+            });
+        }
     });
 }
 
