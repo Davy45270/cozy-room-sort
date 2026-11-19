@@ -25,7 +25,12 @@ test('T20 : fréquence des images, chargement après cache et latence d’un ran
     const chargement_ms = performance.now() - start;
     expect(await cached.evaluate(() => Boolean(navigator.serviceWorker.controller))).toBe(true);
 
-    const fps = await cached.evaluate(() => new Promise<number>(resolve => {
+    // Profil de référence de la spec (« mobile milieu de gamme ») : processeur ralenti 4 fois, comme le profil mobile
+    // de Lighthouse. La fréquence est la médiane des intervalles entre images ; 60 FPS = une image par période de
+    // rafraîchissement de 60 Hz (16,67 ms), à la résolution de l'horloge près (0,1 ms).
+    const cdp = await context.newCDPSession(cached);
+    await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 });
+    const medianFrameMs = await cached.evaluate(() => new Promise<number>(resolve => {
         const durations: number[] = [];
         requestAnimationFrame(first => {
             let previous = first;
@@ -39,12 +44,13 @@ test('T20 : fréquence des images, chargement après cache et latence d’un ran
                 durations.sort((a, b) => a - b);
                 const middle = Math.floor(durations.length / 2);
                 const median = (durations[middle]! + durations[Math.floor((durations.length - 1) / 2)]!) / 2;
-                resolve(1000 / median);
+                resolve(median);
             };
             requestAnimationFrame(sample);
         });
     }));
 
+    const fps = 1000 / medianFrameMs;
     const firstMove = levelFile(id).meta!.solution![0]!;
     const point = await cached.evaluate(objectId => window.__cozy?.objectCenter(objectId), firstMove);
     if (!point) throw new Error('Premier objet accessible absent de la scène');
@@ -67,12 +73,12 @@ test('T20 : fréquence des images, chargement après cache et latence d’un ran
     await measured.waitFor({ timeout: 3000 });
     const interaction_ms = Number(await measured.getAttribute('data-mesure-interaction'));
 
-    const results = { fps, chargement_ms, interaction_ms };
+    const results = { fps, image_mediane_ms: medianFrameMs, ralentissement_cpu: 4, chargement_ms, interaction_ms };
     await mkdir('test-results', { recursive: true });
     await writeFile('test-results/performance.json', `${JSON.stringify(results, null, 2)}\n`);
     console.log('Performance', results);
 
-    expect(fps).toBeGreaterThanOrEqual(50);
+    expect(medianFrameMs).toBeLessThanOrEqual(1000 / 60 + .1);
     expect(chargement_ms).toBeLessThan(3000);
     expect(interaction_ms).toBeLessThan(100);
 });
