@@ -2,8 +2,8 @@
  "frames": {
   "sprite-vue-salle-de-bain": {
    "frame": {
-    "x": 0,
-    "y": 0,
+    "x": 2,
+    "y": 2,
     "w": 420,
     "h": 420
    },
@@ -28,8 +28,8 @@
   "image": "p04-vues.webp",
   "format": "RGBA8888",
   "size": {
-   "w": 420,
-   "h": 420
+   "w": 424,
+   "h": 424
   },
   "scale": "1"
  }

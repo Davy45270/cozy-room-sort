@@ -2,8 +2,8 @@
  "frames": {
   "sprite-barre-sdb": {
    "frame": {
-    "x": 0,
-    "y": 0,
+    "x": 2,
+    "y": 2,
     "w": 256,
     "h": 256
    },
@@ -23,8 +23,8 @@
   },
   "sprite-boutons-bas": {
    "frame": {
-    "x": 256,
-    "y": 0,
+    "x": 262,
+    "y": 2,
     "w": 256,
     "h": 256
    },
@@ -44,8 +44,8 @@
   },
   "sprite-boutons-haut": {
    "frame": {
-    "x": 512,
-    "y": 0,
+    "x": 522,
+    "y": 2,
     "w": 256,
     "h": 256
    },
@@ -65,8 +65,8 @@
   },
   "sprite-etoile-sdb-droite": {
    "frame": {
-    "x": 0,
-    "y": 256,
+    "x": 2,
+    "y": 262,
     "w": 256,
     "h": 256
    },
@@ -86,8 +86,8 @@
   },
   "sprite-etoile-sdb-milieu": {
    "frame": {
-    "x": 256,
-    "y": 256,
+    "x": 262,
+    "y": 262,
     "w": 256,
     "h": 256
    },
@@ -107,8 +107,8 @@
   },
   "sprite-etoile-sdb": {
    "frame": {
-    "x": 512,
-    "y": 256,
+    "x": 522,
+    "y": 262,
     "w": 256,
     "h": 256
    },
@@ -128,8 +128,8 @@
   },
   "sprite-panneau-quotas-sdb": {
    "frame": {
-    "x": 0,
-    "y": 512,
+    "x": 2,
+    "y": 522,
     "w": 256,
     "h": 256
    },
@@ -149,12 +149,13 @@
   }
  },
  "meta": {
+  "app": "http://www.aseprite.org/",
   "version": "1.3.18.6-dev",
   "image": "p04-ui.webp",
   "format": "RGBA8888",
   "size": {
-   "w": 768,
-   "h": 768
+   "w": 780,
+   "h": 780
   },
   "scale": "1"
  }
