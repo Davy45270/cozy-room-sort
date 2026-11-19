@@ -1,6 +1,4 @@
-// Oracle (R-008) : en détente, le dernier coup reste annulable, y compris le coup gagnant ; seule une partie PERDUE
-// refuse l'annulation. Aujourd'hui le réducteur refuse UNDO depuis `won` : le cas marqué `it.fails` est vert tant que
-// le défaut existe. Quand le moteur sera corrigé, il deviendra rouge : il faudra alors le passer en `it`.
+// R-008 : le coup gagnant reste annulable en détente. Une partie perdue refuse l’annulation.
 import { describe, expect, it } from 'vitest';
 import { applyAction, createInitialState, withMode, type GameAction, type GameState } from '../../../packages/engine/src/index.ts';
 import { makeLevel } from './levels.ts';
@@ -23,7 +21,7 @@ describe('annulation et fin de partie (R-008)', () => {
         expect(play(chrono, [...sel('a1'), late]).state.status).toBe('lost');
     });
 
-    it.fails('en détente, le coup gagnant s’annule : la partie revient en cours, l’objet rangé revient dans la pièce', () => {
+    it('en détente, le coup gagnant s’annule : la partie revient en cours, l’objet rangé revient dans la pièce', () => {
         const { state, rejected } = play(detente, [...sel('a1', 'a2'), { type: 'UNDO' }]);
         expect(rejected).toBe(false);
         expect(state.status).toBe('playing');

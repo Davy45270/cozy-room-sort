@@ -12,7 +12,7 @@ const reject = (state: GameState, reason: RejectReason): GameTransition =>
     ({ state, events: [{ type: 'ACTION_REJECTED', reason }] });
 
 function undoTarget(rules: Level['rules'], state: GameState) {
-    if (state.status === 'won' || state.status === 'lost') return undefined;
+    if (state.status === 'lost') return undefined;
     if (!rules.allowUndo || state.undoCount >= (rules.undoLimit ?? Infinity)) return undefined;
     return state.history.at(-1);
 }

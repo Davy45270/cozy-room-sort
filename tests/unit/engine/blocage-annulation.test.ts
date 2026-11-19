@@ -58,15 +58,15 @@ describe('R-006 : blocage et annulation', () => {
 });
 
 describe('annulation après la fin de la partie', () => {
-    it.each(['won', 'lost'] as const)('refuse sans mutation depuis une partie au statut %s', status => {
+    it('refuse sans mutation depuis une partie perdue', () => {
         const level = makeLevel({
             boxes: [['a', 2]],
             objects: [['a1', 'a'], ['a2', 'a']],
             rules: { allowUndo: true, timeLimitSeconds: 1 }
         });
         const playing = applyAction(level, createInitialState(level), select('a1')).state;
-        const end = applyAction(level, playing, status === 'won' ? select('a2') : { type: 'TICK', ms: 1000 }).state;
-        expect(end.status).toBe(status);
+        const end = applyAction(level, playing, { type: 'TICK', ms: 1000 }).state;
+        expect(end.status).toBe('lost');
         expect(end.history.length).toBeGreaterThan(0);
         const result = applyAction(level, end, undo);
         expect(result.state).toBe(end);
