@@ -11,7 +11,7 @@ function sourceFiles(root: string): string[] {
         if (!allowed(file)) return [];
         return entry.isDirectory() ? walk(file) : [file];
     });
-    const folders = ['apps', 'packages', 'tests', 'scripts', 'docs'];
+    const folders = ['apps', 'packages', 'tests', 'scripts', 'docs', 'tools', 'content'];
     return [...folders.flatMap(folder => existsSync(join(root, folder)) ? walk(folder) : []),
         ...readdirSync(root, { withFileTypes: true }).filter(entry => entry.isFile()).map(entry => entry.name)];
 }

@@ -32,6 +32,10 @@ steps:
     image: *node
     commands:
       - npm run level:validate -- content/levels
+  - name: level:benchmark
+    image: *node
+    commands:
+      - npm run --silent level:benchmark
   - name: build
     image: *node
     commands:

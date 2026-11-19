@@ -1,0 +1,2 @@
+# Conserver les fins de ligne de l’exemple historique recopié.
+tests/fixtures/levels/spec-exemple.json -text whitespace=cr-at-eol
