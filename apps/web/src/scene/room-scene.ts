@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 import type { GameEvent, GameState } from '@cozy-room-sort/engine';
+import { usefulBox } from '@cozy-room-sort/schemas/room-geometry';
+import { pickObject, type Target } from './pick-object.ts';
 import { spriteOf } from '../atlas.ts';
 import { themeOf } from '../content.ts';
 import type { Controller } from '../game/controller.ts';
@@ -33,6 +35,7 @@ export class RoomScene extends Phaser.Scene {
     private readonly flights = new Map<string, Phaser.GameObjects.Image>();
     private readonly marks = new Map<string, Phaser.GameObjects.Text>();
     private readonly order: string[];
+    private readonly frontToBack: string[];
     private placed = new Map<string, Placed>();
     private background?: Phaser.GameObjects.Image;
     private cat?: Phaser.GameObjects.Image;
@@ -45,6 +48,7 @@ export class RoomScene extends Phaser.Scene {
         this.room = room;
         this.opts = opts;
         this.order = drawOrder(opts.controller.level);
+        this.frontToBack = [...this.order].reverse();
     }
 
     preload(): void {
@@ -64,13 +68,26 @@ export class RoomScene extends Phaser.Scene {
         this.cat = this.image('chat-dort').setDepth(1);
         const relayout = (): void => this.relayout();
         this.scale.on('resize', relayout);
-        const cancelSyntheticClick = (event: TouchEvent): void => event.preventDefault();
-        this.room.addEventListener('touchstart', cancelSyntheticClick, { passive: false });
+        const press = (event: PointerEvent): void => {
+            if (!event.isPrimary || event.button !== 0) return;
+            const id = this.pick(event);
+            if (id !== undefined) this.tap(id);
+        };
+        const hover = (event: PointerEvent): void => {
+            if (event.pointerType === 'mouse') this.room.style.cursor = this.pick(event) === undefined ? '' : 'pointer';
+        };
+        const resetCursor = (): void => { this.room.style.cursor = ''; };
+        this.room.addEventListener('pointerdown', press);
+        this.room.addEventListener('pointermove', hover);
+        this.room.addEventListener('pointerleave', resetCursor);
         const unsubscribe = this.opts.controller.subscribe((state, events) => this.reconcile(state, events));
         this.events.once('shutdown', () => {
             unsubscribe();
             this.scale.off('resize', relayout);
-            this.room.removeEventListener('touchstart', cancelSyntheticClick);
+            this.room.removeEventListener('pointerdown', press);
+            this.room.removeEventListener('pointermove', hover);
+            this.room.removeEventListener('pointerleave', resetCursor);
+            resetCursor();
         });
         this.scale.refresh();
         this.relayout();
@@ -138,27 +155,13 @@ export class RoomScene extends Phaser.Scene {
             if (!object || !at) return;
             const accessible = this.opts.controller.isObjectAccessible(id);
             let sprite = this.sprites.get(id);
-            const { hitbox, frame } = spriteOf(object.asset);
             if (!sprite) {
-                const area = new Phaser.Geom.Rectangle(0, 0, frame.w, frame.h);
-                sprite = this.image(object.asset).setDepth(depth + 2)
-                    .setInteractive({ hitArea: area, hitAreaCallback: (bounds: Phaser.Geom.Rectangle, x: number, y: number) => bounds.contains(x, y), useHandCursor: true });
-                sprite.on('pointerdown', () => this.tap(id));
+                sprite = this.image(object.asset).setDepth(depth + 2);
                 if (this.game.renderer.type === Phaser.CANVAS) this.tintCanvasImage(sprite);
                 this.sprites.set(id, sprite);
             }
             sprite.setPosition(at.x, at.y);
             if (sprite !== this.hintSprite) sprite.setDisplaySize(at.size, at.size);
-            if (sprite.input) {
-                const area = sprite.input.hitArea as Phaser.Geom.Rectangle;
-                const w = Math.min(frame.w, Math.max(hitbox.w, MIN_SIZE * frame.w / at.size));
-                const h = Math.min(frame.h, Math.max(hitbox.h, MIN_SIZE * frame.h / at.size));
-                area.setTo(
-                    Phaser.Math.Clamp(hitbox.x + (hitbox.w - w) / 2, 0, frame.w - w),
-                    Phaser.Math.Clamp(hitbox.y + (hitbox.h - h) / 2, 0, frame.h - h), w, h
-                );
-                sprite.input.enabled = accessible;
-            }
             const masked = object.hidden && !accessible;
             if (masked) sprite.setTint(SILHOUETTE.tint).setTintMode(Phaser.TintModes.FILL).setAlpha(SILHOUETTE.alpha);
             else sprite.setTintMode(Phaser.TintModes.MULTIPLY).clearTint().setAlpha(1);
@@ -199,6 +202,29 @@ export class RoomScene extends Phaser.Scene {
         };
     }
 
+    private target(id: string): Target | undefined {
+        const sprite = this.sprites.get(id);
+        const object = this.opts.controller.level.objects.find(item => item.id === id);
+        if (!sprite || !object) return undefined;
+        return { id, asset: object.asset, at: { x: sprite.x, y: sprite.y, size: sprite.displayWidth }, bounds: usefulBounds(object.asset) };
+    }
+
+    private pick(event: PointerEvent): string | undefined {
+        const { controller } = this.opts;
+        if (controller.state.status !== 'playing') return undefined;
+        const canvas = this.game.canvas.getBoundingClientRect();
+        const targets: Target[] = [];
+        for (const id of this.frontToBack) {
+            if (!controller.isObjectAccessible(id)) continue;
+            const target = this.target(id);
+            if (target) targets.push(target);
+        }
+        return pickObject(event.clientX - canvas.left, event.clientY - canvas.top, targets, ({ asset }, u, v) => {
+            const { atlas, key, frame } = spriteOf(asset);
+            return this.textures.getPixelAlpha(Math.floor(u * frame.w), Math.floor(v * frame.h), atlas.key, key) > 0;
+        });
+    }
+
     tap(id: string): void {
         if (!this.sprites.has(id) || !this.opts.controller.isObjectAccessible(id) || this.opts.controller.state.status !== 'playing') return;
         this.clearHint();
@@ -218,7 +244,7 @@ export class RoomScene extends Phaser.Scene {
             return;
         }
         const destination = this.center(target);
-        sprite.disableInteractive().setDepth(10_000);
+        sprite.setDepth(10_000);
         this.flights.set(id, sprite);
         this.tweens.add({
             targets: sprite, ...destination, scale: sprite.scale * 0.42, duration: PACK_MS, ease: 'Quad.easeOut',
@@ -267,14 +293,11 @@ export class RoomScene extends Phaser.Scene {
     }
 
     objectCenter(id: string): { x: number; y: number } | null {
-        const sprite = this.sprites.get(id);
-        if (!sprite) return null;
+        const target = this.target(id);
+        if (!target) return null;
         const canvas = this.game.canvas.getBoundingClientRect();
-        const area = sprite.input?.hitArea as Phaser.Geom.Rectangle | undefined;
-        return {
-            x: canvas.left + sprite.x + ((area?.centerX ?? sprite.displayOriginX) - sprite.displayOriginX) * sprite.scaleX,
-            y: canvas.top + sprite.y + ((area?.centerY ?? sprite.displayOriginY) - sprite.displayOriginY) * sprite.scaleY
-        };
+        const box = usefulBox(target.at, target.bounds);
+        return { x: canvas.left + box.x + box.w / 2, y: canvas.top + box.y + box.h / 2 };
     }
 }
 
@@ -284,7 +307,7 @@ export function startRoom(parent: HTMLElement, room: HTMLElement, opts: RoomScen
         type: Phaser.AUTO, parent, transparent: true,
         width: Math.max(1, parent.clientWidth), height: Math.max(1, parent.clientHeight),
         scale: { mode: Phaser.Scale.RESIZE },
-        input: { mouse: { target: room, preventDefaultWheel: false }, touch: { target: room }, windowEvents: false },
+        input: { mouse: false, touch: false, windowEvents: false },
         render: { antialias: true, maxTextures: 1 },
         audio: { noAudio: true },
         banner: false,

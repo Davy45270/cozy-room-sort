@@ -1,6 +1,8 @@
+import { createInitialState, isAccessible, applyAction, withMode } from '@cozy-room-sort/engine';
 import { generateLevel } from '@cozy-room-sort/generator';
 import { activeThemes } from '../../../content/themes/index.ts';
 import { readFileSync, readdirSync } from 'node:fs';
+import { pickObject } from '../../../apps/web/src/scene/pick-object.ts';
 import { describe, expect, it } from 'vitest';
 import type { Level } from '@cozy-room-sort/schemas';
 import { catSpot, drawOrder, layoutRoom, MIN_SIZE, overlapRatio, roomView, type Bounds, type Placed } from '../../../apps/web/src/scene/layout.ts';
@@ -131,3 +133,54 @@ function geometryErrors(level: Level): string[] {
     }
     return errors;
 }
+
+// En portrait, la pièce occupe 100 vw. À 1280 px, la colonne latérale prend 320 px.
+const touchViewports = [
+    { window: '360×215 (zone de jeu)', width: 360, height: 215, half: 0 },
+    { window: '360×215 (zone de jeu en portrait)', width: 360, height: 215, compact: true, half: 0 },
+    { window: '390×844', width: 390, height: 390, compact: true, half: 22 },
+    { window: '1280×800', width: 880, height: 730, half: 0 }
+];
+
+it.each(touchViewports)('$window : chaque objet accessible garde une zone propre après chaque coup', viewport => {
+    const errors: string[] = [];
+    for (const source of levels) {
+        const level = withMode(source, 'classique');
+        let state = createInitialState(level);
+        const placed = layoutRoom(level, viewport);
+        const objects = drawOrder(level).reverse().map(id => level.objects.find(object => object.id === id)!);
+        const targets = objects.map(({ id, asset }) => ({ id, asset, at: placed.get(id)!, bounds: boundsOf(asset) }));
+        const trace = level.meta?.solution ?? [];
+        for (let move = 0; move <= trace.length; move++) {
+            const accessible = targets.filter(target => isAccessible(level, state, target.id));
+            const boxes = accessible.map(target => ({ id: target.id, bounds: box(target.at, target.bounds) }));
+            for (const target of boxes) {
+                const { x, y, w, h } = target.bounds;
+                const { half } = viewport;
+                const point = { x: x + w / 2, y: y + h / 2 };
+                const farthest = Math.hypot(Math.max(0, half - w / 2), Math.max(0, half - h / 2));
+                const clearance = Math.min(...boxes.filter(other => other !== target).map(({ bounds: b }) =>
+                    Math.hypot(Math.max(0, b.x - point.x - half, point.x - half - b.x - b.w),
+                        Math.max(0, b.y - point.y - half, point.y - half - b.y - b.h))));
+                if (farthest > 22 || clearance <= farthest || point.x - half < 0 || point.y - half < 0
+                    || point.x + half > viewport.width || point.y + half > viewport.height
+                    || pickObject(point.x, point.y, accessible, () => true) !== target.id
+                    || pickObject(point.x, point.y, accessible, () => false) !== target.id) {
+                    errors.push(`${level.id}, coup ${move}, ${target.id} : marge ${clearance.toFixed(2)} px`);
+                }
+            }
+            const id = trace[move];
+            if (id !== undefined) {
+                const transition = applyAction(level, state, { type: 'SELECT_OBJECT', objectId: id });
+                expect(transition.state, `${level.id}, coup ${move + 1}`).not.toBe(state);
+                state = transition.state;
+            }
+        }
+        expect(state.status).toBe('won');
+    }
+    if (viewport.width === 360) {
+        // Le toucher du 16ᵉ coup de ce niveau choisissait le coussin dessiné devant.
+        expect(errors.filter(error => error.startsWith('011-chambre, coup 15, '))).toEqual([]);
+    }
+    expect(errors.slice(0, 10)).toEqual([]);
+});

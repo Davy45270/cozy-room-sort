@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
 // La scène tourne sur un Phaser d'essai qui enregistre ce que la scène demande à ses images ; le crochet de test
 // `images()` rend ensuite cet état (cadre, visibilité, opacité, mode de teinte, marque « ? »).
+import type { Level } from '@cozy-room-sort/schemas';
 import { afterEach, expect, it, vi } from 'vitest';
 
 vi.mock('phaser', () => {
@@ -12,13 +13,13 @@ vi.mock('phaser', () => {
     }
     class Image {
         visible = true; alpha = 1; tintMode: number = TintModes.MULTIPLY; tint = 0xffffff;
-        x = 0; y = 0; scale = 1; depth = 0;
+        x = 0; y = 0; displayWidth = 0; scale = 1; depth = 0;
         input?: { hitArea: Rectangle; enabled: boolean };
         frame: { name: string };
         constructor(frame: string) { this.frame = { name: frame }; }
         setDepth(depth: number): this { this.depth = depth; return this; }
         setPosition(x: number, y: number): this { this.x = x; this.y = y; return this; }
-        setDisplaySize(): this { return this; }
+        setDisplaySize(width: number): this { this.displayWidth = width; return this; }
         setScale(scale: number): this { this.scale = scale; return this; }
         setInteractive(config: { hitArea: Rectangle }): this { this.input = { hitArea: config.hitArea, enabled: true }; return this; }
         disableInteractive(): this { return this; }
@@ -44,6 +45,7 @@ vi.mock('phaser', () => {
     class Scene {
         add = { image: (_x: number, _y: number, _key: string, frame: string) => new Image(frame), text: (_x: number, _y: number, text: string) => new Text(text) };
         load = { atlas: () => undefined };
+        textures = { getPixelAlpha: vi.fn((): number => 0) };
         scale = { on: () => undefined, off: () => undefined, refresh: () => undefined };
         events = { once: () => undefined };
         tweens = { add: () => undefined, killTweensOf: () => undefined };
@@ -61,9 +63,8 @@ const { default: Phaser } = await import('phaser');
 
 afterEach(() => { window.history.replaceState(null, '', '/'); });
 
-function mount(id: string) {
-    const level = levelById(id);
-    if (!level) throw new Error(id);
+function mount(source: string | Level) {
+    const level = typeof source === 'string' ? levelById(source)! : source;
     const controller = createController(level, 'classique', { save: () => Promise.resolve(), now: () => 0 });
     const room = document.createElement('section');
     room.getBoundingClientRect = () => ({ left: 0, top: 0, x: 0, y: 0, width: 390, height: 390, right: 390, bottom: 390, toJSON: () => ({}) });
@@ -72,7 +73,7 @@ function mount(id: string) {
     window.history.replaceState(null, '', '/?test=1');
     const remove = installTestHooks(controller, scene);
     const images = () => window.__cozy!.images();
-    return { level, controller, images, remove };
+    return { level, controller, images, remove, room, scene };
 }
 
 it('le crochet des images n’existe qu’en mode test', () => {
@@ -112,5 +113,44 @@ it('un objet masqué est une silhouette pleine, à demi transparente, marquée �
             expect(image, image.id).toMatchObject({ tintMode: Phaser.TintModes.MULTIPLY, alpha: 1, mark: null });
         }
     }
+    remove();
+});
+
+it('le toucher traverse un pixel transparent, privilégie le pixel de devant puis se rabat sur la boîte utile', () => {
+    const source = levelById('001-salon')!;
+    const [back, front] = source.objects.filter(object => object.blockedBy.length === 0);
+    const position = { x: .5, y: .5 };
+    const level: Level = { ...source, objects: source.objects.map(object => {
+        if (object === back) return { ...object, asset: 'livres-trio', position, layer: 0 };
+        if (object === front) return { ...object, asset: 'boite-creme', position, layer: 1 };
+        return { ...object, position: { x: .1, y: .1 } };
+    }) };
+    const { room, scene, controller, remove } = mount(level);
+    const alpha = vi.spyOn(scene.textures, 'getPixelAlpha');
+    const tap = (clientX: number, clientY: number): void => {
+        room.dispatchEvent(new PointerEvent('pointerdown', { clientX, clientY, button: 0, isPrimary: true }));
+    };
+    const selected = (): readonly string[] => level.objects.filter(object => !controller.state.remainingObjectIds.includes(object.id))
+        .map(object => object.id);
+    alpha.mockImplementation((x, y, _key, frame) => x === 64 && y === 64 && frame === 'sprite-livres-trio' ? 255 : 0);
+    tap(195, 195);
+    expect(selected()).toEqual([back!.id]);
+    controller.restart();
+
+    alpha.mockReturnValue(255);
+    tap(195, 195);
+    expect(selected()).toEqual([front!.id]);
+    controller.restart();
+
+    alpha.mockReturnValue(0);
+    tap(195, 156);
+    expect(selected()).toEqual([back!.id]);
+    controller.restart();
+    // Les deux boîtes s’arrêtent à x = 166. L'égalité à 22 px désigne l'objet de devant.
+    tap(144, 195);
+    expect(selected()).toEqual([front!.id]);
+    controller.restart();
+    tap(143.99, 195);
+    expect(selected()).toEqual([]);
     remove();
 });

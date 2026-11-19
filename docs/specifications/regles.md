@@ -9,6 +9,11 @@
   boîtes délimitant les pixels non transparents, issues de la provenance des cadres.
 - Un objet devient accessible quand tous ses bloqueurs ont quitté la pièce, y compris par le tampon.
   Un objet `hidden` a au moins un bloqueur et apparaît en silhouette sous ses bloqueurs jusqu’à sa libération.
+- Le toucher examine les objets accessibles de l’avant vers l’arrière et choisit le premier dont le pixel
+  sous le doigt a un alpha non nul. Quand aucun de ces pixels n’est touché, il prend la boîte utile accessible
+  la plus proche, jusqu’à 22 px CSS. À distance égale, il choisit l’objet de devant. Dans le catalogue, chaque
+  objet accessible garde une zone propre de 44 × 44 px CSS en portrait à 390 × 844 px après chaque coup
+  des traces de solution.
 - La sélection range l’objet dans le premier carton actif compatible, selon l’ordre des emplacements. Sinon,
   elle le place en fin de tampon si une place est libre. Un tampon plein fait refuser le coup incompatible
   sans mutation. Les autres coups légaux restent jouables.
