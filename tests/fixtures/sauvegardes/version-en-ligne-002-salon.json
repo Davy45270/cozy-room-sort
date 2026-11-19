@@ -1,0 +1,8 @@
+{
+  "provenance": "Forme relevée le 2026-11-19 dans le bundle publié assets/index-B1Pby4wR.js (lecture seule, jamais exécuté) : base IndexedDB « cozy-room-sort » version 1, store « saves », clé = levelId, valeur { levelId, rulesVersion, actions } sans levelSignature. Le premier coup est celui de la solution publiée de 002-salon, dont les identifiants (livre-1, coussin-2…) ont disparu du catalogue actuel.",
+  "base": "cozy-room-sort",
+  "version": 1,
+  "store": "saves",
+  "cle": "002-salon",
+  "valeur": { "levelId": "002-salon", "rulesVersion": "1", "actions": [{ "type": "SELECT_OBJECT", "objectId": "livre-1" }] }
+}

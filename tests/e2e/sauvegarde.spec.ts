@@ -29,3 +29,16 @@ test('une partie enregistrée pour une autre version du niveau reprend au début
     expect((await state(page)).moveCount).toBe(0);
     await expect(levelScreen(page).locator('[role="status"]')).toHaveText('Ce niveau a changé : la partie reprend au début.');
 });
+
+test('une partie sans empreinte qui se rejoue sur le niveau actuel reprend au même coup, sans annonce', async ({ page }) => {
+    const id = '002-salon';
+    const level = levelFile(id);
+    const first = level.meta?.solution?.[0];
+    expect(first).toBe('pile-8');
+    await openLevel(page, id);
+    await writeLegacySave(page, id, level.rulesVersion, [{ type: 'SELECT_OBJECT', objectId: first }]);
+    await page.reload();
+    await expect(levelScreen(page)).toHaveAttribute('data-ready', 'true', { timeout: 20_000 });
+    expect((await state(page)).moveCount).toBe(1);
+    await expect(levelScreen(page).locator('[role="status"]')).not.toHaveText('Ce niveau a changé : la partie reprend au début.');
+});

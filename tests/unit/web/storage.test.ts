@@ -1,5 +1,7 @@
 import 'fake-indexeddb/auto';
+import { readFileSync } from 'node:fs';
 import { withMode } from '@cozy-room-sort/engine';
+import type { Level } from '@cozy-room-sort/schemas';
 import { signatureOf } from '../../../apps/web/src/game/save-signature.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { openStore, saveLoadAnnouncement, type Store } from '../../../apps/web/src/storage/db.ts';
@@ -79,16 +81,67 @@ it.each(['same', 'changed', 'missing'] as const)('compatibilité du journal en b
     // Le chargement destiné à l'écran annonce et supprime atomiquement un journal incompatible.
     const loaded = await store.loadSave(target, 'classique');
     const resumed = createController(target, 'classique', deps, loaded.save);
-    expect(resumed.state).toEqual(kind === 'same'
+    // Sans empreinte mais rejouable sur le même contenu : la partie est reprise.
+    const kept = kind !== 'changed';
+    expect(resumed.state).toEqual(kept
         ? original.state
         : createController(target, 'classique', deps).state);
-    expect(loaded.kind).toBe(kind === 'same' ? 'ready' : 'level-changed');
-    expect(saveLoadAnnouncement(loaded)).toBe(kind === 'same'
+    expect(loaded.kind).toBe(kept ? 'ready' : 'level-changed');
+    expect(saveLoadAnnouncement(loaded)).toBe(kept
         ? undefined
         : 'Ce niveau a changé : la partie reprend au début.');
-    if (kind === 'same') expect(loaded.save?.levelSignature).toMatch(/^[0-9a-f]{16}$/);
+    if (kept) expect(loaded.save?.levelSignature).toMatch(/^[0-9a-f]{16}$/);
     else expect((await store.loadSave(target, 'classique')).kind).toBe('empty');
     expect(await store.progress()).toEqual({ [level.id]: { stars: 3, bestBuffered: 0 } });
+});
+
+describe('journal sans empreinte (version précédente)', () => {
+    const salon = JSON.parse(readFileSync('content/levels/002-salon.json', 'utf8')) as Level;
+    const published = JSON.parse(readFileSync('tests/fixtures/sauvegardes/version-en-ligne-002-salon.json', 'utf8')) as
+        { base: string; store: string; cle: string; valeur: { levelId: string; rulesVersion: string; actions: unknown[] } };
+    const firstMove = salon.meta?.solution?.[0] ?? '';
+    const deps: ControllerDeps = { save: value => store.writeSave(value), now: () => 0 };
+
+    it('la fixture a la forme écrite par la version en ligne', () => {
+        expect([published.base, published.store, published.cle]).toEqual(['cozy-room-sort', 'saves', salon.id]);
+        expect(Object.keys(published.valeur).sort()).toEqual(['actions', 'levelId', 'rulesVersion']);
+        expect(salon.objects.some(object => object.id === 'livre-1')).toBe(false);
+    });
+
+    it('la sauvegarde de la version en ligne, aux identifiants disparus, est écartée avec annonce', async () => {
+        await store.writeRaw('saves', published.cle, published.valeur);
+        const loaded = await store.loadSave(salon, 'classique');
+        expect(loaded.kind).toBe('level-changed');
+        expect(saveLoadAnnouncement(loaded)).toBe('Ce niveau a changé : la partie reprend au début.');
+        expect((await store.loadSave(salon, 'classique')).kind).toBe('empty');
+    });
+
+    it('la même forme rejouable sur le niveau actuel est reprise au même coup, puis signée', async () => {
+        expect(firstMove).toBe('pile-8');
+        await store.writeRaw('saves', published.cle, { ...published.valeur, actions: [{ type: 'SELECT_OBJECT', objectId: firstMove }] });
+        const loaded = await store.loadSave(salon, 'classique');
+        expect(loaded.kind).toBe('ready');
+        expect(saveLoadAnnouncement(loaded)).toBeUndefined();
+        const resumed = createController(salon, 'classique', deps, loaded.save);
+        expect(resumed.state.moveCount).toBe(1);
+        resumed.select(salon.meta?.solution?.[1] ?? '');
+        await resumed.idle();
+        expect((await store.readSave(salon.id, salon.rulesVersion))?.levelSignature).toMatch(/^[0-9a-f]{16}$/);
+    });
+
+    it('un journal sans empreinte dont un coup est refusé est écarté avec annonce', async () => {
+        await store.writeRaw('saves', salon.id, { levelId: salon.id, rulesVersion: salon.rulesVersion,
+            actions: [{ type: 'SELECT_OBJECT', objectId: firstMove }, { type: 'SELECT_OBJECT', objectId: firstMove }] });
+        const loaded = await store.loadSave(salon, 'classique');
+        expect(loaded.kind).toBe('level-changed');
+        expect(saveLoadAnnouncement(loaded)).toBe('Ce niveau a changé : la partie reprend au début.');
+    });
+
+    it('un journal signé d\'une autre empreinte reste écarté, même rejouable', async () => {
+        await store.writeRaw('saves', salon.id, { levelId: salon.id, rulesVersion: salon.rulesVersion, levelSignature: '0000000000000000',
+            actions: [{ type: 'SELECT_OBJECT', objectId: firstMove }] });
+        expect((await store.loadSave(salon, 'classique')).kind).toBe('level-changed');
+    });
 });
 
 describe('actions illisibles dans un journal', () => {
