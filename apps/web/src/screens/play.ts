@@ -8,16 +8,18 @@ import { createController } from '../game/controller.ts';
 import { createProgress, renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachable, renderScore } from '../hud.ts';
 import { PACK_MS, reducedMotion, startRoom, type RoomScene } from '../scene/room-scene.ts';
 import { playSound } from '../sons.ts';
+import { saveLoadAnnouncement } from '../storage/db.ts';
 import { BLOCKED_LEVEL, BLOCKED_MOVES, demonstration, installTestHooks } from '../test-hooks.ts';
 
 export async function playScreen(ctx: AppContext, level: Level): Promise<Screen> {
     const demo = demonstration();
     const trace = demo === 'gagner' ? level.meta?.solution : demo === 'bloquer' && level.id === BLOCKED_LEVEL ? BLOCKED_MOVES : undefined;
-    const saved = trace ? null : await ctx.store.readSave(level.id, level.rulesVersion);
+    const loaded = trace ? undefined : await ctx.store.loadSave(level, ctx.settings.mode);
     const controller = createController(level, trace ? 'classique' : ctx.settings.mode, {
         save: s => trace ? Promise.resolve() : ctx.store.writeSave(s),
         now: () => performance.now()
-    }, saved ?? undefined);
+    }, loaded?.save);
+    const announcement = loaded ? saveLoadAnnouncement(loaded) : undefined;
     const rules = controller.level.rules;
 
     const room = h('section', { class: 'room', 'aria-label': 'Pièce en désordre' });
@@ -144,6 +146,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
                 onReady: () => {
                     if (disposed) return;
                     element.dataset['ready'] = 'true';
+                    if (announcement) say(announcement);
                     if (!trace) return;
                     let index = 0;
                     const playNext = (): void => {
