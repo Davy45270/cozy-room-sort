@@ -83,11 +83,12 @@ export function renderQuotas(container: HTMLElement, level: Level, state: GameSt
 
 /**
  * Intérieur du cadre « barre-progression » (pixels de sa partie utile 256 × 61), mesuré sur le cadre : la piste va du
- * bord gauche (x 8) jusqu'avant l'étoile (x 196), de y 19 à 52. La planche y dessine une partie verte (x 8 à 112, bout
+ * bord gauche (x 8) jusqu'avant l'étoile, de y 19 à 52. L'étoile commence en x 191 au plus tôt sur ces lignes (contour
+ * compris) ; la piste s'arrête en x 190 exclu, avec 1 px de garde. La planche y dessine une partie verte (x 8 à 112, bout
  * arrondi compris) puis une partie sombre (x 145 à 190, unie en largeur). Aucun aplat ni dégradé : la piste vide montre
  * la partie sombre étirée, le remplissage la partie verte étirée à la largeur de la progression, du même atlas.
  */
-export const PROGRESS_TRACK: Readonly<Rectangle> = { x: 8, y: 19, w: 188, h: 33 };
+export const PROGRESS_TRACK: Readonly<Rectangle> = { x: 8, y: 19, w: 182, h: 33 };
 export const PROGRESS_FILLED: Readonly<Rectangle> = { x: 8, y: 19, w: 104, h: 33 };
 export const PROGRESS_EMPTY: Readonly<Rectangle> = { x: 145, y: 19, w: 45, h: 33 };
 

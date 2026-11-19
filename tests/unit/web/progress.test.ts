@@ -20,8 +20,18 @@ it('la largeur du remplissage suit les objets rangés, de 0 à 100 %, sans en so
     expect(progressPercent(0, 0)).toBe(0);
 });
 
+/**
+ * Bord gauche de l'étoile imprimée sur le cadre « barre-progression » (coordonnées de sa partie utile 256 × 61).
+ * Mesuré le 19/11/2026 sur l'atlas p01-panneaux.webp décodé (dwebp) : premier pixel de saturation HSV ≥ 0,6 à
+ * partir de x 150, sur chaque ligne y 19 à 52. Minimum 191 (lignes 20 et 23 à 26 ; 192 en y 19, 202 en y 39).
+ * La piste s'arrête au moins 1 px avant : bord droit exclusif ≤ 190.
+ */
+const STAR_LEFT_EDGE = 191;
+const STAR_GUARD = 1;
+
 it('les zones de la jauge restent dans l’intérieur du cadre, la piste avant l’étoile', () => {
     const { hitbox } = spriteOf('barre-progression');
+    expect(STAR_LEFT_EDGE).toBeLessThan(hitbox.w);
     for (const zone of [PROGRESS_EMPTY, PROGRESS_FILLED]) {
         expect(zone.x).toBeGreaterThanOrEqual(PROGRESS_TRACK.x);
         expect(zone.x + zone.w).toBeLessThanOrEqual(PROGRESS_TRACK.x + PROGRESS_TRACK.w);
@@ -30,7 +40,7 @@ it('les zones de la jauge restent dans l’intérieur du cadre, la piste avant l
     }
     // Partie verte à gauche, partie sombre à droite, sans chevauchement.
     expect(PROGRESS_FILLED.x + PROGRESS_FILLED.w).toBeLessThan(PROGRESS_EMPTY.x);
-    expect(PROGRESS_TRACK.x + PROGRESS_TRACK.w).toBeLessThanOrEqual(hitbox.w);
+    expect(PROGRESS_TRACK.x + PROGRESS_TRACK.w).toBeLessThanOrEqual(STAR_LEFT_EDGE - STAR_GUARD);
     expect(PROGRESS_TRACK.y + PROGRESS_TRACK.h).toBeLessThanOrEqual(hitbox.h);
 });
 
