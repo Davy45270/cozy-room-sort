@@ -1,7 +1,4 @@
-// Oracle : un TICK ne doit pas changer le statut d'une partie qui n'est plus en cours.
-// Aujourd'hui le réducteur accepte un TICK en statut `blocked` et la fait passer à `lost` à l'échéance : le test
-// marqué `it.fails` est donc vert tant que le défaut existe. Quand le moteur sera corrigé, il deviendra rouge : il
-// faudra alors le passer en `it`.
+// Le réducteur conserve l’état hors d’une partie en cours. Un TICK à l’échéance laisse une partie bloquée en `blocked`.
 import type { Level } from '@cozy-room-sort/schemas';
 import { describe, expect, it } from 'vitest';
 import { applyAction, createInitialState, type GameAction, type GameState } from '../../../packages/engine/src/index.ts';
@@ -23,8 +20,19 @@ describe('TICK hors d’une partie en cours', () => {
         expect(run(wonLevel, sel('a1', 'a2')).status).toBe('won');
     });
 
-    it.fails('un TICK ne change pas le statut d’une partie qui n’est pas en cours', () => {
+    it('un TICK ne change pas le statut d’une partie qui n’est pas en cours', () => {
         expect(run(blockedLevel, [late], run(blockedLevel, sel('b1'))).status).toBe('blocked');
         expect(run(wonLevel, [late], run(wonLevel, sel('a1', 'a2'))).status).toBe('won');
+    });
+
+    it('conserve le même état pour une partie bloquée, gagnée ou perdue', () => {
+        const blocked = run(blockedLevel, sel('b1'));
+        const won = run(wonLevel, sel('a1', 'a2'));
+        const lost = run(wonLevel, [late]);
+        expect(lost.status).toBe('lost');
+
+        expect(run(blockedLevel, [late], blocked)).toBe(blocked);
+        expect(run(wonLevel, [late], won)).toBe(won);
+        expect(run(wonLevel, [late], lost)).toBe(lost);
     });
 });

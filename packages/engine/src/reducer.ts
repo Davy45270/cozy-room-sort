@@ -35,7 +35,7 @@ export function applyAction(level: Level, state: GameState, action: GameAction):
             if (!rules.allowHints || state.status !== 'playing' || state.hintCount >= (rules.hintLimit ?? Infinity)) return reject(state, 'not-playing');
             return { state: { ...state, hintCount: state.hintCount + 1 }, events: [] };
         case 'TICK': {
-            if (state.status === 'won' || state.status === 'lost' || action.ms <= 0) return { state, events: [] };
+            if (state.status !== 'playing' || action.ms <= 0) return { state, events: [] };
             const elapsedMs = state.elapsedMs + action.ms;
             const limit = rules.timeLimitSeconds;
             const status = limit !== null && elapsedMs >= limit * 1000 ? 'lost' : state.status;
