@@ -5,7 +5,9 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "./files": "./src/files.ts"
+    "./files": "./src/files.ts",
+    "./preview": "./src/preview.ts",
+    "./render": "./src/render.ts"
   },
   "dependencies": {
     "@cozy-room-sort/engine": "0.1.0",

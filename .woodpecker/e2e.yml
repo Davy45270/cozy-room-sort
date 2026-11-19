@@ -44,4 +44,5 @@ steps:
         echo "Playwright : image $$WANT, dépôt $$GOT"
         [ -n "$$WANT" ] && [ "$$WANT" = "$$GOT" ] || { echo "versions divergentes : changer l'image de .woodpecker/e2e.yml"; exit 1; }
         npm run build
+        # Le projet bureau vérifie aussi le PNG de level:render.
         npm run test:e2e
