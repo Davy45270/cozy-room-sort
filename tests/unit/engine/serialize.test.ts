@@ -9,7 +9,7 @@ const actions: GameAction[] = [
 ];
 
 describe('sauvegarde par rejeu', () => {
-    it('T-008 : mêmes niveau et actions, même résultat', () => {
+    it('T-008 / R-010 : mêmes niveau et actions, même résultat', () => {
         expect(replayActions(level, actions)).toEqual(replayActions(level, actions));
     });
 

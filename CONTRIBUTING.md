@@ -11,19 +11,21 @@ Utiliser Node.js 26 et installer les versions verrouillées avec `npm ci`. Lance
 | `npm run level:validate -- content/levels` | Vérifier le catalogue, sa structure et ses solutions. |
 | `npm run level:solve -- <fichier> [--write]` | Trouver une solution et éventuellement l’inscrire dans les métadonnées. |
 | `npm run level:generate -- --theme salon --difficulty medium --count 2 --seed 42001 --out /tmp/cozy-niveaux` | Produire un lot déterministe, validé et résolu. |
-| `npm run level:generate -- --catalog` | Régénérer les vingt fichiers livrés depuis les recettes. |
+| `npm run level:generate -- --catalog` | Régénérer les vingt fichiers livrés depuis les recettes. Ajouter `--theme` pour ne régénérer que la pièce indiquée. |
 | `npm run level:render -- <fichier> [--out x.png]` | Produire une capture avec Chromium. |
 | `npm run --silent level:benchmark` | Écrire les résultats JSON sur stdout et afficher le tableau sur stderr. |
 | `npm run build` et `npm run check:precache` | Construire la PWA et contrôler son précache. |
 
 La génération d’un lot utilise `generated-levels/` par défaut et refuse d’écraser un fichier existant.
-Les thèmes acceptent aussi les alias `living-room`, `bedroom` et `bathroom`.
+Les thèmes acceptent aussi les alias `living-room`, `bedroom`, `bathroom` et `kitchen` lorsque la pièce correspondante est active.
 
 ## Tests ciblés
 
 Les tests sont rangés dans `tests/unit/<paquet>/`, `tests/property/`, `tests/integration/` et `tests/e2e/`.
 Lancer les fichiers touchés en local, par exemple `npx vitest run tests/integration/tools.test.ts`.
 La CI exécute la suite complète et les parcours navigateur, y compris la capture du niveau.
+Le test de performance sur Chromium mobile affiche ses trois mesures et écrit `test-results/performance.json`.
+La [matrice de traçabilité](docs/specifications/tracabilite.md) relie les exigences à leurs tests.
 
 ## Illustrations et commits
 

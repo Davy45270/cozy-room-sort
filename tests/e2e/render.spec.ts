@@ -4,7 +4,7 @@ import { dirname } from 'node:path';
 import { promisify } from 'node:util';
 import { expect, test } from '@playwright/test';
 
-test('la commande produit une capture PNG de la pièce et de ses objets', async ({ page }, info) => {
+test('level:render : la commande produit une capture PNG de la pièce et de ses objets', async ({ page }, info) => {
     test.skip(info.project.name !== 'chromium-desktop', 'La commande lance déjà son propre navigateur');
     const output = info.outputPath('niveau.png');
     await mkdir(dirname(output), { recursive: true });

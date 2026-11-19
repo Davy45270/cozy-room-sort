@@ -16,7 +16,7 @@ const play = (spec: MiniSpec, ...ids: string[]) => {
 const books3 = { boxes: [['books', 3], ['plants', 1]], objects: [['b1', 'books'], ['b2', 'books'], ['b3', 'books'], ['p1', 'plants']] } as const satisfies MiniSpec;
 
 describe('SELECT_OBJECT', () => {
-    it('T-001 : un objet compatible incrémente le carton', () => {
+    it('T-001 / R-002 : un objet compatible incrémente le carton', () => {
         const { select } = play(books3);
         const { state, events } = select('b1');
         expect(state.boxFillCounts['box-1']).toBe(1);
@@ -25,14 +25,14 @@ describe('SELECT_OBJECT', () => {
         expect(state.moveCount).toBe(1);
     });
 
-    it('T-002 : un objet incompatible va au tampon', () => {
+    it('T-002 / R-003 : un objet incompatible va au tampon', () => {
         const { select } = play(books3);
         const { state, events } = select('p1');
         expect(state.bufferObjectIds).toEqual(['p1']);
         expect(events).toEqual([{ type: 'OBJECT_BUFFERED', objectId: 'p1' }]);
     });
 
-    it('T-003 : tampon plein et objet incompatible, coup refusé sans mutation', () => {
+    it('T-003 / R-006 : tampon plein et objet incompatible, coup refusé sans mutation', () => {
         const spec: MiniSpec = { boxes: [['books', 1], ['plants', 1], ['toys', 1]], objects: [['b1', 'books'], ['p1', 'plants'], ['t1', 'toys']], rules: { bufferCapacity: 1 } };
         const { state, select } = play(spec, 'p1');
         const t = select('t1');
@@ -40,7 +40,7 @@ describe('SELECT_OBJECT', () => {
         expect(t.events).toEqual([{ type: 'ACTION_REJECTED', reason: 'buffer-full' }]);
     });
 
-    it('T-004 : un carton plein se ferme et le suivant s\'active au même emplacement', () => {
+    it('T-004 / R-004 : un carton plein se ferme et le suivant s\'active au même emplacement', () => {
         const { select } = play({ boxes: [['books', 3], ['books', 1]], objects: [['b1', 'books'], ['b2', 'books'], ['b3', 'books'], ['b4', 'books']] }, 'b1', 'b2');
         const { state, events } = select('b3');
         expect(events).toEqual([
@@ -52,7 +52,7 @@ describe('SELECT_OBJECT', () => {
         expect(state.completedBoxIds).toEqual(['box-1']);
     });
 
-    it('T-011 : un objet masqué sous un autre n\'est pas sélectionnable', () => {
+    it('T-011 / R-001 : un objet masqué sous un autre n\'est pas sélectionnable', () => {
         const spec: MiniSpec = { boxes: [['books', 2]], objects: [['b1', 'books'], ['b2', 'books', ['b1'], true]] };
         const { level, state, select } = play(spec);
         expect(select('b2')).toEqual({ state, events: [{ type: 'ACTION_REJECTED', reason: 'not-accessible' }] });
@@ -75,7 +75,7 @@ describe('SELECT_OBJECT', () => {
         expect(t.events).toEqual([{ type: 'ACTION_REJECTED', reason: 'not-accessible' }]);
     });
 
-    it('T-006 : le dernier objet rangé donne la victoire, une seule fois, avec les étoiles', () => {
+    it('T-006 / R-007 : le dernier objet rangé donne la victoire, une seule fois, avec les étoiles', () => {
         const spec: MiniSpec = { boxes: [['books', 2]], objects: [['b1', 'books'], ['b2', 'books']], stars: [0, 1] };
         const { select } = play(spec, 'b1');
         const { state, events } = select('b2');
@@ -83,14 +83,22 @@ describe('SELECT_OBJECT', () => {
         expect(events.filter(e => e.type === 'LEVEL_WON')).toEqual([{ type: 'LEVEL_WON', moveCount: 2, bufferedCount: 0, stars: 3 }]);
     });
 
-    it.each([[0, 3], [1, 2], [2, 1]] as const)('étoiles comptées en passages par le tampon : %i passage(s) donne %i étoile(s)', (passes, stars) => {
-        // Cartons dans l'ordre a, b, c ; ranger d'abord les objets des cartons suivants les fait passer par le tampon.
+    it('étoiles : comptées en passages par le tampon', () => {
         const spec: MiniSpec = { boxes: [['a', 1], ['b', 1], ['c', 1]], objects: [['a1', 'a'], ['b1', 'b'], ['c1', 'c']], stars: [0, 1] };
-        const order = passes === 0 ? ['a1', 'b1', 'c1'] : passes === 1 ? ['b1', 'a1', 'c1'] : ['c1', 'b1', 'a1'];
-        const { state } = play(spec, ...order);
-        expect(state.status).toBe('won');
-        expect(state.bufferedCount).toBe(passes);
-        expect(starsFor(makeLevel(spec), state.bufferedCount)).toBe(stars);
+        const cases = [
+            { order: ['a1', 'b1', 'c1'], passes: 0, stars: 3 },
+            { order: ['b1', 'a1', 'c1'], passes: 1, stars: 2 },
+            { order: ['c1', 'b1', 'a1'], passes: 2, stars: 1 }
+        ];
+        for (const { order, passes, stars } of cases) {
+            const { level, select } = play(spec, ...order.slice(0, -1));
+            const { state, events } = select(order.at(-1)!);
+            expect(state.status).toBe('won');
+            expect(state.moveCount).toBe(3);
+            expect(state.bufferedCount).toBe(passes);
+            expect(starsFor(level, state.bufferedCount)).toBe(stars);
+            expect(events).toContainEqual({ type: 'LEVEL_WON', moveCount: 3, bufferedCount: passes, stars });
+        }
     });
 
     it('refuse tout coup après la victoire', () => {

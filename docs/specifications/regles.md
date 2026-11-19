@@ -31,13 +31,18 @@ par le nombre total d’objets. Les bornes sont inclusives.
 | Expert (`expert`) | 31–60 | 6–10 | 3 | 25–45 % |
 
 Le validateur applique ces seuils et vérifie quotas, identifiants et dépendances. Le générateur signale
-explicitement un thème qui manque de catégories. Chacun des trois thèmes actuels en fournit cinq au plus.
+explicitement un thème qui manque de catégories. Chaque pièce jouable en fournit au moins six.
+Dans les trois pièces livrées, le générateur réserve la catégorie Rangements à la difficulté expert
+pour conserver les niveaux faciles et moyens existants.
 
 ## Recherche, score et benchmark
 
 Une victoire sans annulation sélectionne exactement une fois chaque objet. La longueur optimale vaut donc le
 nombre d’objets et le solveur minimise les passages au tampon. Le niveau généré accorde trois étoiles à cet
 optimum, deux étoiles jusqu’à deux passages supplémentaires, puis une étoile au-delà.
+Les écrans de partie et de victoire calculent les étoiles avec le compteur de passages. Un objet rangé
+directement ne l’incrémente pas. Les cartes de niveau affichent la meilleure note enregistrée pour chaque
+identifiant de niveau. Une réédition qui conserve cet identifiant conserve la note.
 
 En mode `auto`, la recherche utilise BFS à coûts 0 et 1 sous 16 objets restants, et A* à partir de 16.
 A* compte une sélection par objet restant et un passage de plus si le prochain coup doit aller au tampon.
@@ -59,3 +64,32 @@ seuils. Ce supplément devient la marge de passages au tampon. Le niveau migré 
 Cette migration s’applique au contrat des niveaux, indépendamment de la version des règles du moteur et du
 format de ses instantanés. L’exemple historique de la spécification est conservé intégralement dans les fixtures.
 Il est migrable et ses quotas incomplets sont signalés à la validation.
+
+## Bibliothèque et activation de la cuisine
+
+Le catalogue de cadres dans `content/catalog/objets.json` est destiné à la création de contenu.
+Il rassemble les objets, meubles et éléments décoratifs découpés, dont les deux chats. Les bacs et cartons
+de jeu, les sols, les fonds et les cadres d’interface sont exclus.
+
+La salle de bain occupe provisoirement la troisième place. Pour basculer vers la cuisine :
+
+1. Renseigner la planche et les 30 découpes de `content/assets/planches/source/cuisine-objets.decoupe.json`
+   en conservant les identifiants du champ `attendus`.
+2. Produire `cuisine-objets.json` et `cuisine-objets.webp` dans `content/assets/planches/atlas/`. Inscrire
+   chaque cadre dans la provenance et le catalogue, puis faire contrôler les découpes.
+3. Mettre `actif: true` dans `content/themes/cuisine.json`. Le champ `remplace` donne à la cuisine la place
+   de la salle de bain dans le sélecteur et les recettes.
+4. Exécuter `npm run level:generate -- --catalog --theme cuisine` pour remplacer les six niveaux 015 à 020.
+   Le générateur écrit les nouveaux niveaux vérifiés avant de retirer les anciens fichiers des six emplacements.
+   Les 14 premiers niveaux conservent leurs identifiants et les niveaux cuisine reçoivent leurs propres identifiants.
+5. Exécuter `npm run level:validate -- content/levels`, `npm run build` et `npm run check:precache`, puis
+   contrôler les captures de l’application.
+
+## Sons
+
+Le réglage **Sons** est désactivé à l’installation et enregistré dans IndexedDB. Une fois activé,
+un son est chargé à la première action qui l’utilise. Le service worker met le fichier entier en cache
+à la demande. La préférence de réduction des animations est indépendante des sons.
+
+Les fichiers OGG et MP3 sont synthétisés hors ligne par `node tools/synth-sons.ts` avec un encodeur
+installé localement. Les fichiers et leur licence CC BY 4.0 figurent dans `content/assets/provenance.json`.

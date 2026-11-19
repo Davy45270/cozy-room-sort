@@ -9,7 +9,7 @@ const sel = (...ids: string[]): GameAction[] => ids.map(objectId => ({ type: 'SE
 const books: MiniSpec = { boxes: [['books', 6]], objects: ['b1', 'b2', 'b3', 'b4', 'b5', 'b6'].map(id => [id, 'books'] as const) };
 
 describe('vidage du tampon', () => {
-    it('T-005 : cascade, le nouveau carton prend ce qui attend dans le tampon, dans l\'ordre d\'arrivée', () => {
+    it('T-005 / R-005 : cascade, le nouveau carton prend ce qui attend dans le tampon, dans l\'ordre d\'arrivée', () => {
         const level = makeLevel({
             boxes: [['books', 3], ['plants', 1], ['books', 1]],
             objects: [['l1', 'books'], ['l2', 'books'], ['p1', 'plants'], ['l4', 'books'], ['l3', 'books']],

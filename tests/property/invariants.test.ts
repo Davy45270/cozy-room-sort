@@ -31,7 +31,7 @@ function checkInvariants(level: Level, prev: GameState, next: GameState, rejecte
 }
 
 describe('invariants du moteur', () => {
-    it('après chaque action, les cinq invariants tiennent', () => {
+    it('emplacement unique, capacités respectées, refus sans mutation, victoire conforme et catégories compatibles', () => {
         fc.assert(fc.property(arbGame, ([level, actions]) => {
             let state = createInitialState(level);
             checkInvariants(level, state, state, false);
