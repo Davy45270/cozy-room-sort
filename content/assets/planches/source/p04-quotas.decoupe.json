@@ -1,0 +1,17 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+ "marge": 0,
+ "taille": 256,
+ "elements": [
+  {
+   "id": "panneau-quotas-sdb",
+   "boite": [
+    246,
+    209,
+    22,
+    799
+   ],
+   "ancre": "centre"
+  }
+ ]
+}

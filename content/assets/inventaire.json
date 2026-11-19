@@ -129,8 +129,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p01-meubles.webp",
-    "sha256": "da334dc5b80fcad8a6acce81c41b2260eb465060aa63ade5c49848d1a31fa4a6",
-    "octets": 86528,
+    "sha256": "8f8ad61f6f06215f84f6ce307a05a28ba44d35a5399328c9369d0f3350b4baaf",
+    "octets": 77462,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -195,8 +195,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p01-objets.webp",
-    "sha256": "62b9a12cc669e444706b1b0cc9463c27027e521098ab41c9fc879691bd50943b",
-    "octets": 111156,
+    "sha256": "2bf7a18fcafa89d38ac5146ca01400510cbdc5713ecfe52d4ca0c2dfb3656a5b",
+    "octets": 99322,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -264,8 +264,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p01-panneaux.webp",
-    "sha256": "43e44dbe96585787676ad18f5f52594c9a24bf47f2294e309c129c9e275fe69a",
-    "octets": 104732,
+    "sha256": "8abf38905b8051cd81eaf9f9617a37d4ef9e41b55718c2275170aab8e71cbdf9",
+    "octets": 92630,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -326,8 +326,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p01-ui.webp",
-    "sha256": "60babef3f91a0299df37bf6b3c1856d653b33011589ee9e66b582432d3a9f538",
-    "octets": 53116,
+    "sha256": "5b9553ddb4e3be04b87df8254621423b3e2a75b737252d7375accb782f6d037c",
+    "octets": 46876,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -380,8 +380,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p01-vues.webp",
-    "sha256": "7ac0d07f692d8b1f385ccade77e9835531155ff07d381dead65fa9ed8b31f335",
-    "octets": 139806,
+    "sha256": "7fa552827747eb0287db3cd13425e8b24ab780022e1500a549cd562367c0b1bd",
+    "octets": 117246,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -430,8 +430,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p02-meubles.webp",
-    "sha256": "5b0ca3cc6a2eab92df00801388d30de33291c3d98367b672ff7de01dbe9a5ab5",
-    "octets": 78598,
+    "sha256": "31e4426b9852e357962fa54c8da5d5f8d47f74c4fc049b45a5ac96821d8fc945",
+    "octets": 67362,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -484,8 +484,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p02-objets.webp",
-    "sha256": "14992dbd6350ba5687fbb6551866fb4a628e58396f045fddca57487dffd8b171",
-    "octets": 45880,
+    "sha256": "ad236284566f41ffd3f866c787bc4def0db3fcf2f14cd24f419807343d082d6a",
+    "octets": 40364,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -557,8 +557,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p03-meubles.webp",
-    "sha256": "8546ddfd64fae191d5aee6fd9d3cadc568973b9106ff1b8f4660d1e1558b2901",
-    "octets": 262564,
+    "sha256": "3643ace95fb77a23e2d1907090ccdbdd2b63fc2aca0be950a323843440a79905",
+    "octets": 230800,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -645,8 +645,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p03-objets.webp",
-    "sha256": "30fc38531eefc63ae8977fca77e8e4c8c79bdc842d9e5bd0a3f728acae20e2a1",
-    "octets": 134392,
+    "sha256": "a77ca8fd4bfbaafbe77d0f3c8c0bc910fc9c19c84ee6d44c7f4d603baf908c9d",
+    "octets": 119844,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -725,8 +725,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p04-meubles.webp",
-    "sha256": "2638d51ee230a1aee94a909022d91b29fb801913f4fd9efa447cf917b53a4020",
-    "octets": 208240,
+    "sha256": "d3d5c6ef0a61b4d3b2704eb62633886a310b72b2b63893ec8cbd959181e44cc0",
+    "octets": 184910,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -816,8 +816,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p04-objets.webp",
-    "sha256": "6a3907d09a2bef47ec540a551c855ed6b7375bf966b5a0a7373c8aae893830fa",
-    "octets": 214334,
+    "sha256": "973ad198cbd8c2f300ab618576e862b1c6c9093ba124575f3a4ed8dbae4e5a38",
+    "octets": 192838,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -868,6 +868,48 @@
     }
   },
   {
+    "chemin": "content/assets/planches/atlas/p04-quotas.json",
+    "sha256": "d58d350150bfb34e27be413f282bb7480d085141b45bb99438fffa19b153cbbd",
+    "octets": 477,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "panneau-quotas-sdb"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-quotas.webp",
+    "sha256": "e8136d8e2112710c5943d02cd0e709064c1fa913cefbe1b1f4ff2d0572c5c2c1",
+    "octets": 13500,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "panneau-quotas-sdb"
+      ]
+    }
+  },
+  {
     "chemin": "content/assets/planches/atlas/p04-selecteur.json",
     "sha256": "10aa5ab1582a32643e4f65d74f3b184d28d7bc44a9beb0b9eca3945bd2f268fc",
     "octets": 1691,
@@ -894,8 +936,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p04-selecteur.webp",
-    "sha256": "2c2cdc5fd73e65fa27a883e926e1e597421fdcb264b790a56798c8b4e0116ad8",
-    "octets": 76944,
+    "sha256": "b833eda1aaa71555bc9dd333afe4f977927626d5682babd9d340dc9a2ba50de5",
+    "octets": 67516,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -946,8 +988,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p04-ui.webp",
-    "sha256": "a18cac2344eb61db504162b4a4e6f2c9e0a93d53a6bc739282198b426a5a6d90",
-    "octets": 85504,
+    "sha256": "c2dcfbdd6a02dae556fb47c3ec0650e1c897c84f4a1b7f7ff6c032153d46884d",
+    "octets": 75384,
     "type": "atlas",
     "origine": {
       "planches": [
@@ -994,8 +1036,8 @@
   },
   {
     "chemin": "content/assets/planches/atlas/p04-vues.webp",
-    "sha256": "2c9bac2d933bda4e89da32159f9071041125775c7b98d9d67a0e32c98407002f",
-    "octets": 63612,
+    "sha256": "9d4635c116036fda02cc1980c68b19c477693900ad06f3f665e47394ca0219cf",
+    "octets": 55518,
     "type": "atlas",
     "origine": {
       "planches": [
