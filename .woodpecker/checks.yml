@@ -16,6 +16,13 @@ steps:
     commands:
       - node --version
       - npm ci
+  - name: sbom
+    image: *node
+    commands:
+      # Repris de la chaîne commune des jeux : inventaire CycloneDX des dépendances, gardé dans l'espace
+      # de travail (sbom.json est ignoré par git, rien n'est envoyé ailleurs). grep -c échoue si le format manque.
+      - npm sbom --sbom-format cyclonedx > sbom.json
+      - grep -c CycloneDX sbom.json
   - name: lint
     image: *node
     commands:
