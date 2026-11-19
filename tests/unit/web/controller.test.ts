@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import type { GameEvent, SavedGame } from '@cozy-room-sort/engine';
 import { makeLevel } from '../engine/levels.ts';
 import { createController } from '../../../apps/web/src/game/controller.ts';
+import { signatureOf, type ReadableSave } from '../../../apps/web/src/game/save-signature.ts';
+import { withMode } from '@cozy-room-sort/engine';
 
 // a1 accessible ; b1 recouvre a2 ; carton a (2) puis carton b (1), un seul carton ouvert.
 const level = makeLevel({ boxes: [['a', 2], ['b', 1]], objects: [['a1', 'a'], ['b1', 'b'], ['a2', 'a', ['b1']]], rules: { bufferCapacity: 1 }, stars: [1, 2] });
@@ -108,4 +110,15 @@ describe('refaire un coup', () => {
         controller.redo();
         expect(controller.state.moveCount).toBe(1);
     });
+});
+
+describe('journal invalide passé au contrôleur (défense en profondeur)', () => {
+    const signed = (actions: unknown[]): ReadableSave => ({ levelId: level.id, rulesVersion: level.rulesVersion,
+        levelSignature: signatureOf(withMode(level, 'detente')), actions: actions as ReadableSave['actions'] });
+    it.each([[[null]], [[{ type: 'SELECT_OBJECT', objectId: 'a1' }, 7]], [[{ type: 'SELECT_OBJECT' }]], [[{ type: 'INCONNU' }]]])(
+        'actions %j : partie neuve, sans exception', actions => {
+            const controller = createController(level, 'detente', { save: () => Promise.resolve(), now: () => 0 }, signed(actions));
+            expect(controller.state.moveCount).toBe(0);
+            expect(controller.hasPlayed).toBe(false);
+        });
 });

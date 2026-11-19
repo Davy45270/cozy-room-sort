@@ -1,8 +1,20 @@
-import type { SavedGame } from '@cozy-room-sort/engine';
+import type { GameAction, SavedGame } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
 
 export type ReadableSave = SavedGame & { levelSignature?: string };
 export type SignedSave = SavedGame & { levelSignature: string };
+
+/** Une action lue sur disque : un objet d'un type connu, avec ses champs typés. Toute autre forme rend le journal illisible. */
+export function isGameAction(value: unknown): value is GameAction {
+    if (typeof value !== 'object' || value === null) return false;
+    const action = value as Record<string, unknown>;
+    switch (action['type']) {
+        case 'SELECT_OBJECT': return typeof action['objectId'] === 'string';
+        case 'TICK': return typeof action['ms'] === 'number' && Number.isFinite(action['ms']);
+        case 'UNDO': case 'RESTART': case 'HINT_USED': return true;
+        default: return false;
+    }
+}
 
 /** Empreinte du contenu utilisé pour rejouer et noter la trace, après application du mode. */
 export function signatureOf(level: Level): string {

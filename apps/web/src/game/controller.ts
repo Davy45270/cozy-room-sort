@@ -4,7 +4,7 @@ import { applyAction, createInitialState, recordAction, replayActions, restore, 
     type GameAction, type GameEvent, type GameState, type Mode } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
 import { hint as solverHint, HINT_BUDGET } from '@cozy-room-sort/solver';
-import { signatureOf, type ReadableSave, type SignedSave } from './save-signature.ts';
+import { isGameAction, signatureOf, type ReadableSave, type SignedSave } from './save-signature.ts';
 
 export interface ControllerDeps { save: (save: SignedSave) => Promise<void>; now: () => number }
 export type HintResult = { objectId: string } | { none: 'blocked' | 'not-found' | 'unavailable' };
@@ -39,8 +39,10 @@ export function createController(baseLevel: Level, mode: Mode, deps: ControllerD
         after.remainingObjectIds.find(id => !before.remainingObjectIds.includes(id));
 
     const objectIds = new Set(level.objects.map(object => object.id));
-    if (saved?.levelSignature === levelSignature
-        && saved.actions.every(action => action.type !== 'SELECT_OBJECT' || objectIds.has(action.objectId))) {
+    // Défense en profondeur : une action illisible passée malgré le stockage donne une partie neuve, jamais une exception.
+    const actions: unknown = saved?.actions;
+    if (saved?.levelSignature === levelSignature && Array.isArray(actions)
+        && actions.every((action: unknown) => isGameAction(action) && (action.type !== 'SELECT_OBJECT' || objectIds.has(action.objectId)))) {
         const restored = restore(level, saved);
         if (!('error' in restored)) {
             state = restored;

@@ -1,4 +1,6 @@
 import 'fake-indexeddb/auto';
+import { withMode } from '@cozy-room-sort/engine';
+import { signatureOf } from '../../../apps/web/src/game/save-signature.ts';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { openStore, saveLoadAnnouncement, type Store } from '../../../apps/web/src/storage/db.ts';
 
@@ -87,4 +89,24 @@ it.each(['same', 'changed', 'missing'] as const)('compatibilité du journal en b
     if (kind === 'same') expect(loaded.save?.levelSignature).toMatch(/^[0-9a-f]{16}$/);
     else expect((await store.loadSave(target, 'classique')).kind).toBe('empty');
     expect(await store.progress()).toEqual({ [level.id]: { stars: 3, bestBuffered: 0 } });
+});
+
+describe('actions illisibles dans un journal', () => {
+    const level = makeLevel({ boxes: [['a', 2]], objects: [['a1', 'a'], ['a2', 'a']] });
+    const signature = signatureOf(withMode(level, 'classique'));
+    it.each([
+        ['null', [null]],
+        ['nombre', [3]],
+        ['type inconnu', [{ type: 'VOLER' }]],
+        ['sans type', [{ objectId: 'a1' }]],
+        ['identifiant non textuel', [{ type: 'SELECT_OBJECT', objectId: 4 }]],
+        ['durée non numérique', [{ type: 'TICK', ms: '1000' }]],
+        ['valide puis null', [{ type: 'SELECT_OBJECT', objectId: 'a1' }, null]]
+    ])('%s : écarté sans exception', async (_name, actions) => {
+        await store.writeRaw('saves', level.id, { levelId: level.id, rulesVersion: level.rulesVersion, levelSignature: signature, actions });
+        const loaded = await store.loadSave(level, 'classique');
+        expect(loaded.kind).toBe('invalid');
+        expect(() => createController(level, 'classique', { save: () => Promise.resolve(), now: () => 0 }, loaded.save)).not.toThrow();
+        expect((await store.loadSave(level, 'classique')).kind).toBe('empty');
+    });
 });

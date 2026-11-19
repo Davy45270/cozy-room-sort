@@ -104,7 +104,7 @@ sont indiqués dans la même colonne.
 | §9 · T-009 · Niveau impossible rejeté par le solveur | `tests/unit/solver/solver.test.ts` > `T-009 : un niveau impossible est rejeté comme insoluble` |
 | §9 · T-010 · État identique après sauvegarde et restauration | `tests/unit/engine/serialize.test.ts` > `T-010 : restaurer une sauvegarde rend l'état identique` |
 | §9 · T-011 · Objet masqué non sélectionnable | `tests/unit/engine/select.test.ts` > `T-011 / R-001 : un objet masqué sous un autre n'est pas sélectionnable` |
-| §9 · T-012 · Diagnostic explicite d’un JSON malformé sans exception | `tests/unit/schemas/validate.test.ts` > `T-012 : un JSON malformé donne une erreur explicite sans exception` |
+| §9 · T-012 · Diagnostic explicite d’un JSON malformé sans exception | `tests/unit/schemas/validate.test.ts` > `T-012 : un JSON malformé donne une erreur explicite sans exception`<br>`tests/unit/web/storage.test.ts` > `null : écarté sans exception` (journal aux actions illisibles, par `loadSave`)<br>`tests/unit/web/controller.test.ts` > `actions %j : partie neuve, sans exception` |
 | §9 · Invariant d’emplacement logique unique | `tests/property/invariants.test.ts` > `emplacement unique, capacités respectées, refus sans mutation, victoire conforme et catégories compatibles` |
 | §9 · Invariant de capacité des cartons et du tampon | `tests/property/invariants.test.ts` > `emplacement unique, capacités respectées, refus sans mutation, victoire conforme et catégories compatibles` |
 | §9 · Invariant de refus sans mutation | `tests/property/invariants.test.ts` > `emplacement unique, capacités respectées, refus sans mutation, victoire conforme et catégories compatibles` |
