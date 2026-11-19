@@ -28,7 +28,7 @@ export function arbLevel(options: ArbOptions = {}): fc.Arbitrary<Level> {
                 return { id: `o${k}`, category, asset: `test-${k}`, position: { x: 0.5, y: 0.5 }, layer: k, blockedBy, ...(isHidden ? { hidden: true } : {}) };
             });
             return {
-                schemaVersion: '1.2', rulesVersion: '1', id: `gen-${seed}`, name: 'Niveau généré', theme: 'salon', difficulty: 'easy', seed,
+                schemaVersion: '1.2', rulesVersion: '2', id: `gen-${seed}`, name: 'Niveau généré', theme: 'salon', difficulty: 'easy', seed,
                 rules: {
                     bufferCapacity, activeBoxCount: 1 + Math.floor(activeRatio * (boxOrder.length - 1)),
                     allowUndo: true, allowHints: true, timeLimitSeconds: null

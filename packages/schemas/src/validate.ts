@@ -1,7 +1,7 @@
 // Validateur écrit à la main : aucune dépendance d'exécution. Il cumule toutes les erreurs et ne lève jamais.
 import type { Level, LevelError, ValidationResult } from './level.ts';
 
-import { isObject as isObj, migrateLevel, SCHEMA_VERSION } from './migrate.ts';
+import { isObject as isObj, migrateLevel, RULES_VERSION, SCHEMA_VERSION } from './migrate.ts';
 import { DIFFICULTIES, isDifficulty } from './difficulty.ts';
 const isInt = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v);
 const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
@@ -31,7 +31,7 @@ export function validateLevel(raw: unknown): ValidationResult {
     known('', input, ['schemaVersion', 'rulesVersion', 'id', 'name', 'theme', 'difficulty', 'seed', 'rules', 'categories', 'boxes', 'objects', 'scoring', 'meta']);
 
     if (input['schemaVersion'] !== SCHEMA_VERSION) err('schemaVersion', `version de schéma attendue : "${SCHEMA_VERSION}"`);
-    if (input['rulesVersion'] !== '1') err('rulesVersion', 'version des règles attendue : "1"');
+    if (input['rulesVersion'] !== RULES_VERSION) err('rulesVersion', `version des règles attendue : "${RULES_VERSION}" (ou "1", migrée)`);
     for (const key of ['id', 'name', 'theme']) if (!isStr(input[key])) err(key, 'texte non vide attendu');
     const difficulty = input['difficulty'];
     if (!isDifficulty(difficulty)) err('difficulty', 'attendu : easy, medium ou expert');

@@ -15,7 +15,7 @@ describe('sauvegarde par rejeu', () => {
 
     it('T-010 : restaurer une sauvegarde rend l\'état identique', () => {
         let state = createInitialState(level);
-        let save: SavedGame = { levelId: level.id, rulesVersion: '1', actions: [] };
+        let save: SavedGame = { levelId: level.id, rulesVersion: '2', actions: [] };
         for (const action of actions) {
             state = applyAction(level, state, action).state;
             save = recordAction(save, action);
@@ -24,7 +24,7 @@ describe('sauvegarde par rejeu', () => {
     });
 
     it('refuse une sauvegarde d\'un autre niveau ou d\'autres règles', () => {
-        expect(restore(level, { levelId: 'autre', rulesVersion: '1', actions })).toHaveProperty('error');
-        expect(restore(level, { levelId: level.id, rulesVersion: '2', actions })).toHaveProperty('error');
+        expect(restore(level, { levelId: 'autre', rulesVersion: '2', actions })).toHaveProperty('error');
+        expect(restore(level, { levelId: level.id, rulesVersion: '3', actions })).toHaveProperty('error');
     });
 });

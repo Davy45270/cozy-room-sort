@@ -61,7 +61,7 @@ function build(request: GenerationRequest, random: () => number): Level {
     const objects = placed.map(object => hidden.has(object) ? { ...object, hidden: true } : object);
 
     return {
-        schemaVersion: SCHEMA_VERSION, rulesVersion: '1',
+        schemaVersion: SCHEMA_VERSION, rulesVersion: '2',
         id: `${String(index).padStart(3, '0')}-${theme.id}`,
         name: `${theme.label} · ${index}`, theme: theme.id, difficulty, seed,
         rules: { bufferCapacity: thresholds.bufferCapacity, activeBoxCount, allowUndo: true, allowHints: true, timeLimitSeconds: null },

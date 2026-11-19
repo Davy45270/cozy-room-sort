@@ -51,6 +51,19 @@ describe('stockage IndexedDB', () => {
         expect((await store.loadSave(level, 'classique')).kind).toBe('empty');
     });
 
+    it('un journal écrit sous les règles 1 reprend au début, avec annonce ; les étoiles restent', async () => {
+        const level = levelNamed('004-salon');
+        const rules1: Level = { ...level, rulesVersion: '1' as unknown as Level['rulesVersion'] };
+        await store.recordResult('004-salon', { stars: 2, bestBuffered: 2 });
+        await store.writeSave(signed(rules1, [{ type: 'SELECT_OBJECT', objectId: 'a1' }], '1'));
+        const loaded = await store.loadSave(level, 'classique');
+        expect(loaded.kind).toBe('level-changed');
+        expect(loaded.save).toBeUndefined();
+        expect(saveLoadAnnouncement(loaded)).toBe('Ce niveau a changé : la partie reprend au début.');
+        expect((await store.progress())['004-salon']).toEqual({ stars: 2, bestBuffered: 2 });
+        expect((await store.loadSave(level, 'classique')).kind).toBe('empty');
+    });
+
     it('une sauvegarde illisible est rejetée et supprimée', async () => {
         const level = levelNamed('004-salon');
         await store.writeRaw('saves', '004-salon', { levelId: '004-salon', actions: 'pas une liste' });

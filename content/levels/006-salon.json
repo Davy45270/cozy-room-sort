@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.2",
-  "rulesVersion": "1",
+  "rulesVersion": "2",
   "id": "006-salon",
   "name": "Tout sur les rayons",
   "theme": "salon",

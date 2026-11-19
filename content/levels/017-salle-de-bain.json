@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.2",
-  "rulesVersion": "1",
+  "rulesVersion": "2",
   "id": "017-salle-de-bain",
   "name": "Les placards ouverts",
   "theme": "salle-de-bain",

@@ -43,7 +43,7 @@ export interface LevelMeta {
 
 export interface Level {
     schemaVersion: typeof SCHEMA_VERSION;
-    rulesVersion: '1';
+    rulesVersion: '2';
     id: string;
     name: string;
     theme: string;

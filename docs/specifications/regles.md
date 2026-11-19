@@ -118,6 +118,14 @@ la spécification est conservé dans les fixtures. Ses quotas incomplets sont si
   `meta` est refusé, par le validateur comme par le schéma publié ; un objet masqué a au moins un bloqueur, et
   `meta.solution` et `meta.engineVersion` n’acceptent pas de texte vide, dans le schéma comme dans le validateur.
 
+### Historique des règles (`rulesVersion`)
+
+- **1** : sans coup légal, la partie est bloquée dès que le mode autorise l’annulation.
+- **2** : sans coup légal, la partie n’est bloquée que si une annulation reste disponible (quota non épuisé,
+  historique non vide) ; sinon elle est perdue. Un niveau déclaré en règles 1 est migré en règles 2 à la lecture
+  (son contenu ne change pas). La version des règles entre dans l’empreinte des journaux de partie : un journal
+  écrit sous les règles 1 reprend au début, avec l’annonce du niveau changé ; les étoiles et niveaux terminés restent.
+
 ## Bibliothèque et activation de la cuisine
 
 Le catalogue de cadres dans `content/catalog/objets.json` est destiné à la création de contenu.
