@@ -9,7 +9,6 @@ import { renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachabl
 import { PACK_MS, reducedMotion, startRoom, type RoomScene } from '../scene/room-scene.ts';
 import { playSound } from '../sons.ts';
 import { BLOCKED_LEVEL, BLOCKED_MOVES, demonstration, installTestHooks } from '../test-hooks.ts';
-import { placeViewFade, viewFade } from '../view-fade.ts';
 
 export async function playScreen(ctx: AppContext, level: Level): Promise<Screen> {
     const demo = demonstration();
@@ -68,8 +67,6 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
     const element = h('main', { class: 'screen play', 'data-testid': 'ecran-jeu', 'data-level': level.id,
         style: `--room-accent: var(--crs-room-${theme.id}, var(--crs-accent))` },
         header, room, stage, tray, keyboard, live, overlay);
-    const fade = viewFade(theme);
-    if (fade) stage.after(fade);
 
     const setModal = (open: boolean): void => {
         overlay.hidden = !open;
@@ -146,7 +143,6 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
                 targetOf: event => event.type === 'OBJECT_PACKED'
                     ? boxes.querySelector(`[data-box="${event.boxId}"] .box-picture`)
                     : buffer.querySelector(`[data-buffer-object="${event.objectId}"]`),
-                onLayout: view => { if (fade) placeViewFade(fade, view.viewBounds(), element.getBoundingClientRect()); },
                 onReady: () => {
                     if (disposed) return;
                     element.dataset['ready'] = 'true';

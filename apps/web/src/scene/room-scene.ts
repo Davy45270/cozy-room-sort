@@ -5,6 +5,7 @@ import { pickObject, type Target } from './pick-object.ts';
 import { spriteOf } from '../atlas.ts';
 import { themeOf } from '../content.ts';
 import type { Controller } from '../game/controller.ts';
+import { FADE_DEPTH, FADE_TEXTURE, fadeBox, fadeFraction, paintFade, pageColor } from './view-fade.ts';
 import { catSpot, COMPACT_QUERY, drawOrder, layoutRoom, MIN_SIZE, roomView, type Bounds, type Placed, type Viewport } from './layout.ts';
 
 type MoveEvent = Extract<GameEvent, { type: 'OBJECT_PACKED' | 'OBJECT_BUFFERED' }>;
@@ -17,15 +18,16 @@ const usefulBounds = (asset: string): Bounds => {
 };
 export const reducedMotion = (): boolean => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-export interface ImageState { id: string; frame: string; visible: boolean; alpha: number; tintMode: number; mark: string | null }
+/** État rendu d'une image de la scène ; `flying` marque un objet en route vers un carton ou le tampon. */
+export interface ImageState {
+    id: string; frame: string; visible: boolean; alpha: number; tintMode: number; mark: string | null; depth: number; flying: boolean;
+}
 
 export interface RoomSceneOptions {
     controller: Controller;
     targetOf: (event: MoveEvent) => Element | null;
     bufferSlot: (index: number) => Element | null;
     onReady: () => void;
-    /** Appelé après chaque mise en page de la vue (création et redimensionnement). */
-    onLayout?: (scene: RoomScene) => void;
 }
 
 export class RoomScene extends Phaser.Scene {
@@ -38,6 +40,7 @@ export class RoomScene extends Phaser.Scene {
     private readonly frontToBack: string[];
     private placed = new Map<string, Placed>();
     private background?: Phaser.GameObjects.Image;
+    private fade?: Phaser.GameObjects.Image;
     private cat?: Phaser.GameObjects.Image;
     private previous?: GameState;
     private hintTween: Phaser.Tweens.Tween | undefined;
@@ -65,6 +68,7 @@ export class RoomScene extends Phaser.Scene {
 
     create(): void {
         this.background = this.image(themeOf(this.opts.controller.level).vue);
+        this.createFade();
         this.cat = this.image('chat-dort').setDepth(1);
         const relayout = (): void => this.relayout();
         this.scale.on('resize', relayout);
@@ -94,6 +98,22 @@ export class RoomScene extends Phaser.Scene {
         this.game.events.once('postrender', this.opts.onReady);
     }
 
+    /** Fondu du bas de la vue, pour le thème qui le déclare ; repeint au changement de thème clair/sombre. */
+    private createFade(): void {
+        const fraction = fadeFraction(themeOf(this.opts.controller.level));
+        if (fraction === null) return;
+        const texture = this.textures.createCanvas(FADE_TEXTURE, 4, 64);
+        if (!texture) return;
+        const repaint = (): void => paintFade(texture, pageColor());
+        repaint();
+        this.fade = this.add.image(0, 0, FADE_TEXTURE).setOrigin(0, 0).setDepth(FADE_DEPTH);
+        const observer = new MutationObserver(repaint);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+        const stop = (): void => observer.disconnect();
+        this.events.once('shutdown', stop);
+        this.events.once('destroy', stop);
+    }
+
     private relayout(): void {
         this.clearHint();
         const canvas = this.game.canvas;
@@ -104,12 +124,16 @@ export class RoomScene extends Phaser.Scene {
         const top = rect.top - canvasRect.top;
         const view = roomView(room);
         this.background?.setPosition(left + view.x, top + view.y).setDisplaySize(view.size, view.size);
+        const fraction = fadeFraction(themeOf(this.opts.controller.level));
+        if (this.fade && fraction !== null) {
+            const box = fadeBox({ x: left + view.x - view.size / 2, y: top + view.y - view.size / 2, width: view.size, height: view.size }, fraction);
+            this.fade.setPosition(box.x, box.y).setDisplaySize(box.width, box.height);
+        }
         const cat = catSpot(this.opts.controller.level, room, usefulBounds('chat-dort'), usefulBounds);
         this.cat?.setPosition(left + cat.x, top + cat.y).setDisplaySize(cat.size, cat.size);
         this.placed = layoutRoom(this.opts.controller.level, room);
         for (const at of this.placed.values()) { at.x += left; at.y += top; }
         this.reconcile(this.opts.controller.state, []);
-        this.opts.onLayout?.(this);
     }
 
     private reconcile(state: GameState, events: readonly GameEvent[]): void {
@@ -279,16 +303,21 @@ export class RoomScene extends Phaser.Scene {
         return { x: canvas.left + b.x, y: canvas.top + b.y, width: b.width, height: b.height };
     }
 
-    /** État rendu des images de la scène : fond, chat, puis objets restants avec leur marque « ? » (crochet de test). */
+    /**
+     * État rendu des images de la scène : fond, fondu éventuel, chat, objets restants avec leur marque « ? », puis
+     * objets en vol (crochet de test).
+     */
     imageStates(): ImageState[] {
-        const state = (id: string, image: Phaser.GameObjects.Image): ImageState => ({
+        const state = (id: string, image: Phaser.GameObjects.Image, flying = false): ImageState => ({
             id, frame: image.frame.name, visible: image.visible, alpha: image.alpha, tintMode: image.tintMode,
-            mark: this.marks.get(id)?.text ?? null
+            mark: flying ? null : this.marks.get(id)?.text ?? null, depth: image.depth, flying
         });
         return [
             ...(this.background ? [state('fond', this.background)] : []),
+            ...(this.fade ? [state('fondu', this.fade)] : []),
             ...(this.cat ? [state('chat', this.cat)] : []),
-            ...[...this.sprites].map(([id, sprite]) => state(id, sprite))
+            ...[...this.sprites].map(([id, sprite]) => state(id, sprite)),
+            ...[...this.flights].map(([id, sprite]) => state(id, sprite, true))
         ];
     }
 

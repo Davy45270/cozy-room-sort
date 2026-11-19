@@ -224,22 +224,32 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 360, height: 740 }
 }
 
 test.describe('fondu du bas de la vue', () => {
-    test.use({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+    test.use({ viewport: { width: 390, height: 844 } });
 
-    test('couvre le bas de la vue de la salle de bain seulement', async ({ page }) => {
+    test('est dans la scène, entre la vue et les objets, pour la salle de bain seulement', async ({ page }) => {
         await openLevel(page, '001-salon');
-        await expect(levelScreen(page).locator('.view-fade')).toHaveCount(0);
+        await expect(page.locator('.view-fade')).toHaveCount(0);
+        expect((await page.evaluate(() => window.__cozy!.images())).some(image => image.id === 'fondu')).toBe(false);
         const id = `015-${thirdRoom.id}`;
         await openLevel(page, id);
-        const fade = levelScreen(page).locator('.view-fade');
-        if (thirdRoom.vue_fondu_bas === undefined) { await expect(fade).toHaveCount(0); return; }
-        await expect(fade).toHaveCSS('pointer-events', 'none');
-        const view = (await page.evaluate(() => window.__cozy!.viewBounds()))!;
-        const box = (await fade.boundingBox())!;
-        expect(Math.abs(box.x - view.x)).toBeLessThanOrEqual(1);
-        expect(Math.abs(box.width - view.width)).toBeLessThanOrEqual(1);
-        expect(Math.abs(box.y + box.height - (view.y + view.height))).toBeLessThanOrEqual(1);
-        expect(Math.abs(box.height - view.height * thirdRoom.vue_fondu_bas)).toBeLessThanOrEqual(1);
+        await expect(page.locator('.view-fade')).toHaveCount(0);
+        const images = await page.evaluate(() => window.__cozy!.images());
+        const fade = images.find(image => image.id === 'fondu');
+        if (thirdRoom.vue_fondu_bas === undefined) { expect(fade).toBeUndefined(); return; }
+        const fond = images.find(image => image.id === 'fond')!;
+        expect(fade).toMatchObject({ visible: true, alpha: 1 });
+        expect(fade!.depth).toBeGreaterThan(fond.depth);
+        for (const other of images.filter(image => image.id !== 'fond' && image.id !== 'fondu')) expect(other.depth, other.id).toBeGreaterThan(fade!.depth);
+        // Mouvement non réduit : l'objet touché part en vol et reste au-dessus du fondu pendant tout son trajet.
+        // Toucher et relevé dans la même tâche : le vol dure 180 ms.
+        const flight = await page.evaluate(() => {
+            const hooks = window.__cozy!;
+            const first = hooks.solution()[0]!;
+            hooks.tapObject(first);
+            return hooks.images().find(image => image.id === first && image.flying) ?? null;
+        });
+        expect(flight).not.toBeNull();
+        expect(flight!.depth).toBeGreaterThan(fade!.depth);
         await capture(page, `fondu-${id}`);
     });
 });
