@@ -59,11 +59,26 @@ it('les quotas passent sur deux colonnes au-delà de 4 catégories, sans texte d
     const grid = allRules().find(rule => rule.selectorText === '.quota-list[data-columns="2"]' && rule.style.getPropertyValue('grid-template-columns'));
     expect(grid?.style.getPropertyValue('display')).toBe('grid');
     expect(grid?.style.getPropertyValue('grid-template-columns')).toMatch(/^repeat\(2,/);
+    // 14 px au moins, 13 px dans le seul portrait très étroit (320 px), où les quotas passent sur une colonne.
+    const narrow = new Set(mediaRules(/max-width:\s*355px/).map(rule => rule.cssText));
     for (const rule of allRules().filter(item => /quota/.test(item.selectorText))) {
         const size = rule.style.getPropertyValue('font-size');
         if (!size) continue;
         const px = size.endsWith('rem') ? Number.parseFloat(size) * 16 : Number.parseFloat(size);
-        expect(px, `${rule.selectorText} ${size}`).toBeGreaterThanOrEqual(14);
+        expect(px, `${rule.selectorText} ${size}`).toBeGreaterThanOrEqual(narrow.has(rule.cssText) ? 13 : 14);
+    }
+});
+
+it('en portrait très étroit, la pièce descend à 150 px au plus bas et les quotas tiennent sur une colonne', () => {
+    const narrow = mediaRules(/max-width:\s*355px\).*portrait/);
+    const play = narrow.find(rule => rule.selectorText === '.play');
+    // 150 px : la plus petite zone de jeu vérifiée par `tests/unit/web/layout.test.ts` (320 × 150).
+    expect(play?.style.getPropertyValue('grid-template-rows')).toContain('minmax(min(150px, 33dvh), 100vw)');
+    const list = narrow.find(rule => rule.selectorText === '.quota-list[data-columns="2"]');
+    expect(list?.style.getPropertyValue('flex-direction')).toBe('column');
+    for (const rule of narrow) {
+        const size = rule.style.getPropertyValue('font-size');
+        if (size) expect(Number.parseFloat(size), `${rule.selectorText} ${size}`).toBeGreaterThanOrEqual(13);
     }
 });
 

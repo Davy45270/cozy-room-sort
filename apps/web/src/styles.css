@@ -177,7 +177,9 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
 .quota { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto 14px; align-items: center; gap: 3px; font-size: .875rem; line-height: 1.1; }
 .quota-icon { width: 16px; }
 /* Un libellé trop long passe à la ligne (entre les mots d'abord) ; l'icône, le compteur et la coche restent centrés sur lui. */
-.quota-label { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
+/* Interligne explicite à 1,2 : sous 1,16 em, la zone de contenu de la police (DejaVu Sans en CI) déborde de la ligne et
+   Firefox compte ce débordement dans `scrollHeight` (32 pour 31 sur deux lignes en 14 px). */
+.quota-label { min-width: 0; overflow-wrap: break-word; hyphens: auto; line-height: 1.2; }
 .quota-check { width: 14px; }
 /* Plus de 4 catégories : deux colonnes ; un libellé trop long tient sur deux lignes, jamais abrégé. */
 .quota-list[data-columns="2"] { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 10px; }
@@ -232,8 +234,9 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
     .tray { padding: 22px; gap: 14px; }
     .tray h2 { font-size: 1.2rem; }
     .boxes { gap: 6px 8px; margin-top: 6px; }
-    .box-picture { width: min(100%, 96px); height: 80px; }
-    .box-art { width: min(100%, 92px); }
+    /* 88 px : un carton en attente, réduit à 76 %, garde 66 px. */
+    .box-picture { width: min(100%, 104px); height: 88px; }
+    .box-art { width: min(100%, 100px); }
     .box-count { font-size: 17px; }
     .quotas { padding: 14px 16px 13px; }
     .quota-content h2 { margin-bottom: 6px; }
@@ -274,6 +277,26 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
     .quota-list[data-columns="2"] .quota { grid-template-columns: 18px minmax(0, 1fr) auto 16px; gap: 4px; font-size: 14px; }
     .quota-list[data-columns="2"] .quota-icon { width: 18px; }
     .quota-list[data-columns="2"] .quota-check { width: 16px; }
+}
+
+/* Portrait très étroit (320 px) : tout tient sans défilement en 320 × 568, sans texte coupé. La pièce descend jusqu'à
+   150 px de haut (plus petite zone où chaque objet accessible garde une zone propre, `tests/unit/web/layout.test.ts`),
+   les cartons jusqu'à 34 px, et les quotas de plus de 4 catégories passent sur une seule colonne en 13 px, icônes
+   bornées à 15 px de haut : chaque libellé tient sur une ligne. */
+@media (max-width: 355px) and (orientation: portrait) {
+    .play {
+        --carton: clamp(34px, (100dvh - 99vw - 346px) * 1.15, 88px);
+        grid-template-rows: auto minmax(min(150px, 33dvh), 100vw) 1fr;
+    }
+    .tray { gap: 3px 8px; }
+    .tray h2 { font-size: 15px; }
+    .box-count { font-size: 13px; line-height: 1.2; }
+    .score { line-height: 1.2; }
+    .quota-content h2 { margin-bottom: 2px; }
+    .quota-list[data-columns="2"] { display: flex; flex-direction: column; gap: 1px; }
+    .quota-list[data-columns="2"] .quota { grid-template-columns: 16px minmax(0, 1fr) auto 14px; gap: 4px; font-size: 13px; }
+    .quota-list[data-columns="2"] .quota-icon { width: min(16px, 15px * var(--frame-ratio)); justify-self: center; }
+    .quota-list[data-columns="2"] .quota-check { width: 14px; }
 }
 
 @media (max-width: 355px) {

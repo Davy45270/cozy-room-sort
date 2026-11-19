@@ -124,8 +124,9 @@ async function expectSlotsDrawnToScale(page: Page, minHeight: number): Promise<v
     }
 }
 
-async function expectReadableText(page: Page): Promise<void> {
-    const small = await page.evaluate(() => {
+/** Tout texte visible mesure au moins `min` px (14 par défaut ; 13 en portrait très étroit de 320 px). */
+async function expectReadableText(page: Page, min = 14): Promise<void> {
+    const small = await page.evaluate(floor => {
         const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
         const range = document.createRange();
         const violations: { text: string; size: string }[] = [];
@@ -139,10 +140,10 @@ async function expectReadableText(page: Page): Promise<void> {
             if (clipped && getComputedStyle(clipped).getPropertyValue('clip') !== 'auto') continue;
             range.selectNodeContents(node);
             if (![...range.getClientRects()].some(rect => rect.width > 0 && rect.height > 0)) continue;
-            if (parseFloat(style.fontSize) < 14) violations.push({ text, size: style.fontSize });
+            if (parseFloat(style.fontSize) < floor) violations.push({ text, size: style.fontSize });
         }
         return violations;
-    });
+    }, min);
     expect(small).toEqual([]);
 }
 
@@ -310,12 +311,15 @@ for (const viewport of [{ width: 360, height: 740 }, { width: 320, height: 568 }
                     const box = (await slot.boundingBox())!;
                     expect(box.y + box.height).toBeLessThanOrEqual(viewport.height + .5);
                 }
-                // Au-delà de 4 catégories, deux colonnes de quotas ; le texte reste à 14 px au moins.
+                // Au-delà de 4 catégories, deux colonnes de quotas, une seule en 320 px ; le texte reste à 14 px au moins
+                // (13 px en 320 px).
                 const level = levelFile(id);
+                const narrow = viewport.width <= 355;
                 const list = screen.locator('.quota-list');
-                const tracks = (await list.evaluate(node => getComputedStyle(node).gridTemplateColumns)).split(' ').filter(Boolean);
+                const layout = await list.evaluate(node => ({ display: getComputedStyle(node).display, columns: getComputedStyle(node).gridTemplateColumns }));
                 if (level.categories.length > 4) {
-                    expect(tracks).toHaveLength(2);
+                    if (narrow) expect(layout.display).toBe('flex');
+                    else expect(layout.columns.split(' ').filter(Boolean)).toHaveLength(2);
                     for (const [index, row] of (await screen.locator('.quota').all()).entries()) {
                         await expect(row).toHaveAttribute('title', level.categories[index]!.label);
                     }
@@ -335,7 +339,7 @@ for (const viewport of [{ width: 360, height: 740 }, { width: 320, height: 568 }
                     const count = (await row.locator('.quota-count').boundingBox())!;
                     expect(Math.abs(icon.y + icon.height / 2 - (count.y + count.height / 2))).toBeLessThanOrEqual(2);
                 }
-                await expectReadableText(page);
+                await expectReadableText(page, narrow ? 13 : 14);
                 if (viewport.width === 360) await expectSlotsDrawnToScale(page, 20);
                 await capture(page, `petit-ecran-${id}-${viewport.width}x${viewport.height}`);
             });

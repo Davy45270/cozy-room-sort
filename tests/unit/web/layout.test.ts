@@ -138,6 +138,8 @@ function geometryErrors(level: Level): string[] {
 const touchViewports = [
     { window: '360×215 (zone de jeu)', width: 360, height: 215, half: 0 },
     { window: '360×215 (zone de jeu en portrait)', width: 360, height: 215, compact: true, half: 0 },
+    // Plus petite zone de jeu du portrait très étroit (320 × 568) : `minmax(min(150px, 33dvh), …)` dans styles.css.
+    { window: '320×150 (zone de jeu en portrait très étroit)', width: 320, height: 150, compact: true, half: 0 },
     { window: '390×844', width: 390, height: 390, compact: true, half: 22 },
     { window: '1280×800', width: 880, height: 730, half: 0 }
 ];
