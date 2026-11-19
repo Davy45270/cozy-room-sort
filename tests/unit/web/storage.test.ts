@@ -163,6 +163,14 @@ describe('journal sans empreinte (version précédente)', () => {
     });
 });
 
+/** Copie de `items` avec un trou (indice jamais écrit) à `index` : la forme que rend `Array(n)` ou `[a, , b]`. */
+function withHole(items: unknown[], index: number): unknown[] {
+    const holed: unknown[] = [];
+    items.forEach((item, i) => { holed[i < index ? i : i + 1] = item; });
+    holed.length = Math.max(holed.length, index + 1);
+    return holed;
+}
+
 describe('actions illisibles dans un journal', () => {
     const level = makeLevel({ boxes: [['a', 2]], objects: [['a1', 'a'], ['a2', 'a']] });
     const signature = signatureOf(withMode(level, 'classique'));
@@ -173,12 +181,43 @@ describe('actions illisibles dans un journal', () => {
         ['sans type', [{ objectId: 'a1' }]],
         ['identifiant non textuel', [{ type: 'SELECT_OBJECT', objectId: 4 }]],
         ['durée non numérique', [{ type: 'TICK', ms: '1000' }]],
-        ['valide puis null', [{ type: 'SELECT_OBJECT', objectId: 'a1' }, null]]
+        ['valide puis null', [{ type: 'SELECT_OBJECT', objectId: 'a1' }, null]],
+        ['trou', Array(1)],
+        ['valide puis trou', withHole([{ type: 'SELECT_OBJECT', objectId: 'a1' }, { type: 'SELECT_OBJECT', objectId: 'a2' }], 1)],
+        ['durée NaN', [{ type: 'TICK', ms: NaN }]],
+        ['durée infinie', [{ type: 'TICK', ms: Infinity }]],
+        ['durée infinie négative', [{ type: 'SELECT_OBJECT', objectId: 'a1' }, { type: 'TICK', ms: -Infinity }]]
     ])('%s : écarté sans exception', async (_name, actions) => {
         await store.writeRaw('saves', level.id, { levelId: level.id, rulesVersion: level.rulesVersion, levelSignature: signature, actions });
         const loaded = await store.loadSave(level, 'classique');
         expect(loaded.kind).toBe('invalid');
         expect(() => createController(level, 'classique', { save: () => Promise.resolve(), now: () => 0 }, loaded.save)).not.toThrow();
         expect((await store.loadSave(level, 'classique')).kind).toBe('empty');
+    });
+});
+
+describe('journal creux ou aux durées non finies, à la bonne empreinte, remis au contrôleur', () => {
+    const level = makeLevel({ boxes: [['a', 2]], objects: [['a1', 'a'], ['a2', 'a']], rules: { timeLimitSeconds: 60 } });
+    const levelSignature = signatureOf(withMode(level, 'classique'));
+    it.each([
+        ['trou', Array(1)],
+        ['coup puis trou', withHole([{ type: 'SELECT_OBJECT', objectId: 'a1' }], 1)],
+        ['durée NaN', [{ type: 'SELECT_OBJECT', objectId: 'a1' }, { type: 'TICK', ms: NaN }]],
+        ['durée infinie', [{ type: 'SELECT_OBJECT', objectId: 'a1' }, { type: 'TICK', ms: Infinity }]]
+    ])('%s : aucune exception, la partie repart au coup 0', (_name, actions) => {
+        const saved = { levelId: level.id, rulesVersion: level.rulesVersion, levelSignature, actions } as never;
+        let controller: ReturnType<typeof createController> | undefined;
+        expect(() => { controller = createController(level, 'classique', { save: () => Promise.resolve(), now: () => 0 }, saved); }).not.toThrow();
+        expect(controller?.state.moveCount).toBe(0);
+        expect(controller?.state.elapsedMs).toBe(0);
+        expect(controller?.state.status).toBe('playing');
+    });
+
+    it('le trou survit au clonage d’IndexedDB, puis le journal est écarté', async () => {
+        await store.writeRaw('saves', level.id, { levelId: level.id, rulesVersion: level.rulesVersion, levelSignature, actions: Array(1) });
+        const loaded = await store.loadSave(level, 'classique');
+        expect(loaded.kind).toBe('invalid');
+        const resumed = createController(level, 'classique', { save: () => Promise.resolve(), now: () => 0 }, loaded.save);
+        expect(resumed.state.moveCount).toBe(0);
     });
 });

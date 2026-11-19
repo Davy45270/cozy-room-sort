@@ -16,6 +16,18 @@ export function isGameAction(value: unknown): value is GameAction {
     }
 }
 
+/**
+ * Un journal lu sur disque : un tableau dense d'actions bien formées. Un trou (`Array(1)`) survit au clonage d'IndexedDB
+ * et échappe à `every` ; il est lu ici indice par indice, comme le rejeu le lirait.
+ */
+export function isGameJournal(value: unknown): value is GameAction[] {
+    if (!Array.isArray(value)) return false;
+    for (let index = 0; index < value.length; index++) {
+        if (!isGameAction(value[index])) return false;
+    }
+    return true;
+}
+
 /** Empreinte du contenu utilisé pour rejouer et noter la trace, après application du mode. */
 export function signatureOf(level: Level): string {
     const { rules, scoring } = level;

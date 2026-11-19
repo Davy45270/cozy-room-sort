@@ -1,7 +1,7 @@
 // Progression, parties en cours et réglages dans IndexedDB. Chaque écriture attend la fin de sa transaction.
 import { applyAction, createInitialState, withMode, type GameState, type Mode } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
-import { isGameAction, signatureOf, type ReadableSave, type SignedSave } from '../game/save-signature.ts';
+import { isGameJournal, signatureOf, type ReadableSave, type SignedSave } from '../game/save-signature.ts';
 import type { ThemePreference } from '../theme/tokens.ts';
 
 export interface LevelResult { stars: 1 | 2 | 3; bestBuffered: number }
@@ -43,7 +43,7 @@ const result = <T>(request: IDBRequest<T>): Promise<T> => new Promise((resolve, 
 
 const isSave = (v: unknown): v is ReadableSave => typeof v === 'object' && v !== null
     && typeof (v as ReadableSave).levelId === 'string' && typeof (v as ReadableSave).rulesVersion === 'string'
-    && Array.isArray((v as ReadableSave).actions) && (v as ReadableSave).actions.every(isGameAction)
+    && isGameJournal((v as ReadableSave).actions)
     && ((v as ReadableSave).levelSignature === undefined || typeof (v as ReadableSave).levelSignature === 'string');
 /** Un journal antérieur à l'empreinte se reprend s'il se rejoue entièrement : aucun coup refusé par le moteur. */
 const replaysCleanly = (level: Level, save: ReadableSave): boolean => {
