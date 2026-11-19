@@ -76,10 +76,10 @@
         },
         "timeLimitSeconds": {
           "type": [
-            "number",
+            "integer",
             "null"
           ],
-          "exclusiveMinimum": 0
+          "minimum": 1
         },
         "undoLimit": {
           "type": "number",

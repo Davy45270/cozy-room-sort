@@ -142,7 +142,8 @@ export function validateLevel(raw: unknown): ValidationResult {
         if (!isInt(active) || active < 1 || active > boxes.length) err('rules.activeBoxCount', `entier entre 1 et ${boxes.length} attendu`);
         for (const key of ['allowUndo', 'allowHints']) if (typeof rules[key] !== 'boolean') err(`rules.${key}`, 'booléen attendu');
         const limit = rules['timeLimitSeconds'];
-        if (limit !== null && (!isNum(limit) || limit <= 0)) err('rules.timeLimitSeconds', 'null ou nombre > 0 attendu');
+        // Entier de secondes : l'horloge avance par pas d'une seconde, une limite fractionnaire ne serait pas tenue.
+        if (limit !== null && (!isInt(limit) || limit < 1)) err('rules.timeLimitSeconds', 'null ou entier ≥ 1 attendu');
         for (const key of ['undoLimit', 'hintLimit']) {
             const v = rules[key];
             if (v !== undefined && (typeof v !== 'number' || Number.isNaN(v) || v < 0)) err(`rules.${key}`, 'nombre ≥ 0 attendu');
