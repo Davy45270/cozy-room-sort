@@ -7,6 +7,7 @@ import type { AppContext } from '../../../apps/web/src/app-context.ts';
 import type { Controller } from '../../../apps/web/src/game/controller.ts';
 import { levelById } from '../../../apps/web/src/content.ts';
 import { DEFAULT_SETTINGS, type Store } from '../../../apps/web/src/storage/db.ts';
+import { makeLevel } from '../engine/levels.ts';
 
 const room = vi.hoisted(() => ({ onReady: undefined as (() => void) | undefined, controller: undefined as Controller | undefined }));
 
@@ -74,6 +75,7 @@ it('échéance, « Recommencer », puis le temps court de nouveau jusqu’à la 
     room.onReady?.();
     vi.advanceTimersByTime(2000);
     expect(controller().state.status).toBe('lost');
+    expect(screen.element.querySelector('#end-message')?.textContent).toBe('Le temps est écoulé.');
     const replay = screen.element.querySelector<HTMLButtonElement>('[data-testid="ecran-perdu"] [data-action="replay"]');
     expect(replay).not.toBeNull();
     vi.advanceTimersByTime(10_000);
@@ -98,4 +100,37 @@ it('à la sortie de l’écran, l’horloge est détruite : plus aucune minuteri
     expect(vi.getTimerCount()).toBe(0);
     vi.advanceTimersByTime(5000);
     expect(controller().state.elapsedMs).toBe(1000);
+});
+
+// Motif de défaite par cause, à l'écran (relecture : « en mode expert » était dit pour toute défaite).
+// Après b1, plus aucun coup légal ; tampon d'une place.
+// Catégories réelles du salon (l'écran affiche leurs icônes) ; identifiant du premier niveau.
+const impasse = (): Level => ({ ...makeLevel({ boxes: [['plantes', 2], ['cadres', 2]],
+    objects: [['b1', 'cadres'], ['b2', 'cadres', ['b1']], ['a1', 'plantes', ['b2']], ['a2', 'plantes', ['a1']]], rules: { bufferCapacity: 1 } }), id: '001-salon' });
+const ASSETS: Record<string, string> = { b1: 'cadre-feuille', b2: 'cadre-collines', a1: 'tournesols', a2: 'bouquet-blanc' };
+const impasseAvecCadres = (): Level => { const l = impasse(); return { ...l, objects: l.objects.map(o => ({ ...o, asset: ASSETS[o.id] ?? o.asset })) }; };
+const message = (screen: { element: HTMLElement }): string | null | undefined =>
+    screen.element.querySelector('[data-testid="ecran-perdu"] #end-message')?.textContent;
+
+it('classique, annulations épuisées : la défaite le dit, sans parler du mode expert', async () => {
+    const level = impasseAvecCadres();
+    const screen = await playScreen({ ...context(level), settings: { ...DEFAULT_SETTINGS, mode: 'classique', lastLevelId: level.id } }, level);
+    screen.mounted?.();
+    room.onReady?.();
+    for (let i = 0; i < 3; i++) { controller().select('b1'); expect(controller().state.status).toBe('blocked'); controller().undo(); }
+    controller().select('b1');
+    expect(controller().state.status).toBe('lost');
+    expect(message(screen)).toBe('Il ne reste aucun coup possible, et toutes tes annulations sont utilisées.');
+    screen.dispose?.();
+});
+
+it('expert : la défaite dit que ce mode ne permet pas d’annuler', async () => {
+    const level = impasseAvecCadres();
+    const screen = await playScreen({ ...context(level), settings: { ...DEFAULT_SETTINGS, mode: 'expert', lastLevelId: level.id } }, level);
+    screen.mounted?.();
+    room.onReady?.();
+    controller().select('b1');
+    expect(controller().state.status).toBe('lost');
+    expect(message(screen)).toBe('Il ne reste aucun coup possible, et ce mode ne permet pas d’annuler.');
+    screen.dispose?.();
 });

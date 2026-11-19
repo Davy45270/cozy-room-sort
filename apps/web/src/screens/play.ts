@@ -6,6 +6,7 @@ import { levelNumber, nextLevel, themeOf } from '../content.ts';
 import { h, iconButton, stars } from '../dom.ts';
 import { startClock } from '../game/clock.ts';
 import { createController } from '../game/controller.ts';
+import { defeatReason } from '../game/defeat.ts';
 import { createProgress, renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachable, renderScore } from '../hud.ts';
 import { PACK_MS, reducedMotion, startRoom, type RoomScene } from '../scene/room-scene.ts';
 import { playSound } from '../sons.ts';
@@ -80,7 +81,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
         const lost = state.status === 'lost';
         const title = won ? 'Pièce rangée !' : lost ? 'Partie perdue' : 'Le tampon déborde';
         const text = won ? `${state.bufferedCount} passage${state.bufferedCount > 1 ? 's' : ''} au tampon.`
-            : lost ? 'Il ne reste aucun coup possible en mode expert.' : 'Annule un coup ou recommence pour libérer une place.';
+            : lost ? defeatReason(rules, state) : 'Annule un coup ou recommence pour libérer une place.';
         const restart = () => {
             controller.restart();
             header.querySelector<HTMLButtonElement>('[aria-label="Recommencer"]')?.focus();
