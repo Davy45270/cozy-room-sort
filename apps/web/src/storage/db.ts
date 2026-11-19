@@ -19,8 +19,6 @@ export function saveLoadAnnouncement(result: SaveLoadResult): string | undefined
 export interface Store {
     progress(): Promise<Record<string, LevelResult>>;
     recordResult(levelId: string, result: LevelResult): Promise<void>;
-    /** Lecture utilisée par l'écran avant le branchement de l'annonce. */
-    readSave(levelId: string, rulesVersion: string): Promise<ReadableSave | null>;
     loadSave(level: Level, mode: Mode): Promise<SaveLoadResult>;
     writeSave(save: SignedSave): Promise<void>;
     clearSave(levelId: string): Promise<void>;
@@ -108,10 +106,6 @@ function wrap(db: IDBDatabase): Store {
             if (previous === undefined || better(next, previous)) os.put(next, levelId);
             await done(tx);
         },
-        readSave: (levelId, rulesVersion) => readJournal(levelId, raw => {
-            if (isSave(raw) && raw.levelId === levelId && raw.rulesVersion === rulesVersion) return { value: raw, discard: false };
-            return { value: null, discard: raw !== undefined };
-        }),
         loadSave(level, mode) {
             const played = withMode(level, mode);
             const levelSignature = signatureOf(played);

@@ -13,12 +13,20 @@ let n = 0;
 beforeEach(async () => { store = await openStore(`cozy-test-${n++}`); });
 
 describe('stockage IndexedDB', () => {
+    // Niveau minimal portant l'identifiant voulu ; journal signé pour ce niveau en mode classique.
+    const levelNamed = (id: string): Level => ({ ...makeLevel({ boxes: [['a', 2]], objects: [['a1', 'a'], ['a2', 'a']] }), id });
+    const signed = (level: Level, actions: { type: 'SELECT_OBJECT'; objectId: string }[] = [], rulesVersion: string = level.rulesVersion) =>
+        ({ levelId: level.id, rulesVersion, levelSignature: signatureOf(withMode(level, 'classique')), actions });
+
     it('aller-retour des progrès, des parties et des réglages', async () => {
+        const level = levelNamed('001-salon');
         await store.recordResult('001-salon', { stars: 2, bestBuffered: 3 });
-        await store.writeSave({ levelId: '001-salon', rulesVersion: '1', levelSignature: 'signature', actions: [{ type: 'SELECT_OBJECT', objectId: 'a1' }] });
+        await store.writeSave(signed(level, [{ type: 'SELECT_OBJECT', objectId: 'a1' }]));
         await store.writeSettings({ mode: 'expert', theme: 'dark', sons: true, lastLevelId: '001-salon' });
         expect(await store.progress()).toEqual({ '001-salon': { stars: 2, bestBuffered: 3 } });
-        expect((await store.readSave('001-salon', '1'))?.actions).toHaveLength(1);
+        const loaded = await store.loadSave(level, 'classique');
+        expect(loaded.kind).toBe('ready');
+        expect(loaded.save?.actions).toHaveLength(1);
         expect(await store.settings()).toEqual({ mode: 'expert', theme: 'dark', sons: true, lastLevelId: '001-salon' });
     });
 
@@ -35,27 +43,34 @@ describe('stockage IndexedDB', () => {
     });
 
     it('une sauvegarde d\'une autre version des règles est rejetée et supprimée', async () => {
-        await store.writeSave({ levelId: '003-salon', rulesVersion: '0', levelSignature: 'signature', actions: [] });
-        expect(await store.readSave('003-salon', '1')).toBeNull();
-        expect(await store.readSave('003-salon', '0')).toBeNull();
+        const level = levelNamed('003-salon');
+        await store.writeSave(signed(level, [], '0'));
+        const loaded = await store.loadSave(level, 'classique');
+        expect(loaded.kind).toBe('invalid');
+        expect(loaded.save).toBeUndefined();
+        expect((await store.loadSave(level, 'classique')).kind).toBe('empty');
     });
 
     it('une sauvegarde illisible est rejetée et supprimée', async () => {
+        const level = levelNamed('004-salon');
         await store.writeRaw('saves', '004-salon', { levelId: '004-salon', actions: 'pas une liste' });
-        expect(await store.readSave('004-salon', '1')).toBeNull();
+        expect((await store.loadSave(level, 'classique')).kind).toBe('invalid');
+        expect((await store.loadSave(level, 'classique')).kind).toBe('empty');
     });
 
     it('effacer la partie d\'un niveau', async () => {
-        await store.writeSave({ levelId: '005-salon', rulesVersion: '1', levelSignature: 'signature', actions: [] });
+        const level = levelNamed('005-salon');
+        await store.writeSave(signed(level));
         await store.clearSave('005-salon');
-        expect(await store.readSave('005-salon', '1')).toBeNull();
+        expect((await store.loadSave(level, 'classique')).kind).toBe('empty');
     });
 
     it('changer de mode efface toutes les parties en cours, pas la progression', async () => {
-        await store.writeSave({ levelId: '006-salon', rulesVersion: '1', levelSignature: 'signature', actions: [] });
+        const level = levelNamed('006-salon');
+        await store.writeSave(signed(level));
         await store.recordResult('006-salon', { stars: 1, bestBuffered: 4 });
         await store.clearAllSaves();
-        expect(await store.readSave('006-salon', '1')).toBeNull();
+        expect((await store.loadSave(level, 'classique')).kind).toBe('empty');
         expect(Object.keys(await store.progress())).toEqual(['006-salon']);
     });
 });
@@ -73,10 +88,11 @@ it.each(['same', 'changed', 'missing'] as const)('compatibilité du journal en b
             actions: [{ type: 'SELECT_OBJECT', objectId: 'a1' }] });
     }
     const target = kind === 'changed' ? revised : { ...level, seed: 100, meta: { statesExplored: 123 } };
-    // Le chemin de l'écran actuel vérifie déjà la signature avant tout rejeu.
-    const saved = await store.readSave(target.id, target.rulesVersion);
-    const interim = createController(target, 'classique', deps, saved ?? undefined);
-    expect(interim.state.moveCount).toBe(kind === 'same' ? 1 : 0);
+    // Le contrôleur ne rejoue qu'un journal à l'empreinte du niveau joué, quel que soit le chargement.
+    const signedJournal = { levelId: level.id, rulesVersion: level.rulesVersion,
+        levelSignature: signatureOf(withMode(level, 'classique')), actions: [{ type: 'SELECT_OBJECT', objectId: 'a1' } as const] };
+    const interim = createController(target, 'classique', { save: () => Promise.resolve(), now: () => 0 }, signedJournal);
+    expect(interim.state.moveCount).toBe(kind === 'changed' ? 0 : 1);
 
     // Le chargement destiné à l'écran annonce et supprime atomiquement un journal incompatible.
     const loaded = await store.loadSave(target, 'classique');
@@ -126,7 +142,10 @@ describe('journal sans empreinte (version précédente)', () => {
         expect(resumed.state.moveCount).toBe(1);
         resumed.select(salon.meta?.solution?.[1] ?? '');
         await resumed.idle();
-        expect((await store.readSave(salon.id, salon.rulesVersion))?.levelSignature).toMatch(/^[0-9a-f]{16}$/);
+        // Signé sur disque : sur un niveau aux règles changées, le même journal, encore rejouable, n'est plus repris
+        // (un journal resté sans empreinte le serait).
+        const revised = { ...salon, rules: { ...salon.rules, bufferCapacity: salon.rules.bufferCapacity + 1 } };
+        expect((await store.loadSave(revised, 'classique')).kind).toBe('level-changed');
     });
 
     it('un journal sans empreinte dont un coup est refusé est écarté avec annonce', async () => {
