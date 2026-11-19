@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { levelFile, openLevel, state, tapObject } from './helpers';
+import { levelFile, levelScreen, openLevel, state, tapObject } from './helpers';
 
 test('hors ligne, la page s\'ouvre et la partie reprend au même coup', async ({ page, context, browserName }) => {
     test.skip(browserName !== 'chromium', 'service worker hors ligne vérifié sur Chromium');
@@ -11,8 +11,12 @@ test('hors ligne, la page s\'ouvre et la partie reprend au même coup', async ({
     await page.waitForTimeout(300);
     await context.setOffline(true);
     await page.reload();
-    await expect(page.locator('main.play[data-level="002-salon"][data-ready="true"]')).toBeVisible({ timeout: 20_000 });
+    await expect(levelScreen(page)).toHaveAttribute('data-ready', 'true', { timeout: 20_000 });
     const after = await state(page);
     expect(after.moveCount).toBe(2);
     expect(after.remainingObjectIds).toEqual(before.remainingObjectIds);
+    await expect(levelScreen(page).locator('[data-frame="sprite-carton-ouvert"] img').first())
+        .toHaveJSProperty('complete', true);
+    await expect.poll(() => levelScreen(page).locator('[data-frame="sprite-carton-ouvert"] img').first().evaluate(node => (node as HTMLImageElement).naturalWidth))
+        .toBeGreaterThan(0);
 });

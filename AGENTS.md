@@ -23,8 +23,10 @@ la conception détaillée et les plans de travail sont tenus hors de ce dépôt.
 - **Niveaux** : un niveau n'est publié que s'il passe `npm run level:validate` (structure valide **et**
   résolu par le solveur ; « non vérifié » est un échec, jamais « insoluble »).
 - **Aucun LLM pendant la partie.** Aucune dépendance d'exécution sans accord. Aucun son sans accord.
-- **Assets** : provenance et licence de chaque fichier dans `content/assets/provenance.json` ; contrôle
-  humain obligatoire. Code MIT, art original CC BY 4.0.
+- **Assets** : art découpé dans les planches de David Sevin. Aucun dessin par code, y compris pour
+  les icônes. Les atlas et leurs tables de découpe sont dans `content/assets/planches/`. Provenance et licence
+  de chaque cadre et des fichiers dérivés dans `content/assets/provenance.json`. Contrôle humain obligatoire.
+  Code MIT, art original CC BY 4.0.
 - **Changements visuels** vérifiés par captures Playwright (à partir de l'application web).
 
 ## Paquets

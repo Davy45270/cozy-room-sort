@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { TOKENS } from '../../apps/web/src/theme/tokens';
+import { TOKENS } from '../../apps/web/src/theme/tokens.ts';
+import { capture } from './helpers';
 
 const rgb = (hex: string): string => {
     const n = Number.parseInt(hex.slice(1), 16);
@@ -10,14 +11,35 @@ test.describe('système en sombre', () => {
     test.use({ colorScheme: 'dark' });
 
     test('le thème suit le système, et le réglage « Clair » l\'emporte', async ({ page }) => {
-        await page.goto('./?test=1');
+        await page.goto('./?test=0&demo=gagner');
+        const home = page.getByTestId('ecran-accueil');
+        await expect(home).toBeVisible();
+        await expect(home.getByTestId('jouer').locator('[data-frame="sprite-btn-jouer"]')).toBeVisible();
         await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
         await expect(page.locator('body')).toHaveCSS('background-color', rgb(TOKENS.dark.bg));
-        await page.getByRole('button', { name: 'Réglages' }).click();
+        await capture(page, 'accueil-sombre');
+
+        await home.getByRole('button', { name: 'Choisir un niveau' }).click();
+        const levels = page.getByTestId('ecran-niveaux');
+        await expect(levels).toBeVisible();
+        await expect(page).toHaveURL(/#niveaux$/);
+        await expect(levels.getByTestId('niveau-001-salon')).toBeEnabled();
+        const bathroom = levels.getByTestId('onglet-salle-de-bain');
+        await bathroom.click();
+        await expect(bathroom).toHaveAttribute('aria-selected', 'true');
+        await expect(levels.getByTestId('niveau-015-salle-de-bain')).toBeVisible();
+        await expect(levels.getByTestId('niveau-001-salon')).toBeHidden();
+        await capture(page, 'niveaux-salle-de-bain');
+
+        await levels.getByRole('button', { name: 'Réglages' }).click();
+        await expect(page.getByTestId('ecran-reglages')).toBeVisible();
+        await expect(page).toHaveURL(/#reglages$/);
+        await capture(page, 'réglages-sombre');
         await page.getByRole('radio', { name: 'Clair' }).check();
         await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
         await expect(page.locator('body')).toHaveCSS('background-color', rgb(TOKENS.light.bg));
         await page.reload();
+        await expect(page.getByTestId('ecran-reglages')).toBeVisible();
         await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
     });
 });
