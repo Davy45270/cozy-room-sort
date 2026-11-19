@@ -79,7 +79,15 @@ légaux comptés, annulation et redémarrage exclus. La durée affichée mesure 
 ## Versions
 
 Le format courant des niveaux est `schemaVersion: "1.2"`. Il est décrit dans
-[`packages/schemas/level.schema.json`](../../packages/schemas/level.schema.json). La CLI vérifie les
+[`packages/schemas/level.schema.json`](../../packages/schemas/level.schema.json). Ce schéma publié et `validateLevel`
+rendent le même verdict sur les niveaux livrés et sur un jeu de fixtures invalides
+(`tests/integration/schema-concordance.test.ts`) ; tous deux refusent un champ inconnu, hors de `meta`. Contrôles
+propres à `validateLevel`, qu’un JSON Schema ne sait pas exprimer : identifiants uniques, catégorie connue d’un
+carton ou d’un objet, bloqueur connu et différent de l’objet, absence de cycle de blocage, quotas (objets d’une
+catégorie égaux à la capacité de ses cartons), part d’objets masqués selon la difficulté, cartons actifs au plus
+égaux au nombre de cartons, seuil trois étoiles au plus égal au seuil deux étoiles, et migration des formats 1.0
+et 1.1. La géométrie de la pièce (couches et recouvrements) relève de la CLI. Aucun schéma n’est publié pour les
+sauvegardes : leur forme est vérifiée par le stockage de l’application. La CLI vérifie les
 couches des bloqueurs et le recouvrement des boîtes utiles des objets. Deux objets liés se recouvrent
 d’au moins 25 % de la plus petite boîte utile. Deux objets sans lien se recouvrent de moins de 10 %.
 La projection utilise la même échelle pour les positions et les tailles. Le toucher choisit le pixel

@@ -23,6 +23,12 @@ export function validateLevel(raw: unknown): ValidationResult {
     const errors: LevelError[] = [];
     const err = (path: string, message: string): void => { errors.push({ path, message }); };
     if (!isObj(input)) return { ok: false, errors: [{ path: '$', message: 'le niveau doit être un objet JSON' }] };
+    // Champs inconnus refusés, comme dans level.schema.json (additionalProperties: false) : une faute de frappe
+    // sur un champ facultatif (« hiden ») ne doit pas être ignorée en silence. `meta` reste ouvert.
+    const known = (path: string, value: Record<string, unknown>, keys: readonly string[]): void => {
+        for (const key of Object.keys(value)) if (!keys.includes(key)) err(path ? `${path}.${key}` : key, 'champ inconnu');
+    };
+    known('', input, ['schemaVersion', 'rulesVersion', 'id', 'name', 'theme', 'difficulty', 'seed', 'rules', 'categories', 'boxes', 'objects', 'scoring', 'meta']);
 
     if (input['schemaVersion'] !== SCHEMA_VERSION) err('schemaVersion', `version de schéma attendue : "${SCHEMA_VERSION}"`);
     if (input['rulesVersion'] !== '1') err('rulesVersion', 'version des règles attendue : "1"');
@@ -60,6 +66,7 @@ export function validateLevel(raw: unknown): ValidationResult {
         unique(`categories[${i}].id`, c['id']);
         if (isStr(c['id'])) categoryIds.add(c['id']);
         if (!isStr(c['label'])) err(`categories[${i}].label`, 'texte non vide attendu');
+        known(`categories[${i}]`, c, ['id', 'label']);
     });
     const knownCategory = (path: string, category: unknown): void => {
         if (!isStr(category) || !categoryIds.has(category)) err(path, `catégorie inconnue : ${textOf(category)}`);
@@ -68,6 +75,7 @@ export function validateLevel(raw: unknown): ValidationResult {
     const capacityByCategory = new Map<string, number>();
     boxes.forEach((b, i) => {
         if (!isObj(b)) { err(`boxes[${i}]`, 'objet attendu'); return; }
+        known(`boxes[${i}]`, b, ['id', 'category', 'capacity']);
         unique(`boxes[${i}].id`, b['id']);
         knownCategory(`boxes[${i}].category`, b['category']);
         if (!isInt(b['capacity']) || b['capacity'] < 1) err(`boxes[${i}].capacity`, 'entier ≥ 1 attendu');
@@ -80,6 +88,7 @@ export function validateLevel(raw: unknown): ValidationResult {
     const blockers = new Map<string, readonly string[]>();
     objects.forEach((o, i) => {
         if (!isObj(o)) { err(`objects[${i}]`, 'objet attendu'); return; }
+        known(`objects[${i}]`, o, ['id', 'category', 'asset', 'position', 'layer', 'blockedBy', 'hidden']);
         unique(`objects[${i}].id`, o['id']);
         if (isStr(o['id'])) objectIds.add(o['id']);
         knownCategory(`objects[${i}].category`, o['category']);
@@ -89,9 +98,12 @@ export function validateLevel(raw: unknown): ValidationResult {
         if (o['hidden'] !== undefined && typeof o['hidden'] !== 'boolean') err(`objects[${i}].hidden`, 'booléen attendu');
         const position = o['position'];
         if (!isObj(position)) err(`objects[${i}].position`, 'objet { x, y } attendu');
-        else for (const axis of ['x', 'y']) {
-            const v = position[axis];
-            if (!isNum(v) || v < 0 || v > 1) err(`objects[${i}].position.${axis}`, 'nombre entre 0 et 1 attendu');
+        else {
+            known(`objects[${i}].position`, position, ['x', 'y']);
+            for (const axis of ['x', 'y']) {
+                const v = position[axis];
+                if (!isNum(v) || v < 0 || v > 1) err(`objects[${i}].position.${axis}`, 'nombre entre 0 et 1 attendu');
+            }
         }
         if (!Array.isArray(o['blockedBy'])) err(`objects[${i}].blockedBy`, 'liste attendue');
         else {
@@ -120,6 +132,7 @@ export function validateLevel(raw: unknown): ValidationResult {
     const rules = input['rules'];
     if (!isObj(rules)) err('rules', 'objet attendu');
     else {
+        known('rules', rules, ['bufferCapacity', 'activeBoxCount', 'allowUndo', 'allowHints', 'timeLimitSeconds', 'undoLimit', 'hintLimit']);
         const buffer = rules['bufferCapacity'];
         if (!isInt(buffer) || buffer < 1 || buffer > 8) err('rules.bufferCapacity', 'entier entre 1 et 8 attendu');
         if (thresholds && buffer !== thresholds.bufferCapacity) {
@@ -139,6 +152,8 @@ export function validateLevel(raw: unknown): ValidationResult {
     const scoring = input['scoring'];
     if (!isObj(scoring)) err('scoring', 'objet attendu');
     else {
+        // Les anciens seuils en coups ont leur propre message, plus utile que « champ inconnu ».
+        known('scoring', scoring, ['threeStarsMaxBuffered', 'twoStarsMaxBuffered', 'threeStarsMaxMoves', 'twoStarsMaxMoves']);
         if (scoring['threeStarsMaxMoves'] !== undefined || scoring['twoStarsMaxMoves'] !== undefined) {
             err('scoring', 'recalibrer les anciens seuils en coups avec des seuils en passages par le tampon');
         }

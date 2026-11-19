@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://cozy-room-sort.dav123.fr/level.schema.json",
   "title": "Niveau Cozy Room Sort",
-  "description": "Contrat 1.2. validateLevel migre les anciens niveaux et vérifie aussi les quotas, les dépendances et le pourcentage d’objets masqués.",
+  "description": "Contrat 1.2. validateLevel migre les anciens niveaux et vérifie aussi les quotas, les dépendances et le pourcentage d’objets masqués. Les contrôles relationnels (identifiants uniques, catégories et bloqueurs connus, cycles, quotas, part d’objets masqués, cartons actifs, ordre des seuils) restent propres à validateLevel.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -195,6 +195,23 @@
           "hidden": {
             "type": "boolean"
           }
+        },
+        "if": {
+          "properties": {
+            "hidden": {
+              "const": true
+            }
+          },
+          "required": [
+            "hidden"
+          ]
+        },
+        "then": {
+          "properties": {
+            "blockedBy": {
+              "minItems": 1
+            }
+          }
         }
       }
     },
@@ -223,11 +240,13 @@
         "solution": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           }
         },
         "engineVersion": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
         },
         "statesExplored": {
           "type": "integer",
