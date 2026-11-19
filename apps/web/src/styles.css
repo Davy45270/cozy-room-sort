@@ -178,7 +178,7 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
 .quota-icon { width: 16px; }
 /* Un libellé trop long passe à la ligne (entre les mots d'abord) ; l'icône, le compteur et la coche restent centrés sur lui. */
 /* Interligne explicite à 1,2 : sous 1,16 em, la zone de contenu de la police (DejaVu Sans en CI) déborde de la ligne et
-   Firefox compte ce débordement dans `scrollHeight` (32 pour 31 sur deux lignes en 14 px). */
+   Firefox inclut ce débordement dans `scrollHeight` (32 pour 31 sur deux lignes en 14 px). */
 .quota-label { min-width: 0; overflow-wrap: break-word; hyphens: auto; line-height: 1.2; }
 .quota-check { width: 14px; }
 /* Plus de 4 catégories : deux colonnes ; un libellé trop long tient sur deux lignes, jamais abrégé. */
