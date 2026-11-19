@@ -21,7 +21,7 @@ export function startClock(controller: Controller, timers: ClockTimers, periodMs
     let handle: number | undefined;
     let stopped = false;
     const ended = (): boolean => controller.state.status === 'won' || controller.state.status === 'lost';
-    /** Temps écoulé depuis le dernier compte ; le compte repart de maintenant. */
+    /** Temps écoulé depuis le dernier relevé ; le relevé suivant part de maintenant. */
     const elapsed = (): number => {
         const now = timers.now();
         const ms = now - last;

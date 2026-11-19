@@ -23,8 +23,8 @@ export interface Controller {
     /** Temps écoulé, pour un niveau chronométré : sans limite de temps ou partie finie, rien n'est fait. */
     tick(ms: number): void;
     /**
-     * Branche l'horloge active : `elapsed` rend le temps écoulé depuis son dernier compte et remet ce compte à zéro.
-     * Avant chaque coup, ce temps est d'abord compté (un TICK) : un coup joué après l'échéance ne gagne pas.
+     * Branche l'horloge active : `elapsed` rend le temps écoulé depuis son dernier relevé, puis repart de zéro.
+     * Avant chaque coup, ce temps est d'abord ajouté (un TICK) : un coup joué après l'échéance ne gagne pas.
      */
     bindClock(elapsed: (() => number) | undefined): void;
     hint(): HintResult;
@@ -94,7 +94,7 @@ export function createController(baseLevel: Level, mode: Mode, deps: ControllerD
         if (level.rules.timeLimitSeconds === null || state.status === 'won' || state.status === 'lost' || !(ms > 0)) return;
         dispatch({ type: 'TICK', ms });
     };
-    /** Compte le temps écoulé depuis le dernier TICK, avant d'appliquer un coup. */
+    /** Ajoute le temps écoulé depuis le dernier TICK, avant d'appliquer un coup. */
     const catchUp = (): void => { if (elapsedSinceTick) tick(elapsedSinceTick()); };
 
     return {
@@ -106,7 +106,7 @@ export function createController(baseLevel: Level, mode: Mode, deps: ControllerD
         select: objectId => { catchUp(); dispatch({ type: 'SELECT_OBJECT', objectId }); },
         undo: () => { catchUp(); dispatch({ type: 'UNDO' }); },
         redo: () => { catchUp(); if (redoId !== undefined) dispatch({ type: 'SELECT_OBJECT', objectId: redoId }); },
-        // Le temps de la partie abandonnée n'est pas compté : il est seulement remis à zéro.
+        // Le temps de la partie abandonnée n'est pas ajouté : le relevé repart de zéro.
         restart: () => { elapsedSinceTick?.(); dispatch({ type: 'RESTART' }); },
         tick,
         bindClock: elapsed => { elapsedSinceTick = elapsed; },

@@ -100,7 +100,7 @@ describe('horloge de partie', () => {
         expect(controller.state.elapsedMs).toBe(0);
         expect(running()).toBe(true);
         expect(calls.set).toBe(2);
-        // Les 30 s passées sur l'écran de défaite ne comptent pas : le temps repart de « Recommencer ».
+        // Les 30 s passées sur l'écran de défaite ne sont pas ajoutées : le temps repart de « Recommencer ».
         fire(400);
         expect(controller.state.elapsedMs).toBe(400);
         expect(controller.state.status).toBe('playing');
@@ -134,7 +134,7 @@ describe('horloge de partie', () => {
         expect(controller.state.remainingObjectIds).toEqual(['a2']);
     });
 
-    it('un coup joué avant l’échéance compte d’abord le temps écoulé, puis s’applique', () => {
+    it('un coup joué avant l’échéance ajoute d’abord le temps écoulé, puis s’applique', () => {
         const controller = createController(makeLevel({ ...spec, rules: { timeLimitSeconds: 2 } }), 'classique',
             { save: () => Promise.resolve(), now: () => 0 });
         const { timers, wait } = manualTimers();
@@ -145,7 +145,7 @@ describe('horloge de partie', () => {
         expect(controller.state.remainingObjectIds).toEqual(['a2']);
     });
 
-    it('arrêtée, l’horloge ne compte plus rien, même avant un coup', () => {
+    it('arrêtée, l’horloge n’ajoute plus aucun temps, même avant un coup', () => {
         const controller = createController(makeLevel({ ...spec, rules: { timeLimitSeconds: 1 } }), 'classique',
             { save: () => Promise.resolve(), now: () => 0 });
         const { timers, wait, running } = manualTimers();

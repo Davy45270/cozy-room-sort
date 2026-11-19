@@ -87,7 +87,7 @@ it('échéance, « Recommencer », puis le temps court de nouveau jusqu’à la 
     screen.dispose?.();
 });
 
-it('à la sortie de l’écran, l’horloge est détruite : plus aucune minuterie, plus aucun temps compté', async () => {
+it('à la sortie de l’écran, l’horloge est détruite : plus aucune minuterie, plus aucun temps ajouté', async () => {
     const level = timed(60);
     const screen = await playScreen(context(level), level);
     screen.mounted?.();
