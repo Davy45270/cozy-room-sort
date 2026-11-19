@@ -9,11 +9,13 @@ function files(folder: string): string[] {
     });
 }
 
+const contentFiles = files('content');
+const contentJson = contentFiles.filter(path => path.endsWith('.json'));
 const interfaceFiles = [...files('apps/web/src'), 'apps/web/index.html'];
 const read = (file: string): string => readFileSync(file, 'utf8');
 
 it('garde l’interface et le contenu sans URL externe', () => {
-    const paths = [...interfaceFiles, ...files('content').filter(path => !/\.(?:webp|png|jpe?g|ico|woff2?)$/i.test(path))];
+    const paths = [...interfaceFiles, ...contentJson, ...contentFiles.filter(path => !/\.(?:json|webp|png|jpe?g|ico|woff2?)$/i.test(path))];
     const violations = paths.flatMap(path => [...read(path).matchAll(/https?:\/\/[^\s"'<>\\)`]+/gi)]
         .filter(([url]) => {
             try { return !['localhost', '127.0.0.1', '[::1]'].includes(new URL(url).hostname); }
@@ -53,4 +55,15 @@ it('utilise les paquets locaux ou leurs versions de registre et aucun sous-modul
 
 it('compile en TypeScript strict', () => {
     expect(JSON.parse(read('tsconfig.json'))).toMatchObject({ compilerOptions: { strict: true } });
+});
+
+it('le monorepo contient les applications, paquets, contenus, outils, tests et guides du MVP', () => {
+    const paths = [
+        'apps/web', 'packages/schemas', 'packages/engine', 'packages/solver', 'packages/generator', 'packages/level-tools',
+        'content/levels', 'content/themes', 'content/assets', 'tools/validate-levels.ts', 'tools/generate-levels.ts',
+        'tools/benchmark-solver.ts', 'tests/unit', 'tests/property', 'tests/integration', 'tests/e2e',
+        'docs/architecture', 'docs/specifications', 'docs/ai-agents/README.md',
+        'AGENTS.md', 'README.md', 'CONTRIBUTING.md', 'LICENSE', '.woodpecker/checks.yml', '.woodpecker/e2e.yml'
+    ];
+    expect(paths.filter(path => !existsSync(path))).toEqual([]);
 });

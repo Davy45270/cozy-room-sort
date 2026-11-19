@@ -548,7 +548,6 @@
   }
  },
  "meta": {
-  "app": "http://www.aseprite.org/",
   "version": "1.3.18.6-dev",
   "image": "p03-meubles.webp",
   "format": "RGBA8888",
