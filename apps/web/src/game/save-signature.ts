@@ -35,7 +35,7 @@ export function signatureOf(level: Level): string {
     const content = JSON.stringify([
         level.rulesVersion,
         [rules.bufferCapacity, rules.activeBoxCount, rules.allowUndo, rules.allowHints, rules.timeLimitSeconds,
-            rules.undoLimit ?? 200, String(rules.hintLimit ?? Infinity)],
+            String(rules.undoLimit ?? Infinity), String(rules.hintLimit ?? Infinity)],
         level.boxes.map(box => [box.id, box.category, box.capacity]),
         level.objects.map(object => [object.id, object.category, [...object.blockedBy].sort()]),
         [scoring.threeStarsMaxBuffered, scoring.twoStarsMaxBuffered]
