@@ -3,9 +3,9 @@ import { starsFor, type GameEvent, type GameState } from '@cozy-room-sort/engine
 import type { Level } from '@cozy-room-sort/schemas';
 import type { AppContext, Screen } from '../app-context.ts';
 import { levelNumber, nextLevel, themeOf } from '../content.ts';
-import { atlasImage, h, iconButton, stars } from '../dom.ts';
+import { h, iconButton, stars } from '../dom.ts';
 import { createController } from '../game/controller.ts';
-import { renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachable, renderScore } from '../hud.ts';
+import { createProgress, renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachable, renderScore } from '../hud.ts';
 import { PACK_MS, reducedMotion, startRoom, type RoomScene } from '../scene/room-scene.ts';
 import { playSound } from '../sons.ts';
 import { BLOCKED_LEVEL, BLOCKED_MOVES, demonstration, installTestHooks } from '../test-hooks.ts';
@@ -28,9 +28,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
     const buffer = h('div', { class: 'buffer', role: 'group' });
     const quotas = h('section', { class: 'quotas', 'aria-label': 'Quotas' });
     const score = h('div', { class: 'score' });
-    const progress = h('div', { class: 'progress', role: 'progressbar', 'aria-label': 'Objets rangés', 'aria-valuemin': 0, 'aria-valuemax': level.objects.length },
-        atlasImage('barre-progression'),
-        h('span', { class: 'progress-track', 'aria-hidden': 'true' }, h('span', { class: 'progress-fill' })));
+    const progress = createProgress(level);
     const reachable = h('ul', { class: 'reachable' });
     const live = h('p', { class: 'sr-only', role: 'status', 'aria-live': 'polite' });
     const overlay = h('div', { class: 'overlay', hidden: true });

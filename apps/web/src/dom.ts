@@ -54,6 +54,26 @@ export function roomChoiceImage(theme: { selecteur: string; selecteur_normal?: s
 }
 
 /**
+ * Style d'une image d'atlas (largeur `atlas.w`, hauteur `atlas.h`) qui montre seulement le rectangle `rect` d'un cadre posé
+ * en `frame`, `rect` étant donné en pixels de la partie utile `hitbox` : le rectangle occupe toute la boîte qui contient
+ * l'image, étiré au besoin dans les deux sens. La boîte doit masquer ce qui déborde (`overflow: hidden`).
+ */
+export function stretchedCropStyle(atlas: { w: number; h: number }, frame: { x: number; y: number }, hitbox: { x: number; y: number }, rect: Rect): string {
+    const percent = (number: number, extent: number): string => `${number / extent * 100}%`;
+    return `width:${percent(atlas.w, rect.w)};height:${percent(atlas.h, rect.h)};`
+        + `left:${percent(-frame.x - hitbox.x - rect.x, rect.w)};top:${percent(-frame.y - hitbox.y - rect.y, rect.h)}`;
+}
+
+/** Un rectangle d'un cadre d'atlas, étiré sur toute sa boîte (taille donnée par le CSS). Aucun octet nouveau : l'atlas du cadre. */
+export function atlasCrop(asset: string, rect: Rect, className?: string): HTMLElement {
+    const { atlas, frame, hitbox } = spriteOf(asset);
+    return h('span', {
+        class: className ? `atlas-crop ${className}` : 'atlas-crop', 'aria-hidden': 'true',
+        'data-frame': `sprite-${asset}`, 'data-crop': `${rect.x} ${rect.y} ${rect.w} ${rect.h}`
+    }, h('img', { src: atlas.image, alt: '', draggable: 'false', style: stretchedCropStyle(atlas, frame, hitbox, rect) }));
+}
+
+/**
  * Bords d'un cadre d'atlas en 9 tranches, sans son centre : `slice` donne haut, droite, bas, gauche en pixels de la
  * partie utile du cadre ; les coins gardent leur taille (× `scale`), les bords s'étirent. Même découpe qu'un
  * `border-image` sans `fill`, construite en DOM parce qu'un `border-image` ne sait pas viser un cadre dans un atlas.
@@ -63,14 +83,12 @@ export function atlasBorder(asset: string, slice: readonly [number, number, numb
     const [top, right, bottom, left] = slice;
     const xs = [0, left, hitbox.w - right, hitbox.w];
     const ys = [0, top, hitbox.h - bottom, hitbox.h];
-    const percent = (number: number, extent: number): string => `${number / extent * 100}%`;
     const cells: HTMLElement[] = [];
     for (let row = 0; row < 3; row++) for (let col = 0; col < 3; col++) {
         if (row === 1 && col === 1) continue;
         const x = xs[col]!, y = ys[row]!, w = xs[col + 1]! - x, h2 = ys[row + 1]! - y;
         cells.push(h('span', { class: 'border-cell', 'data-cell': `${row}${col}`, style: `grid-area:${row + 1}/${col + 1}` }, h('img', {
-            src: atlas.image, alt: '', draggable: 'false',
-            style: `width:${percent(atlas.w, w)};height:${percent(atlas.h, h2)};left:${percent(-frame.x - hitbox.x - x, w)};top:${percent(-frame.y - hitbox.y - y, h2)}`
+            src: atlas.image, alt: '', draggable: 'false', style: stretchedCropStyle(atlas, frame, hitbox, { x, y, w, h: h2 })
         })));
     }
     return h('span', {

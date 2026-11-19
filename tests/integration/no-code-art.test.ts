@@ -32,9 +32,18 @@ it('les illustrations du jeu proviennent des atlas ; seul le fondu de la vue est
     expect(found).toEqual(ALLOWED);
 });
 
-it('les dégradés CSS se limitent au remplissage de la barre de progression', () => {
+it('aucun dégradé CSS : la jauge de progression montre la piste et le remplissage de la planche', () => {
     const css = ['apps/web/src'].flatMap(sources).filter(file => /\.(?:css|[jt]s)$/.test(file));
     const gradients = css.flatMap(file => [...readFileSync(file, 'utf8').matchAll(/[\w.-]*\s*\{[^}]*?(?:linear|radial|conic)-gradient\(/g)]
         .map(match => `${file} ${match[0].split('{')[0]!.trim()}`));
-    expect(gradients).toEqual([join('apps', 'web', 'src', 'styles.css') + ' .progress-fill']);
+    expect(gradients).toEqual([]);
+});
+
+it('la jauge de progression ne pose ni aplat ni dégradé sur l’intérieur du cadre', () => {
+    const css = readFileSync(join('apps', 'web', 'src', 'styles.css'), 'utf8');
+    const painted = [...css.matchAll(/([^{}]*)\{([^{}]*)\}/g)]
+        .filter(([, selector]) => /\.progress/.test(selector!))
+        .filter(([, , body]) => /(?:^|;|\s)background(?:-color|-image)?\s*:|gradient\(/.test(body!))
+        .map(([, selector]) => selector!.trim());
+    expect(painted).toEqual([]);
 });

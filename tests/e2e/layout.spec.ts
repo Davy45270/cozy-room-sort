@@ -1,5 +1,8 @@
 import { expect, test, type Page } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 import { capture, levelFile, levelScreen, openLevel, state, thirdRoom } from './helpers';
+
+const provenance = JSON.parse(readFileSync('content/assets/provenance.json', 'utf8')) as { id: string; hitbox?: { w: number; h: number } }[];
 
 test.describe('petit téléphone', () => {
     test.use({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
@@ -89,18 +92,28 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 360, height: 740 }
     });
 }
 
+/** Proportion (hauteur / largeur) de la partie utile d'un cadre affiché (`sprite-<id>`), lue dans la provenance. */
+function frameRatio(frame: string): number {
+    const entry = provenance.find(item => `sprite-${item.id}` === frame && item.hitbox);
+    if (!entry?.hitbox) throw new Error(`Cadre absent de la provenance : ${frame}`);
+    return entry.hitbox.h / entry.hitbox.w;
+}
+
 /**
- * Chaque case du tampon occupe toute sa colonne, garde la proportion de son dessin (256 × 88, à 5 % près) et au moins
- * `minHeight` px de haut ; l'objet rangé y tient.
+ * Chaque case du tampon occupe toute sa colonne, garde la proportion du cadre **réellement affiché** (`case-tampon`
+ * 256 × 88, ou `case-tampon-aide` 256 × 123 sur la première case du niveau 001, à 5 % près) et au moins `minHeight` px
+ * de haut ; l'objet rangé y tient.
  */
 async function expectSlotsDrawnToScale(page: Page, minHeight: number): Promise<void> {
     const slots = levelScreen(page).locator('.slot');
     expect(await slots.count()).toBeGreaterThan(0);
     for (const slot of await slots.all()) {
         const cell = (await slot.boundingBox())!;
-        const art = (await slot.locator('.slot-art').boundingBox())!;
+        const artLocator = slot.locator('.slot-art');
+        const art = (await artLocator.boundingBox())!;
+        const ratio = frameRatio((await artLocator.getAttribute('data-frame'))!);
         expect(art.width).toBeGreaterThanOrEqual(cell.width - 1);
-        expect(Math.abs(art.height / art.width - 88 / 256)).toBeLessThanOrEqual(88 / 256 * .05);
+        expect(Math.abs(art.height / art.width - ratio)).toBeLessThanOrEqual(ratio * .05);
         expect(art.height).toBeGreaterThanOrEqual(minHeight);
         const object = slot.locator('.slot-object');
         if (await object.count()) {
@@ -174,10 +187,45 @@ test.describe('bureau à 1280×800', () => {
         await capture(page, 'accueil-1280');
         await openLevel(page, `020-${thirdRoom.id}`);
         const tray = (await levelScreen(page).locator('.tray').boundingBox())!;
-        const room = (await levelScreen(page).locator('.room').boundingBox())!;
-        expect(tray.height).toBeLessThan(room.height * .8);
+        expect(tray.y).toBeGreaterThanOrEqual(0);
+        expect(tray.y + tray.height).toBeLessThanOrEqual(800.5);
         await capture(page, 'partie-1280');
     });
+
+    for (const id of ['001-salon', `020-${thirdRoom.id}`]) {
+        test(`${id} : le panneau latéral est à l’échelle de l’écran, texte de 15 px et cases de 64 px au moins`, async ({ page }) => {
+            await openLevel(page, id);
+            const screen = levelScreen(page);
+            const tray = screen.locator('.tray');
+            // Toute ligne de texte visible du panneau mesure au moins 15 px.
+            const small = await tray.evaluate(root => {
+                const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+                const found: string[] = [];
+                for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+                    const parent = node.parentElement;
+                    if (!node.textContent?.trim() || !parent || parent.closest('.sr-only')) continue;
+                    const size = parseFloat(getComputedStyle(parent).fontSize);
+                    if (size < 15) found.push(`${node.textContent.trim()} ${size}px`);
+                }
+                return found;
+            });
+            expect(small).toEqual([]);
+            const slots = await screen.locator('.slot').all();
+            expect(slots.length).toBe(levelFile(id).rules.bufferCapacity);
+            for (const slot of slots) expect((await slot.boundingBox())!.width).toBeGreaterThanOrEqual(64);
+            for (const picture of await screen.locator('.box-picture').all()) expect((await picture.boundingBox())!.height).toBeGreaterThanOrEqual(64);
+            // Rien ne dépasse la hauteur de l'écran ; pas de défilement.
+            const box = (await tray.boundingBox())!;
+            expect(box.y + box.height).toBeLessThanOrEqual(800.5);
+            for (const el of await tray.locator('.box, .quota, .slot, .score').all()) {
+                const part = (await el.boundingBox())!;
+                expect(part.y + part.height).toBeLessThanOrEqual(800.5);
+            }
+            expect(await page.evaluate(() => document.scrollingElement!.scrollHeight)).toBeLessThanOrEqual(800.5);
+            await expectSlotsDrawnToScale(page, 0);
+            await capture(page, `panneau-${id}-1280x800`);
+        });
+    }
 });
 
 for (const viewport of [{ width: 1280, height: 800 }, { width: 360, height: 740 }]) {
@@ -271,6 +319,21 @@ for (const viewport of [{ width: 360, height: 740 }, { width: 320, height: 568 }
                     for (const [index, row] of (await screen.locator('.quota').all()).entries()) {
                         await expect(row).toHaveAttribute('title', level.categories[index]!.label);
                     }
+                }
+                // Aucun libellé de quota coupé : il passe à la ligne au besoin ; icône et compteur restent centrés sur lui.
+                const labels = screen.locator('.quota-label');
+                expect(await labels.count()).toBe(level.categories.length);
+                for (const label of await labels.all()) {
+                    const size = await label.evaluate(node => ({ text: node.textContent, scrollWidth: node.scrollWidth, clientWidth: node.clientWidth,
+                        scrollHeight: node.scrollHeight, clientHeight: node.clientHeight, overflow: getComputedStyle(node).textOverflow }));
+                    expect(size.scrollWidth, size.text).toBeLessThanOrEqual(size.clientWidth);
+                    expect(size.scrollHeight, size.text).toBeLessThanOrEqual(size.clientHeight);
+                    expect(size.overflow).not.toBe('ellipsis');
+                }
+                for (const row of await screen.locator('.quota').all()) {
+                    const icon = (await row.locator('.quota-icon').boundingBox())!;
+                    const count = (await row.locator('.quota-count').boundingBox())!;
+                    expect(Math.abs(icon.y + icon.height / 2 - (count.y + count.height / 2))).toBeLessThanOrEqual(2);
                 }
                 await expectReadableText(page);
                 if (viewport.width === 360) await expectSlotsDrawnToScale(page, 20);

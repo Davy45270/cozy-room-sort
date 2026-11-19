@@ -66,3 +66,48 @@ it('les quotas passent sur deux colonnes au-delà de 4 catégories, sans texte d
         expect(px, `${rule.selectorText} ${size}`).toBeGreaterThanOrEqual(14);
     }
 });
+
+it('les libellés des quotas ne sont jamais coupés : ni ellipse, ni ligne unique imposée, ni débordement masqué', () => {
+    const quotaRules = allRules().filter(rule => /quota/.test(rule.selectorText));
+    expect(quotaRules.length).toBeGreaterThan(0);
+    for (const rule of quotaRules) {
+        expect(rule.style.getPropertyValue('text-overflow'), rule.selectorText).toBe('');
+        expect(rule.style.getPropertyValue('white-space'), rule.selectorText).not.toBe('nowrap');
+        if (/quota-label/.test(rule.selectorText)) {
+            expect(rule.style.getPropertyValue('overflow'), rule.selectorText).not.toBe('hidden');
+            expect(rule.style.getPropertyValue('overflow-x'), rule.selectorText).not.toBe('hidden');
+        }
+    }
+});
+
+/** Règles d'une media query donnée, par sélecteur. */
+const mediaRules = (condition: RegExp): CSSStyleRule[] => {
+    const style = document.createElement('style');
+    style.textContent = readFileSync('apps/web/src/styles.css', 'utf8');
+    document.head.append(style);
+    const result = Array.from(style.sheet!.cssRules).filter(rule => rule instanceof CSSMediaRule && condition.test(rule.media.mediaText))
+        .flatMap(rule => Array.from((rule as CSSMediaRule).cssRules)).filter(rule => rule instanceof CSSStyleRule);
+    style.remove();
+    return result;
+};
+
+it('à partir de 1024 px de large, le panneau latéral grandit : texte d’au moins 15 px, cases du tampon d’au moins 64 px', () => {
+    const wide = mediaRules(/min-width:\s*1024px/);
+    expect(wide.length).toBeGreaterThan(0);
+    const px = (value: string): number => value.endsWith('rem') ? Number.parseFloat(value) * 16 : Number.parseFloat(value);
+    const rule = (selector: string): CSSStyleRule | undefined => wide.find(item => item.selectorText.split(/,\s*/).includes(selector));
+    // Colonne du panneau assez large pour 5 cases de 64 px, marges comprises.
+    const columns = rule('.play')?.style.getPropertyValue('grid-template-columns') ?? '';
+    const tray = Number.parseFloat(/(\d+)px\s*$/.exec(columns)?.[1] ?? '0');
+    const padding = px(rule('.tray')?.style.getPropertyValue('padding') ?? '0');
+    expect(tray - 2 * padding - 4 * px(rule('.buffer')?.style.getPropertyValue('gap') ?? '0')).toBeGreaterThanOrEqual(5 * 64);
+    // Tout texte du panneau à 15 px au moins.
+    for (const selector of ['.tray h2', '.quota', '.box-count', '.score']) {
+        const size = rule(selector)?.style.getPropertyValue('font-size') ?? '';
+        expect(px(size), `${selector} ${size}`).toBeGreaterThanOrEqual(15);
+    }
+    for (const item of wide) {
+        const size = item.style.getPropertyValue('font-size');
+        if (size) expect(px(size), `${item.selectorText} ${size}`).toBeGreaterThanOrEqual(15);
+    }
+});
