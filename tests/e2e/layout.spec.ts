@@ -215,6 +215,9 @@ for (const viewport of [{ width: 390, height: 844 }, { width: 360, height: 740 }
             await expect(border).toBeVisible();
             await expect(border.locator('.border-cell')).toHaveCount(8);
             await expect(screen.locator('.quotas .atlas-frame[data-frame="sprite-panneau-quotas"]')).toHaveCount(0);
+            const images = await page.evaluate(() => window.__cozy!.images());
+            expect(images.find(image => image.id === 'fond')).toMatchObject({ frame: 'sprite-vue-salon', visible: true, alpha: 1 });
+            expect(images.find(image => image.id === 'chat')).toMatchObject({ frame: 'sprite-chat-dort', visible: true, alpha: 1 });
             await capture(page, `jeu-salon-${viewport.width}x${viewport.height}`);
         });
     });

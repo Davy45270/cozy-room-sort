@@ -15,6 +15,8 @@ const usefulBounds = (asset: string): Bounds => {
 };
 export const reducedMotion = (): boolean => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+export interface ImageState { id: string; frame: string; visible: boolean; alpha: number; tintMode: number; mark: string | null }
+
 export interface RoomSceneOptions {
     controller: Controller;
     targetOf: (event: MoveEvent) => Element | null;
@@ -249,6 +251,19 @@ export class RoomScene extends Phaser.Scene {
         const canvas = this.game.canvas.getBoundingClientRect();
         const b = this.background.getBounds();
         return { x: canvas.left + b.x, y: canvas.top + b.y, width: b.width, height: b.height };
+    }
+
+    /** État rendu des images de la scène : fond, chat, puis objets restants avec leur marque « ? » (crochet de test). */
+    imageStates(): ImageState[] {
+        const state = (id: string, image: Phaser.GameObjects.Image): ImageState => ({
+            id, frame: image.frame.name, visible: image.visible, alpha: image.alpha, tintMode: image.tintMode,
+            mark: this.marks.get(id)?.text ?? null
+        });
+        return [
+            ...(this.background ? [state('fond', this.background)] : []),
+            ...(this.cat ? [state('chat', this.cat)] : []),
+            ...[...this.sprites].map(([id, sprite]) => state(id, sprite))
+        ];
     }
 
     objectCenter(id: string): { x: number; y: number } | null {

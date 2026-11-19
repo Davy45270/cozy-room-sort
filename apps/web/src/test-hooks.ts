@@ -1,7 +1,7 @@
 // Les démonstrations et les crochets d'entrée sont réservés à la requête de test.
 import type { GameState } from '@cozy-room-sort/engine';
 import type { Controller } from './game/controller.ts';
-import type { RoomScene } from './scene/room-scene.ts';
+import type { ImageState, RoomScene } from './scene/room-scene.ts';
 
 export interface CozyTestHooks {
     objectCenter(id: string): { x: number; y: number } | null;
@@ -9,6 +9,8 @@ export interface CozyTestHooks {
     state(): GameState;
     solution(): readonly string[];
     tapObject(id: string): void;
+    /** Fond, chat et objets de la scène : cadre, visibilité, opacité, mode de teinte et marque. */
+    images(): ImageState[];
 }
 declare global { interface Window { __cozy?: CozyTestHooks } }
 
@@ -30,7 +32,8 @@ export function installTestHooks(controller: Controller, scene: RoomScene): () =
         viewBounds: () => scene.viewBounds(),
         state: () => controller.state,
         solution: () => controller.level.meta?.solution ?? [],
-        tapObject: id => scene.tap(id)
+        tapObject: id => scene.tap(id),
+        images: () => scene.imageStates()
     };
     window.__cozy = hooks;
     return () => { if (window.__cozy === hooks) delete window.__cozy; };

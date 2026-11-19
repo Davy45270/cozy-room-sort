@@ -27,6 +27,22 @@ describe('projection de la pièce', () => {
         }
     });
 
+    it('mesure le recouvrement sur des cas écrits à la main (oracle indépendant du placement)', () => {
+        const r = (x: number, y: number, w: number, h: number): Bounds => ({ x, y, w, h });
+        // Quart commun de deux carrés égaux : 5 × 5 sur 100.
+        expect(overlapRatio(r(0, 0, 10, 10), r(5, 5, 10, 10))).toBeCloseTo(.25);
+        // Petite boîte entièrement dans la grande : toute la petite est couverte.
+        expect(overlapRatio(r(0, 0, 10, 10), r(2, 2, 4, 4))).toBeCloseTo(1);
+        expect(overlapRatio(r(2, 2, 4, 4), r(0, 0, 10, 10))).toBeCloseTo(1);
+        // Bande de 2 × 10 rapportée à la plus petite boîte (4 × 10).
+        expect(overlapRatio(r(0, 0, 4, 10), r(2, 0, 10, 10))).toBeCloseTo(.5);
+        // Recouvrement partiel sur les deux axes : 3 × 2 = 6, plus petite aire 4 × 5 = 20.
+        expect(overlapRatio(r(1, 1, 4, 5), r(2, 4, 8, 8))).toBeCloseTo(.3);
+        // Bords qui se touchent et boîtes disjointes : aucun recouvrement.
+        expect(overlapRatio(r(0, 0, 10, 10), r(10, 0, 10, 10))).toBe(0);
+        expect(overlapRatio(r(0, 0, 10, 10), r(0, 12, 10, 10))).toBe(0);
+    });
+
     it('en portrait étroit, prend la largeur (marge latérale ≤ 2 %) et se colle en haut de sa zone', () => {
         for (const viewport of [{ width: 390, height: 390 }, { width: 360, height: 360 }, { width: 390, height: 377 }]) {
             const view = roomView({ ...viewport, compact: true });
