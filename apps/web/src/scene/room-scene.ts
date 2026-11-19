@@ -20,6 +20,8 @@ export interface RoomSceneOptions {
     targetOf: (event: MoveEvent) => Element | null;
     bufferSlot: (index: number) => Element | null;
     onReady: () => void;
+    /** Appelé après chaque mise en page de la vue (création et redimensionnement). */
+    onLayout?: (scene: RoomScene) => void;
 }
 
 export class RoomScene extends Phaser.Scene {
@@ -87,6 +89,7 @@ export class RoomScene extends Phaser.Scene {
         this.placed = layoutRoom(this.opts.controller.level, room);
         for (const at of this.placed.values()) { at.x += left; at.y += top; }
         this.reconcile(this.opts.controller.state, []);
+        this.opts.onLayout?.(this);
     }
 
     private reconcile(state: GameState, events: readonly GameEvent[]): void {
