@@ -1,5 +1,6 @@
 // Repris de six-de-chaque (apps/web/pwa-manifest.ts).
 import type { ManifestOptions } from 'vite-plugin-pwa';
+import { TOKENS } from './src/theme/tokens.ts';
 export const manifest: Partial<ManifestOptions> = {
     name: 'Cozy Room Sort',
     short_name: 'Cozy Room',
@@ -7,8 +8,8 @@ export const manifest: Partial<ManifestOptions> = {
     lang: 'fr',
     display: 'standalone',
     orientation: 'any',
-    theme_color: '#F7EEDF',
-    background_color: '#F7EEDF',
+    theme_color: TOKENS.light.bg,
+    background_color: TOKENS.light.bg,
     start_url: './',
     scope: './',
     icons: [

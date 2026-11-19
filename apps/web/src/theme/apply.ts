@@ -1,4 +1,4 @@
-import { cssVariables, type ThemePreference, type Tone } from './tokens.ts';
+import { cssVariables, TOKENS, type ThemePreference, type Tone } from './tokens.ts';
 
 /** Feuille des tokens : clair par défaut, sombre selon le système, et les deux forçables par data-theme. */
 export function themeStylesheet(): string {
@@ -18,6 +18,6 @@ export function applyTheme(preference: ThemePreference, root: HTMLElement = docu
     root.dataset['theme'] = tone;
     root.dataset['themePreference'] = preference;
     const meta = root.ownerDocument.querySelector('meta[name="theme-color"]');
-    meta?.setAttribute('content', getComputedStyle(root).getPropertyValue('--crs-bg').trim() || (tone === 'dark' ? '#2A211D' : '#F7EEDF'));
+    meta?.setAttribute('content', getComputedStyle(root).getPropertyValue('--crs-bg').trim() || TOKENS[tone].bg);
     return tone;
 }

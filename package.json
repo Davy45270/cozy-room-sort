@@ -23,8 +23,7 @@
     "build": "tsc --noEmit && vite build apps/web",
     "preview": "vite preview apps/web",
     "check:precache": "node scripts/check-precache.js",
-    "test:e2e": "playwright test",
-    "art:sheet": "node tools/art-sheet.ts"
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
     "@playwright/test": "1.65.0",

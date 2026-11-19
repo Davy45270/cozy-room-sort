@@ -1,58 +1,74 @@
-// Barre de jeu (DOM) : cartons ouverts, tampon, score en passages, liste accessible des objets à portée.
-import { boxSvg, objectSvg } from '@cozy-room-sort/art';
-import { isAccessible, snapshotOf, starsFor, type GameState } from '@cozy-room-sort/engine';
+import { starsFor, type GameState } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
 import { labelOf, objectName, pictoOf } from './content.ts';
-import { h, stars, svgImage } from './dom.ts';
+import { atlasImage, h, stars } from './dom.ts';
+import type { Controller } from './game/controller.ts';
 
-export function renderBoxes(container: HTMLElement, level: Level, state: GameState, fresh: ReadonlySet<string>): void {
-    const boxes = state.activeBoxIds.map(id => level.boxes.find(b => b.id === id)).filter(b => b !== undefined);
-    const pending = state.pendingBoxIds.length;
-    container.replaceChildren(
-        ...boxes.map(box => {
-            const fill = state.boxFillCounts[box.id] ?? 0;
-            const label = labelOf(level, box.category);
-            return h('div', { class: `box${fresh.has(box.id) ? ' box-new' : ''}`, 'data-box': box.id, role: 'group', 'aria-label': `Carton ${label} : ${fill} sur ${box.capacity}` },
-                svgImage(boxSvg(pictoOf(level, box.category)), '', 'box-art'),
-                h('span', { class: 'box-label', text: label }),
-                h('span', { class: 'box-count', text: `${fill} / ${box.capacity}` }),
-                h('span', { class: 'meter', 'aria-hidden': 'true' }, h('span', { class: 'meter-fill', style: `width:${Math.round((fill / box.capacity) * 100)}%` })));
-        }),
-        h('div', { class: 'box-pending', 'aria-label': `${pending} carton${pending > 1 ? 's' : ''} en attente` },
-            h('span', { class: 'box-pending-count', text: `+${pending}` }), h('span', { text: pending > 1 ? 'cartons' : 'carton' }))
-    );
+export function renderBoxes(container: HTMLElement, level: Level, state: GameState): void {
+    container.replaceChildren(...level.boxes.map(box => {
+        const pending = state.pendingBoxIds.includes(box.id);
+        if (pending) return h('div', { class: 'box-space', 'aria-hidden': 'true' });
+        const fill = state.boxFillCounts[box.id] ?? 0;
+        const completed = state.completedBoxIds.includes(box.id);
+        const label = labelOf(level, box.category);
+        return h('div', { class: 'box', 'data-box': box.id, role: 'group',
+            'aria-label': `Carton ${label}, ${fill} sur ${box.capacity}${completed ? ', fermé' : ''}` },
+            h('span', { class: 'box-picture' },
+                atlasImage(completed ? 'carton-ferme' : 'carton-ouvert', '', 'box-art'),
+                atlasImage(pictoOf(level, box.category), '', completed ? 'box-icon closed' : 'box-icon')),
+            h('span', { class: 'box-count', text: `${fill}/${box.capacity}` }));
+    }));
 }
 
-export function renderBuffer(container: HTMLElement, level: Level, state: GameState, tone: 'light' | 'dark', sticker: string): void {
+export function renderBuffer(container: HTMLElement, level: Level, state: GameState, showHelp: boolean): void {
     const capacity = level.rules.bufferCapacity;
-    const slots = Array.from({ length: capacity }, (_, i) => {
-        const id = state.bufferObjectIds[i];
-        const object = id === undefined ? undefined : level.objects.find(o => o.id === id);
-        return h('div', { class: `slot${object ? ' slot-full' : ''}`, 'data-buffer-slot': i },
-            object ? svgImage(objectSvg(object.asset, 64, tone === 'dark' ? sticker : undefined), objectName(object.asset)) : null);
+    const slots = Array.from({ length: capacity }, (_, index) => {
+        const id = state.bufferObjectIds[index];
+        const object = level.objects.find(item => item.id === id);
+        return h('div', { class: object ? 'slot slot-full' : 'slot', 'data-buffer-slot': index, 'data-buffer-object': id },
+            atlasImage(showHelp && index === 0 ? 'case-tampon-aide' : 'case-tampon', '', 'slot-art'),
+            object ? atlasImage(object.asset, objectName(object.asset), 'slot-object') : null);
     });
-    container.setAttribute('aria-label', `Tampon : ${state.bufferObjectIds.length} sur ${capacity}`);
-    container.classList.toggle('buffer-full', state.bufferObjectIds.length >= capacity);
+    container.style.setProperty('--slot-count', String(capacity));
+    container.setAttribute('aria-label', `Tampon, ${state.bufferObjectIds.length} sur ${capacity}`);
     container.replaceChildren(...slots);
+}
+
+export function renderQuotas(container: HTMLElement, level: Level, state: GameState): void {
+    container.replaceChildren(atlasImage('panneau-quotas', '', 'quota-art'),
+        h('div', { class: 'quota-content' }, h('h2', { text: 'Quotas' }),
+        h('ul', { class: 'quota-list' }, ...level.categories.map(category => {
+            const boxes = level.boxes.filter(box => box.category === category.id);
+            const total = boxes.reduce((sum, box) => sum + box.capacity, 0);
+            const packed = boxes.reduce((sum, box) => sum + (state.boxFillCounts[box.id] ?? 0), 0);
+            return h('li', { class: 'quota', 'aria-label': `${category.label}, ${packed} sur ${total}` },
+                atlasImage(pictoOf(level, category.id), '', 'quota-icon'),
+                h('span', { class: 'quota-label', text: category.label }),
+                h('span', { class: 'quota-count', text: `${packed}/${total}` }),
+                packed === total ? atlasImage('coche', 'Complet', 'quota-check') : null);
+        }))));
+}
+
+export function renderProgress(container: HTMLElement, level: Level, state: GameState): void {
+    const packed = Object.keys(state.packedIn).length;
+    container.setAttribute('aria-valuenow', String(packed));
+    container.querySelector<HTMLElement>('.progress-fill')?.style.setProperty('width', `${packed / level.objects.length * 100}%`);
 }
 
 export function renderScore(container: HTMLElement, level: Level, state: GameState): void {
     const n = state.bufferedCount;
-    container.replaceChildren(
-        stars(starsFor(level, n)),
-        h('span', { class: 'score-text', text: `${n} passage${n > 1 ? 's' : ''} au tampon` }),
-        h('span', { class: 'score-goal', text: `3 étoiles : ${level.scoring.threeStarsMaxBuffered} au plus` })
-    );
+    container.replaceChildren(stars(starsFor(level, n)),
+        h('span', { text: `${n} passage${n > 1 ? 's' : ''} au tampon` }));
 }
 
-/** Liste visuellement masquée : un bouton par objet à portée, pour jouer au clavier ou au lecteur d'écran. */
-export function renderReachable(list: HTMLElement, level: Level, state: GameState, select: (id: string) => void): void {
-    const snapshot = snapshotOf(state);
-    list.replaceChildren(...state.remainingObjectIds
-        .filter(id => isAccessible(level, snapshot, id))
-        .map(id => {
-            const o = level.objects.find(x => x.id === id);
-            const name = o ? `${objectName(o.asset)} (${labelOf(level, o.category)})` : id;
-            return h('li', {}, h('button', { type: 'button', 'data-object': id, onclick: () => select(id), text: name }));
-        }));
+/** Le clavier conserve sa place dans la liste lorsqu'un objet disparaît. */
+export function renderReachable(list: HTMLElement, controller: Controller): void {
+    const previous = document.activeElement instanceof HTMLButtonElement && list.contains(document.activeElement)
+        ? document.activeElement.dataset['object'] : undefined;
+    const oldIndex = [...list.querySelectorAll('button')].findIndex(button => button.dataset['object'] === previous);
+    const objects = controller.level.objects.filter(object => controller.isObjectAccessible(object.id));
+    const buttons = objects.map(object => h('button', { type: 'button', 'data-object': object.id, onclick: () => controller.select(object.id),
+        text: `${objectName(object.asset)} (${labelOf(controller.level, object.category)})` }));
+    list.replaceChildren(...buttons.map(button => h('li', {}, button)));
+    if (oldIndex >= 0) (buttons.find(button => button.dataset['object'] === previous) ?? buttons[Math.min(oldIndex, buttons.length - 1)])?.focus();
 }

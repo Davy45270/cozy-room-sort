@@ -324,8 +324,7 @@
       "files": [
         "packages/schemas/src/**",
         "packages/engine/src/**",
-        "packages/solver/src/**",
-        "packages/art/src/**"
+        "packages/solver/src/**"
       ],
       "rules": {
         "eslint/no-restricted-globals": [

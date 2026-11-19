@@ -605,7 +605,45 @@
         "Assemblage en atlas WebP"
       ]
     },
-    "licence": "CC-BY-4.0"
+    "licence": "CC-BY-4.0",
+    "derives": [
+      {
+        "fichier": "apps/web/public/icons/cozy-room-sort-192.png",
+        "dimensions": {
+          "w": 192,
+          "h": 192
+        },
+        "transformations": [
+          "Rognage au rectangle utile du cadre",
+          "Redimensionnement et centrage sur un fond crème",
+          "Export PNG en palette indexée"
+        ]
+      },
+      {
+        "fichier": "apps/web/public/icons/cozy-room-sort-512.png",
+        "dimensions": {
+          "w": 512,
+          "h": 512
+        },
+        "transformations": [
+          "Rognage au rectangle utile du cadre",
+          "Redimensionnement et centrage sur un fond crème",
+          "Export PNG en palette indexée"
+        ]
+      },
+      {
+        "fichier": "apps/web/public/icons/cozy-room-sort-maskable-512.png",
+        "dimensions": {
+          "w": 512,
+          "h": 512
+        },
+        "transformations": [
+          "Rognage au rectangle utile du cadre",
+          "Redimensionnement et centrage sur un fond crème",
+          "Export PNG en palette indexée"
+        ]
+      }
+    ]
   },
   {
     "id": "carton-ferme",

@@ -79,3 +79,31 @@ describe('contrôleur de partie', () => {
         expect(c.state.moveCount).toBe(1);
     });
 });
+
+describe('refaire un coup', () => {
+    it('rejoue uniquement la dernière sélection annulée et sauvegarde une sélection ordinaire', async () => {
+        const { controller, saves } = setup();
+        expect(controller.canRedo).toBe(false);
+        controller.select('a1');
+        controller.select('b1');
+        controller.undo();
+        expect(controller.canRedo).toBe(true);
+        controller.redo();
+        expect(controller.state.bufferObjectIds).toEqual(['b1']);
+        expect(controller.canRedo).toBe(false);
+        await controller.idle();
+        expect(saves.at(-1)?.actions.at(-1)).toEqual({ type: 'SELECT_OBJECT', objectId: 'b1' });
+    });
+
+    it('une sélection acceptée efface le coup à refaire et un refus le préserve', () => {
+        const { controller } = setup();
+        controller.select('a1');
+        controller.undo();
+        controller.select('a2');
+        expect(controller.canRedo).toBe(true);
+        controller.select('b1');
+        expect(controller.canRedo).toBe(false);
+        controller.redo();
+        expect(controller.state.moveCount).toBe(1);
+    });
+});

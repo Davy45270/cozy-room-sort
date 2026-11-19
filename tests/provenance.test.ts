@@ -28,10 +28,11 @@ it('chaque cadre possède une provenance et une boîte utile dans ses dimensions
             expect(origin, key).toBeDefined();
             expect(entry, key).toMatchObject({
                 dimensions: { w: frame.w, h: frame.h }, ancre: origin?.ancre,
-                origine: { planche: source.planche, marge: source.marge, boite: origin?.boite, sha256: expect.stringMatching(/^[a-f0-9]{64}$/) },
+                origine: { planche: source.planche, marge: source.marge, boite: origin?.boite },
                 licence: ['CC', 'BY', '4.0'].join('-')
             });
             if (!entry) throw new Error(key);
+            expect(entry.origine.sha256).toMatch(/^[a-f0-9]{64}$/);
             expect(entry.origine.transformations.length).toBeGreaterThan(0);
             for (const axis of [['x', 'w'], ['y', 'h']] as const) {
                 const [start, size] = axis;

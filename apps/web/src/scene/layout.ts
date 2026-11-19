@@ -1,31 +1,30 @@
-// Projection d'un niveau dans la zone de la pièce : pure, testée, partagée par la scène et les tests de bout en bout.
+// Projection des coordonnées du niveau dans la vue carrée de la pièce, en pixels CSS.
 import type { Level } from '@cozy-room-sort/schemas';
 
 export interface Viewport { width: number; height: number }
 export interface Placed { x: number; y: number; size: number }
 
-/** Taille de toucher minimale, en px CSS. */
 export const MIN_SIZE = 44;
-const MAX_SIZE = 132;
 
-export function objectSize(level: Level, viewport: Viewport): number {
-    const ideal = Math.sqrt((viewport.width * viewport.height) / (level.objects.length * 2.4));
-    const fit = Math.min(viewport.width, viewport.height) / 2;
-    return Math.round(Math.max(MIN_SIZE, Math.min(MAX_SIZE, ideal, fit)));
+export function roomView(viewport: Viewport): Placed {
+    return {
+        x: viewport.width / 2,
+        y: viewport.height / 2,
+        size: Math.min(640, viewport.width * 0.96, viewport.height * 0.98)
+    };
 }
 
 export function layoutRoom(level: Level, viewport: Viewport): Map<string, Placed> {
-    const size = objectSize(level, viewport);
-    const half = size / 2;
-    const span = (extent: number, t: number): number => half + t * Math.max(0, extent - size);
-    return new Map(level.objects.map(o => [o.id, {
-        x: Math.round(span(viewport.width, o.position.x) * 10) / 10,
-        y: Math.round(span(viewport.height, o.position.y) * 10) / 10,
+    const view = roomView(viewport);
+    const size = Math.round(Math.max(MIN_SIZE, view.size * (0.18 - Math.min(level.objects.length, 20) * 0.0025)));
+    return new Map(level.objects.map(object => [object.id, {
+        x: view.x + (object.position.x - 0.5) * view.size * 0.8,
+        y: view.y + (object.position.y * 0.57 - 0.15) * view.size,
         size
     }]));
 }
 
-/** Ordre de dessin : un objet n'est dessiné qu'après tous ceux qu'il recouvre (puis par couche croissante). */
+/** Ordre de dessin : un objet n'est dessiné qu'après les objets qu'il recouvre, par couche croissante. */
 export function drawOrder(level: Level): string[] {
     const covered = new Map<string, string[]>();
     for (const o of level.objects) for (const b of o.blockedBy) covered.set(b, [...(covered.get(b) ?? []), o.id]);
