@@ -27,6 +27,14 @@ la conception détaillée et les plans de travail sont tenus hors de ce dépôt.
   les icônes. Les atlas et leurs tables de découpe sont dans `content/assets/planches/`. Provenance et licence
   de chaque cadre et des fichiers dérivés dans `content/assets/provenance.json`. Contrôle humain obligatoire.
   Code MIT, art original CC BY 4.0.
+- **Surfaces structurelles** (pas des illustrations) : la piste de la barre de progression, le centre du panneau
+  des quotas et le fondu du bas de la vue. Règle du panneau : **bords tirés du cadre de la planche** (8 tranches,
+  `atlasBorder`, sans le centre où la planche imprime ses propres icônes et coches), **centre uni de la couleur
+  mesurée sur ce cadre** (`#FDE9CB`). Le fondu de la salle de bain est le seul dégradé dessiné par code : une
+  texture de canevas posée dans la scène entre la vue et les objets, nommée dans la liste blanche de
+  `tests/integration/no-code-art.test.ts` ; tout autre dessin ou dégradé fait échouer ce test.
+  Limite connue : la salle de bain borde ses quotas avec le panneau de la **planche 01** ; son propre panneau
+  (`panneau-quotas-sdb`, planche 04) est dans l'atlas `p04-ui`, exclu du build faute de place au précache.
 - **Changements visuels** vérifiés par captures Playwright (à partir de l'application web).
 
 ## Paquets
