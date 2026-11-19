@@ -1,7 +1,8 @@
 // Projection des coordonnées du niveau dans la vue carrée de la pièce, en pixels CSS.
 import type { Level } from '@cozy-room-sort/schemas';
 
-export interface Viewport { width: number; height: number }
+/** `compact` : portrait étroit, la vue prend toute la largeur et se colle en haut de sa zone. */
+export interface Viewport { width: number; height: number; compact?: boolean }
 export interface Placed { x: number; y: number; size: number }
 /** Partie utile d'un cadre, en fractions de son côté. */
 export interface Bounds { x: number; y: number; w: number; h: number }
@@ -9,15 +10,18 @@ export interface Bounds { x: number; y: number; w: number; h: number }
 export const MIN_SIZE = 44;
 /** L'hexagone de la vue touche les bords de son cadre : une marge le garde entier dans la zone. */
 export const VIEW_MARGIN = 0.03;
+/** En portrait étroit, la marge latérale reste sous 2 % de la largeur. */
+export const COMPACT_MARGIN = 0.015;
+/** Portrait étroit (même requête que la feuille de styles). */
+export const COMPACT_QUERY = '(max-width: 600px) and (orientation: portrait)';
 /** Côté du chat endormi, en fraction de la vue. */
 export const CAT_SIZE = 0.17;
 
 export function roomView(viewport: Viewport): Placed {
-    return {
-        x: viewport.width / 2,
-        y: viewport.height / 2,
-        size: Math.min(viewport.width, viewport.height) * (1 - 2 * VIEW_MARGIN)
-    };
+    const side = Math.min(viewport.width, viewport.height);
+    const margin = viewport.compact ? COMPACT_MARGIN : VIEW_MARGIN;
+    const size = side * (1 - 2 * margin);
+    return { x: viewport.width / 2, y: viewport.compact ? side * margin + size / 2 : viewport.height / 2, size };
 }
 
 /** Les objets occupent les murs et le fond de la pièce ; le devant du sol reste au chat. */

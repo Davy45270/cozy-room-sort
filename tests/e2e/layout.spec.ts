@@ -177,21 +177,66 @@ for (const viewport of [{ width: 1280, height: 800 }, { width: 360, height: 740 
     });
 }
 
-test.describe('panneau du bas à 390×844', () => {
+for (const viewport of [{ width: 390, height: 844 }, { width: 360, height: 740 }]) {
+    test.describe(`écran de jeu à ${viewport.width}×${viewport.height}`, () => {
+        test.use({ viewport, reducedMotion: 'reduce' });
+
+        test('la pièce se colle sous l’en-tête sur toute la largeur, le panneau prend le reste sans bande vide', async ({ page }) => {
+            await openLevel(page, '001-salon');
+            const screen = levelScreen(page);
+            const header = (await screen.locator('.topbar').boundingBox())!;
+            const view = (await page.evaluate(() => window.__cozy!.viewBounds()))!;
+            const tray = (await screen.locator('.tray').boundingBox())!;
+            if (viewport.width === 390) {
+                expect(view.x).toBeLessThanOrEqual(viewport.width * .02);
+                expect(viewport.width - view.x - view.width).toBeLessThanOrEqual(viewport.width * .02);
+            }
+            expect(view.y - (header.y + header.height)).toBeLessThanOrEqual(40);
+            expect(tray.y - (view.y + view.height)).toBeLessThanOrEqual(40);
+            expect(tray.y + tray.height).toBeLessThanOrEqual(viewport.height + .5);
+            // Dans le panneau : aucun bloc séparé du précédent, ni du bas de l'écran, par plus de 40 px.
+            let bottom = tray.y;
+            const blocks = await Promise.all(['.box-area', '.quotas', '.buffer-wrap h2', '.buffer', '.score']
+                .map(async selector => (await screen.locator(selector).first().boundingBox())!));
+            for (const block of blocks.sort((a, b) => a.y - b.y)) {
+                expect(block.y - bottom).toBeLessThanOrEqual(40);
+                bottom = Math.max(bottom, block.y + block.height);
+            }
+            expect(viewport.height - bottom).toBeLessThanOrEqual(40);
+            // Les éléments du panneau grandissent : cartons jusqu'à 88 px, cases de 52 px, quotas en 16 px.
+            for (const picture of await screen.locator('.box-picture').all()) {
+                expect((await picture.boundingBox())!.width).toBeLessThanOrEqual(88.5);
+            }
+            if (viewport.width === 390) expect((await screen.locator('.box-picture').first().boundingBox())!.width).toBeGreaterThanOrEqual(80);
+            for (const slot of await screen.locator('.slot').all()) expect((await slot.boundingBox())!.height).toBeGreaterThanOrEqual(52);
+            await expect(screen.locator('.quota').first()).toHaveCSS('font-size', '16px');
+            // Cadre des quotas : les bords de la planche, sans le cadre entier ni son centre.
+            const border = screen.locator('.quotas .atlas-border[data-frame="sprite-panneau-quotas"]');
+            await expect(border).toBeVisible();
+            await expect(border.locator('.border-cell')).toHaveCount(8);
+            await expect(screen.locator('.quotas .atlas-frame[data-frame="sprite-panneau-quotas"]')).toHaveCount(0);
+            await capture(page, `jeu-salon-${viewport.width}x${viewport.height}`);
+        });
+    });
+}
+
+test.describe('fondu du bas de la vue', () => {
     test.use({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
 
-    test('le panneau serre son contenu, sans fond illustré pour les quotas', async ({ page }) => {
+    test('couvre le bas de la vue de la salle de bain seulement', async ({ page }) => {
         await openLevel(page, '001-salon');
-        const screen = levelScreen(page);
-        const tray = (await screen.locator('.tray').boundingBox())!;
-        const heading = (await screen.locator('.box-area h2').boundingBox())!;
-        const score = (await screen.locator('.score').boundingBox())!;
-        expect(heading.y - tray.y).toBeLessThanOrEqual(24);
-        expect(tray.y + tray.height - (score.y + score.height)).toBeLessThanOrEqual(24);
-        expect(tray.y + tray.height).toBeLessThanOrEqual(844.5);
-        await expect(screen.locator('[data-frame="sprite-panneau-quotas"]')).toHaveCount(0);
-        const room = (await screen.locator('.room').boundingBox())!;
-        expect(room.height).toBeGreaterThanOrEqual(390);
-        await capture(page, 'panneau-390');
+        await expect(levelScreen(page).locator('.view-fade')).toHaveCount(0);
+        const id = `015-${thirdRoom.id}`;
+        await openLevel(page, id);
+        const fade = levelScreen(page).locator('.view-fade');
+        if (thirdRoom.vue_fondu_bas === undefined) { await expect(fade).toHaveCount(0); return; }
+        await expect(fade).toHaveCSS('pointer-events', 'none');
+        const view = (await page.evaluate(() => window.__cozy!.viewBounds()))!;
+        const box = (await fade.boundingBox())!;
+        expect(Math.abs(box.x - view.x)).toBeLessThanOrEqual(1);
+        expect(Math.abs(box.width - view.width)).toBeLessThanOrEqual(1);
+        expect(Math.abs(box.y + box.height - (view.y + view.height))).toBeLessThanOrEqual(1);
+        expect(Math.abs(box.height - view.height * thirdRoom.vue_fondu_bas)).toBeLessThanOrEqual(1);
+        await capture(page, `fondu-${id}`);
     });
 });

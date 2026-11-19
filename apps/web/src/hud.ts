@@ -1,7 +1,7 @@
 import { starsFor, type GameState } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
 import { labelOf, objectName, pictoOf } from './content.ts';
-import { atlasImage, h, stars } from './dom.ts';
+import { atlasBorder, atlasImage, h, stars } from './dom.ts';
 import type { Controller } from './game/controller.ts';
 
 export function renderBoxes(container: HTMLElement, level: Level, state: GameState): void {
@@ -36,9 +36,15 @@ export function renderBuffer(container: HTMLElement, level: Level, state: GameSt
     container.replaceChildren(...slots);
 }
 
+/**
+ * Tranches du cadre « panneau-quotas » (haut, droite, bas, gauche, en pixels de sa partie utile 256 × 248). La planche
+ * y dessine ses propres icônes et coches : mesurées sur le cadre, la plus proche d'un bord en est à 16 px en haut,
+ * 18 à droite (fond pâle des coches), 14 en bas et 43 à gauche. Les tranches restent en deçà ; le centre n'est pas repris.
+ */
+export const QUOTA_SLICE = [14, 16, 12, 16] as const;
+
 export function renderQuotas(container: HTMLElement, level: Level, state: GameState): void {
-    // Le cadre « panneau-quotas » de la planche porte ses propres icônes et coches : le fond est un panneau CSS.
-    container.replaceChildren(h('div', { class: 'quota-content' }, h('h2', { text: 'Quotas' }),
+    container.replaceChildren(atlasBorder('panneau-quotas', QUOTA_SLICE, .75, 'quota-frame'), h('div', { class: 'quota-content' }, h('h2', { text: 'Quotas' }),
         h('ul', { class: 'quota-list' }, ...level.categories.map(category => {
             const boxes = level.boxes.filter(box => box.category === category.id);
             const total = boxes.reduce((sum, box) => sum + box.capacity, 0);

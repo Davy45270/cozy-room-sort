@@ -25,6 +25,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
     const stage = h('div', { class: 'stage', 'aria-hidden': 'true' });
     const boxes = h('div', { class: 'boxes', 'aria-label': 'Cartons', role: 'group' });
     boxes.style.setProperty('--box-columns', String(Math.min(3, level.boxes.length)));
+    boxes.style.setProperty('--box-count', String(level.boxes.length));
     const buffer = h('div', { class: 'buffer', role: 'group' });
     const quotas = h('section', { class: 'quotas', 'aria-label': 'Quotas' });
     const score = h('div', { class: 'score' });

@@ -27,6 +27,22 @@ describe('projection de la pièce', () => {
         }
     });
 
+    it('en portrait étroit, prend la largeur (marge latérale ≤ 2 %) et se colle en haut de sa zone', () => {
+        for (const viewport of [{ width: 390, height: 390 }, { width: 360, height: 360 }, { width: 390, height: 377 }]) {
+            const view = roomView({ ...viewport, compact: true });
+            const top = view.y - view.size / 2;
+            expect(view.x).toBe(viewport.width / 2);
+            if (viewport.height >= viewport.width) expect(viewport.width - view.size).toBeLessThanOrEqual(viewport.width * .04);
+            expect(top).toBeGreaterThan(0);
+            expect(top).toBeLessThanOrEqual(viewport.width * .02);
+            expect(view.y + view.size / 2).toBeLessThanOrEqual(viewport.height);
+        }
+        // Une zone plus haute que large ne recentre pas la vue : le surplus reste sous la pièce.
+        const tall = roomView({ width: 390, height: 520, compact: true });
+        expect(tall.y - tall.size / 2).toBeLessThanOrEqual(390 * .02);
+        expect(roomView({ width: 390, height: 520 }).y).toBe(260);
+    });
+
     it.each(viewports)('$width×$height : le chat endormi n\'est recouvert par aucun objet des 20 niveaux', viewport => {
         expect(levels).toHaveLength(20);
         const cat = boundsOf('chat-dort');

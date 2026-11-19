@@ -3,7 +3,7 @@ import type { GameEvent, GameState } from '@cozy-room-sort/engine';
 import { spriteOf } from '../atlas.ts';
 import { themeOf } from '../content.ts';
 import type { Controller } from '../game/controller.ts';
-import { catSpot, drawOrder, layoutRoom, MIN_SIZE, roomView, type Bounds, type Placed } from './layout.ts';
+import { catSpot, COMPACT_QUERY, drawOrder, layoutRoom, MIN_SIZE, roomView, type Bounds, type Placed, type Viewport } from './layout.ts';
 
 type MoveEvent = Extract<GameEvent, { type: 'OBJECT_PACKED' | 'OBJECT_BUFFERED' }>;
 export const PACK_MS = 180;
@@ -79,9 +79,10 @@ export class RoomScene extends Phaser.Scene {
         this.clearHint();
         const canvas = this.game.canvas;
         const canvasRect = canvas.getBoundingClientRect();
-        const room = this.room.getBoundingClientRect();
-        const left = room.left - canvasRect.left;
-        const top = room.top - canvasRect.top;
+        const rect = this.room.getBoundingClientRect();
+        const room: Viewport = { width: rect.width, height: rect.height, compact: matchMedia(COMPACT_QUERY).matches };
+        const left = rect.left - canvasRect.left;
+        const top = rect.top - canvasRect.top;
         const view = roomView(room);
         this.background?.setPosition(left + view.x, top + view.y).setDisplaySize(view.size, view.size);
         const cat = catSpot(this.opts.controller.level, room, usefulBounds('chat-dort'), usefulBounds);

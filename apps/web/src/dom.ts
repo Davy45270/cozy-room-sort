@@ -53,6 +53,33 @@ export function roomChoiceImage(theme: { selecteur: string; selecteur_normal?: s
     return selected || !theme.selecteur_normal ? atlasImage(theme.selecteur) : derivedImage(theme.selecteur_normal, theme.selecteur);
 }
 
+/**
+ * Bords d'un cadre d'atlas en 9 tranches, sans son centre : `slice` donne haut, droite, bas, gauche en pixels de la
+ * partie utile du cadre ; les coins gardent leur taille (× `scale`), les bords s'étirent. Même découpe qu'un
+ * `border-image` sans `fill`, construite en DOM parce qu'un `border-image` ne sait pas viser un cadre dans un atlas.
+ */
+export function atlasBorder(asset: string, slice: readonly [number, number, number, number], scale: number, className?: string): HTMLElement {
+    const { atlas, frame, hitbox } = spriteOf(asset);
+    const [top, right, bottom, left] = slice;
+    const xs = [0, left, hitbox.w - right, hitbox.w];
+    const ys = [0, top, hitbox.h - bottom, hitbox.h];
+    const percent = (number: number, extent: number): string => `${number / extent * 100}%`;
+    const cells: HTMLElement[] = [];
+    for (let row = 0; row < 3; row++) for (let col = 0; col < 3; col++) {
+        if (row === 1 && col === 1) continue;
+        const x = xs[col]!, y = ys[row]!, w = xs[col + 1]! - x, h2 = ys[row + 1]! - y;
+        cells.push(h('span', { class: 'border-cell', 'data-cell': `${row}${col}`, style: `grid-area:${row + 1}/${col + 1}` }, h('img', {
+            src: atlas.image, alt: '', draggable: 'false',
+            style: `width:${percent(atlas.w, w)};height:${percent(atlas.h, h2)};left:${percent(-frame.x - hitbox.x - x, w)};top:${percent(-frame.y - hitbox.y - y, h2)}`
+        })));
+    }
+    return h('span', {
+        class: className ? `atlas-border ${className}` : 'atlas-border', 'aria-hidden': 'true',
+        'data-frame': `sprite-${asset}`, 'data-slice': slice.join(' '),
+        style: `grid-template-columns:${left * scale}px minmax(0,1fr) ${right * scale}px;grid-template-rows:${top * scale}px minmax(0,1fr) ${bottom * scale}px`
+    }, ...cells);
+}
+
 export function iconButton(asset: string, label: string, onClick: () => void, extra: Attrs = {}): HTMLButtonElement {
     return h('button', { type: 'button', class: 'icon-button', 'aria-label': label, title: label, onclick: onClick, ...extra }, atlasImage(asset));
 }
