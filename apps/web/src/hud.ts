@@ -37,8 +37,8 @@ export function renderBuffer(container: HTMLElement, level: Level, state: GameSt
 }
 
 export function renderQuotas(container: HTMLElement, level: Level, state: GameState): void {
-    container.replaceChildren(atlasImage('panneau-quotas', '', 'quota-art'),
-        h('div', { class: 'quota-content' }, h('h2', { text: 'Quotas' }),
+    // Le cadre « panneau-quotas » de la planche porte ses propres icônes et coches : le fond est un panneau CSS.
+    container.replaceChildren(h('div', { class: 'quota-content' }, h('h2', { text: 'Quotas' }),
         h('ul', { class: 'quota-list' }, ...level.categories.map(category => {
             const boxes = level.boxes.filter(box => box.category === category.id);
             const total = boxes.reduce((sum, box) => sum + box.capacity, 0);

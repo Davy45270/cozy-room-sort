@@ -1,15 +1,44 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type { Level } from '@cozy-room-sort/schemas';
-import { drawOrder, layoutRoom, MIN_SIZE, roomView } from '../../../apps/web/src/scene/layout.ts';
+import { catSpot, drawOrder, layoutRoom, MIN_SIZE, overlapRatio, roomView, type Bounds, type Placed } from '../../../apps/web/src/scene/layout.ts';
+
+interface Provenance { id: string; dimensions: { w: number; h: number }; hitbox: { x: number; y: number; w: number; h: number } }
+const provenance = new Map((JSON.parse(readFileSync('content/assets/provenance.json', 'utf8')) as Provenance[]).map(entry => [entry.id, entry]));
+const boundsOf = (asset: string): Bounds => {
+    const entry = provenance.get(asset);
+    if (!entry) throw new Error(`Provenance absente : ${asset}`);
+    const { dimensions: d, hitbox: b } = entry;
+    return { x: b.x / d.w, y: b.y / d.h, w: b.w / d.w, h: b.h / d.h };
+};
+const box = (at: Placed, b: Bounds): Bounds => ({ x: at.x - at.size / 2 + b.x * at.size, y: at.y - at.size / 2 + b.y * at.size, w: b.w * at.size, h: b.h * at.size });
 
 const levels = readdirSync('content/levels').map(f => JSON.parse(readFileSync(`content/levels/${f}`, 'utf8')) as Level);
 const viewports = [{ width: 360, height: 300 }, { width: 412, height: 480 }, { width: 900, height: 620 }, { width: 1280, height: 700 }];
 
 describe('projection de la pièce', () => {
-    it('inscrit la plus grande vue carrée dans la zone de jeu', () => {
-        expect(roomView({ width: 390, height: 390 })).toEqual({ x: 195, y: 195, size: 390 });
-        expect(roomView({ width: 880, height: 732 })).toEqual({ x: 440, y: 366, size: 732 });
+    it('inscrit la vue carrée dans la zone de jeu avec une marge, centrée', () => {
+        expect(roomView({ width: 390, height: 390 })).toEqual({ x: 195, y: 195, size: 390 * .94 });
+        expect(roomView({ width: 880, height: 732 })).toEqual({ x: 440, y: 366, size: 732 * .94 });
+        for (const viewport of [{ width: 960, height: 725 }, { width: 360, height: 360 }]) {
+            const view = roomView(viewport);
+            expect(view.y + view.size / 2).toBeLessThanOrEqual(viewport.height - 10);
+            expect(view.y - view.size / 2).toBeGreaterThanOrEqual(10);
+        }
+    });
+
+    it.each(viewports)('$width×$height : le chat endormi n\'est recouvert par aucun objet des 20 niveaux', viewport => {
+        expect(levels).toHaveLength(20);
+        const cat = boundsOf('chat-dort');
+        for (const level of levels) {
+            const spot = catSpot(level, viewport, cat, boundsOf);
+            const mine = box(spot, cat);
+            const placed = layoutRoom(level, viewport);
+            for (const object of level.objects) {
+                const ratio = overlapRatio(mine, box(placed.get(object.id)!, boundsOf(object.asset)));
+                expect(ratio, `${level.id} ${object.id}`).toBeLessThanOrEqual(.1);
+            }
+        }
     });
 
     it.each(viewports)('$width×$height : chaque objet reste dans la zone, à 44 px au moins', viewport => {

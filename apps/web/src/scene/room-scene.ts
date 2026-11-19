@@ -3,10 +3,16 @@ import type { GameEvent, GameState } from '@cozy-room-sort/engine';
 import { spriteOf } from '../atlas.ts';
 import { themeOf } from '../content.ts';
 import type { Controller } from '../game/controller.ts';
-import { drawOrder, layoutRoom, MIN_SIZE, roomView, type Placed } from './layout.ts';
+import { catSpot, drawOrder, layoutRoom, MIN_SIZE, roomView, type Bounds, type Placed } from './layout.ts';
 
 type MoveEvent = Extract<GameEvent, { type: 'OBJECT_PACKED' | 'OBJECT_BUFFERED' }>;
 export const PACK_MS = 180;
+/** Silhouette d'un objet masqué : brun doux de la palette, à demi transparent. */
+export const SILHOUETTE = { tint: 0x8c6a52, alpha: 0.7 } as const;
+const usefulBounds = (asset: string): Bounds => {
+    const { frame, hitbox } = spriteOf(asset);
+    return { x: hitbox.x / frame.w, y: hitbox.y / frame.h, w: hitbox.w / frame.w, h: hitbox.h / frame.h };
+};
 export const reducedMotion = (): boolean => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export interface RoomSceneOptions {
@@ -21,6 +27,7 @@ export class RoomScene extends Phaser.Scene {
     private readonly room: HTMLElement;
     private readonly sprites = new Map<string, Phaser.GameObjects.Image>();
     private readonly flights = new Map<string, Phaser.GameObjects.Image>();
+    private readonly marks = new Map<string, Phaser.GameObjects.Text>();
     private readonly order: string[];
     private placed = new Map<string, Placed>();
     private background?: Phaser.GameObjects.Image;
@@ -75,8 +82,8 @@ export class RoomScene extends Phaser.Scene {
         const top = room.top - canvasRect.top;
         const view = roomView(room);
         this.background?.setPosition(left + view.x, top + view.y).setDisplaySize(view.size, view.size);
-        this.cat?.setPosition(left + view.x + view.size * 0.15, top + view.y + view.size * 0.33)
-            .setDisplaySize(view.size * 0.17, view.size * 0.17);
+        const cat = catSpot(this.opts.controller.level, room, usefulBounds('chat-dort'), usefulBounds);
+        this.cat?.setPosition(left + cat.x, top + cat.y).setDisplaySize(cat.size, cat.size);
         this.placed = layoutRoom(this.opts.controller.level, room);
         for (const at of this.placed.values()) { at.x += left; at.y += top; }
         this.reconcile(this.opts.controller.state, []);
@@ -92,6 +99,8 @@ export class RoomScene extends Phaser.Scene {
         for (const [id, sprite] of this.sprites) {
             if (remaining.has(id)) continue;
             this.sprites.delete(id);
+            this.marks.get(id)?.destroy();
+            this.marks.delete(id);
             if (sprite === this.hintSprite) this.clearHint();
             const move = events.find((event): event is MoveEvent =>
                 (event.type === 'OBJECT_PACKED' || event.type === 'OBJECT_BUFFERED') && event.objectId === id);
@@ -144,9 +153,28 @@ export class RoomScene extends Phaser.Scene {
                 );
                 sprite.input.enabled = accessible;
             }
-            if (object.hidden && !accessible) sprite.setTint(0x3b2a22).setTintMode(Phaser.TintModes.FILL);
-            else sprite.setTintMode(Phaser.TintModes.MULTIPLY).clearTint();
+            const masked = object.hidden && !accessible;
+            if (masked) sprite.setTint(SILHOUETTE.tint).setTintMode(Phaser.TintModes.FILL).setAlpha(SILHOUETTE.alpha);
+            else sprite.setTintMode(Phaser.TintModes.MULTIPLY).clearTint().setAlpha(1);
+            this.markHidden(id, masked ? at : undefined, depth + 2);
         });
+    }
+
+    /** Un « ? » en texte au centre d'une silhouette ; aucune catégorie n'est lisible. */
+    private markHidden(id: string, at: Placed | undefined, depth: number): void {
+        let mark = this.marks.get(id);
+        if (!at) {
+            mark?.destroy();
+            this.marks.delete(id);
+            return;
+        }
+        const fontSize = Math.max(14, Math.round(at.size * 0.32));
+        if (!mark) {
+            mark = this.add.text(0, 0, '?', { fontFamily: 'ui-rounded, "Nunito", system-ui, sans-serif', fontStyle: 'bold', color: '#FFF4DD' })
+                .setOrigin(0.5).setDepth(depth + 0.5);
+            this.marks.set(id, mark);
+        }
+        mark.setFontSize(fontSize).setPosition(at.x, at.y);
     }
 
     private tintCanvasImage(sprite: Phaser.GameObjects.Image): void {
@@ -158,7 +186,8 @@ export class RoomScene extends Phaser.Scene {
             if (source.tintMode !== Phaser.TintModes.FILL) { render(renderer, source, camera, matrix); return; }
             const context = renderer.currentContext;
             context.save();
-            context.filter = 'brightness(0)';
+            // Sans teinte pleine en Canvas : silhouette ramenée au brun doux de la palette.
+            context.filter = 'brightness(0) invert(45%) sepia(45%) saturate(160%)';
             render(renderer, source, camera, matrix);
             context.restore();
         };
@@ -208,6 +237,14 @@ export class RoomScene extends Phaser.Scene {
         const at = [...this.placed].find(([id]) => this.sprites.get(id) === this.hintSprite)?.[1];
         if (at) this.hintSprite.setDisplaySize(at.size, at.size);
         this.hintSprite = undefined;
+    }
+
+    /** Boîte de la vue de la pièce, en coordonnées de la fenêtre. */
+    viewBounds(): { x: number; y: number; width: number; height: number } | null {
+        if (!this.background) return null;
+        const canvas = this.game.canvas.getBoundingClientRect();
+        const b = this.background.getBounds();
+        return { x: canvas.left + b.x, y: canvas.top + b.y, width: b.width, height: b.height };
     }
 
     objectCenter(id: string): { x: number; y: number } | null {

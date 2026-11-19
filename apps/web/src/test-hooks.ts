@@ -5,6 +5,7 @@ import type { RoomScene } from './scene/room-scene.ts';
 
 export interface CozyTestHooks {
     objectCenter(id: string): { x: number; y: number } | null;
+    viewBounds(): { x: number; y: number; width: number; height: number } | null;
     state(): GameState;
     solution(): readonly string[];
     tapObject(id: string): void;
@@ -26,6 +27,7 @@ export function installTestHooks(controller: Controller, scene: RoomScene): () =
     if (!testMode()) return () => undefined;
     const hooks: CozyTestHooks = {
         objectCenter: id => scene.objectCenter(id),
+        viewBounds: () => scene.viewBounds(),
         state: () => controller.state,
         solution: () => controller.level.meta?.solution ?? [],
         tapObject: id => scene.tap(id)

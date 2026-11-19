@@ -157,3 +157,41 @@ test.describe('bureau à 1280×800', () => {
         await capture(page, 'partie-1280');
     });
 });
+
+for (const viewport of [{ width: 1280, height: 800 }, { width: 360, height: 740 }]) {
+    test.describe(`pièce entière à ${viewport.width}×${viewport.height}`, () => {
+        test.use({ viewport, reducedMotion: 'reduce' });
+
+        for (const id of ['015-salle-de-bain', '020-salle-de-bain']) {
+            test(`${id} : l’hexagone de la vue tient entier dans la fenêtre`, async ({ page }) => {
+                await openLevel(page, id);
+                const view = await page.evaluate(() => window.__cozy!.viewBounds());
+                expect(view).not.toBeNull();
+                expect(view!.x).toBeGreaterThanOrEqual(0);
+                expect(view!.y).toBeGreaterThanOrEqual(0);
+                expect(view!.x + view!.width).toBeLessThanOrEqual(viewport.width);
+                expect(view!.y + view!.height).toBeLessThanOrEqual(viewport.height);
+                await capture(page, `vue-${id}-${viewport.width}`);
+            });
+        }
+    });
+}
+
+test.describe('panneau du bas à 390×844', () => {
+    test.use({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+
+    test('le panneau serre son contenu, sans fond illustré pour les quotas', async ({ page }) => {
+        await openLevel(page, '001-salon');
+        const screen = levelScreen(page);
+        const tray = (await screen.locator('.tray').boundingBox())!;
+        const heading = (await screen.locator('.box-area h2').boundingBox())!;
+        const score = (await screen.locator('.score').boundingBox())!;
+        expect(heading.y - tray.y).toBeLessThanOrEqual(24);
+        expect(tray.y + tray.height - (score.y + score.height)).toBeLessThanOrEqual(24);
+        expect(tray.y + tray.height).toBeLessThanOrEqual(844.5);
+        await expect(screen.locator('[data-frame="sprite-panneau-quotas"]')).toHaveCount(0);
+        const room = (await screen.locator('.room').boundingBox())!;
+        expect(room.height).toBeGreaterThanOrEqual(390);
+        await capture(page, 'panneau-390');
+    });
+});

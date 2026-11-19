@@ -56,3 +56,12 @@ it('ferme les cartons complets et pose une coche par catégorie rangée', () => 
     expect(boxes.querySelectorAll('[data-frame="sprite-coche"]')).toHaveLength(level.boxes.length);
     expect(quotas.querySelectorAll('[data-frame="sprite-coche"]')).toHaveLength(level.categories.length);
 });
+
+it('compose le panneau des quotas sans cadre illustré en fond', () => {
+    const controller = setup();
+    const quotas = document.createElement('div');
+    renderQuotas(quotas, controller.level, controller.state);
+    expect(quotas.querySelector('[data-frame="sprite-panneau-quotas"]')).toBeNull();
+    expect(quotas.querySelector('h2')?.textContent).toBe('Quotas');
+    expect(quotas.querySelectorAll('.quota')).toHaveLength(controller.level.categories.length);
+});
