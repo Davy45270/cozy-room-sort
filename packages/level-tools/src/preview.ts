@@ -11,7 +11,7 @@ interface Atlas {
 }
 
 const atlasFolder = new URL('../../../content/assets/planches/atlas/', import.meta.url);
-const assets = new Map(provenance.map(entry => [entry.id, entry.atlas]));
+const assets = new Map(provenance.flatMap(entry => entry.atlas ? [[entry.id, entry.atlas] as const] : []));
 export const PREVIEW_WIDTH = 960;
 export const PREVIEW_HEIGHT = 880;
 

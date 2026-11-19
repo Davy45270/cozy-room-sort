@@ -25,6 +25,11 @@ export function settingsScreen(ctx: AppContext, back: Route): Screen {
             void ctx.updateSettings({ mode });
         }),
         h('p', { class: 'note', text: 'Changer de mode recommence les parties en cours.' }),
-        radioGroup('theme', 'Apparence', THEME_CHOICES, ctx.settings.theme, theme => { void ctx.updateSettings({ theme }); }));
+        radioGroup('theme', 'Apparence', THEME_CHOICES, ctx.settings.theme, theme => { void ctx.updateSettings({ theme }); }),
+        h('fieldset', { class: 'choice-group' }, h('legend', { text: 'Audio' }),
+            h('label', { class: 'choice' },
+                h('input', { type: 'checkbox', name: 'sons', checked: ctx.settings.sons,
+                    onchange: event => { void ctx.updateSettings({ sons: (event.currentTarget as HTMLInputElement).checked }); } }),
+                h('span', { class: 'choice-label', text: 'Sons' }))));
     return { element };
 }

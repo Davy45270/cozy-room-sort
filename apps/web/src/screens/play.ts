@@ -7,6 +7,7 @@ import { atlasImage, h, iconButton, stars } from '../dom.ts';
 import { createController } from '../game/controller.ts';
 import { renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachable, renderScore } from '../hud.ts';
 import { PACK_MS, reducedMotion, startRoom, type RoomScene } from '../scene/room-scene.ts';
+import { playSound } from '../sons.ts';
 import { BLOCKED_LEVEL, BLOCKED_MOVES, demonstration, installTestHooks } from '../test-hooks.ts';
 
 export async function playScreen(ctx: AppContext, level: Level): Promise<Screen> {
@@ -97,6 +98,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
         actions.querySelector<HTMLButtonElement>('button:not(:disabled)')?.focus();
     };
 
+    const audioEnabled = (): boolean => !disposed && !trace && ctx.settings.sons;
     const render = (state: GameState, events: readonly GameEvent[]): void => {
         const rejection = events.find(event => event.type === 'ACTION_REJECTED');
         if (rejection) {
@@ -115,7 +117,13 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
         hint.disabled = state.status !== 'playing' || state.hintCount >= (rules.hintLimit ?? Infinity);
         const won = events.find(event => event.type === 'LEVEL_WON');
         if (won && !trace) void ctx.store.recordResult(level.id, { stars: won.stars, bestBuffered: won.bufferedCount });
-        if (events.some(event => event.type === 'BOX_COMPLETED')) say('Carton plein.');
+        const closed = events.some(event => event.type === 'BOX_COMPLETED');
+        if (closed) say('Carton plein.');
+        const packed = events.some(event => event.type === 'OBJECT_PACKED');
+        if (packed || events.some(event => event.type === 'OBJECT_BUFFERED')) {
+            void playSound('selection', audioEnabled);
+            if (packed) void playSound(won ? 'victoire' : closed ? 'carton-ferme' : 'rangement', audioEnabled);
+        }
         if (state.status === 'playing') setModal(false);
         else if (scene && events.some(event => event.type === 'OBJECT_PACKED' || event.type === 'OBJECT_BUFFERED') && !reducedMotion()) {
             endTimer = window.setTimeout(() => showEnd(state), PACK_MS + 20);

@@ -24,8 +24,8 @@ export default defineConfig({
         transform(source, id) {
             if (id !== provenancePath) return;
             // L'application utilise les boîtes utiles. Les données d'attribution restent dans le dépôt.
-            const entries = JSON.parse(source) as AtlasEntry[];
-            return JSON.stringify(entries.filter(({ atlas }) => !atlas.endsWith('-meubles') && atlas !== 'p04-ui')
+            const entries = JSON.parse(source) as Partial<AtlasEntry>[];
+            return JSON.stringify(entries.filter(({ atlas }) => atlas && !atlas.endsWith('-meubles') && atlas !== 'p04-ui')
                 .map(({ id, atlas, hitbox }) => ({ id, atlas, hitbox })));
         }
     }, {
@@ -48,7 +48,12 @@ export default defineConfig({
             skipWaiting: true,
             cleanupOutdatedCaches: true,
             maximumFileSizeToCacheInBytes: 3_000_000,
-            globPatterns: ['**/*.{html,js,css,png,webp,json}']
+            globPatterns: ['**/*.{html,js,css,png,webp,json}'],
+            runtimeCaching: [{
+                urlPattern: /\/sons\/(?:selection|rangement|carton-ferme|victoire)\.(?:ogg|mp3)$/,
+                handler: 'CacheFirst',
+                options: { cacheName: 'cozy-room-sort-sons', cacheableResponse: { statuses: [200] } }
+            }]
         }
     })]
 });

@@ -12,8 +12,9 @@ interface Entry {
 }
 
 it('chaque cadre possède une provenance et une boîte utile dans ses dimensions', () => {
-    const entries = json('content/assets/provenance.json') as Entry[];
-    expect(Array.isArray(entries)).toBe(true);
+    const all = json('content/assets/provenance.json') as (Entry | { fichiers: string[] })[];
+    expect(Array.isArray(all)).toBe(true);
+    const entries = all.filter((entry): entry is Entry => 'atlas' in entry);
     const indexed = new Map(entries.map(entry => [`${entry.atlas}/sprite-${entry.id}`, entry]));
     expect(indexed.size).toBe(entries.length);
     let count = 0;

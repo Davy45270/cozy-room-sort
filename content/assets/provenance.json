@@ -5701,5 +5701,41 @@
       ]
     },
     "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "son-selection",
+    "fichiers": [
+      "apps/web/public/sons/selection.ogg",
+      "apps/web/public/sons/selection.mp3"
+    ],
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "son-rangement",
+    "fichiers": [
+      "apps/web/public/sons/rangement.ogg",
+      "apps/web/public/sons/rangement.mp3"
+    ],
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "son-carton-ferme",
+    "fichiers": [
+      "apps/web/public/sons/carton-ferme.ogg",
+      "apps/web/public/sons/carton-ferme.mp3"
+    ],
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "son-victoire",
+    "fichiers": [
+      "apps/web/public/sons/victoire.ogg",
+      "apps/web/public/sons/victoire.mp3"
+    ],
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
   }
 ]

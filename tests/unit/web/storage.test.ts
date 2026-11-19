@@ -10,14 +10,14 @@ describe('stockage IndexedDB', () => {
     it('aller-retour des progrès, des parties et des réglages', async () => {
         await store.recordResult('001-salon', { stars: 2, bestBuffered: 3 });
         await store.writeSave({ levelId: '001-salon', rulesVersion: '1', actions: [{ type: 'SELECT_OBJECT', objectId: 'a1' }] });
-        await store.writeSettings({ mode: 'expert', theme: 'dark', lastLevelId: '001-salon' });
+        await store.writeSettings({ mode: 'expert', theme: 'dark', sons: true, lastLevelId: '001-salon' });
         expect(await store.progress()).toEqual({ '001-salon': { stars: 2, bestBuffered: 3 } });
         expect((await store.readSave('001-salon', '1'))?.actions).toHaveLength(1);
-        expect(await store.settings()).toEqual({ mode: 'expert', theme: 'dark', lastLevelId: '001-salon' });
+        expect(await store.settings()).toEqual({ mode: 'expert', theme: 'dark', sons: true, lastLevelId: '001-salon' });
     });
 
     it('réglages par défaut quand rien n\'est écrit', async () => {
-        expect(await store.settings()).toEqual({ mode: 'classique', theme: 'auto', lastLevelId: null });
+        expect(await store.settings()).toEqual({ mode: 'classique', theme: 'auto', sons: false, lastLevelId: null });
     });
 
     it('une meilleure note n\'est jamais écrasée par une moins bonne', async () => {

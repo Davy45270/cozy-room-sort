@@ -3,7 +3,7 @@ import type { Mode, SavedGame } from '@cozy-room-sort/engine';
 import type { ThemePreference } from '../theme/tokens.ts';
 
 export interface LevelResult { stars: 1 | 2 | 3; bestBuffered: number }
-export interface Settings { mode: Mode; theme: ThemePreference; lastLevelId: string | null }
+export interface Settings { mode: Mode; theme: ThemePreference; sons: boolean; lastLevelId: string | null }
 type StoreName = 'progress' | 'saves' | 'settings';
 
 export interface Store {
@@ -19,7 +19,7 @@ export interface Store {
     writeRaw(store: StoreName, key: string, value: unknown): Promise<void>;
 }
 
-export const DEFAULT_SETTINGS: Settings = { mode: 'classique', theme: 'auto', lastLevelId: null };
+export const DEFAULT_SETTINGS: Settings = { mode: 'classique', theme: 'auto', sons: false, lastLevelId: null };
 
 const done = (tx: IDBTransaction): Promise<void> => new Promise((resolve, reject) => {
     tx.oncomplete = () => resolve();
@@ -90,7 +90,7 @@ function wrap(db: IDBDatabase): Store {
         },
         async settings() {
             const value = await get('settings', 'settings') as Partial<Settings> | undefined;
-            return { ...DEFAULT_SETTINGS, ...value };
+            return { ...DEFAULT_SETTINGS, ...value, sons: value?.sons === true };
         },
         writeSettings: settings => put('settings', 'settings', settings),
         writeRaw: put

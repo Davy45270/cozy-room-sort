@@ -23,7 +23,8 @@ export interface Atlas { key: string; json: string; image: string; w: number; h:
 interface Sprite { atlas: Atlas; key: string; frame: Rectangle; hitbox: Rectangle }
 
 const frames = new Map<string, Sprite>();
-const usefulBounds = new Map(provenance.map(entry => [`${entry.atlas}/sprite-${entry.id}`, entry.hitbox]));
+const usefulBounds = new Map<string, Rectangle>(provenance.flatMap(entry => entry.atlas
+    ? [[`${entry.atlas}/sprite-${entry.id}`, entry.hitbox] as const] : []));
 for (const [path, manifest] of Object.entries(manifests)) {
     const basename = path.slice(0, -5);
     const key = basename.slice(basename.lastIndexOf('/') + 1);

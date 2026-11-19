@@ -29,6 +29,7 @@ let raw = 0;
 let compressed = 0;
 let atlases = 0;
 for (const url of urls) {
+    assert(!url.startsWith('sons/') && !url.startsWith('catalog/'), `Ressource de bibliothèque ou audio précachée : ${url}`);
     assert(!/^(?:[a-z]+:|\/)|\.\./i.test(url), `Ressource non locale : ${url}`);
     const contents = readFileSync(new URL(url, root));
     raw += contents.byteLength;
