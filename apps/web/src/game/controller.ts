@@ -22,6 +22,11 @@ export interface Controller {
     restart(): void;
     /** Temps écoulé, pour un niveau chronométré : sans limite de temps ou partie finie, rien n'est fait. */
     tick(ms: number): void;
+    /**
+     * Branche l'horloge active : `elapsed` rend le temps écoulé depuis son dernier compte et remet ce compte à zéro.
+     * Avant chaque coup, ce temps est d'abord compté (un TICK) : un coup joué après l'échéance ne gagne pas.
+     */
+    bindClock(elapsed: (() => number) | undefined): void;
     hint(): HintResult;
     subscribe(listener: Listener): () => void;
     /** Résolu quand toutes les sauvegardes en file sont écrites. */
@@ -58,6 +63,7 @@ export function createController(baseLevel: Level, mode: Mode, deps: ControllerD
         }
     }
     const listeners = new Set<Listener>();
+    let elapsedSinceTick: (() => number) | undefined;
     let queue: Promise<void> = Promise.resolve();
 
     const persist = (): void => {
@@ -84,21 +90,28 @@ export function createController(baseLevel: Level, mode: Mode, deps: ControllerD
         return transition.events;
     };
 
+    const tick = (ms: number): void => {
+        if (level.rules.timeLimitSeconds === null || state.status === 'won' || state.status === 'lost' || !(ms > 0)) return;
+        dispatch({ type: 'TICK', ms });
+    };
+    /** Compte le temps écoulé depuis le dernier TICK, avant d'appliquer un coup. */
+    const catchUp = (): void => { if (elapsedSinceTick) tick(elapsedSinceTick()); };
+
     return {
         level,
         get state() { return state; },
         get canRedo() { return redoId !== undefined; },
         get hasPlayed() { return record.actions.some(action => action.type === 'SELECT_OBJECT'); },
         isObjectAccessible: id => isAccessible(level, state, id),
-        select: objectId => { dispatch({ type: 'SELECT_OBJECT', objectId }); },
-        undo: () => { dispatch({ type: 'UNDO' }); },
-        redo: () => { if (redoId !== undefined) dispatch({ type: 'SELECT_OBJECT', objectId: redoId }); },
-        restart: () => { dispatch({ type: 'RESTART' }); },
-        tick: ms => {
-            if (level.rules.timeLimitSeconds === null || state.status === 'won' || state.status === 'lost' || !(ms > 0)) return;
-            dispatch({ type: 'TICK', ms });
-        },
+        select: objectId => { catchUp(); dispatch({ type: 'SELECT_OBJECT', objectId }); },
+        undo: () => { catchUp(); dispatch({ type: 'UNDO' }); },
+        redo: () => { catchUp(); if (redoId !== undefined) dispatch({ type: 'SELECT_OBJECT', objectId: redoId }); },
+        // Le temps de la partie abandonnée n'est pas compté : il est seulement remis à zéro.
+        restart: () => { elapsedSinceTick?.(); dispatch({ type: 'RESTART' }); },
+        tick,
+        bindClock: elapsed => { elapsedSinceTick = elapsed; },
         hint: () => {
+            catchUp();
             if (state.status === 'blocked') return { none: 'blocked' };
             if (!level.rules.allowHints || state.status !== 'playing' || state.hintCount >= (level.rules.hintLimit ?? Infinity)) return { none: 'unavailable' };
             const objectId = solverHint(level, snapshotOf(state), { ...HINT_BUDGET, maxMs: HINT_MAX_MS, now: deps.now });

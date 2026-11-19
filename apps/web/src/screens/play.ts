@@ -149,7 +149,16 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
                     if (disposed) return;
                     element.dataset['ready'] = 'true';
                     if (announcement) say(announcement);
-                    if (!trace) return;
+                    // Niveau chronométré seulement : le temps court dès que la pièce est affichée, pas avant. L'horloge se
+                    // suspend à la fin de la partie, reprend après « Recommencer », et s'arrête à la sortie de l'écran.
+                    if (!trace) {
+                        stopClock = startClock(controller, {
+                            now: () => performance.now(),
+                            setInterval: (callback, ms) => window.setInterval(callback, ms),
+                            clearInterval: handle => { window.clearInterval(handle); }
+                        });
+                        return;
+                    }
                     let index = 0;
                     const playNext = (): void => {
                         const id = trace[index++];
@@ -161,12 +170,6 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
                 }
             }));
             removeHooks = installTestHooks(controller, scene);
-            // Niveau chronométré seulement : l'horloge s'arrête d'elle-même à la fin de la partie, et à la sortie de l'écran.
-            if (!trace) stopClock = startClock(controller, {
-                now: () => performance.now(),
-                setInterval: (callback, ms) => window.setInterval(callback, ms),
-                clearInterval: handle => { window.clearInterval(handle); }
-            });
         },
         dispose: () => {
             disposed = true;

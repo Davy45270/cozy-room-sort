@@ -17,7 +17,9 @@ function manualTimers() {
         clearInterval: () => { calls.clear++; callback = undefined; }
     };
     const fire = (ms = CLOCK_PERIOD_MS): void => { now += ms; callback?.(); };
-    return { timers, calls, fire, running: () => callback !== undefined };
+    /** Le temps passe sans que la minuterie se déclenche (entre deux rappels). */
+    const wait = (ms: number): void => { now += ms; };
+    return { timers, calls, fire, wait, running: () => callback !== undefined };
 }
 
 describe('horloge de partie', () => {
@@ -71,5 +73,89 @@ describe('horloge de partie', () => {
         second.fire();
         expect(second.running()).toBe(false);
         expect(controller.state.elapsedMs).toBe(0);
+    });
+
+    it('un rappel en retard transmet le temps réellement écoulé, pas la période', () => {
+        const controller = createController(makeLevel({ ...spec, rules: { timeLimitSeconds: 10 } }), 'classique',
+            { save: () => Promise.resolve(), now: () => 0 });
+        const { timers, fire } = manualTimers();
+        startClock(controller, timers);
+        fire(2500);
+        expect(controller.state.elapsedMs).toBe(2500);
+        fire(400);
+        expect(controller.state.elapsedMs).toBe(2900);
+    });
+
+    it('« Recommencer » après l’échéance relance l’horloge, jusqu’à une nouvelle défaite', () => {
+        const controller = createController(makeLevel({ ...spec, rules: { timeLimitSeconds: 1 } }), 'classique',
+            { save: () => Promise.resolve(), now: () => 0 });
+        const { timers, calls, fire, wait, running } = manualTimers();
+        startClock(controller, timers);
+        fire();
+        expect(controller.state.status).toBe('lost');
+        expect(running()).toBe(false);
+        wait(30_000);
+        controller.restart();
+        expect(controller.state.status).toBe('playing');
+        expect(controller.state.elapsedMs).toBe(0);
+        expect(running()).toBe(true);
+        expect(calls.set).toBe(2);
+        // Les 30 s passées sur l'écran de défaite ne comptent pas : le temps repart de « Recommencer ».
+        fire(400);
+        expect(controller.state.elapsedMs).toBe(400);
+        expect(controller.state.status).toBe('playing');
+        fire(600);
+        expect(controller.state.status).toBe('lost');
+        expect(running()).toBe(false);
+    });
+
+    it('« Recommencer » en cours de partie : le temps de la partie abandonnée n’est pas reporté', () => {
+        const controller = createController(makeLevel({ ...spec, rules: { timeLimitSeconds: 5 } }), 'classique',
+            { save: () => Promise.resolve(), now: () => 0 });
+        const { timers, fire, wait } = manualTimers();
+        startClock(controller, timers);
+        fire();
+        wait(800);
+        controller.restart();
+        fire(200);
+        expect(controller.state.elapsedMs).toBe(200);
+    });
+
+    it('un coup joué après l’échéance, avant le rappel suivant, ne gagne pas', () => {
+        const controller = createController(makeLevel({ ...spec, rules: { timeLimitSeconds: 1 } }), 'classique',
+            { save: () => Promise.resolve(), now: () => 0 });
+        const { timers, wait } = manualTimers();
+        startClock(controller, timers);
+        controller.select('a1');
+        wait(1500);
+        controller.select('a2');
+        expect(controller.state.status).toBe('lost');
+        expect(controller.state.elapsedMs).toBe(1500);
+        expect(controller.state.remainingObjectIds).toEqual(['a2']);
+    });
+
+    it('un coup joué avant l’échéance compte d’abord le temps écoulé, puis s’applique', () => {
+        const controller = createController(makeLevel({ ...spec, rules: { timeLimitSeconds: 2 } }), 'classique',
+            { save: () => Promise.resolve(), now: () => 0 });
+        const { timers, wait } = manualTimers();
+        startClock(controller, timers);
+        wait(700);
+        controller.select('a1');
+        expect(controller.state.elapsedMs).toBe(700);
+        expect(controller.state.remainingObjectIds).toEqual(['a2']);
+    });
+
+    it('arrêtée, l’horloge ne compte plus rien, même avant un coup', () => {
+        const controller = createController(makeLevel({ ...spec, rules: { timeLimitSeconds: 1 } }), 'classique',
+            { save: () => Promise.resolve(), now: () => 0 });
+        const { timers, wait, running } = manualTimers();
+        const stop = startClock(controller, timers);
+        stop();
+        wait(5000);
+        controller.select('a1');
+        controller.restart();
+        expect(running()).toBe(false);
+        expect(controller.state.elapsedMs).toBe(0);
+        expect(controller.state.status).toBe('playing');
     });
 });
