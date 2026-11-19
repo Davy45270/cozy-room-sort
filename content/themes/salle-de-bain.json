@@ -1,0 +1,71 @@
+{
+  "id": "salle-de-bain",
+  "label": "Salle de bain",
+  "vue": "vue-salle-de-bain",
+  "sol": "sol-carreaux",
+  "selecteur": "choix-salle-de-bain",
+  "categories": [
+    {
+      "id": "serviettes",
+      "label": "Serviettes et linge",
+      "icone": "serviettes-pile",
+      "objets": [
+        "serviettes-pile",
+        "serviette-anneau",
+        "serviette-barre",
+        "peignoir",
+        "panier-serviette"
+      ]
+    },
+    {
+      "id": "flacons",
+      "label": "Flacons",
+      "icone": "flacon-bleu",
+      "objets": [
+        "flacon-bleu",
+        "flacon-rose",
+        "flacon-creme",
+        "flacon-pompe"
+      ]
+    },
+    {
+      "id": "soins",
+      "label": "Pots et soins",
+      "icone": "pot-creme",
+      "objets": [
+        "pot-creme",
+        "pot-bleu",
+        "tube-creme",
+        "cotons",
+        "sels-roses",
+        "sels-peche"
+      ]
+    },
+    {
+      "id": "accessoires",
+      "label": "Accessoires",
+      "icone": "gobelet-brosses",
+      "objets": [
+        "gobelet-brosses",
+        "peigne",
+        "brosse",
+        "rasoir",
+        "seche-cheveux",
+        "eponge",
+        "fleur-douche",
+        "canard"
+      ]
+    },
+    {
+      "id": "parfums",
+      "label": "Bougies et parfums",
+      "icone": "bougie-rose",
+      "objets": [
+        "bougie-rose",
+        "bougie-verre",
+        "diffuseur-bambou",
+        "plante-blanche"
+      ]
+    }
+  ]
+}

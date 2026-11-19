@@ -24,7 +24,7 @@
     },
     {
       "id": "plantes",
-      "label": "Plantes"
+      "label": "Plantes et fleurs"
     },
     {
       "id": "cadres",
@@ -64,9 +64,9 @@
   ],
   "objects": [
     {
-      "id": "livre-1",
+      "id": "objet-1",
       "category": "livres",
-      "asset": "livre-canard",
+      "asset": "livres-plante",
       "position": {
         "x": 0.096,
         "y": 0.86
@@ -75,176 +75,177 @@
       "blockedBy": []
     },
     {
-      "id": "plante-2",
+      "id": "objet-2",
       "category": "plantes",
-      "asset": "plante-ronde",
+      "asset": "cactus",
       "position": {
-        "x": 0.089,
+        "x": 0.101,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "livre-1"
+        "objet-1"
       ]
     },
     {
-      "id": "cadre-3",
+      "id": "objet-3",
       "category": "cadres",
       "asset": "cadre-paysage",
       "position": {
-        "x": 0.091,
+        "x": 0.093,
         "y": 0.54
       },
       "layer": 8,
       "blockedBy": [
-        "plante-2"
+        "objet-2"
       ]
     },
     {
-      "id": "livre-4",
+      "id": "objet-4",
       "category": "livres",
-      "asset": "livre-canard",
+      "asset": "livres-trio",
       "position": {
-        "x": 0.309,
+        "x": 0.291,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "lampe-5",
+      "id": "objet-5",
       "category": "lumieres",
-      "asset": "lampe-moutarde",
+      "asset": "lampe-table",
       "position": {
-        "x": 0.3,
+        "x": 0.288,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "livre-4"
+        "objet-4"
       ]
     },
     {
-      "id": "plante-6",
+      "id": "objet-6",
       "category": "plantes",
-      "asset": "plante-fougere",
+      "asset": "hortensias",
       "position": {
-        "x": 0.312,
+        "x": 0.307,
         "y": 0.54
       },
       "layer": 8,
       "blockedBy": [
-        "lampe-5"
-      ],
-      "hidden": true
+        "objet-5"
+      ]
     },
     {
-      "id": "plante-7",
+      "id": "objet-7",
       "category": "plantes",
-      "asset": "plante-fougere",
+      "asset": "monstera-panier",
       "position": {
-        "x": 0.496,
+        "x": 0.511,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "cadre-8",
+      "id": "objet-8",
       "category": "cadres",
-      "asset": "cadre-lune",
+      "asset": "cadre-feuille",
       "position": {
-        "x": 0.487,
+        "x": 0.49,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "plante-7"
+        "objet-7"
       ]
     },
     {
-      "id": "coussin-9",
+      "id": "objet-9",
       "category": "coussins",
-      "asset": "coussin-moutarde",
+      "asset": "coussin-creme",
       "position": {
-        "x": 0.513,
+        "x": 0.503,
         "y": 0.54
       },
       "layer": 8,
       "blockedBy": [
-        "cadre-8"
+        "objet-8"
       ],
       "hidden": true
     },
     {
-      "id": "livre-10",
+      "id": "objet-10",
       "category": "livres",
-      "asset": "livre-moutarde",
+      "asset": "livres-pile",
       "position": {
-        "x": 0.504,
+        "x": 0.492,
         "y": 0.38
       },
       "layer": 7,
       "blockedBy": [
-        "coussin-9"
+        "objet-9"
       ]
     },
     {
-      "id": "coussin-11",
+      "id": "objet-11",
       "category": "coussins",
-      "asset": "coussin-ciel",
+      "asset": "coussin-creme",
       "position": {
-        "x": 0.501,
+        "x": 0.511,
         "y": 0.22
       },
       "layer": 6,
       "blockedBy": [
-        "livre-10"
-      ]
+        "objet-10"
+      ],
+      "hidden": true
     },
     {
-      "id": "lampe-12",
+      "id": "objet-12",
       "category": "lumieres",
-      "asset": "lampe-moutarde",
+      "asset": "lampe-chevet",
       "position": {
-        "x": 0.497,
+        "x": 0.513,
         "y": 0.06
       },
       "layer": 5,
       "blockedBy": [
-        "coussin-11"
-      ]
+        "objet-11"
+      ],
+      "hidden": true
     },
     {
-      "id": "cadre-13",
+      "id": "objet-13",
       "category": "cadres",
-      "asset": "cadre-lune",
+      "asset": "cadre-paysage",
       "position": {
-        "x": 0.71,
+        "x": 0.704,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "lampe-14",
+      "id": "objet-14",
       "category": "lumieres",
-      "asset": "lampe-moutarde",
+      "asset": "lanterne-maison",
       "position": {
-        "x": 0.691,
+        "x": 0.708,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "cadre-13"
+        "objet-13"
       ]
     },
     {
-      "id": "plaid-15",
+      "id": "objet-15",
       "category": "coussins",
-      "asset": "plaid-canard",
+      "asset": "coussins-duo",
       "position": {
-        "x": 0.895,
+        "x": 0.901,
         "y": 0.86
       },
       "layer": 10,
@@ -257,21 +258,21 @@
   },
   "meta": {
     "solution": [
-      "plante-7",
-      "cadre-8",
-      "cadre-13",
-      "livre-1",
-      "plante-2",
-      "cadre-3",
-      "coussin-9",
-      "plaid-15",
-      "livre-10",
-      "coussin-11",
-      "lampe-12",
-      "lampe-14",
-      "livre-4",
-      "lampe-5",
-      "plante-6"
+      "objet-7",
+      "objet-8",
+      "objet-13",
+      "objet-1",
+      "objet-2",
+      "objet-3",
+      "objet-9",
+      "objet-15",
+      "objet-10",
+      "objet-11",
+      "objet-12",
+      "objet-14",
+      "objet-4",
+      "objet-5",
+      "objet-6"
     ],
     "engineVersion": "0.1.0",
     "statesExplored": 828

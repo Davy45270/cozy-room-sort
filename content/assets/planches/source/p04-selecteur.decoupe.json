@@ -1,0 +1,57 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+ "marge": 0,
+ "taille": 200,
+ "elements": [
+  {
+   "id": "choix-salon",
+   "boite": [
+    168,
+    178,
+    821,
+    9
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "choix-chambre",
+   "boite": [
+    166,
+    179,
+    1001,
+    9
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "choix-cuisine",
+   "boite": [
+    165,
+    177,
+    1178,
+    10
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "choix-salle-de-bain",
+   "boite": [
+    169,
+    178,
+    1354,
+    8
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "titre-salle-de-bain",
+   "boite": [
+    376,
+    78,
+    416,
+    33
+   ],
+   "ancre": "centre"
+  }
+ ]
+}

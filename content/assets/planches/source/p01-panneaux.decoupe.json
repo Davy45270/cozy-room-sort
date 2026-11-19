@@ -1,0 +1,117 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_01.webp",
+ "marge": 0,
+ "taille": 256,
+ "elements": [
+  {
+   "id": "barre-progression",
+   "boite": [
+    297,
+    71,
+    21,
+    485
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "case-tampon",
+   "boite": [
+    272,
+    93,
+    17,
+    576
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "case-tampon-aide",
+   "boite": [
+    272,
+    130,
+    17,
+    669
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "panneau-quotas",
+   "boite": [
+    216,
+    209,
+    26,
+    799
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "mur-fenetre",
+   "boite": [
+    278,
+    105,
+    272,
+    899
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "tapis-rond",
+   "boite": [
+    180,
+    103,
+    1328,
+    903
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "sol-parquet",
+   "boite": [
+    143,
+    98,
+    561,
+    905
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "sol-chevrons",
+   "boite": [
+    144,
+    98,
+    712,
+    905
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "sol-carreaux",
+   "boite": [
+    143,
+    98,
+    864,
+    905
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "sol-vert",
+   "boite": [
+    143,
+    98,
+    1016,
+    905
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "sol-moquette",
+   "boite": [
+    144,
+    98,
+    1168,
+    905
+   ],
+   "ancre": "centre"
+  }
+ ]
+}

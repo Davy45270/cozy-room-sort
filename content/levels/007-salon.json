@@ -24,7 +24,7 @@
     },
     {
       "id": "plantes",
-      "label": "Plantes"
+      "label": "Plantes et fleurs"
     },
     {
       "id": "cadres",
@@ -69,75 +69,75 @@
   ],
   "objects": [
     {
-      "id": "cadre-1",
+      "id": "objet-1",
       "category": "cadres",
-      "asset": "cadre-fleur",
+      "asset": "cadre-collines",
       "position": {
-        "x": 0.111,
+        "x": 0.121,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "livre-2",
+      "id": "objet-2",
       "category": "livres",
-      "asset": "livre-terracotta",
+      "asset": "livres-trio",
       "position": {
-        "x": 0.267,
+        "x": 0.28,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "plaid-3",
+      "id": "objet-3",
       "category": "coussins",
-      "asset": "plaid-terracotta",
+      "asset": "coussin-creme",
       "position": {
-        "x": 0.433,
+        "x": 0.417,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "plante-4",
+      "id": "objet-4",
       "category": "plantes",
-      "asset": "plante-cactus",
+      "asset": "tournesols",
       "position": {
-        "x": 0.58,
+        "x": 0.584,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "lampe-5",
+      "id": "objet-5",
       "category": "lumieres",
-      "asset": "lampe-sauge",
+      "asset": "cloche-lumineuse",
       "position": {
-        "x": 0.721,
+        "x": 0.727,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "livre-6",
+      "id": "objet-6",
       "category": "livres",
-      "asset": "livre-terracotta",
+      "asset": "livres-pile",
       "position": {
-        "x": 0.87,
+        "x": 0.88,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "plante-7",
+      "id": "objet-7",
       "category": "plantes",
-      "asset": "plante-fougere",
+      "asset": "monstera-panier",
       "position": {
         "x": 0.06,
         "y": 0.71
@@ -146,158 +146,159 @@
       "blockedBy": []
     },
     {
-      "id": "lampe-8",
+      "id": "objet-8",
       "category": "lumieres",
-      "asset": "lampe-moutarde",
+      "asset": "lampe-table",
       "position": {
-        "x": 0.188,
+        "x": 0.201,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "cadre-1"
+        "objet-1"
       ],
       "hidden": true
     },
     {
-      "id": "cadre-9",
+      "id": "objet-9",
       "category": "cadres",
-      "asset": "cadre-lune",
+      "asset": "cadre-feuille",
       "position": {
-        "x": 0.345,
+        "x": 0.34,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "cadre-1",
-        "livre-2"
+        "objet-1",
+        "objet-2"
       ]
     },
     {
-      "id": "plante-10",
+      "id": "objet-10",
       "category": "plantes",
-      "asset": "plante-fougere",
+      "asset": "monstera-panier",
       "position": {
-        "x": 0.489,
+        "x": 0.492,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "livre-2",
-        "plaid-3"
+        "objet-2",
+        "objet-3"
       ]
     },
     {
-      "id": "lampe-11",
+      "id": "objet-11",
       "category": "lumieres",
-      "asset": "lampe-sauge",
+      "asset": "lampe-chevet",
       "position": {
-        "x": 0.648,
+        "x": 0.637,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "plaid-3",
-        "plante-4"
+        "objet-3",
+        "objet-4"
       ]
     },
     {
-      "id": "plaid-12",
+      "id": "objet-12",
       "category": "coussins",
-      "asset": "plaid-terracotta",
+      "asset": "coussins-duo",
       "position": {
-        "x": 0.789,
+        "x": 0.795,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "plante-4",
-        "lampe-5"
+        "objet-4",
+        "objet-5"
+      ]
+    },
+    {
+      "id": "objet-13",
+      "category": "livres",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.938,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-5",
+        "objet-6"
       ],
       "hidden": true
     },
     {
-      "id": "livre-13",
-      "category": "livres",
-      "asset": "livre-canard",
-      "position": {
-        "x": 0.94,
-        "y": 0.71
-      },
-      "layer": 9,
-      "blockedBy": [
-        "lampe-5",
-        "livre-6"
-      ]
-    },
-    {
-      "id": "lampe-14",
+      "id": "objet-14",
       "category": "lumieres",
-      "asset": "lampe-creme",
+      "asset": "lampe-table",
       "position": {
-        "x": 0.192,
+        "x": 0.207,
         "y": 0.56
       },
       "layer": 8,
       "blockedBy": [
-        "lampe-5",
-        "livre-6"
+        "objet-5",
+        "objet-6"
       ]
     },
     {
-      "id": "cadre-15",
+      "id": "objet-15",
       "category": "cadres",
-      "asset": "cadre-lune",
+      "asset": "cadre-collines",
       "position": {
         "x": 0.357,
         "y": 0.56
       },
       "layer": 8,
       "blockedBy": [
-        "livre-6",
-        "plante-7"
+        "objet-6",
+        "objet-7"
       ]
     },
     {
-      "id": "coussin-16",
+      "id": "objet-16",
       "category": "coussins",
-      "asset": "coussin-moutarde",
+      "asset": "coussins-duo",
       "position": {
-        "x": 0.509,
+        "x": 0.489,
         "y": 0.56
       },
       "layer": 8,
       "blockedBy": [
-        "plante-7",
-        "lampe-8"
-      ]
+        "objet-7",
+        "objet-8"
+      ],
+      "hidden": true
     },
     {
-      "id": "plaid-17",
+      "id": "objet-17",
       "category": "coussins",
-      "asset": "plaid-rose",
+      "asset": "coussin-patte",
       "position": {
-        "x": 0.642,
+        "x": 0.647,
         "y": 0.56
       },
       "layer": 8,
       "blockedBy": [
-        "lampe-8",
-        "cadre-9"
+        "objet-8",
+        "objet-9"
       ]
     },
     {
-      "id": "livre-18",
+      "id": "objet-18",
       "category": "livres",
-      "asset": "livre-terracotta",
+      "asset": "livres-trio",
       "position": {
-        "x": 0.792,
+        "x": 0.8,
         "y": 0.56
       },
       "layer": 8,
       "blockedBy": [
-        "cadre-9",
-        "plante-10"
+        "objet-9",
+        "objet-10"
       ]
     }
   ],
@@ -307,24 +308,24 @@
   },
   "meta": {
     "solution": [
-      "plaid-3",
-      "lampe-5",
-      "plante-4",
-      "lampe-11",
-      "plaid-12",
-      "cadre-1",
-      "lampe-8",
-      "livre-6",
-      "lampe-14",
-      "livre-2",
-      "livre-13",
-      "plante-7",
-      "coussin-16",
-      "cadre-9",
-      "plaid-17",
-      "plante-10",
-      "cadre-15",
-      "livre-18"
+      "objet-3",
+      "objet-5",
+      "objet-4",
+      "objet-11",
+      "objet-12",
+      "objet-1",
+      "objet-8",
+      "objet-6",
+      "objet-14",
+      "objet-2",
+      "objet-13",
+      "objet-7",
+      "objet-16",
+      "objet-9",
+      "objet-17",
+      "objet-10",
+      "objet-15",
+      "objet-18"
     ],
     "engineVersion": "0.1.0",
     "statesExplored": 7412

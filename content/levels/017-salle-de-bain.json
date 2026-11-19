@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "017-salle-de-bain",
+  "name": "Les placards ouverts",
+  "theme": "salle-de-bain",
+  "difficulty": "medium",
+  "seed": 58001,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 2,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "serviettes",
+      "label": "Serviettes et linge"
+    },
+    {
+      "id": "accessoires",
+      "label": "Accessoires"
+    },
+    {
+      "id": "flacons",
+      "label": "Flacons"
+    },
+    {
+      "id": "soins",
+      "label": "Pots et soins"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-serviettes-1",
+      "category": "serviettes",
+      "capacity": 2
+    },
+    {
+      "id": "carton-flacons-1",
+      "category": "flacons",
+      "capacity": 3
+    },
+    {
+      "id": "carton-serviettes-2",
+      "category": "serviettes",
+      "capacity": 2
+    },
+    {
+      "id": "carton-accessoires-1",
+      "category": "accessoires",
+      "capacity": 3
+    },
+    {
+      "id": "carton-soins-1",
+      "category": "soins",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "objet-1",
+      "category": "accessoires",
+      "asset": "eponge",
+      "position": {
+        "x": 0.135,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-2",
+      "category": "flacons",
+      "asset": "flacon-rose",
+      "position": {
+        "x": 0.115,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-1"
+      ]
+    },
+    {
+      "id": "objet-3",
+      "category": "serviettes",
+      "asset": "serviettes-pile",
+      "position": {
+        "x": 0.14,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-2"
+      ]
+    },
+    {
+      "id": "objet-4",
+      "category": "soins",
+      "asset": "tube-creme",
+      "position": {
+        "x": 0.365,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-5",
+      "category": "flacons",
+      "asset": "flacon-pompe",
+      "position": {
+        "x": 0.377,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-4"
+      ]
+    },
+    {
+      "id": "objet-6",
+      "category": "soins",
+      "asset": "sels-peche",
+      "position": {
+        "x": 0.367,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-5"
+      ]
+    },
+    {
+      "id": "objet-7",
+      "category": "accessoires",
+      "asset": "rasoir",
+      "position": {
+        "x": 0.62,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-8",
+      "category": "serviettes",
+      "asset": "serviette-anneau",
+      "position": {
+        "x": 0.632,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-7"
+      ]
+    },
+    {
+      "id": "objet-9",
+      "category": "soins",
+      "asset": "sels-peche",
+      "position": {
+        "x": 0.622,
+        "y": 0.54
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-8"
+      ]
+    },
+    {
+      "id": "objet-10",
+      "category": "serviettes",
+      "asset": "serviette-anneau",
+      "position": {
+        "x": 0.632,
+        "y": 0.38
+      },
+      "layer": 7,
+      "blockedBy": [
+        "objet-9"
+      ]
+    },
+    {
+      "id": "objet-11",
+      "category": "flacons",
+      "asset": "flacon-rose",
+      "position": {
+        "x": 0.624,
+        "y": 0.22
+      },
+      "layer": 6,
+      "blockedBy": [
+        "objet-10"
+      ]
+    },
+    {
+      "id": "objet-12",
+      "category": "serviettes",
+      "asset": "peignoir",
+      "position": {
+        "x": 0.877,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-13",
+      "category": "accessoires",
+      "asset": "seche-cheveux",
+      "position": {
+        "x": 0.882,
+        "y": 0.7
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-12"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 3,
+    "twoStarsMaxBuffered": 5
+  },
+  "meta": {
+    "solution": [
+      "objet-12",
+      "objet-1",
+      "objet-2",
+      "objet-3",
+      "objet-7",
+      "objet-8",
+      "objet-9",
+      "objet-10",
+      "objet-11",
+      "objet-13",
+      "objet-4",
+      "objet-5",
+      "objet-6"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 479
+  }
+}

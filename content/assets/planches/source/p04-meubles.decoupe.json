@@ -1,0 +1,187 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+ "marge": 6,
+ "taille": 192,
+ "elements": [
+  {
+   "id": "douche",
+   "boite": [
+    174,
+    256,
+    441,
+    161
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "lavabo-miroir",
+   "boite": [
+    142,
+    241,
+    623,
+    178
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "etagere-sdb",
+   "boite": [
+    144,
+    206,
+    1248,
+    203
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "toilettes",
+   "boite": [
+    116,
+    191,
+    767,
+    227
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "lave-linge",
+   "boite": [
+    131,
+    165,
+    1106,
+    243
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "baignoire",
+   "boite": [
+    208,
+    172,
+    890,
+    244
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "porte-serviettes",
+   "boite": [
+    115,
+    165,
+    405,
+    433
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "panier-linge",
+   "boite": [
+    105,
+    124,
+    295,
+    464
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "balayette",
+   "boite": [
+    46,
+    107,
+    1247,
+    601
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "pese-personne",
+   "boite": [
+    89,
+    88,
+    1308,
+    617
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "rideau-douche",
+   "boite": [
+    195,
+    259,
+    1327,
+    737
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "sol-bleu",
+   "boite": [
+    110,
+    124,
+    295,
+    863
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "sol-creme",
+   "boite": [
+    111,
+    124,
+    417,
+    863
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "sol-fleuri",
+   "boite": [
+    116,
+    122,
+    542,
+    865
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "tapis-bouclette",
+   "boite": [
+    158,
+    122,
+    809,
+    866
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "sol-lattes",
+   "boite": [
+    122,
+    120,
+    672,
+    867
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "tapis-bleu",
+   "boite": [
+    175,
+    123,
+    978,
+    867
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "tapis-pieds",
+   "boite": [
+    142,
+    113,
+    1168,
+    870
+   ],
+   "ancre": "centre"
+  }
+ ]
+}

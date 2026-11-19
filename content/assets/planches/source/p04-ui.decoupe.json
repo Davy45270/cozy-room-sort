@@ -1,0 +1,77 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+ "marge": 0,
+ "taille": 256,
+ "elements": [
+  {
+   "id": "boutons-haut",
+   "boite": [
+    250,
+    71,
+    18,
+    527
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "boutons-bas",
+   "boite": [
+    250,
+    67,
+    18,
+    606
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "etoile-sdb",
+   "boite": [
+    55,
+    50,
+    51,
+    685
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "etoile-sdb-milieu",
+   "boite": [
+    56,
+    50,
+    176,
+    685
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "etoile-sdb-droite",
+   "boite": [
+    56,
+    49,
+    113,
+    686
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "barre-sdb",
+   "boite": [
+    245,
+    56,
+    21,
+    736
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "panneau-quotas-sdb",
+   "boite": [
+    246,
+    209,
+    22,
+    799
+   ],
+   "ancre": "centre"
+  }
+ ]
+}

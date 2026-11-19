@@ -1,0 +1,77 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_02.webp",
+ "marge": 6,
+ "taille": 192,
+ "elements": [
+  {
+   "id": "bibliotheque-arche",
+   "boite": [
+    387,
+    678,
+    1130,
+    14
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "lampadaire",
+   "boite": [
+    202,
+    593,
+    30,
+    52
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "canape-plaid",
+   "boite": [
+    581,
+    365,
+    244,
+    67
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "fauteuil-fleur",
+   "boite": [
+    303,
+    362,
+    826,
+    83
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "monstera-coeur",
+   "boite": [
+    252,
+    318,
+    178,
+    391
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "tapis-nuage",
+   "boite": [
+    480,
+    281,
+    428,
+    441
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "gueridon-tasse",
+   "boite": [
+    232,
+    316,
+    41,
+    676
+   ],
+   "ancre": "bas"
+  }
+ ]
+}

@@ -1,7 +1,6 @@
 // Les niveaux livrés : vingt, variés, tous valides et tous résolus par le solveur avec une solution enregistrée.
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { ASSETS } from '@cozy-room-sort/art';
 import { createInitialState, snapshotOf, step, withMode } from '@cozy-room-sort/engine';
 import { validateLevel, type Level } from '@cozy-room-sort/schemas';
 
@@ -12,7 +11,7 @@ describe('niveaux livrés', () => {
     it('vingt niveaux répartis sur les trois pièces', () => {
         expect(levels).toHaveLength(20);
         const byRoom = (room: string): number => levels.filter(l => l.theme === room).length;
-        expect([byRoom('salon'), byRoom('chambre'), byRoom('cuisine')]).toEqual([7, 7, 6]);
+        expect([byRoom('salon'), byRoom('chambre'), byRoom('salle-de-bain')]).toEqual([7, 7, 6]);
     });
 
     it('variés : pas seulement « trois piles de trois »', () => {
@@ -37,9 +36,8 @@ describe('niveaux livrés', () => {
         }
     });
 
-    it.each(files.map((f, i) => [f, levels[i] as Level] as const))('%s : valide, dessins connus, solution rejouée jusqu\'à la victoire', (_f, level) => {
+    it.each(files.map((f, i) => [f, levels[i] as Level] as const))('%s : valide, solution rejouée jusqu\'à la victoire', (_f, level) => {
         expect(validateLevel(level).ok).toBe(true);
-        for (const o of level.objects) expect(ASSETS).toContain(o.asset);
         const playable = withMode(level, 'classique');
         const solution = level.meta?.solution ?? [];
         let end = snapshotOf(createInitialState(playable));

@@ -1,31 +1,67 @@
 {
   "id": "salon",
   "label": "Salon",
+  "vue": "vue-salon",
+  "sol": "sol-parquet",
+  "selecteur": "choix-salon",
   "categories": [
     {
       "id": "livres",
       "label": "Livres",
-      "picto": "book"
+      "icone": "livres-trio",
+      "objets": [
+        "livres-trio",
+        "livres-pile",
+        "livres-plante"
+      ]
     },
     {
       "id": "coussins",
       "label": "Coussins et plaids",
-      "picto": "cushion"
+      "icone": "coussin-creme",
+      "objets": [
+        "coussin-creme",
+        "plaid-bleu",
+        "coussin-patte",
+        "coussins-duo"
+      ]
     },
     {
       "id": "plantes",
-      "label": "Plantes",
-      "picto": "plant"
+      "label": "Plantes et fleurs",
+      "icone": "plante-panier",
+      "objets": [
+        "plante-panier",
+        "plante-pot",
+        "cactus",
+        "monstera-panier",
+        "tournesols",
+        "hortensias",
+        "bouquet-blanc"
+      ]
     },
     {
       "id": "cadres",
       "label": "Cadres",
-      "picto": "frame"
+      "icone": "cadre-paysage",
+      "objets": [
+        "cadre-paysage",
+        "cadre-feuille",
+        "cadre-collines",
+        "cadre-tulipe",
+        "cadre-chat"
+      ]
     },
     {
       "id": "lumieres",
       "label": "Lumières",
-      "picto": "lamp"
+      "icone": "lampe-chevet",
+      "objets": [
+        "lampe-chevet",
+        "lampe-table",
+        "lanterne-maison",
+        "cloche-lumineuse"
+      ]
     }
   ]
 }

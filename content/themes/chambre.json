@@ -1,31 +1,63 @@
 {
   "id": "chambre",
   "label": "Chambre",
+  "vue": "vue-chambre",
+  "sol": "sol-moquette",
+  "selecteur": "choix-chambre",
   "categories": [
     {
       "id": "peluches",
       "label": "Peluches",
-      "picto": "teddy"
-    },
-    {
-      "id": "linge",
-      "label": "Vêtements et linge",
-      "picto": "shirt"
+      "icone": "ours",
+      "objets": [
+        "ours",
+        "lapin",
+        "ours-panier",
+        "canard"
+      ]
     },
     {
       "id": "livres",
       "label": "Livres",
-      "picto": "book"
+      "icone": "livres-pile",
+      "objets": [
+        "livres-pile",
+        "livres-trio",
+        "livres-plante"
+      ]
     },
     {
       "id": "veilleuses",
       "label": "Veilleuses et bougies",
-      "picto": "candle"
+      "icone": "bougie-pot",
+      "objets": [
+        "bougie-pot",
+        "bougie-ruban",
+        "bougie-rose",
+        "bougie-verre",
+        "diffuseur"
+      ]
     },
     {
       "id": "cadres",
       "label": "Cadres",
-      "picto": "frame"
+      "icone": "cadre-montagne",
+      "objets": [
+        "cadre-montagne",
+        "miroir-rond",
+        "cadre-suspendu",
+        "cadre-chat"
+      ]
+    },
+    {
+      "id": "coussins",
+      "label": "Coussins",
+      "icone": "coussin-patte",
+      "objets": [
+        "coussin-patte",
+        "coussins-duo",
+        "coussin-creme"
+      ]
     }
   ]
 }

@@ -1,0 +1,117 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_01.webp",
+ "marge": 0,
+ "taille": 128,
+ "elements": [
+  {
+   "id": "btn-jouer",
+   "boite": [
+    289,
+    115,
+    31,
+    43
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "btn-accueil",
+   "boite": [
+    100,
+    96,
+    23,
+    175
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "btn-recommencer",
+   "boite": [
+    96,
+    96,
+    124,
+    175
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "btn-reglages",
+   "boite": [
+    99,
+    96,
+    221,
+    175
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "btn-annuler",
+   "boite": [
+    100,
+    87,
+    22,
+    291
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "btn-indice",
+   "boite": [
+    96,
+    87,
+    124,
+    291
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "btn-refaire",
+   "boite": [
+    99,
+    87,
+    221,
+    291
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "etoile",
+   "boite": [
+    68,
+    65,
+    60,
+    412
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "etoile-milieu",
+   "boite": [
+    68,
+    65,
+    137,
+    412
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "etoile-droite",
+   "boite": [
+    68,
+    65,
+    213,
+    412
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "coche",
+   "boite": [
+    50,
+    50,
+    176,
+    819
+   ],
+   "ancre": "centre"
+  }
+ ]
+}

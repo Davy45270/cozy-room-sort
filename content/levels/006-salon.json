@@ -24,7 +24,7 @@
     },
     {
       "id": "plantes",
-      "label": "Plantes"
+      "label": "Plantes et fleurs"
     },
     {
       "id": "cadres",
@@ -60,210 +60,210 @@
   ],
   "objects": [
     {
-      "id": "cadre-1",
+      "id": "objet-1",
       "category": "cadres",
-      "asset": "cadre-paysage",
+      "asset": "cadre-tulipe",
       "position": {
-        "x": 0.086,
+        "x": 0.067,
         "y": 0.84
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "plante-2",
+      "id": "objet-2",
       "category": "plantes",
-      "asset": "plante-cactus",
+      "asset": "hortensias",
       "position": {
-        "x": 0.231,
+        "x": 0.232,
         "y": 0.84
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "cadre-3",
+      "id": "objet-3",
       "category": "cadres",
-      "asset": "cadre-lune",
+      "asset": "cadre-collines",
       "position": {
-        "x": 0.383,
+        "x": 0.385,
         "y": 0.84
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "livre-4",
+      "id": "objet-4",
       "category": "livres",
-      "asset": "livre-canard",
+      "asset": "livres-pile",
       "position": {
-        "x": 0.529,
+        "x": 0.548,
         "y": 0.84
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "cadre-5",
+      "id": "objet-5",
       "category": "cadres",
-      "asset": "cadre-lune",
+      "asset": "cadre-collines",
       "position": {
-        "x": 0.695,
+        "x": 0.704,
         "y": 0.84
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "plante-6",
+      "id": "objet-6",
       "category": "plantes",
-      "asset": "plante-fougere",
+      "asset": "monstera-panier",
       "position": {
-        "x": 0.857,
+        "x": 0.837,
         "y": 0.84
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "plaid-7",
+      "id": "objet-7",
       "category": "coussins",
-      "asset": "plaid-terracotta",
+      "asset": "coussin-creme",
       "position": {
-        "x": 0.15,
+        "x": 0.167,
         "y": 0.6
       },
       "layer": 9,
       "blockedBy": [
-        "cadre-1",
-        "plante-2"
+        "objet-1",
+        "objet-2"
       ]
     },
     {
-      "id": "plante-8",
+      "id": "objet-8",
       "category": "plantes",
-      "asset": "plante-fougere",
+      "asset": "cactus",
       "position": {
         "x": 0.299,
         "y": 0.6
       },
       "layer": 9,
       "blockedBy": [
-        "plante-2",
-        "cadre-3"
+        "objet-2",
+        "objet-3"
       ]
     },
     {
-      "id": "cadre-9",
+      "id": "objet-9",
       "category": "cadres",
-      "asset": "cadre-lune",
+      "asset": "cadre-tulipe",
       "position": {
-        "x": 0.475,
+        "x": 0.468,
         "y": 0.6
       },
       "layer": 9,
       "blockedBy": [
-        "cadre-3",
-        "livre-4"
+        "objet-3",
+        "objet-4"
       ]
     },
     {
-      "id": "livre-10",
+      "id": "objet-10",
       "category": "livres",
-      "asset": "livre-moutarde",
+      "asset": "livres-trio",
       "position": {
-        "x": 0.609,
+        "x": 0.607,
         "y": 0.6
       },
       "layer": 9,
       "blockedBy": [
-        "livre-4",
-        "cadre-5"
+        "objet-4",
+        "objet-5"
       ]
     },
     {
-      "id": "coussin-11",
+      "id": "objet-11",
       "category": "coussins",
-      "asset": "coussin-rose",
+      "asset": "coussin-creme",
       "position": {
-        "x": 0.766,
+        "x": 0.78,
         "y": 0.6
       },
       "layer": 9,
       "blockedBy": [
-        "cadre-5",
-        "plante-6"
+        "objet-5",
+        "objet-6"
       ]
     },
     {
-      "id": "coussin-12",
+      "id": "objet-12",
       "category": "coussins",
-      "asset": "coussin-ciel",
+      "asset": "coussins-duo",
       "position": {
-        "x": 0.916,
+        "x": 0.936,
         "y": 0.6
       },
       "layer": 9,
       "blockedBy": [
-        "plante-6"
+        "objet-6"
+      ]
+    },
+    {
+      "id": "objet-13",
+      "category": "plantes",
+      "asset": "plante-panier",
+      "position": {
+        "x": 0.078,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-7",
+        "objet-8"
+      ]
+    },
+    {
+      "id": "objet-14",
+      "category": "livres",
+      "asset": "livres-trio",
+      "position": {
+        "x": 0.216,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-8",
+        "objet-9"
+      ]
+    },
+    {
+      "id": "objet-15",
+      "category": "livres",
+      "asset": "livres-pile",
+      "position": {
+        "x": 0.391,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-9",
+        "objet-10"
+      ]
+    },
+    {
+      "id": "objet-16",
+      "category": "coussins",
+      "asset": "coussins-duo",
+      "position": {
+        "x": 0.532,
+        "y": 0.36
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-10",
+        "objet-11"
       ],
       "hidden": true
-    },
-    {
-      "id": "plante-13",
-      "category": "plantes",
-      "asset": "plante-fougere",
-      "position": {
-        "x": 0.081,
-        "y": 0.36
-      },
-      "layer": 8,
-      "blockedBy": [
-        "plaid-7",
-        "plante-8"
-      ]
-    },
-    {
-      "id": "livre-14",
-      "category": "livres",
-      "asset": "livre-terracotta",
-      "position": {
-        "x": 0.238,
-        "y": 0.36
-      },
-      "layer": 8,
-      "blockedBy": [
-        "plante-8",
-        "cadre-9"
-      ]
-    },
-    {
-      "id": "livre-15",
-      "category": "livres",
-      "asset": "livre-moutarde",
-      "position": {
-        "x": 0.374,
-        "y": 0.36
-      },
-      "layer": 8,
-      "blockedBy": [
-        "cadre-9",
-        "livre-10"
-      ]
-    },
-    {
-      "id": "coussin-16",
-      "category": "coussins",
-      "asset": "coussin-ciel",
-      "position": {
-        "x": 0.539,
-        "y": 0.36
-      },
-      "layer": 8,
-      "blockedBy": [
-        "livre-10",
-        "coussin-11"
-      ]
     }
   ],
   "scoring": {
@@ -272,22 +272,22 @@
   },
   "meta": {
     "solution": [
-      "cadre-1",
-      "cadre-3",
-      "cadre-5",
-      "livre-4",
-      "cadre-9",
-      "livre-10",
-      "livre-15",
-      "plante-2",
-      "plante-8",
-      "livre-14",
-      "plante-6",
-      "plaid-7",
-      "plante-13",
-      "coussin-11",
-      "coussin-12",
-      "coussin-16"
+      "objet-1",
+      "objet-3",
+      "objet-5",
+      "objet-4",
+      "objet-9",
+      "objet-10",
+      "objet-15",
+      "objet-2",
+      "objet-8",
+      "objet-14",
+      "objet-6",
+      "objet-7",
+      "objet-13",
+      "objet-11",
+      "objet-12",
+      "objet-16"
     ],
     "engineVersion": "0.1.0",
     "statesExplored": 475

@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "016-salle-de-bain",
+  "name": "La pile de serviettes",
+  "theme": "salle-de-bain",
+  "difficulty": "easy",
+  "seed": 57001,
+  "rules": {
+    "bufferCapacity": 4,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "serviettes",
+      "label": "Serviettes et linge"
+    },
+    {
+      "id": "accessoires",
+      "label": "Accessoires"
+    },
+    {
+      "id": "flacons",
+      "label": "Flacons"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-serviettes-1",
+      "category": "serviettes",
+      "capacity": 4
+    },
+    {
+      "id": "carton-flacons-1",
+      "category": "flacons",
+      "capacity": 4
+    },
+    {
+      "id": "carton-accessoires-1",
+      "category": "accessoires",
+      "capacity": 4
+    }
+  ],
+  "objects": [
+    {
+      "id": "objet-1",
+      "category": "accessoires",
+      "asset": "gobelet-brosses",
+      "position": {
+        "x": 0.187,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-2",
+      "category": "serviettes",
+      "asset": "panier-serviette",
+      "position": {
+        "x": 0.361,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-3",
+      "category": "flacons",
+      "asset": "flacon-creme",
+      "position": {
+        "x": 0.496,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-4",
+      "category": "serviettes",
+      "asset": "serviettes-pile",
+      "position": {
+        "x": 0.656,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-5",
+      "category": "flacons",
+      "asset": "flacon-rose",
+      "position": {
+        "x": 0.805,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-6",
+      "category": "serviettes",
+      "asset": "serviette-anneau",
+      "position": {
+        "x": 0.128,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-7",
+      "category": "accessoires",
+      "asset": "rasoir",
+      "position": {
+        "x": 0.28,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-1"
+      ]
+    },
+    {
+      "id": "objet-8",
+      "category": "flacons",
+      "asset": "flacon-rose",
+      "position": {
+        "x": 0.413,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-1",
+        "objet-2"
+      ]
+    },
+    {
+      "id": "objet-9",
+      "category": "accessoires",
+      "asset": "eponge",
+      "position": {
+        "x": 0.568,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-2",
+        "objet-3"
+      ]
+    },
+    {
+      "id": "objet-10",
+      "category": "accessoires",
+      "asset": "rasoir",
+      "position": {
+        "x": 0.739,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-3",
+        "objet-4"
+      ]
+    },
+    {
+      "id": "objet-11",
+      "category": "flacons",
+      "asset": "flacon-rose",
+      "position": {
+        "x": 0.873,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-4",
+        "objet-5"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "objet-12",
+      "category": "serviettes",
+      "asset": "serviette-anneau",
+      "position": {
+        "x": 0.489,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-4",
+        "objet-5"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 2,
+    "twoStarsMaxBuffered": 4
+  },
+  "meta": {
+    "solution": [
+      "objet-2",
+      "objet-4",
+      "objet-6",
+      "objet-5",
+      "objet-12",
+      "objet-3",
+      "objet-11",
+      "objet-1",
+      "objet-8",
+      "objet-7",
+      "objet-9",
+      "objet-10"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 145
+  }
+}

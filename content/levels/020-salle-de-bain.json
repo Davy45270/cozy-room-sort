@@ -1,0 +1,365 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "1",
+  "id": "020-salle-de-bain",
+  "name": "Le grand rangement de la salle de bain",
+  "theme": "salle-de-bain",
+  "difficulty": "expert",
+  "seed": 61001,
+  "rules": {
+    "bufferCapacity": 3,
+    "activeBoxCount": 2,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "serviettes",
+      "label": "Serviettes et linge"
+    },
+    {
+      "id": "accessoires",
+      "label": "Accessoires"
+    },
+    {
+      "id": "flacons",
+      "label": "Flacons"
+    },
+    {
+      "id": "parfums",
+      "label": "Bougies et parfums"
+    },
+    {
+      "id": "soins",
+      "label": "Pots et soins"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-accessoires-1",
+      "category": "accessoires",
+      "capacity": 2
+    },
+    {
+      "id": "carton-flacons-1",
+      "category": "flacons",
+      "capacity": 4
+    },
+    {
+      "id": "carton-serviettes-1",
+      "category": "serviettes",
+      "capacity": 4
+    },
+    {
+      "id": "carton-soins-1",
+      "category": "soins",
+      "capacity": 4
+    },
+    {
+      "id": "carton-accessoires-2",
+      "category": "accessoires",
+      "capacity": 2
+    },
+    {
+      "id": "carton-parfums-1",
+      "category": "parfums",
+      "capacity": 4
+    }
+  ],
+  "objects": [
+    {
+      "id": "objet-1",
+      "category": "soins",
+      "asset": "sels-peche",
+      "position": {
+        "x": 0.124,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-2",
+      "category": "flacons",
+      "asset": "flacon-bleu",
+      "position": {
+        "x": 0.277,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-3",
+      "category": "flacons",
+      "asset": "flacon-rose",
+      "position": {
+        "x": 0.422,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-4",
+      "category": "accessoires",
+      "asset": "gobelet-brosses",
+      "position": {
+        "x": 0.569,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-5",
+      "category": "flacons",
+      "asset": "flacon-pompe",
+      "position": {
+        "x": 0.713,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-6",
+      "category": "soins",
+      "asset": "pot-bleu",
+      "position": {
+        "x": 0.872,
+        "y": 0.86
+      },
+      "layer": 10,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-7",
+      "category": "serviettes",
+      "asset": "peignoir",
+      "position": {
+        "x": 0.064,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": []
+    },
+    {
+      "id": "objet-8",
+      "category": "parfums",
+      "asset": "bougie-verre",
+      "position": {
+        "x": 0.206,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-1"
+      ]
+    },
+    {
+      "id": "objet-9",
+      "category": "parfums",
+      "asset": "plante-blanche",
+      "position": {
+        "x": 0.355,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-1",
+        "objet-2"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "objet-10",
+      "category": "soins",
+      "asset": "pot-creme",
+      "position": {
+        "x": 0.49,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-2",
+        "objet-3"
+      ]
+    },
+    {
+      "id": "objet-11",
+      "category": "accessoires",
+      "asset": "rasoir",
+      "position": {
+        "x": 0.652,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-3",
+        "objet-4"
+      ]
+    },
+    {
+      "id": "objet-12",
+      "category": "parfums",
+      "asset": "bougie-rose",
+      "position": {
+        "x": 0.795,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-4",
+        "objet-5"
+      ]
+    },
+    {
+      "id": "objet-13",
+      "category": "serviettes",
+      "asset": "serviettes-pile",
+      "position": {
+        "x": 0.94,
+        "y": 0.71
+      },
+      "layer": 9,
+      "blockedBy": [
+        "objet-5",
+        "objet-6"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "objet-14",
+      "category": "accessoires",
+      "asset": "eponge",
+      "position": {
+        "x": 0.06,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-5",
+        "objet-6"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "objet-15",
+      "category": "serviettes",
+      "asset": "serviette-anneau",
+      "position": {
+        "x": 0.197,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-6",
+        "objet-7"
+      ]
+    },
+    {
+      "id": "objet-16",
+      "category": "serviettes",
+      "asset": "panier-serviette",
+      "position": {
+        "x": 0.358,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-7",
+        "objet-8"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "objet-17",
+      "category": "accessoires",
+      "asset": "brosse",
+      "position": {
+        "x": 0.498,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-8",
+        "objet-9"
+      ]
+    },
+    {
+      "id": "objet-18",
+      "category": "parfums",
+      "asset": "bougie-rose",
+      "position": {
+        "x": 0.641,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-9",
+        "objet-10"
+      ]
+    },
+    {
+      "id": "objet-19",
+      "category": "flacons",
+      "asset": "flacon-pompe",
+      "position": {
+        "x": 0.811,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-10",
+        "objet-11"
+      ],
+      "hidden": true
+    },
+    {
+      "id": "objet-20",
+      "category": "soins",
+      "asset": "sels-roses",
+      "position": {
+        "x": 0.94,
+        "y": 0.56
+      },
+      "layer": 8,
+      "blockedBy": [
+        "objet-11",
+        "objet-12"
+      ]
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 3,
+    "twoStarsMaxBuffered": 5
+  },
+  "meta": {
+    "solution": [
+      "objet-2",
+      "objet-3",
+      "objet-4",
+      "objet-5",
+      "objet-11",
+      "objet-7",
+      "objet-10",
+      "objet-19",
+      "objet-1",
+      "objet-6",
+      "objet-13",
+      "objet-15",
+      "objet-8",
+      "objet-16",
+      "objet-14",
+      "objet-9",
+      "objet-17",
+      "objet-12",
+      "objet-18",
+      "objet-20"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 2608
+  }
+}

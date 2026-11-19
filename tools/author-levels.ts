@@ -2,15 +2,14 @@
 // Chaque recette fixe la pièce, les cartons, le tampon, la forme de la disposition et la plage de difficulté
 // visée (passages minimaux par le tampon). L'outil essaie des graines dans l'ordre et garde le premier tirage
 // que le solveur résout dans cette plage. Déterministe : mêmes recettes ⇒ mêmes fichiers.
-import { writeFileSync } from 'node:fs';
-import { CATEGORY_FAMILIES, FAMILIES } from '@cozy-room-sort/art';
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { withMode } from '@cozy-room-sort/engine';
 import { validateLevel, type Box, type Level, type LevelObject } from '@cozy-room-sort/schemas';
 import { solve } from '@cozy-room-sort/solver';
 
 type Shape = 'piles' | 'etageres' | 'tas' | 'eparpille';
 interface Recipe {
-    file: string; room: 'salon' | 'chambre' | 'cuisine'; name: string;
+    file: string; room: string; name: string;
     /** Catégorie → capacités de ses cartons (un ou deux cartons par catégorie). */
     boxes: Readonly<Record<string, readonly number[]>>;
     buffer: number; active: number; shape: Shape; hidden: number;
@@ -19,11 +18,14 @@ interface Recipe {
     difficulty: Level['difficulty'];
 }
 
-const LABELS: Readonly<Record<string, string>> = {
-    livres: 'Livres', coussins: 'Coussins et plaids', plantes: 'Plantes', cadres: 'Cadres', lumieres: 'Lumières',
-    peluches: 'Peluches', linge: 'Vêtements et linge', veilleuses: 'Veilleuses et bougies',
-    vaisselle: 'Vaisselle', ustensiles: 'Ustensiles', epicerie: 'Épicerie', fleurs: 'Fleurs', torchons: 'Torchons'
-};
+interface Category { id: string; label: string; objets: readonly string[] }
+interface Theme { id: string; categories: readonly Category[] }
+
+const themeFolder = new URL('../content/themes/', import.meta.url);
+const themes = new Map(readdirSync(themeFolder).filter(file => file.endsWith('.json')).map(file => {
+    const theme = JSON.parse(readFileSync(new URL(file, themeFolder), 'utf8')) as Theme;
+    return [theme.id, new Map(theme.categories.map(category => [category.id, category]))];
+}));
 
 export const RECIPES: readonly Recipe[] = [
     { file: '001-salon', room: 'salon', name: 'Le salon en désordre', boxes: { livres: [3], coussins: [3], plantes: [3] }, buffer: 5, active: 1, shape: 'piles', hidden: 0, target: [0, 1], difficulty: 'easy' },
@@ -33,19 +35,19 @@ export const RECIPES: readonly Recipe[] = [
     { file: '005-salon', room: 'salon', name: 'Après la fête', boxes: { livres: [3], coussins: [3], plantes: [3], cadres: [3], lumieres: [3] }, buffer: 5, active: 2, shape: 'piles', hidden: 0.2, target: [2, 5], difficulty: 'medium' },
     { file: '006-salon', room: 'salon', name: 'Tout sur les rayons', boxes: { livres: [2, 2], coussins: [4], plantes: [4], cadres: [4] }, buffer: 3, active: 1, shape: 'etageres', hidden: 0.2, target: [3, 6], difficulty: 'medium' },
     { file: '007-salon', room: 'salon', name: 'Le grand rangement du salon', boxes: { livres: [4], coussins: [2, 2], plantes: [3], cadres: [3], lumieres: [4] }, buffer: 4, active: 2, shape: 'tas', hidden: 0.25, target: [3, 7], difficulty: 'expert' },
-    { file: '008-chambre', room: 'chambre', name: 'La chambre sens dessus dessous', boxes: { peluches: [3], linge: [3], veilleuses: [3] }, buffer: 5, active: 1, shape: 'eparpille', hidden: 0, target: [0, 1], difficulty: 'easy' },
-    { file: '009-chambre', room: 'chambre', name: 'Les piles de linge', boxes: { peluches: [4], linge: [4], livres: [3] }, buffer: 4, active: 1, shape: 'piles', hidden: 0.1, target: [1, 3], difficulty: 'easy' },
-    { file: '010-chambre', room: 'chambre', name: 'Le tas de peluches', boxes: { peluches: [2, 2], linge: [3], veilleuses: [2], livres: [3] }, buffer: 4, active: 2, shape: 'tas', hidden: 0.1, target: [1, 3], difficulty: 'easy' },
-    { file: '011-chambre', room: 'chambre', name: 'Bibliothèque de chambre', boxes: { peluches: [3], linge: [4], livres: [4], cadres: [3] }, buffer: 4, active: 1, shape: 'etageres', hidden: 0.15, target: [2, 5], difficulty: 'medium' },
-    { file: '012-chambre', room: 'chambre', name: 'Un peu de tout', boxes: { peluches: [3], linge: [3], livres: [3], veilleuses: [3], cadres: [3] }, buffer: 3, active: 1, shape: 'eparpille', hidden: 0.15, target: [2, 5], difficulty: 'medium' },
-    { file: '013-chambre', room: 'chambre', name: 'Les tours de jouets', boxes: { peluches: [4], linge: [2, 2], livres: [3], veilleuses: [3], cadres: [3] }, buffer: 4, active: 2, shape: 'piles', hidden: 0.2, target: [3, 6], difficulty: 'medium' },
-    { file: '014-chambre', room: 'chambre', name: 'Le grand rangement de la chambre', boxes: { peluches: [2, 2], linge: [4], livres: [4], veilleuses: [4], cadres: [4] }, buffer: 4, active: 2, shape: 'tas', hidden: 0.25, target: [3, 8], difficulty: 'expert' },
-    { file: '015-cuisine', room: 'cuisine', name: 'La cuisine après le goûter', boxes: { vaisselle: [3], ustensiles: [3], epicerie: [3] }, buffer: 5, active: 1, shape: 'etageres', hidden: 0, target: [0, 2], difficulty: 'easy' },
-    { file: '016-cuisine', room: 'cuisine', name: 'La pile de vaisselle', boxes: { vaisselle: [4], ustensiles: [4], epicerie: [4] }, buffer: 4, active: 1, shape: 'tas', hidden: 0.1, target: [1, 3], difficulty: 'easy' },
-    { file: '017-cuisine', room: 'cuisine', name: 'Les placards ouverts', boxes: { vaisselle: [2, 2], ustensiles: [3], epicerie: [3], torchons: [3] }, buffer: 4, active: 2, shape: 'piles', hidden: 0.15, target: [2, 4], difficulty: 'medium' },
-    { file: '018-cuisine', room: 'cuisine', name: 'Le plan de travail', boxes: { vaisselle: [4], ustensiles: [3], epicerie: [3], fleurs: [3], torchons: [3] }, buffer: 3, active: 1, shape: 'eparpille', hidden: 0.15, target: [2, 5], difficulty: 'medium' },
-    { file: '019-cuisine', room: 'cuisine', name: 'Les étagères à épices', boxes: { vaisselle: [4], ustensiles: [4], epicerie: [2, 2], fleurs: [3], torchons: [3] }, buffer: 4, active: 1, shape: 'etageres', hidden: 0.2, target: [3, 6], difficulty: 'expert' },
-    { file: '020-cuisine', room: 'cuisine', name: 'Le grand rangement de la cuisine', boxes: { vaisselle: [4], ustensiles: [2, 2], epicerie: [4], fleurs: [4], torchons: [4] }, buffer: 3, active: 2, shape: 'tas', hidden: 0.25, target: [3, 8], difficulty: 'expert' }
+    { file: '008-chambre', room: 'chambre', name: 'La chambre sens dessus dessous', boxes: { peluches: [3], coussins: [3], veilleuses: [3] }, buffer: 5, active: 1, shape: 'eparpille', hidden: 0, target: [0, 1], difficulty: 'easy' },
+    { file: '009-chambre', room: 'chambre', name: 'Les piles de coussins', boxes: { peluches: [4], coussins: [4], livres: [3] }, buffer: 4, active: 1, shape: 'piles', hidden: 0.1, target: [1, 3], difficulty: 'easy' },
+    { file: '010-chambre', room: 'chambre', name: 'Le tas de peluches', boxes: { peluches: [2, 2], coussins: [3], veilleuses: [2], livres: [3] }, buffer: 4, active: 2, shape: 'tas', hidden: 0.1, target: [1, 3], difficulty: 'easy' },
+    { file: '011-chambre', room: 'chambre', name: 'Bibliothèque de chambre', boxes: { peluches: [3], coussins: [4], livres: [4], cadres: [3] }, buffer: 4, active: 1, shape: 'etageres', hidden: 0.15, target: [2, 5], difficulty: 'medium' },
+    { file: '012-chambre', room: 'chambre', name: 'Un peu de tout', boxes: { peluches: [3], coussins: [3], livres: [3], veilleuses: [3], cadres: [3] }, buffer: 3, active: 1, shape: 'eparpille', hidden: 0.15, target: [2, 5], difficulty: 'medium' },
+    { file: '013-chambre', room: 'chambre', name: 'Les tours de jouets', boxes: { peluches: [4], coussins: [2, 2], livres: [3], veilleuses: [3], cadres: [3] }, buffer: 4, active: 2, shape: 'piles', hidden: 0.2, target: [3, 6], difficulty: 'medium' },
+    { file: '014-chambre', room: 'chambre', name: 'Le grand rangement de la chambre', boxes: { peluches: [2, 2], coussins: [4], livres: [4], veilleuses: [4], cadres: [4] }, buffer: 4, active: 2, shape: 'tas', hidden: 0.25, target: [3, 8], difficulty: 'expert' },
+    { file: '015-salle-de-bain', room: 'salle-de-bain', name: 'La salle de bain après le bain', boxes: { serviettes: [3], accessoires: [3], flacons: [3] }, buffer: 5, active: 1, shape: 'etageres', hidden: 0, target: [0, 2], difficulty: 'easy' },
+    { file: '016-salle-de-bain', room: 'salle-de-bain', name: 'La pile de serviettes', boxes: { serviettes: [4], accessoires: [4], flacons: [4] }, buffer: 4, active: 1, shape: 'tas', hidden: 0.1, target: [1, 3], difficulty: 'easy' },
+    { file: '017-salle-de-bain', room: 'salle-de-bain', name: 'Les placards ouverts', boxes: { serviettes: [2, 2], accessoires: [3], flacons: [3], soins: [3] }, buffer: 4, active: 2, shape: 'piles', hidden: 0.15, target: [2, 4], difficulty: 'medium' },
+    { file: '018-salle-de-bain', room: 'salle-de-bain', name: 'Autour du lavabo', boxes: { serviettes: [4], accessoires: [3], flacons: [3], parfums: [3], soins: [3] }, buffer: 3, active: 1, shape: 'eparpille', hidden: 0.15, target: [2, 5], difficulty: 'medium' },
+    { file: '019-salle-de-bain', room: 'salle-de-bain', name: 'Les étagères de soins', boxes: { serviettes: [4], accessoires: [4], flacons: [2, 2], parfums: [3], soins: [3] }, buffer: 4, active: 1, shape: 'etageres', hidden: 0.2, target: [3, 6], difficulty: 'expert' },
+    { file: '020-salle-de-bain', room: 'salle-de-bain', name: 'Le grand rangement de la salle de bain', boxes: { serviettes: [4], accessoires: [2, 2], flacons: [4], parfums: [4], soins: [4] }, buffer: 3, active: 2, shape: 'tas', hidden: 0.25, target: [3, 8], difficulty: 'expert' }
 ];
 
 /** Générateur pseudo-aléatoire mulberry32 : seule source de hasard, graine écrite dans le niveau. */
@@ -119,22 +121,26 @@ function layout(shape: Shape, n: number, r: () => number): Slot[] {
 function build(recipe: Recipe, seed: number): Level {
     const r = rng(seed);
     const categories = Object.keys(recipe.boxes);
+    const theme = themes.get(recipe.room);
+    const categoryData = new Map(categories.map(id => {
+        const category = theme?.get(id);
+        if (!category?.objets.length) throw new Error(`${recipe.room} : catégorie sans objets (${id})`);
+        return [id, category];
+    }));
     const boxList: Box[] = shuffle(categories.flatMap(cat => (recipe.boxes[cat] ?? []).map((capacity, j) => ({ id: `carton-${cat}-${j + 1}`, category: cat, capacity }))), r);
     const objectCategories = shuffle(categories.flatMap(cat => Array.from({ length: (recipe.boxes[cat] ?? []).reduce((a, b) => a + b, 0) }, () => cat)), r);
     const slots = layout(recipe.shape, objectCategories.length, r);
     const ids: string[] = [];
     const objects: LevelObject[] = objectCategories.map((cat, k) => {
-        const families = CATEGORY_FAMILIES[cat] ?? [];
-        const family = families[Math.floor(r() * families.length)] as string;
-        const variants = FAMILIES[family]?.variants ?? [];
-        const variant = variants[Math.floor(r() * variants.length)] as string;
-        const id = `${family}-${k + 1}`;
+        const assets = categoryData.get(cat)!.objets;
+        const asset = assets[Math.floor(r() * assets.length)]!;
+        const id = `objet-${k + 1}`;
         ids.push(id);
         const slot = slots[k] as Slot;
         const clamp = (v: number): number => Math.round(Math.min(0.94, Math.max(0.06, v)) * 1000) / 1000;
         const blockedBy = slot.blockers.map(b => ids[b] ?? '').filter(Boolean);
         return {
-            id, category: cat, asset: `${family}-${variant}`,
+            id, category: cat, asset,
             position: { x: clamp(slot.x + (r() - 0.5) * 0.03), y: clamp(slot.y) },
             layer: 10 - slot.depth, blockedBy,
             ...(blockedBy.length > 0 && r() < recipe.hidden ? { hidden: true } : {})
@@ -143,7 +149,7 @@ function build(recipe: Recipe, seed: number): Level {
     return {
         schemaVersion: '1.0', rulesVersion: '1', id: recipe.file, name: recipe.name, theme: recipe.room, difficulty: recipe.difficulty, seed,
         rules: { bufferCapacity: recipe.buffer, activeBoxCount: recipe.active, allowUndo: true, allowHints: true, timeLimitSeconds: null },
-        categories: categories.map(id => ({ id, label: LABELS[id] ?? id })),
+        categories: categories.map(id => ({ id, label: categoryData.get(id)!.label })),
         boxes: boxList, objects,
         scoring: { threeStarsMaxBuffered: 0, twoStarsMaxBuffered: 0 }
     };

@@ -1,0 +1,17 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+ "marge": 0,
+ "taille": 420,
+ "elements": [
+  {
+   "id": "vue-salle-de-bain",
+   "boite": [
+    415,
+    418,
+    11,
+    10
+   ],
+   "ancre": "centre"
+  }
+ ]
+}

@@ -19,8 +19,8 @@
       "label": "Peluches"
     },
     {
-      "id": "linge",
-      "label": "Vêtements et linge"
+      "id": "coussins",
+      "label": "Coussins"
     },
     {
       "id": "veilleuses",
@@ -33,8 +33,8 @@
   ],
   "boxes": [
     {
-      "id": "carton-linge-1",
-      "category": "linge",
+      "id": "carton-coussins-1",
+      "category": "coussins",
       "capacity": 3
     },
     {
@@ -60,152 +60,152 @@
   ],
   "objects": [
     {
-      "id": "bougie-1",
+      "id": "objet-1",
       "category": "veilleuses",
-      "asset": "bougie-creme",
+      "asset": "bougie-rose",
       "position": {
-        "x": 0.212,
+        "x": 0.197,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "livre-2",
+      "id": "objet-2",
       "category": "livres",
-      "asset": "livre-canard",
+      "asset": "livres-plante",
       "position": {
-        "x": 0.358,
+        "x": 0.351,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "veilleuse-3",
+      "id": "objet-3",
       "category": "veilleuses",
-      "asset": "veilleuse-lune",
+      "asset": "bougie-ruban",
       "position": {
-        "x": 0.486,
+        "x": 0.508,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "livre-4",
+      "id": "objet-4",
       "category": "livres",
-      "asset": "livre-canard",
+      "asset": "livres-trio",
       "position": {
-        "x": 0.659,
+        "x": 0.639,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "lapin-5",
+      "id": "objet-5",
       "category": "peluches",
-      "asset": "lapin-ciel",
+      "asset": "ours",
       "position": {
-        "x": 0.814,
+        "x": 0.807,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "tshirt-6",
-      "category": "linge",
-      "asset": "tshirt-sauge",
+      "id": "objet-6",
+      "category": "coussins",
+      "asset": "coussin-patte",
       "position": {
-        "x": 0.127,
+        "x": 0.134,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": []
     },
     {
-      "id": "chaussette-7",
-      "category": "linge",
-      "asset": "chaussette-terracotta",
+      "id": "objet-7",
+      "category": "coussins",
+      "asset": "coussins-duo",
       "position": {
-        "x": 0.272,
+        "x": 0.29,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "bougie-1"
+        "objet-1"
       ]
     },
     {
-      "id": "ours-8",
+      "id": "objet-8",
       "category": "peluches",
-      "asset": "ours-creme",
+      "asset": "lapin",
       "position": {
-        "x": 0.424,
+        "x": 0.438,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "bougie-1",
-        "livre-2"
+        "objet-1",
+        "objet-2"
       ]
     },
     {
-      "id": "livre-9",
+      "id": "objet-9",
       "category": "livres",
-      "asset": "livre-moutarde",
+      "asset": "livres-plante",
       "position": {
-        "x": 0.574,
+        "x": 0.577,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "livre-2",
-        "veilleuse-3"
+        "objet-2",
+        "objet-3"
       ]
     },
     {
-      "id": "lapin-10",
+      "id": "objet-10",
       "category": "peluches",
-      "asset": "lapin-creme",
+      "asset": "lapin",
       "position": {
-        "x": 0.725,
+        "x": 0.718,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "veilleuse-3",
-        "livre-4"
+        "objet-3",
+        "objet-4"
       ]
     },
     {
-      "id": "tshirt-11",
-      "category": "linge",
-      "asset": "tshirt-sauge",
+      "id": "objet-11",
+      "category": "coussins",
+      "asset": "coussins-duo",
       "position": {
-        "x": 0.868,
+        "x": 0.865,
         "y": 0.71
       },
       "layer": 9,
       "blockedBy": [
-        "livre-4",
-        "lapin-5"
+        "objet-4",
+        "objet-5"
       ]
     },
     {
-      "id": "ours-12",
+      "id": "objet-12",
       "category": "peluches",
-      "asset": "ours-moutarde",
+      "asset": "ours-panier",
       "position": {
-        "x": 0.492,
+        "x": 0.499,
         "y": 0.56
       },
       "layer": 8,
       "blockedBy": [
-        "livre-4",
-        "lapin-5"
+        "objet-4",
+        "objet-5"
       ]
     }
   ],
@@ -215,18 +215,18 @@
   },
   "meta": {
     "solution": [
-      "lapin-5",
-      "tshirt-6",
-      "livre-4",
-      "tshirt-11",
-      "ours-12",
-      "bougie-1",
-      "veilleuse-3",
-      "livre-2",
-      "chaussette-7",
-      "ours-8",
-      "livre-9",
-      "lapin-10"
+      "objet-5",
+      "objet-6",
+      "objet-4",
+      "objet-11",
+      "objet-12",
+      "objet-1",
+      "objet-3",
+      "objet-2",
+      "objet-7",
+      "objet-8",
+      "objet-9",
+      "objet-10"
     ],
     "engineVersion": "0.1.0",
     "statesExplored": 100

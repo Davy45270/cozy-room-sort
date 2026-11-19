@@ -1,0 +1,37 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_01.webp",
+ "marge": 0,
+ "taille": 420,
+ "elements": [
+  {
+   "id": "vue-salon",
+   "boite": [
+    380,
+    421,
+    343,
+    12
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "vue-chambre",
+   "boite": [
+    377,
+    420,
+    731,
+    13
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "vue-cuisine",
+   "boite": [
+    389,
+    421,
+    1116,
+    13
+   ],
+   "ancre": "centre"
+  }
+ ]
+}

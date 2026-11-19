@@ -1,0 +1,227 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_03.webp",
+ "marge": 6,
+ "taille": 128,
+ "elements": [
+  {
+   "id": "lampe-table",
+   "boite": [
+    97,
+    165,
+    1053,
+    100
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "miroir-rond",
+   "boite": [
+    83,
+    121,
+    582,
+    563
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "cadre-chat",
+   "boite": [
+    92,
+    118,
+    839,
+    574
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "cadre-collines",
+   "boite": [
+    133,
+    107,
+    686,
+    577
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "cadre-montagne",
+   "boite": [
+    80,
+    92,
+    453,
+    583
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "cadre-tulipe",
+   "boite": [
+    92,
+    97,
+    951,
+    585
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "monstera-panier",
+   "boite": [
+    144,
+    143,
+    511,
+    705
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "tournesols",
+   "boite": [
+    105,
+    139,
+    156,
+    710
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "hortensias",
+   "boite": [
+    119,
+    129,
+    15,
+    720
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "plante-pot",
+   "boite": [
+    122,
+    125,
+    273,
+    722
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "cactus",
+   "boite": [
+    80,
+    117,
+    417,
+    731
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "ours",
+   "boite": [
+    117,
+    126,
+    989,
+    722
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "lapin",
+   "boite": [
+    91,
+    125,
+    1121,
+    725
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "diffuseur",
+   "boite": [
+    58,
+    115,
+    907,
+    728
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "coussin-patte",
+   "boite": [
+    113,
+    97,
+    1391,
+    741
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "livres-pile",
+   "boite": [
+    120,
+    92,
+    671,
+    744
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "bougie-pot",
+   "boite": [
+    69,
+    95,
+    814,
+    744
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "panier-anses",
+   "boite": [
+    114,
+    115,
+    856,
+    873
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "boite-carton",
+   "boite": [
+    166,
+    114,
+    1350,
+    882
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "boite-pois",
+   "boite": [
+    116,
+    104,
+    1110,
+    886
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "boite-rayee",
+   "boite": [
+    118,
+    100,
+    1230,
+    888
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "boite-poignee",
+   "boite": [
+    115,
+    100,
+    986,
+    890
+   ],
+   "ancre": "bas"
+  }
+ ]
+}

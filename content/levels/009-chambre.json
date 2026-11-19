@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "rulesVersion": "1",
   "id": "009-chambre",
-  "name": "Les piles de linge",
+  "name": "Les piles de coussins",
   "theme": "chambre",
   "difficulty": "easy",
   "seed": 50001,
@@ -19,8 +19,8 @@
       "label": "Peluches"
     },
     {
-      "id": "linge",
-      "label": "Vêtements et linge"
+      "id": "coussins",
+      "label": "Coussins"
     },
     {
       "id": "livres",
@@ -39,66 +39,67 @@
       "capacity": 4
     },
     {
-      "id": "carton-linge-1",
-      "category": "linge",
+      "id": "carton-coussins-1",
+      "category": "coussins",
       "capacity": 4
     }
   ],
   "objects": [
     {
-      "id": "chaussette-1",
-      "category": "linge",
-      "asset": "chaussette-moutarde",
+      "id": "objet-1",
+      "category": "coussins",
+      "asset": "coussin-creme",
       "position": {
-        "x": 0.123,
+        "x": 0.137,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "chaussette-2",
-      "category": "linge",
-      "asset": "chaussette-terracotta",
+      "id": "objet-2",
+      "category": "coussins",
+      "asset": "coussins-duo",
       "position": {
-        "x": 0.136,
+        "x": 0.133,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "chaussette-1"
+        "objet-1"
       ]
     },
     {
-      "id": "ours-3",
+      "id": "objet-3",
       "category": "peluches",
-      "asset": "ours-moutarde",
+      "asset": "canard",
       "position": {
-        "x": 0.116,
+        "x": 0.138,
         "y": 0.54
       },
       "layer": 8,
       "blockedBy": [
-        "chaussette-2"
-      ]
+        "objet-2"
+      ],
+      "hidden": true
     },
     {
-      "id": "lapin-4",
+      "id": "objet-4",
       "category": "peluches",
-      "asset": "lapin-ciel",
+      "asset": "lapin",
       "position": {
         "x": 0.116,
         "y": 0.38
       },
       "layer": 7,
       "blockedBy": [
-        "ours-3"
+        "objet-3"
       ]
     },
     {
-      "id": "lapin-5",
+      "id": "objet-5",
       "category": "peluches",
-      "asset": "lapin-rose",
+      "asset": "ours-panier",
       "position": {
         "x": 0.383,
         "y": 0.86
@@ -107,77 +108,77 @@
       "blockedBy": []
     },
     {
-      "id": "chaussette-6",
-      "category": "linge",
-      "asset": "chaussette-lavande",
+      "id": "objet-6",
+      "category": "coussins",
+      "asset": "coussin-patte",
       "position": {
-        "x": 0.384,
+        "x": 0.38,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "lapin-5"
+        "objet-5"
       ]
     },
     {
-      "id": "tshirt-7",
-      "category": "linge",
-      "asset": "tshirt-rose",
+      "id": "objet-7",
+      "category": "coussins",
+      "asset": "coussins-duo",
       "position": {
-        "x": 0.377,
+        "x": 0.383,
         "y": 0.54
       },
       "layer": 8,
       "blockedBy": [
-        "chaussette-6"
+        "objet-6"
       ]
     },
     {
-      "id": "livre-8",
+      "id": "objet-8",
       "category": "livres",
-      "asset": "livre-moutarde",
+      "asset": "livres-pile",
       "position": {
-        "x": 0.619,
+        "x": 0.634,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "livre-9",
+      "id": "objet-9",
       "category": "livres",
-      "asset": "livre-moutarde",
+      "asset": "livres-plante",
       "position": {
-        "x": 0.627,
+        "x": 0.626,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "livre-8"
+        "objet-8"
       ]
     },
     {
-      "id": "livre-10",
+      "id": "objet-10",
       "category": "livres",
-      "asset": "livre-lavande",
+      "asset": "livres-trio",
       "position": {
-        "x": 0.877,
+        "x": 0.888,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "lapin-11",
+      "id": "objet-11",
       "category": "peluches",
-      "asset": "lapin-ciel",
+      "asset": "ours-panier",
       "position": {
-        "x": 0.879,
+        "x": 0.881,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "livre-10"
+        "objet-10"
       ]
     }
   ],
@@ -187,17 +188,17 @@
   },
   "meta": {
     "solution": [
-      "livre-8",
-      "livre-9",
-      "livre-10",
-      "lapin-5",
-      "lapin-11",
-      "chaussette-1",
-      "chaussette-2",
-      "ours-3",
-      "lapin-4",
-      "chaussette-6",
-      "tshirt-7"
+      "objet-8",
+      "objet-9",
+      "objet-10",
+      "objet-5",
+      "objet-11",
+      "objet-1",
+      "objet-2",
+      "objet-3",
+      "objet-4",
+      "objet-6",
+      "objet-7"
     ],
     "engineVersion": "0.1.0",
     "statesExplored": 75

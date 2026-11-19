@@ -1,0 +1,187 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_01.webp",
+ "marge": 6,
+ "taille": 128,
+ "elements": [
+  {
+   "id": "livres-trio",
+   "boite": [
+    100,
+    97,
+    559,
+    635
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "coussin-creme",
+   "boite": [
+    101,
+    92,
+    677,
+    636
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "plaid-bleu",
+   "boite": [
+    123,
+    114,
+    795,
+    624
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "plante-panier",
+   "boite": [
+    106,
+    129,
+    325,
+    612
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "cadre-paysage",
+   "boite": [
+    115,
+    95,
+    938,
+    628
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "cadre-feuille",
+   "boite": [
+    78,
+    98,
+    1073,
+    627
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "lampe-chevet",
+   "boite": [
+    88,
+    119,
+    451,
+    622
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "bouquet-blanc",
+   "boite": [
+    90,
+    116,
+    1172,
+    621
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "panier-osier",
+   "boite": [
+    96,
+    110,
+    1279,
+    627
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "chat-dort",
+   "boite": [
+    173,
+    101,
+    1332,
+    773
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "carton-ouvert",
+   "boite": [
+    162,
+    122,
+    319,
+    764
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "carton-ferme",
+   "boite": [
+    135,
+    119,
+    492,
+    768
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "bac-bleu",
+   "boite": [
+    119,
+    111,
+    641,
+    769
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "bac-osier",
+   "boite": [
+    125,
+    111,
+    771,
+    769
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "bac-creme",
+   "boite": [
+    116,
+    110,
+    906,
+    770
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "boite-fleurie",
+   "boite": [
+    129,
+    117,
+    1031,
+    766
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "boite-terracotta",
+   "boite": [
+    140,
+    119,
+    1170,
+    764
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "boite-creme",
+   "boite": [
+    122,
+    102,
+    1393,
+    635
+   ],
+   "ancre": "bas"
+  }
+ ]
+}

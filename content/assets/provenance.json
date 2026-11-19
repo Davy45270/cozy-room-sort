@@ -1,1192 +1,5666 @@
 [
   {
-    "id": "livre-terracotta",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "etagere-plante",
+    "atlas": "p01-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 29,
+      "y": 0,
+      "w": 133,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        122,
+        182,
+        1093,
+        414
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "livre-canard",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "lit-bleu",
+    "atlas": "p01-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 16,
+      "w": 192,
+      "h": 176
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        186,
+        172,
+        505,
+        435
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "livre-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "frigo",
+    "atlas": "p01-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 31,
+      "y": 0,
+      "w": 130,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        111,
+        172,
+        1410,
+        435
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "livre-lavande",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "chaise-bois",
+    "atlas": "p01-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 27,
+      "y": 0,
+      "w": 138,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        105,
+        155,
+        970,
+        440
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "coussin-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "evier-vert",
+    "atlas": "p01-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 18,
+      "w": 192,
+      "h": 174
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        168,
+        153,
+        1229,
+        445
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "coussin-rose",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "commode",
+    "atlas": "p01-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 14,
+      "y": 0,
+      "w": 164,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        120,
+        148,
+        698,
+        446
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "coussin-sauge",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "fauteuil-terracotta",
+    "atlas": "p01-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 5,
+      "w": 192,
+      "h": 187
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        155,
+        153,
+        337,
+        447
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "coussin-ciel",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "table-ronde",
+    "atlas": "p01-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 17,
+      "w": 192,
+      "h": 175
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        135,
+        127,
+        829,
+        469
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "plaid-rose",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "livres-trio",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 6,
+      "w": 128,
+      "h": 122
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        100,
+        97,
+        559,
+        635
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "plaid-canard",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "coussin-creme",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 14,
+      "w": 128,
+      "h": 114
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        101,
+        92,
+        677,
+        636
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "plaid-terracotta",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "plaid-bleu",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 11,
+      "w": 128,
+      "h": 117
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        123,
+        114,
+        795,
+        624
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "plante-fougere",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "plante-cactus",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "plante-ronde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "plante-panier",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 12,
+      "y": 0,
+      "w": 103,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        106,
+        129,
+        325,
+        612
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
     "id": "cadre-paysage",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 11,
+      "w": 128,
+      "h": 105
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        115,
+        95,
+        938,
+        628
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "cadre-fleur",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "cadre-feuille",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 13,
+      "y": 0,
+      "w": 102,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        78,
+        98,
+        1073,
+        627
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "cadre-lune",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "lampe-chevet",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 16,
+      "y": 0,
+      "w": 95,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        88,
+        119,
+        451,
+        622
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "lampe-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "bouquet-blanc",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 13,
+      "y": 0,
+      "w": 102,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        90,
+        116,
+        1172,
+        621
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "lampe-creme",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "panier-osier",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 7,
+      "y": 0,
+      "w": 114,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        96,
+        110,
+        1279,
+        627
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "lampe-sauge",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "chat-dort",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 48,
+      "w": 128,
+      "h": 80
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        173,
+        101,
+        1332,
+        773
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "ours-bois",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "carton-ouvert",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 27,
+      "w": 128,
+      "h": 101
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        162,
+        122,
+        319,
+        764
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "ours-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "carton-ferme",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 17,
+      "w": 128,
+      "h": 111
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        135,
+        119,
+        492,
+        768
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "ours-creme",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "bac-bleu",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 15,
+      "w": 128,
+      "h": 113
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        119,
+        111,
+        641,
+        769
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "lapin-creme",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "bac-osier",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 18,
+      "w": 128,
+      "h": 110
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        125,
+        111,
+        771,
+        769
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "lapin-rose",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "bac-creme",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 12,
+      "w": 128,
+      "h": 116
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        116,
+        110,
+        906,
+        770
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "lapin-ciel",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "boite-fleurie",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 15,
+      "w": 128,
+      "h": 113
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        129,
+        117,
+        1031,
+        766
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "chat-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "boite-terracotta",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 17,
+      "w": 128,
+      "h": 111
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        140,
+        119,
+        1170,
+        764
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "chat-lavande",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "boite-creme",
+    "atlas": "p01-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 20,
+      "w": 128,
+      "h": 108
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        122,
+        102,
+        1393,
+        635
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "chat-creme",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "barre-progression",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 97,
+      "w": 256,
+      "h": 61
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        297,
+        71,
+        21,
+        485
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "pull-terracotta",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "case-tampon",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 84,
+      "w": 256,
+      "h": 88
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        272,
+        93,
+        17,
+        576
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "pull-canard",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "case-tampon-aide",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 66,
+      "w": 256,
+      "h": 123
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        272,
+        130,
+        17,
+        669
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "pull-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "panneau-quotas",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 4,
+      "w": 256,
+      "h": 248
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        216,
+        209,
+        26,
+        799
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "tshirt-ciel",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "mur-fenetre",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 79,
+      "w": 256,
+      "h": 97
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        278,
+        105,
+        272,
+        899
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "tshirt-rose",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "tapis-rond",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 55,
+      "w": 256,
+      "h": 146
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        180,
+        103,
+        1328,
+        903
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "tshirt-sauge",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "sol-parquet",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 40,
+      "w": 256,
+      "h": 175
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        143,
+        98,
+        561,
+        905
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "chaussette-lavande",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "sol-chevrons",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 41,
+      "w": 256,
+      "h": 174
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        144,
+        98,
+        712,
+        905
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "chaussette-terracotta",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "sol-carreaux",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 40,
+      "w": 256,
+      "h": 175
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        143,
+        98,
+        864,
+        905
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "chaussette-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "sol-vert",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 40,
+      "w": 256,
+      "h": 175
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        143,
+        98,
+        1016,
+        905
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "sol-moquette",
+    "atlas": "p01-panneaux",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 41,
+      "w": 256,
+      "h": 174
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        144,
+        98,
+        1168,
+        905
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "btn-jouer",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 38,
+      "w": 128,
+      "h": 51
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        289,
+        115,
+        31,
+        43
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "btn-accueil",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 2,
+      "w": 128,
+      "h": 123
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        100,
+        96,
+        23,
+        175
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "btn-recommencer",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        96,
+        96,
+        124,
+        175
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "btn-reglages",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 2,
+      "w": 128,
+      "h": 124
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        99,
+        96,
+        221,
+        175
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "btn-annuler",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 8,
+      "w": 128,
+      "h": 111
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        100,
+        87,
+        22,
+        291
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "btn-indice",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 6,
+      "w": 128,
+      "h": 116
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        96,
+        87,
+        124,
+        291
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "btn-refaire",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 8,
+      "w": 128,
+      "h": 112
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        99,
+        87,
+        221,
+        291
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "etoile",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 3,
+      "w": 128,
+      "h": 122
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        68,
+        65,
+        60,
+        412
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "etoile-milieu",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 3,
+      "w": 128,
+      "h": 122
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        68,
+        65,
+        137,
+        412
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "etoile-droite",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 3,
+      "w": 128,
+      "h": 122
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        68,
+        65,
+        213,
+        412
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "coche",
+    "atlas": "p01-ui",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        50,
+        50,
+        176,
+        819
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "vue-salon",
+    "atlas": "p01-vues",
+    "dimensions": {
+      "w": 420,
+      "h": 420
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 20,
+      "y": 0,
+      "w": 379,
+      "h": 420
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        380,
+        421,
+        343,
+        12
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "vue-chambre",
+    "atlas": "p01-vues",
+    "dimensions": {
+      "w": 420,
+      "h": 420
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 21,
+      "y": 0,
+      "w": 377,
+      "h": 420
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        377,
+        420,
+        731,
+        13
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "vue-cuisine",
+    "atlas": "p01-vues",
+    "dimensions": {
+      "w": 420,
+      "h": 420
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 16,
+      "y": 0,
+      "w": 388,
+      "h": 420
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3",
+      "boite": [
+        389,
+        421,
+        1116,
+        13
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "bibliotheque-arche",
+    "atlas": "p02-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 40,
+      "y": 0,
+      "w": 111,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        387,
+        678,
+        1130,
+        14
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "lampadaire",
+    "atlas": "p02-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 62,
+      "y": 0,
+      "w": 67,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        202,
+        593,
+        30,
+        52
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "canape-plaid",
+    "atlas": "p02-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 71,
+      "w": 192,
+      "h": 121
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        581,
+        365,
+        244,
+        67
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "fauteuil-fleur",
+    "atlas": "p02-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 13,
+      "y": 0,
+      "w": 166,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        303,
+        362,
+        826,
+        83
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "monstera-coeur",
+    "atlas": "p02-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 19,
+      "y": 0,
+      "w": 154,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        252,
+        318,
+        178,
+        391
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "tapis-nuage",
+    "atlas": "p02-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 39,
+      "w": 192,
+      "h": 114
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        480,
+        281,
+        428,
+        441
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "gueridon-tasse",
+    "atlas": "p02-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 25,
+      "y": 0,
+      "w": 142,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        232,
+        316,
+        41,
+        676
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "coussins-duo",
+    "atlas": "p02-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 10,
+      "w": 128,
+      "h": 118
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        250,
+        231,
+        922,
+        472
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "cadre-suspendu",
+    "atlas": "p02-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 14,
+      "y": 0,
+      "w": 100,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        184,
+        236,
+        733,
+        728
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "livres-plante",
+    "atlas": "p02-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 9,
+      "w": 128,
+      "h": 119
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        248,
+        236,
+        1074,
+        737
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "ours-panier",
+    "atlas": "p02-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 3,
+      "y": 0,
+      "w": 122,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        235,
+        246,
+        294,
+        740
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "lanterne-maison",
+    "atlas": "p02-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 13,
+      "y": 0,
+      "w": 102,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        177,
+        229,
+        1328,
+        744
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "cloche-lumineuse",
+    "atlas": "p02-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 15,
+      "y": 0,
+      "w": 97,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        162,
+        215,
+        548,
+        762
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "bougie-ruban",
+    "atlas": "p02-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 19,
+      "y": 0,
+      "w": 89,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_02.webp",
+      "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc",
+      "boite": [
+        123,
+        177,
+        941,
+        795
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "liseuse",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 40,
+      "y": 0,
+      "w": 112,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        113,
+        203,
+        1156,
+        65
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "cheminee",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 17,
+      "w": 192,
+      "h": 175
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        225,
+        206,
+        1281,
+        67
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "lit-vichy",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 9,
+      "w": 192,
+      "h": 183
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        201,
+        193,
+        831,
+        78
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "fauteuil-rose",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 8,
+      "y": 0,
+      "w": 176,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        163,
+        178,
+        324,
+        86
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "fauteuil-vert",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 4,
+      "y": 0,
+      "w": 183,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        167,
+        176,
+        498,
+        87
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "canape-jaune",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 68,
+      "w": 192,
+      "h": 124
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        288,
+        186,
+        24,
+        89
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "pouf-rose",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 48,
+      "w": 192,
+      "h": 144
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        146,
+        109,
+        676,
+        149
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "etagere-livres",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 32,
+      "y": 0,
+      "w": 128,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        169,
+        259,
+        27,
+        285
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "vaisselier",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 24,
+      "y": 0,
+      "w": 143,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        173,
+        235,
+        215,
+        305
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "armoire",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 28,
+      "y": 0,
+      "w": 136,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        160,
+        226,
+        406,
+        311
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "meuble-tele",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 5,
+      "w": 192,
+      "h": 187
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        210,
+        203,
+        772,
+        327
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "desserte",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 24,
+      "y": 0,
+      "w": 143,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        154,
+        207,
+        1356,
+        331
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "bureau-chaise",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 24,
+      "w": 192,
+      "h": 168
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        207,
+        180,
+        1001,
+        361
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "commode-miel",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 21,
+      "w": 192,
+      "h": 171
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        180,
+        160,
+        579,
+        377
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "gueridon-livre",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 18,
+      "y": 0,
+      "w": 156,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        121,
+        151,
+        1220,
+        383
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "macrame",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 31,
+      "y": 0,
+      "w": 130,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        101,
+        152,
+        1189,
+        551
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "suspension-plante",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 18,
+      "y": 0,
+      "w": 155,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        116,
+        146,
+        1063,
+        560
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "etagere-murale",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 25,
+      "w": 192,
+      "h": 142
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        188,
+        134,
+        20,
+        570
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "etagere-bougies",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 34,
+      "w": 192,
+      "h": 124
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        214,
+        133,
+        223,
+        581
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "guirlande",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 59,
+      "w": 192,
+      "h": 73
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        193,
+        71,
+        1320,
+        595
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "petit-cadre",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 8,
+      "y": 0,
+      "w": 176,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        34,
+        44,
+        540,
+        607
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "chat-dort-rose",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 63,
+      "w": 192,
+      "h": 129
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        142,
+        95,
+        1235,
+        747
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "tapis-ovale",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 39,
+      "w": 192,
+      "h": 113
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        212,
+        124,
+        23,
+        871
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "tapis-fleur",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 35,
+      "w": 192,
+      "h": 121
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        192,
+        124,
+        247,
+        873
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "tapis-feuille",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 37,
+      "w": 192,
+      "h": 117
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        186,
+        113,
+        646,
+        878
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "tapis-vichy",
+    "atlas": "p03-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 46,
+      "w": 192,
+      "h": 99
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        196,
+        102,
+        439,
+        884
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "lampe-table",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 24,
+      "y": 0,
+      "w": 79,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        97,
+        165,
+        1053,
+        100
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "miroir-rond",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 17,
+      "y": 0,
+      "w": 94,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        83,
+        121,
+        582,
+        563
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "cadre-chat",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 13,
+      "y": 0,
+      "w": 101,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        92,
+        118,
+        839,
+        574
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "cadre-collines",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 12,
+      "w": 128,
+      "h": 104
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        133,
+        107,
+        686,
+        577
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "cadre-montagne",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 5,
+      "y": 0,
+      "w": 117,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        80,
+        92,
+        453,
+        583
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "cadre-tulipe",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 3,
+      "y": 0,
+      "w": 122,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        92,
+        97,
+        951,
+        585
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "monstera-panier",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 1,
+      "w": 128,
+      "h": 127
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        144,
+        143,
+        511,
+        705
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "tournesols",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 16,
+      "y": 0,
+      "w": 96,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        105,
+        139,
+        156,
+        710
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "hortensias",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 4,
+      "y": 0,
+      "w": 120,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        119,
+        129,
+        15,
+        720
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "plante-pot",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 1,
+      "y": 0,
+      "w": 126,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        122,
+        125,
+        273,
+        722
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "cactus",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 19,
+      "y": 0,
+      "w": 89,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        80,
+        117,
+        417,
+        731
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "ours",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 5,
+      "y": 0,
+      "w": 118,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        117,
+        126,
+        989,
+        722
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "lapin",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 16,
+      "y": 0,
+      "w": 95,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        91,
+        125,
+        1121,
+        725
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "diffuseur",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 30,
+      "y": 0,
+      "w": 67,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        58,
+        115,
+        907,
+        728
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "coussin-patte",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 18,
+      "w": 128,
+      "h": 110
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        113,
+        97,
+        1391,
+        741
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "livres-pile",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 30,
+      "w": 128,
+      "h": 98
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        120,
+        92,
+        671,
+        744
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "bougie-pot",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 19,
+      "y": 0,
+      "w": 90,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        69,
+        95,
+        814,
+        744
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "panier-anses",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 0,
+      "w": 127,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        114,
+        115,
+        856,
+        873
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "boite-carton",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 41,
+      "w": 128,
+      "h": 87
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        166,
+        114,
+        1350,
+        882
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "boite-pois",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 16,
+      "w": 128,
+      "h": 112
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        116,
+        104,
+        1110,
+        886
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "boite-rayee",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 28,
+      "w": 128,
+      "h": 100
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        118,
+        100,
+        1230,
+        888
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "boite-poignee",
+    "atlas": "p03-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 16,
+      "w": 128,
+      "h": 112
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_03.webp",
+      "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a",
+      "boite": [
+        115,
+        100,
+        986,
+        890
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "douche",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 28,
+      "y": 0,
+      "w": 135,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        174,
+        256,
+        441,
+        161
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "lavabo-miroir",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 36,
+      "y": 0,
+      "w": 120,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        142,
+        241,
+        623,
+        178
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "etagere-sdb",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 29,
+      "y": 0,
+      "w": 134,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        144,
+        206,
+        1248,
+        203
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "toilettes",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 35,
+      "y": 0,
+      "w": 122,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        116,
+        191,
+        767,
+        227
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "lave-linge",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 18,
+      "y": 0,
+      "w": 155,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        131,
+        165,
+        1106,
+        243
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "baignoire",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 36,
+      "w": 192,
+      "h": 156
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        208,
+        172,
+        890,
+        244
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "porte-serviettes",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 26,
+      "y": 0,
+      "w": 139,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        115,
+        165,
+        405,
+        433
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "panier-linge",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 11,
+      "y": 0,
+      "w": 170,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        105,
+        124,
+        295,
+        464
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "balayette",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 50,
+      "y": 0,
+      "w": 92,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        46,
+        107,
+        1247,
+        601
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "pese-personne",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 6,
+      "w": 192,
+      "h": 179
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        89,
+        88,
+        1308,
+        617
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "rideau-douche",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 23,
+      "y": 0,
+      "w": 145,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        195,
+        259,
+        1327,
+        737
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "sol-bleu",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 10,
+      "y": 0,
+      "w": 172,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        110,
+        124,
+        295,
+        863
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "sol-creme",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 9,
+      "y": 0,
+      "w": 174,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        111,
+        124,
+        417,
+        863
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "sol-fleuri",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 1,
+      "y": 0,
+      "w": 189,
+      "h": 192
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        116,
+        122,
+        542,
+        865
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "tapis-bouclette",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 22,
+      "w": 192,
+      "h": 148
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        158,
+        122,
+        809,
+        866
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "sol-lattes",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 5,
+      "w": 192,
+      "h": 182
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        122,
+        120,
+        672,
+        867
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "tapis-bleu",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 30,
+      "w": 192,
+      "h": 132
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        175,
+        123,
+        978,
+        867
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "tapis-pieds",
+    "atlas": "p04-meubles",
+    "dimensions": {
+      "w": 192,
+      "h": 192
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 16,
+      "w": 192,
+      "h": 159
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        142,
+        113,
+        1168,
+        870
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "panier-serviette",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 5,
+      "y": 0,
+      "w": 118,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        119,
+        131,
+        1404,
+        283
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "plante-blanche",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 13,
+      "y": 0,
+      "w": 101,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        109,
+        147,
+        872,
+        429
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "peignoir",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 14,
+      "y": 0,
+      "w": 99,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        123,
+        163,
+        527,
+        433
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "serviette-anneau",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 30,
+      "y": 0,
+      "w": 68,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        57,
+        122,
+        660,
+        454
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "flacon-pompe",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 31,
+      "y": 0,
+      "w": 66,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        49,
+        107,
+        1136,
+        458
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "diffuseur-bambou",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 32,
+      "y": 0,
+      "w": 63,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        46,
+        105,
+        996,
+        461
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "serviette-barre",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 12,
+      "w": 128,
+      "h": 103
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        122,
+        98,
+        737,
+        464
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "papier-rouleaux",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 0,
+      "w": 127,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        99,
+        99,
+        1417,
+        472
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "id": "mouchoirs",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        90,
+        90,
+        1199,
+        475
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
     "id": "bougie-rose",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 11,
+      "y": 0,
+      "w": 105,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        56,
+        72,
+        1061,
+        492
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "bougie-creme",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "serviettes-pile",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 2,
+      "y": 0,
+      "w": 124,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        114,
+        114,
+        1408,
+        598
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "bougie-sauge",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "seche-cheveux",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 9,
+      "y": 0,
+      "w": 109,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        91,
+        109,
+        1017,
+        603
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "veilleuse-lune",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "peigne",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 32,
+      "y": 0,
+      "w": 63,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        43,
+        104,
+        1121,
+        605
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "veilleuse-etoile",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "gobelet-brosses",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 22,
+      "y": 0,
+      "w": 84,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        58,
+        97,
+        582,
+        607
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "assiette-ciel",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "fleur-douche",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 8,
+      "y": 0,
+      "w": 111,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        78,
+        95,
+        929,
+        607
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "assiette-creme",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "flacon-bleu",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 28,
+      "y": 0,
+      "w": 72,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        49,
+        100,
+        301,
+        610
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "assiette-rose",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "flacon-rose",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 27,
+      "y": 0,
+      "w": 73,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        50,
+        101,
+        364,
+        610
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "tasse-terracotta",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "flacon-creme",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 28,
+      "y": 0,
+      "w": 71,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        50,
+        100,
+        426,
+        610
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "tasse-canard",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "rasoir",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 29,
+      "y": 0,
+      "w": 70,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        48,
+        96,
+        1184,
+        610
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "tasse-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "canard",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 0,
+      "w": 127,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        85,
+        87,
+        832,
+        611
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "bol-sauge",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "brosse",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 14,
+      "y": 0,
+      "w": 99,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        67,
+        89,
+        656,
+        618
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "bol-ciel",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "eponge",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 32,
+      "w": 128,
+      "h": 96
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        81,
+        60,
+        734,
+        640
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "bol-lavande",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "pot-creme",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 12,
+      "w": 128,
+      "h": 116
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        64,
+        61,
+        497,
+        642
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "fouet-bois",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "sels-roses",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 10,
+      "y": 0,
+      "w": 107,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        83,
+        104,
+        723,
+        728
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "fouet-canard",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "sels-peche",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 6,
+      "y": 0,
+      "w": 115,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        83,
+        94,
+        609,
+        734
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "louche-bois",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "cotons",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 11,
+      "y": 0,
+      "w": 105,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        72,
+        90,
+        504,
+        735
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "louche-terracotta",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "tube-creme",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 25,
+      "y": 0,
+      "w": 77,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        57,
+        97,
+        304,
+        738
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "spatule-bois",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "bougie-verre",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 4,
+      "y": 0,
+      "w": 119,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        67,
+        73,
+        838,
+        749
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "spatule-sauge",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "pot-bleu",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 4,
+      "w": 128,
+      "h": 124
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        77,
+        79,
+        390,
+        753
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "bocal-pates",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "panier-anse",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 0,
+      "w": 128,
+      "h": 128
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        111,
+        111,
+        942,
+        726
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "bocal-riz",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "boite-sdb-creme",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 26,
+      "w": 128,
+      "h": 102
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        101,
+        82,
+        1067,
+        750
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "bocal-biscuits",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "boite-sdb-bois",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 32,
+      "w": 128,
+      "h": 96
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        109,
+        84,
+        1194,
+        750
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "pot-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "boite-sdb-peche",
+    "atlas": "p04-objets",
+    "dimensions": {
+      "w": 128,
+      "h": 128
+    },
+    "ancre": "bas",
+    "hitbox": {
+      "x": 0,
+      "y": 15,
+      "w": 128,
+      "h": 113
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        105,
+        92,
+        1301,
+        477
+      ],
+      "marge": 6,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "pot-terracotta",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "choix-salon",
+    "atlas": "p04-selecteur",
+    "dimensions": {
+      "w": 200,
+      "h": 200
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 5,
+      "y": 0,
+      "w": 189,
+      "h": 200
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        168,
+        178,
+        821,
+        9
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "boite-canard",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "choix-chambre",
+    "atlas": "p04-selecteur",
+    "dimensions": {
+      "w": 200,
+      "h": 200
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 7,
+      "y": 0,
+      "w": 185,
+      "h": 200
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        166,
+        179,
+        1001,
+        9
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "boite-prune",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "choix-cuisine",
+    "atlas": "p04-selecteur",
+    "dimensions": {
+      "w": 200,
+      "h": 200
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 7,
+      "y": 0,
+      "w": 186,
+      "h": 200
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        165,
+        177,
+        1178,
+        10
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "boite-sauge",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "choix-salle-de-bain",
+    "atlas": "p04-selecteur",
+    "dimensions": {
+      "w": 200,
+      "h": 200
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 5,
+      "y": 0,
+      "w": 190,
+      "h": 200
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        169,
+        178,
+        1354,
+        8
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "vase-rose",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "titre-salle-de-bain",
+    "atlas": "p04-selecteur",
+    "dimensions": {
+      "w": 200,
+      "h": 200
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 79,
+      "w": 200,
+      "h": 41
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        376,
+        78,
+        416,
+        33
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "vase-moutarde",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "boutons-haut",
+    "atlas": "p04-ui",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 91,
+      "w": 256,
+      "h": 73
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        250,
+        71,
+        18,
+        527
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "vase-lavande",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "boutons-bas",
+    "atlas": "p04-ui",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 93,
+      "w": 256,
+      "h": 69
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        250,
+        67,
+        18,
+        606
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "torchon-carreaux",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "etoile-sdb",
+    "atlas": "p04-ui",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 11,
+      "w": 256,
+      "h": 233
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        55,
+        50,
+        51,
+        685
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "torchon-rayures",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "etoile-sdb-milieu",
+    "atlas": "p04-ui",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 13,
+      "w": 256,
+      "h": 229
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        56,
+        50,
+        176,
+        685
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "torchon-uni",
-    "kind": "objet",
-    "origin": "code",
-    "source": "packages/art/src/objects.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      0.9
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "etoile-sdb-droite",
+    "atlas": "p04-ui",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 16,
+      "w": 256,
+      "h": 224
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        56,
+        49,
+        113,
+        686
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "carton-book",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "barre-sdb",
+    "atlas": "p04-ui",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 98,
+      "w": 256,
+      "h": 59
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        245,
+        56,
+        21,
+        736
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "carton-cushion",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "panneau-quotas-sdb",
+    "atlas": "p04-ui",
+    "dimensions": {
+      "w": 256,
+      "h": 256
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 0,
+      "y": 19,
+      "w": 256,
+      "h": 217
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        246,
+        209,
+        22,
+        799
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   },
   {
-    "id": "carton-plant",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-frame",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-lamp",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-teddy",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-shirt",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-candle",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-plate",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-whisk",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-jar",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-flower",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
-  },
-  {
-    "id": "carton-towel",
-    "kind": "carton",
-    "origin": "code",
-    "source": "packages/art/src/boxes.ts",
-    "viewBox": "0 0 128 128",
-    "anchor": [
-      0.5,
-      1
-    ],
-    "hitbox": "boîte englobante",
-    "license": "MIT",
-    "created": "2026-11-18"
+    "id": "vue-salle-de-bain",
+    "atlas": "p04-vues",
+    "dimensions": {
+      "w": 420,
+      "h": 420
+    },
+    "ancre": "centre",
+    "hitbox": {
+      "x": 1,
+      "y": 0,
+      "w": 417,
+      "h": 420
+    },
+    "origine": {
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59",
+      "boite": [
+        415,
+        418,
+        11,
+        10
+      ],
+      "marge": 0,
+      "transformations": [
+        "Découpe avec marge",
+        "Mise à l’échelle dans un cadre carré transparent",
+        "Assemblage en atlas WebP"
+      ]
+    },
+    "licence": "CC-BY-4.0"
   }
 ]

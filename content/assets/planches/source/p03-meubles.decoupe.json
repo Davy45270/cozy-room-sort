@@ -1,0 +1,267 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_03.webp",
+ "marge": 6,
+ "taille": 192,
+ "elements": [
+  {
+   "id": "liseuse",
+   "boite": [
+    113,
+    203,
+    1156,
+    65
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "cheminee",
+   "boite": [
+    225,
+    206,
+    1281,
+    67
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "lit-vichy",
+   "boite": [
+    201,
+    193,
+    831,
+    78
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "fauteuil-rose",
+   "boite": [
+    163,
+    178,
+    324,
+    86
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "fauteuil-vert",
+   "boite": [
+    167,
+    176,
+    498,
+    87
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "canape-jaune",
+   "boite": [
+    288,
+    186,
+    24,
+    89
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "pouf-rose",
+   "boite": [
+    146,
+    109,
+    676,
+    149
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "etagere-livres",
+   "boite": [
+    169,
+    259,
+    27,
+    285
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "vaisselier",
+   "boite": [
+    173,
+    235,
+    215,
+    305
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "armoire",
+   "boite": [
+    160,
+    226,
+    406,
+    311
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "meuble-tele",
+   "boite": [
+    210,
+    203,
+    772,
+    327
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "desserte",
+   "boite": [
+    154,
+    207,
+    1356,
+    331
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "bureau-chaise",
+   "boite": [
+    207,
+    180,
+    1001,
+    361
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "commode-miel",
+   "boite": [
+    180,
+    160,
+    579,
+    377
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "gueridon-livre",
+   "boite": [
+    121,
+    151,
+    1220,
+    383
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "macrame",
+   "boite": [
+    101,
+    152,
+    1189,
+    551
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "suspension-plante",
+   "boite": [
+    116,
+    146,
+    1063,
+    560
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "etagere-murale",
+   "boite": [
+    188,
+    134,
+    20,
+    570
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "etagere-bougies",
+   "boite": [
+    214,
+    133,
+    223,
+    581
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "guirlande",
+   "boite": [
+    193,
+    71,
+    1320,
+    595
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "petit-cadre",
+   "boite": [
+    34,
+    44,
+    540,
+    607
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "chat-dort-rose",
+   "boite": [
+    142,
+    95,
+    1235,
+    747
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "tapis-ovale",
+   "boite": [
+    212,
+    124,
+    23,
+    871
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "tapis-fleur",
+   "boite": [
+    192,
+    124,
+    247,
+    873
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "tapis-feuille",
+   "boite": [
+    186,
+    113,
+    646,
+    878
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "tapis-vichy",
+   "boite": [
+    196,
+    102,
+    439,
+    884
+   ],
+   "ancre": "centre"
+  }
+ ]
+}

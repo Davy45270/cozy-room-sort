@@ -19,8 +19,8 @@
       "label": "Peluches"
     },
     {
-      "id": "linge",
-      "label": "Vêtements et linge"
+      "id": "coussins",
+      "label": "Coussins"
     },
     {
       "id": "veilleuses",
@@ -29,8 +29,8 @@
   ],
   "boxes": [
     {
-      "id": "carton-linge-1",
-      "category": "linge",
+      "id": "carton-coussins-1",
+      "category": "coussins",
       "capacity": 3
     },
     {
@@ -46,92 +46,92 @@
   ],
   "objects": [
     {
-      "id": "ours-1",
+      "id": "objet-1",
       "category": "peluches",
-      "asset": "ours-moutarde",
+      "asset": "ours",
       "position": {
-        "x": 0.117,
+        "x": 0.127,
         "y": 0.35
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "bougie-2",
+      "id": "objet-2",
       "category": "veilleuses",
-      "asset": "bougie-rose",
+      "asset": "bougie-ruban",
       "position": {
-        "x": 0.383,
+        "x": 0.368,
         "y": 0.35
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "ours-3",
+      "id": "objet-3",
       "category": "peluches",
-      "asset": "ours-moutarde",
+      "asset": "ours",
       "position": {
-        "x": 0.618,
+        "x": 0.633,
         "y": 0.35
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "ours-4",
+      "id": "objet-4",
       "category": "peluches",
-      "asset": "ours-creme",
+      "asset": "ours",
       "position": {
-        "x": 0.881,
+        "x": 0.874,
         "y": 0.35
       },
       "layer": 9,
       "blockedBy": [
-        "ours-3"
+        "objet-3"
       ]
     },
     {
-      "id": "chaussette-5",
-      "category": "linge",
-      "asset": "chaussette-lavande",
+      "id": "objet-5",
+      "category": "coussins",
+      "asset": "coussin-patte",
       "position": {
-        "x": 0.112,
+        "x": 0.13,
         "y": 0.55
       },
       "layer": 9,
       "blockedBy": [
-        "ours-1"
+        "objet-1"
       ]
     },
     {
-      "id": "chaussette-6",
-      "category": "linge",
-      "asset": "chaussette-terracotta",
+      "id": "objet-6",
+      "category": "coussins",
+      "asset": "coussins-duo",
       "position": {
-        "x": 0.387,
+        "x": 0.384,
         "y": 0.55
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "tshirt-7",
-      "category": "linge",
-      "asset": "tshirt-sauge",
+      "id": "objet-7",
+      "category": "coussins",
+      "asset": "coussin-patte",
       "position": {
-        "x": 0.632,
+        "x": 0.612,
         "y": 0.55
       },
       "layer": 9,
       "blockedBy": [
-        "ours-1"
+        "objet-1"
       ]
     },
     {
-      "id": "veilleuse-8",
+      "id": "objet-8",
       "category": "veilleuses",
-      "asset": "veilleuse-etoile",
+      "asset": "bougie-verre",
       "position": {
         "x": 0.871,
         "y": 0.55
@@ -140,11 +140,11 @@
       "blockedBy": []
     },
     {
-      "id": "bougie-9",
+      "id": "objet-9",
       "category": "veilleuses",
-      "asset": "bougie-sauge",
+      "asset": "diffuseur",
       "position": {
-        "x": 0.139,
+        "x": 0.124,
         "y": 0.75
       },
       "layer": 10,
@@ -157,15 +157,15 @@
   },
   "meta": {
     "solution": [
-      "chaussette-6",
-      "ours-1",
-      "chaussette-5",
-      "tshirt-7",
-      "bougie-2",
-      "veilleuse-8",
-      "bougie-9",
-      "ours-3",
-      "ours-4"
+      "objet-6",
+      "objet-1",
+      "objet-5",
+      "objet-7",
+      "objet-2",
+      "objet-8",
+      "objet-9",
+      "objet-3",
+      "objet-4"
     ],
     "engineVersion": "0.1.0",
     "statesExplored": 27

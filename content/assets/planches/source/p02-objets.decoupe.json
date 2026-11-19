@@ -1,0 +1,77 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_02.webp",
+ "marge": 6,
+ "taille": 128,
+ "elements": [
+  {
+   "id": "coussins-duo",
+   "boite": [
+    250,
+    231,
+    922,
+    472
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "cadre-suspendu",
+   "boite": [
+    184,
+    236,
+    733,
+    728
+   ],
+   "ancre": "centre"
+  },
+  {
+   "id": "livres-plante",
+   "boite": [
+    248,
+    236,
+    1074,
+    737
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "ours-panier",
+   "boite": [
+    235,
+    246,
+    294,
+    740
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "lanterne-maison",
+   "boite": [
+    177,
+    229,
+    1328,
+    744
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "cloche-lumineuse",
+   "boite": [
+    162,
+    215,
+    548,
+    762
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "bougie-ruban",
+   "boite": [
+    123,
+    177,
+    941,
+    795
+   ],
+   "ancre": "bas"
+  }
+ ]
+}

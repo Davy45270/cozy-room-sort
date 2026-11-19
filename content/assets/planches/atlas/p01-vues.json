@@ -1,0 +1,78 @@
+{
+ "frames": {
+  "sprite-vue-chambre": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 420,
+    "h": 420
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 420,
+    "h": 420
+   },
+   "sourceSize": {
+    "w": 420,
+    "h": 420
+   },
+   "duration": 100
+  },
+  "sprite-vue-cuisine": {
+   "frame": {
+    "x": 420,
+    "y": 0,
+    "w": 420,
+    "h": 420
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 420,
+    "h": 420
+   },
+   "sourceSize": {
+    "w": 420,
+    "h": 420
+   },
+   "duration": 100
+  },
+  "sprite-vue-salon": {
+   "frame": {
+    "x": 0,
+    "y": 420,
+    "w": 420,
+    "h": 420
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 420,
+    "h": 420
+   },
+   "sourceSize": {
+    "w": 420,
+    "h": 420
+   },
+   "duration": 100
+  }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.3.18.6-dev",
+  "image": "p01-vues.webp",
+  "format": "RGBA8888",
+  "size": {
+   "w": 840,
+   "h": 840
+  },
+  "scale": "1"
+ }
+}

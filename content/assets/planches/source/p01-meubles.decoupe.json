@@ -1,0 +1,87 @@
+{
+ "planche": "Cozy_Room_Sort_Planche_01.webp",
+ "marge": 6,
+ "taille": 192,
+ "elements": [
+  {
+   "id": "etagere-plante",
+   "boite": [
+    122,
+    182,
+    1093,
+    414
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "lit-bleu",
+   "boite": [
+    186,
+    172,
+    505,
+    435
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "frigo",
+   "boite": [
+    111,
+    172,
+    1410,
+    435
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "chaise-bois",
+   "boite": [
+    105,
+    155,
+    970,
+    440
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "evier-vert",
+   "boite": [
+    168,
+    153,
+    1229,
+    445
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "commode",
+   "boite": [
+    120,
+    148,
+    698,
+    446
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "fauteuil-terracotta",
+   "boite": [
+    155,
+    153,
+    337,
+    447
+   ],
+   "ancre": "bas"
+  },
+  {
+   "id": "table-ronde",
+   "boite": [
+    135,
+    127,
+    829,
+    469
+   ],
+   "ancre": "bas"
+  }
+ ]
+}

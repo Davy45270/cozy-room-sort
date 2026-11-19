@@ -24,7 +24,7 @@
     },
     {
       "id": "plantes",
-      "label": "Plantes"
+      "label": "Plantes et fleurs"
     }
   ],
   "boxes": [
@@ -46,114 +46,114 @@
   ],
   "objects": [
     {
-      "id": "livre-1",
+      "id": "objet-1",
       "category": "livres",
-      "asset": "livre-moutarde",
+      "asset": "livres-plante",
       "position": {
-        "x": 0.156,
+        "x": 0.167,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "coussin-2",
+      "id": "objet-2",
       "category": "coussins",
-      "asset": "coussin-sauge",
+      "asset": "coussin-creme",
       "position": {
-        "x": 0.174,
+        "x": 0.155,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "livre-1"
+        "objet-1"
       ]
     },
     {
-      "id": "plante-3",
+      "id": "objet-3",
       "category": "plantes",
-      "asset": "plante-ronde",
+      "asset": "hortensias",
       "position": {
-        "x": 0.511,
+        "x": 0.489,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "plaid-4",
+      "id": "objet-4",
       "category": "coussins",
-      "asset": "plaid-terracotta",
+      "asset": "coussin-patte",
       "position": {
-        "x": 0.49,
+        "x": 0.514,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "plante-3"
+        "objet-3"
       ]
     },
     {
-      "id": "livre-5",
+      "id": "objet-5",
       "category": "livres",
-      "asset": "livre-terracotta",
+      "asset": "livres-plante",
       "position": {
-        "x": 0.5,
+        "x": 0.508,
         "y": 0.54
       },
       "layer": 8,
       "blockedBy": [
-        "plaid-4"
+        "objet-4"
       ]
     },
     {
-      "id": "plante-6",
+      "id": "objet-6",
       "category": "plantes",
-      "asset": "plante-cactus",
+      "asset": "hortensias",
       "position": {
-        "x": 0.839,
+        "x": 0.833,
         "y": 0.86
       },
       "layer": 10,
       "blockedBy": []
     },
     {
-      "id": "plante-7",
+      "id": "objet-7",
       "category": "plantes",
-      "asset": "plante-fougere",
+      "asset": "plante-pot",
       "position": {
-        "x": 0.826,
+        "x": 0.833,
         "y": 0.7
       },
       "layer": 9,
       "blockedBy": [
-        "plante-6"
+        "objet-6"
       ]
     },
     {
-      "id": "plaid-8",
+      "id": "objet-8",
       "category": "coussins",
-      "asset": "plaid-rose",
+      "asset": "plaid-bleu",
       "position": {
-        "x": 0.832,
+        "x": 0.838,
         "y": 0.54
       },
       "layer": 8,
       "blockedBy": [
-        "plante-7"
+        "objet-7"
       ]
     },
     {
-      "id": "livre-9",
+      "id": "objet-9",
       "category": "livres",
-      "asset": "livre-canard",
+      "asset": "livres-pile",
       "position": {
-        "x": 0.848,
+        "x": 0.825,
         "y": 0.38
       },
       "layer": 7,
       "blockedBy": [
-        "plaid-8"
+        "objet-8"
       ]
     }
   ],
@@ -163,15 +163,15 @@
   },
   "meta": {
     "solution": [
-      "plante-3",
-      "plante-6",
-      "plante-7",
-      "plaid-4",
-      "plaid-8",
-      "livre-1",
-      "coussin-2",
-      "livre-5",
-      "livre-9"
+      "objet-3",
+      "objet-6",
+      "objet-7",
+      "objet-4",
+      "objet-8",
+      "objet-1",
+      "objet-2",
+      "objet-5",
+      "objet-9"
     ],
     "engineVersion": "0.1.0",
     "statesExplored": 32
