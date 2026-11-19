@@ -50,10 +50,10 @@ export function starsFor(level: Level, bufferedCount: number): 1 | 2 | 3 {
 }
 
 /** Statut d'un état (§4.4) : victoire, sinon blocage ou échec s'il ne reste aucun coup légal. */
-export function statusOf(level: Level, s: Snapshot): Status {
+export function statusOf(level: Level, s: Snapshot, undoAvailable = false): Status {
     if (s.remainingObjectIds.length === 0 && s.bufferObjectIds.length === 0 && s.activeBoxIds.length === 0 && s.pendingBoxIds.length === 0) return 'won';
     if (legalMoves(level, { ...s, status: 'playing' }).length > 0) return 'playing';
-    return level.rules.allowUndo ? 'blocked' : 'lost';
+    return undoAvailable ? 'blocked' : 'lost';
 }
 
 interface Working {

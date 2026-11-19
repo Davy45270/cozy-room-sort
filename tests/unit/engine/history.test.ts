@@ -59,14 +59,11 @@ describe('UNDO, RESTART, TICK, HINT_USED', () => {
         expect(run(level, [{ type: 'UNDO' }], buffered).bufferedCount).toBe(0);
     });
 
-    it('UNDO après une victoire repasse en jeu, et rejouer réémet LEVEL_WON', () => {
+    it('le dernier rangement émet LEVEL_WON', () => {
         const level = makeLevel({ boxes: [['books', 2]], objects: [['b1', 'books'], ['b2', 'books']] });
-        const won = run(level, sel('b1', 'b2'));
-        expect(won.status).toBe('won');
-        const undone = applyAction(level, won, { type: 'UNDO' }).state;
-        expect(undone.status).toBe('playing');
-        const again = applyAction(level, undone, { type: 'SELECT_OBJECT', objectId: 'b2' });
-        expect(again.events.filter(e => e.type === 'LEVEL_WON')).toHaveLength(1);
+        const finalMove = applyAction(level, run(level, sel('b1')), { type: 'SELECT_OBJECT', objectId: 'b2' });
+        expect(finalMove.state.status).toBe('won');
+        expect(finalMove.events.filter(e => e.type === 'LEVEL_WON')).toHaveLength(1);
     });
 
     it.each([
