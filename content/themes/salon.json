@@ -62,6 +62,18 @@
         "lanterne-maison",
         "cloche-lumineuse"
       ]
+    },
+    {
+      "id": "rangements",
+      "label": "Rangements",
+      "icone": "boite-creme",
+      "objets": [
+        "boite-creme",
+        "boite-fleurie",
+        "boite-terracotta",
+        "panier-osier"
+      ],
+      "expertSeulement": true
     }
   ]
 }

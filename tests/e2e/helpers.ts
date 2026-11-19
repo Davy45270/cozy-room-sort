@@ -1,7 +1,10 @@
 import { readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 import type { GameState } from '@cozy-room-sort/engine';
+import { activeThemes } from '../../content/themes/index.ts';
 import type { Level } from '@cozy-room-sort/schemas';
+
+export const thirdRoom = activeThemes.find(theme => theme.id !== 'salon' && theme.id !== 'chambre')!;
 
 export const levelFile = (id: string): Level => JSON.parse(readFileSync(`content/levels/${id}.json`, 'utf8')) as Level;
 export const levelScreen = (page: Page) => page.getByTestId('ecran-jeu');

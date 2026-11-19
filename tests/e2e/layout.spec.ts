@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { capture, levelScreen, openLevel, state } from './helpers';
+import { capture, levelScreen, openLevel, state, thirdRoom } from './helpers';
 
 test.describe('petit téléphone', () => {
     test.use({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
@@ -37,7 +37,7 @@ test.describe('petit téléphone', () => {
         }
     });
 
-    for (const id of ['001-salon', '007-salon', '020-salle-de-bain']) {
+    for (const id of ['001-salon', '007-salon', `020-${thirdRoom.id}`]) {
         test(`${id} : ni défilement horizontal, ni bouton ou carton hors de l'écran`, async ({ page }) => {
             await openLevel(page, id);
             expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
@@ -126,11 +126,11 @@ test.describe('texte à 360×740', () => {
         await levels.getByRole('button', { name: 'Réglages' }).click();
         await expect(page.getByTestId('ecran-reglages')).toBeVisible();
         await expectReadableText(page);
-        await openLevel(page, '020-salle-de-bain');
+        await openLevel(page, `020-${thirdRoom.id}`);
         await expectReadableText(page);
         await capture(page, 'partie-360');
         await levelScreen(page).getByRole('button', { name: 'Accueil' }).click();
-        await expect(home.locator('[data-frame="sprite-vue-salle-de-bain"]')).toBeVisible();
+        await expect(home.locator(`[data-frame="sprite-${thirdRoom.vue}"]`)).toBeVisible();
         await page.goto('./?test=1&demo=gagner');
         await expect(page.getByTestId('ecran-victoire')).toBeVisible();
         await expectReadableText(page);
@@ -150,7 +150,7 @@ test.describe('bureau à 1280×800', () => {
         const menu = (await home.locator('.home-menu').boundingBox())!;
         expect(hero.x + hero.width).toBeLessThan(menu.x);
         await capture(page, 'accueil-1280');
-        await openLevel(page, '020-salle-de-bain');
+        await openLevel(page, `020-${thirdRoom.id}`);
         const tray = (await levelScreen(page).locator('.tray').boundingBox())!;
         const room = (await levelScreen(page).locator('.room').boundingBox())!;
         expect(tray.height).toBeLessThan(room.height * .8);
@@ -162,7 +162,7 @@ for (const viewport of [{ width: 1280, height: 800 }, { width: 360, height: 740 
     test.describe(`pièce entière à ${viewport.width}×${viewport.height}`, () => {
         test.use({ viewport, reducedMotion: 'reduce' });
 
-        for (const id of ['015-salle-de-bain', '020-salle-de-bain']) {
+        for (const id of [`015-${thirdRoom.id}`, `020-${thirdRoom.id}`]) {
             test(`${id} : l’hexagone de la vue tient entier dans la fenêtre`, async ({ page }) => {
                 await openLevel(page, id);
                 const view = await page.evaluate(() => window.__cozy!.viewBounds());

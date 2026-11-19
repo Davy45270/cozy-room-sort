@@ -6,7 +6,7 @@ import { expect, it } from 'vitest';
 
 const request = { theme: 'salon', difficulty: 'medium', seed: 7, index: 1 } as const;
 
-it('génère un JSON déterministe avec une trace gagnante et les mesures de difficulté', () => {
+it('T-008 : même graine, même niveau avec trace gagnante et mesures de difficulté', () => {
     const level = generateLevel(request);
     expect(JSON.stringify(level)).toBe(JSON.stringify(generateLevel(request)));
     expect(validateLevel(level).ok).toBe(true);
@@ -32,8 +32,4 @@ it('rejette un candidat structurellement valide mais insoluble', () => {
 
 it('rejette un candidat non vérifié quand le budget est épuisé', () => {
     expect(() => generateLevel(request, { attempts: 1, maxStates: 1 })).toThrow('unverified');
-});
-
-it('signale un univers avec trop peu de catégories', () => {
-    expect(() => generateLevel({ ...request, difficulty: 'expert' })).toThrow(/catégories/);
 });

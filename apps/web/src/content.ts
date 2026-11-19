@@ -1,16 +1,11 @@
 import type { Level } from '@cozy-room-sort/schemas';
 
-export interface ThemeCategory { id: string; label: string; icone: string; objets: readonly string[] }
-export interface Theme {
-    id: string; label: string; vue: string; sol: string; selecteur: string;
-    categories: readonly ThemeCategory[];
-}
+import { activeThemes, type Theme } from '../../../content/themes/index.ts';
 
 const levelModules = import.meta.glob<Level>('../../../content/levels/*.json', { eager: true, import: 'default' });
-const themeModules = import.meta.glob<Theme>('../../../content/themes/*.json', { eager: true, import: 'default' });
-
-export const LEVELS: readonly Level[] = Object.keys(levelModules).sort().map(k => levelModules[k]!);
-export const THEMES: Readonly<Record<string, Theme>> = Object.fromEntries(Object.values(themeModules).map(t => [t.id, t]));
+export const THEMES: Readonly<Record<string, Theme>> = Object.fromEntries(activeThemes.map(theme => [theme.id, theme]));
+export const LEVELS: readonly Level[] = Object.keys(levelModules).sort().map(k => levelModules[k]!)
+    .filter(level => Object.hasOwn(THEMES, level.theme));
 export const ROOM_ORDER = [...new Set([...LEVELS.map(level => level.theme), ...Object.keys(THEMES)])];
 
 export function levelById(id: string): Level | undefined { return LEVELS.find(l => l.id === id); }

@@ -39,27 +39,36 @@ function main(): void {
         seed: { type: 'string' },
         out: { type: 'string' }
     } });
-    let out: string;
-    let levels;
     if (values.catalog) {
-        if (Object.keys(values).length !== 1) throw new Error('--catalog s’utilise seul');
-        out = 'content/levels';
-        levels = RECIPES.map(({ name, ...recipe }) => ({ ...generateLevel(recipe), name }));
-    } else {
-        if (!values.theme) throw new Error('--theme est requis');
-        const theme = findTheme(values.theme).id;
-        const difficulty = values.difficulty;
-        if (!isDifficulty(difficulty)) throw new Error('--difficulty attend easy, medium ou expert');
-        const count = Number(values.count);
-        const seed = Number(values.seed ?? '42001');
-        if (!values.count || !Number.isSafeInteger(count) || count < 1) throw new Error('--count attend un entier positif');
-        if (values.seed === '' || !Number.isSafeInteger(seed) || !Number.isSafeInteger(seed + count - 1)) {
-            throw new Error('--seed attend une graine entière sûre pour tout le lot');
+        if (values.difficulty !== undefined || values.count !== undefined || values.seed !== undefined) {
+            throw new Error('--catalog fixe les difficultés, le nombre et les graines');
         }
-        out = values.out ?? 'generated-levels';
-        levels = Array.from({ length: count }, (_, i) => generateLevel({ theme, difficulty, seed: seed + i, index: i + 1 }));
+        const theme = values.theme === undefined ? undefined : findTheme(values.theme);
+        const recipes = theme ? RECIPES.filter(recipe => recipe.theme === theme.id) : RECIPES;
+        const out = values.out ?? 'content/levels';
+        const levels = recipes.map(({ name, ...recipe }) => ({ ...generateLevel(recipe), name }));
+        writeLevels(out, levels, true);
+        for (const recipe of recipes) {
+            const replaced = findTheme(recipe.theme).remplace;
+            if (!replaced) continue;
+            const index = String(recipe.index).padStart(3, '0');
+            rmSync(join(out, `${index}-${replaced}.json`), { force: true });
+        }
+        return;
     }
-    writeLevels(out, levels, values.catalog === true);
+    if (!values.theme) throw new Error('--theme est requis');
+    const theme = findTheme(values.theme).id;
+    const difficulty = values.difficulty;
+    if (!isDifficulty(difficulty)) throw new Error('--difficulty attend easy, medium ou expert');
+    const count = Number(values.count);
+    const seed = Number(values.seed ?? '42001');
+    if (!values.count || !Number.isSafeInteger(count) || count < 1) throw new Error('--count attend un entier positif');
+    if (values.seed === '' || !Number.isSafeInteger(seed) || !Number.isSafeInteger(seed + count - 1)) {
+        throw new Error('--seed attend une graine entière sûre pour tout le lot');
+    }
+    const out = values.out ?? 'generated-levels';
+    const levels = Array.from({ length: count }, (_, i) => generateLevel({ theme, difficulty, seed: seed + i, index: i + 1 }));
+    writeLevels(out, levels, false);
 }
 
 try { main(); }

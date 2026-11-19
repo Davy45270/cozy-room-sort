@@ -1,10 +1,11 @@
 import { spawnSync } from 'node:child_process';
-import { copyFileSync, existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import type { Level } from '@cozy-room-sort/schemas';
 import { replayTrace } from '@cozy-room-sort/solver';
 import { describe, expect, it } from 'vitest';
+import { activeThemes } from '../../content/themes/index.ts';
 
 const fixtures = 'tests/fixtures/levels';
 const run = (tool: string, ...args: string[]): { code: number; out: string; err: string } => {
@@ -49,13 +50,14 @@ describe('commandes en ligne', () => {
     });
 });
 
-it('génère uniquement des niveaux validés, avec les alias des pièces', () => {
+it('level:generate : génère uniquement des niveaux validés, avec les alias des pièces', () => {
     const dir = mkdtempSync(join(tmpdir(), 'cozy-generate-'));
     try {
         const args = ['--difficulty', 'easy', '--count', '2', '--seed', '42', '--out', dir];
         expect(run('generate-levels', '--theme', 'living-room', ...args).code).toBe(0);
         expect(run('validate-levels', dir).code).toBe(0);
-        const missing = run('generate-levels', '--theme', 'kitchen', ...args);
+        const inactiveAlias = activeThemes.some(theme => theme.id === 'cuisine') ? 'bathroom' : 'kitchen';
+        const missing = run('generate-levels', '--theme', inactiveAlias, ...args);
         expect(missing.code).toBe(1);
         expect(missing.out).toContain('univers absent');
     } finally { rmSync(dir, { recursive: true, force: true }); }
@@ -74,7 +76,7 @@ it('refuse un lot qui écraserait un fichier avant de publier les nouveaux nivea
     } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
-it('mesure les décisions et les issues bloquantes sur un petit niveau', () => {
+it('level:benchmark : mesure les décisions et les issues bloquantes sur un petit niveau', () => {
     const { code, out, err } = run('benchmark-solver', 'tests/fixtures/levels/benchmark.json');
     expect(code).toBe(0);
     expect(JSON.parse(out)).toEqual([expect.objectContaining({
@@ -83,4 +85,15 @@ it('mesure les décisions et les issues bloquantes sur un petit niveau', () => {
     })]);
     expect(err).toContain('Décisions');
     expect(err).toContain('62.5 %');
+});
+
+it('level:generate --catalog --theme : régénère les six niveaux du troisième univers', () => {
+    const theme = activeThemes.find(item => item.id !== 'salon' && item.id !== 'chambre')!;
+    const dir = mkdtempSync(join(tmpdir(), 'cozy-catalogue-'));
+    try {
+        const generated = run('generate-levels', '--catalog', '--theme', theme.id, '--out', dir);
+        expect(generated.code, generated.out + generated.err).toBe(0);
+        expect(readdirSync(dir).sort()).toEqual(Array.from({ length: 6 }, (_, i) => `0${15 + i}-${theme.id}.json`));
+        expect(run('validate-levels', dir).code).toBe(0);
+    } finally { rmSync(dir, { recursive: true, force: true }); }
 });

@@ -3,6 +3,7 @@ import { validateLevel } from '@cozy-room-sort/schemas';
 import fc from 'fast-check';
 import { expect, it } from 'vitest';
 import { replayTrace, solve } from '@cozy-room-sort/solver';
+import { activeThemes } from '../../content/themes/index.ts';
 import { arbLevel } from './arbitraries.ts';
 
 it('invariant : toute trace du solveur se rejoue jusqu\'à la victoire', () => {
@@ -19,7 +20,7 @@ it('invariant : toute trace du solveur se rejoue jusqu\'à la victoire', () => {
 });
 
 it('les deux stratégies donnent le même optimum sur 50 niveaux engendrés', () => {
-    const themes = ['salon', 'chambre', 'salle-de-bain'] as const;
+    const themes = activeThemes.map(theme => theme.id);
     for (let seed = 0; seed < 50; seed++) {
         const difficulty = seed % 2 === 0 ? 'medium' : 'easy';
         const level = generateLevel({ theme: themes[seed % themes.length]!, difficulty, seed, index: 1 });

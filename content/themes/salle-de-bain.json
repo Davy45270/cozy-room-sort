@@ -66,6 +66,18 @@
         "diffuseur-bambou",
         "plante-blanche"
       ]
+    },
+    {
+      "id": "rangements",
+      "label": "Rangements",
+      "icone": "boite-sdb-bois",
+      "objets": [
+        "boite-sdb-bois",
+        "boite-sdb-creme",
+        "boite-sdb-peche",
+        "panier-anse"
+      ],
+      "expertSeulement": true
     }
   ]
 }

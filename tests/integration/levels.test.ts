@@ -1,7 +1,11 @@
+import { activeThemes } from '../../content/themes/index.ts';
 import { RECIPES } from '../../tools/catalog-recipes.ts';
 import { generateLevel } from '@cozy-room-sort/generator';
 // Les niveaux livrés : vingt, variés, tous valides et tous résolus par le solveur avec une solution enregistrée.
-import { readdirSync, readFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { createInitialState, snapshotOf, step, withMode } from '@cozy-room-sort/engine';
 import { validateLevel, type Level } from '@cozy-room-sort/schemas';
@@ -14,7 +18,7 @@ describe('niveaux livrés', () => {
     it('vingt niveaux répartis sur les trois pièces', () => {
         expect(levels).toHaveLength(20);
         const byRoom = (room: string): number => levels.filter(l => l.theme === room).length;
-        expect([byRoom('salon'), byRoom('chambre'), byRoom('salle-de-bain')]).toEqual([7, 7, 6]);
+        expect(activeThemes.map(room => byRoom(room.id))).toEqual([7, 7, 6]);
     });
 
     it('variés : pas seulement « trois piles de trois »', () => {
@@ -24,7 +28,7 @@ describe('niveaux livrés', () => {
         const passes = new Set(levels.map(l => l.scoring.threeStarsMaxBuffered));
         expect(sizes.size).toBeGreaterThanOrEqual(6);
         expect(categories.size).toBeGreaterThanOrEqual(3);
-        expect([...buffers].sort()).toEqual([4, 5]);
+        expect([...buffers].sort()).toEqual([3, 4, 5]);
         expect(levels.filter(level => level.difficulty === 'medium').length).toBeGreaterThanOrEqual(6);
         expect(passes.size).toBeGreaterThanOrEqual(4);
         expect(levels.some(l => l.rules.activeBoxCount === 2)).toBe(true);
@@ -72,4 +76,26 @@ it('le catalogue est identique aux recettes du générateur', () => {
         const generated = { ...generateLevel(recipe), name };
         expect(levels.find(level => level.id === generated.id)).toEqual(generated);
     }
+});
+
+it.each(activeThemes.map(theme => theme.id))('T16 : %s génère et livre un niveau expert valide, résolu par A*', theme => {
+    const dir = mkdtempSync(join(tmpdir(), 'cozy-expert-'));
+    let level: Level;
+    try {
+        const command = spawnSync(process.execPath, ['tools/generate-levels.ts', '--theme', theme,
+            '--difficulty', 'expert', '--seed', '42001', '--count', '1', '--out', dir], { encoding: 'utf8' });
+        if (command.error) throw command.error;
+        expect(command.status, command.stdout + command.stderr).toBe(0);
+        level = JSON.parse(readFileSync(join(dir, `001-${theme}.json`), 'utf8')) as Level;
+    } finally {
+        rmSync(dir, { recursive: true, force: true });
+    }
+    expect(level.difficulty).toBe('expert');
+    expect(level.seed).toBe(42001);
+    expect(validateLevel(level).ok).toBe(true);
+    const result = solve(level, { strategy: 'astar', maxStates: 20_000 });
+    expect(result.kind).toBe('solved');
+    if (result.kind !== 'solved') return;
+    expect(replayTrace(level, result.trace)).toBe('won');
+    expect(levels.some(item => item.theme === theme && item.difficulty === 'expert')).toBe(true);
 });

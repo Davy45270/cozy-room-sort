@@ -58,6 +58,18 @@
         "coussins-duo",
         "coussin-creme"
       ]
+    },
+    {
+      "id": "rangements",
+      "label": "Rangements",
+      "icone": "boite-poignee",
+      "objets": [
+        "boite-poignee",
+        "boite-pois",
+        "boite-rayee",
+        "panier-anses"
+      ],
+      "expertSeulement": true
     }
   ]
 }

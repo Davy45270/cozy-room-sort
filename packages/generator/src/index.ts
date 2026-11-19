@@ -27,7 +27,8 @@ function build(request: GenerationRequest, random: () => number): Level {
     const { difficulty, seed, index } = request;
     const thresholds = DIFFICULTIES[difficulty];
     const [minCategories, maxCategories] = thresholds.categories;
-    const available = theme.categories.filter(category => category.objets.length > 0);
+    const available = theme.categories.filter(category => category.objets.length > 0
+        && (difficulty === 'expert' || !category.expertSeulement));
     if (available.length < minCategories) {
         throw new Error(`${theme.label} : ${available.length} catégories disponibles, ${minCategories} requises pour ${difficulty}`);
     }

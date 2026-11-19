@@ -1,0 +1,83 @@
+{
+  "id": "cuisine",
+  "label": "Cuisine",
+  "actif": false,
+  "remplace": "salle-de-bain",
+  "vue": "vue-cuisine",
+  "sol": "sol-carreaux",
+  "selecteur": "choix-cuisine",
+  "categories": [
+    {
+      "id": "vaisselle",
+      "label": "Vaisselle",
+      "icone": "assiettes-pile",
+      "objets": [
+        "assiettes-pile",
+        "bol",
+        "tasse",
+        "theiere",
+        "pichet"
+      ]
+    },
+    {
+      "id": "ustensiles",
+      "label": "Ustensiles",
+      "icone": "spatule",
+      "objets": [
+        "spatule",
+        "louche",
+        "fouet",
+        "rouleau-patisserie",
+        "planche-decouper"
+      ]
+    },
+    {
+      "id": "casseroles",
+      "label": "Casseroles",
+      "icone": "casserole",
+      "objets": [
+        "casserole",
+        "poele",
+        "marmite",
+        "cocotte",
+        "bouilloire"
+      ]
+    },
+    {
+      "id": "bocaux",
+      "label": "Bocaux et épices",
+      "icone": "bocal-pates",
+      "objets": [
+        "bocal-pates",
+        "pot-farine",
+        "moulin-poivre",
+        "pot-epices",
+        "pot-confiture"
+      ]
+    },
+    {
+      "id": "fruits",
+      "label": "Fruits et légumes",
+      "icone": "corbeille-fruits",
+      "objets": [
+        "corbeille-fruits",
+        "pommes",
+        "citrons",
+        "tomates",
+        "panier-legumes"
+      ]
+    },
+    {
+      "id": "linge",
+      "label": "Linge de cuisine",
+      "icone": "torchon",
+      "objets": [
+        "torchon",
+        "tablier",
+        "gant-cuisine",
+        "boite-pain",
+        "boite-fer"
+      ]
+    }
+  ]
+}
