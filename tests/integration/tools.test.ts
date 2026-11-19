@@ -112,3 +112,33 @@ it('level:validate refuse un bloqueur dont la couche ne le place pas devant', ()
         expect(verdict.out).toContain(`${blocker.id} doit être devant ${blocked.id}`);
     } finally { rmSync(dir, { recursive: true, force: true }); }
 });
+
+
+it('level:validate accepte le salon publié en 1.1 avec un avertissement, même après level:solve --write', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'cozy-salon-historique-'));
+    try {
+        const path = join(dir, 'salon.json');
+        copyFileSync(`${fixtures}/salon-format-1.1.json`, path);
+        const check = (): void => {
+            const verdict = run('validate-levels', path);
+            expect(verdict.code, verdict.out + verdict.err).toBe(0);
+            expect(verdict.err).toMatch(/AVERTISSEMENT .*1\.1.*contrôle géométrique ignoré/);
+            expect(verdict.out).toMatch(/^OK .*9 objets/);
+        };
+        check();
+        expect(run('solve-level', path, '--write').code).toBe(0);
+        check();
+    } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+it('level:validate refuse le même salon déclaré en 1.2 aux recouvrements incorrects', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'cozy-recouvrement-'));
+    try {
+        const data = JSON.parse(readFileSync(`${fixtures}/salon-format-1.1.json`, 'utf8')) as Level;
+        const path = join(dir, 'recouvrement.json');
+        writeFileSync(path, JSON.stringify({ ...data, schemaVersion: '1.2' }));
+        const verdict = run('validate-levels', path);
+        expect(verdict.code).toBe(1);
+        expect(verdict.out).toContain('recouvrement de objet-43004-1 et objet-43004-7');
+    } finally { rmSync(dir, { recursive: true, force: true }); }
+});

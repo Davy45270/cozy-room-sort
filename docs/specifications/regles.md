@@ -54,9 +54,12 @@ nombre d’objets et le solveur minimise les passages au tampon. Le niveau gén�
 optimum, deux étoiles jusqu’à deux passages supplémentaires, puis une étoile au-delà.
 Les écrans de partie et de victoire calculent les étoiles avec le compteur de passages. Un objet rangé
 directement ne l’incrémente pas. Les cartes de niveau affichent la meilleure note enregistrée pour chaque
-identifiant de niveau. Une réédition qui conserve cet identifiant conserve la note. Les objets des niveaux
-réédités ont de nouveaux identifiants. Une ancienne partie en cours qui contient leurs anciens identifiants
-reprend depuis le début.
+identifiant de niveau. Une réédition qui conserve cet identifiant conserve la note et le niveau terminé.
+Chaque journal de partie porte une empreinte des identifiants et dépendances des objets, de la file des
+cartons, du score et des règles appliquées dans le mode courant. La graine, les métadonnées de génération
+et la présentation sont indépendantes du rejeu. Si l’empreinte du journal est absente ou différente,
+le chargement écarte la partie en cours et fournit le motif à l’écran de jeu pour annoncer
+« Ce niveau a changé : la partie reprend au début. »
 
 En mode `auto`, la recherche utilise BFS à coûts 0 et 1 sous 16 objets restants, et A* à partir de 16.
 A* compte une sélection par objet restant et un passage de plus si le prochain coup doit aller au tampon.
@@ -70,14 +73,24 @@ légaux comptés, annulation et redémarrage exclus. La durée affichée mesure 
 
 ## Versions
 
-Le format courant des niveaux est `schemaVersion: "1.1"`. Il est décrit dans
-[`packages/schemas/level.schema.json`](../../packages/schemas/level.schema.json). `migrateLevel` précède toute
-validation. Pour les données en `"1.0"`, la migration conserve le score en passages déjà présent et complète
-`rulesVersion` si nécessaire. Pour l’ancien score en coups, elle soustrait le quota total des cartons des deux
-seuils. Ce supplément devient la marge de passages au tampon. Le niveau migré reste soumis à tous les contrôles.
-Cette migration s’applique au contrat des niveaux, indépendamment de la version des règles du moteur et du
-format de ses instantanés. L’exemple historique de la spécification est conservé intégralement dans les fixtures.
-Il est migrable et ses quotas incomplets sont signalés à la validation.
+Le format courant des niveaux est `schemaVersion: "1.2"`. Il est décrit dans
+[`packages/schemas/level.schema.json`](../../packages/schemas/level.schema.json). La CLI vérifie les
+couches des bloqueurs et le recouvrement des boîtes utiles des objets. Deux objets liés se recouvrent
+d’au moins 25 % de la plus petite boîte utile. Deux objets sans lien se recouvrent de moins de 10 %.
+La projection utilise la même échelle pour les positions et les tailles. Le toucher choisit le pixel
+opaque le plus en avant, puis cherche la boîte utile la plus proche dans un rayon de 22 px.
+
+`migrateLevel` précède la validation structurelle et migre en mémoire les niveaux `"1.0"` et `"1.1"`.
+Pour un fichier historique, la CLI émet un avertissement et saute le contrôle géométrique. Elle vérifie
+la structure, le rejeu de la solution enregistrée si elle existe, la résolution et le seuil de trois étoiles.
+`level:solve --write` conserve la version du fichier. Pour publier une disposition historique en 1.2,
+il faut la mettre en conformité avec les seuils et valider le fichier en 1.2.
+
+Pour les données en `"1.0"`, la migration conserve le score en passages déjà présent et complète
+`rulesVersion` si nécessaire. Pour l’ancien score en coups, elle soustrait le quota total des cartons
+des deux seuils. Ce supplément devient la marge de passages au tampon. La migration du contrat des niveaux
+est indépendante de la version des règles du moteur et du format de ses instantanés. L’exemple historique de
+la spécification est conservé dans les fixtures. Ses quotas incomplets sont signalés à la validation.
 
 ## Bibliothèque et activation de la cuisine
 

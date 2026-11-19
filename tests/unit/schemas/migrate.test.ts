@@ -6,7 +6,7 @@ it('migre le contrat historique et diagnostique son quota incomplet', () => {
     const example: unknown = JSON.parse(readFileSync('tests/fixtures/levels/spec-exemple.json', 'utf8'));
     const migrated = migrateLevel(example);
     expect(migrated).toMatchObject({
-        schemaVersion: '1.1', rulesVersion: '1',
+        schemaVersion: '1.2', rulesVersion: '1',
         scoring: { threeStarsMaxBuffered: 3, twoStarsMaxBuffered: 9 }
     });
     expect(example).toMatchObject({ schemaVersion: '1.0', scoring: { threeStarsMaxMoves: 12 } });

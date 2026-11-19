@@ -1,7 +1,7 @@
 // npm run level:validate -- <fichier|dossier>… : structure valide ET résolu par le solveur en mode classique.
 import { basename } from 'node:path';
 import { withMode } from '@cozy-room-sort/engine';
-import { levelFiles, readLevel } from '@cozy-room-sort/level-tools/files';
+import { levelFiles, readLevelWithVersion } from '@cozy-room-sort/level-tools/files';
 import { boundsOf } from '../content/assets/object-bounds.ts';
 import { roomGeometryError } from '@cozy-room-sort/schemas/room-geometry';
 import { replayTrace, solve } from '@cozy-room-sort/solver';
@@ -9,9 +9,13 @@ import { replayTrace, solve } from '@cozy-room-sort/solver';
 type Verdict = { ok: true; objects: number; buffered: number; states: number } | { ok: false; problem: string };
 
 function check(path: string): Verdict {
-    const level = readLevel(path);
-    const geometry = roomGeometryError(level, boundsOf);
-    if (geometry) return { ok: false, problem: geometry };
+    const { level, migratedFrom } = readLevelWithVersion(path);
+    if (migratedFrom) {
+        console.warn(`AVERTISSEMENT ${basename(path, '.json')} : format ${migratedFrom} migré en mémoire, contrôle géométrique ignoré`);
+    } else {
+        const geometry = roomGeometryError(level, boundsOf);
+        if (geometry) return { ok: false, problem: geometry };
+    }
     if (level.meta?.solution && replayTrace(level, level.meta.solution) !== 'won') return { ok: false, problem: 'la solution enregistrée ne mène pas à la victoire' };
     const result = solve(withMode(level, 'classique'));
     if (result.kind === 'unsolvable') return { ok: false, problem: `insoluble (${result.statesExplored} états)` };

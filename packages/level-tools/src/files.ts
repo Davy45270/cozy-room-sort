@@ -13,7 +13,11 @@ export function levelFiles(path: string): string[] {
 }
 
 export function readLevel(path: string): Level {
+    return readLevelWithVersion(path).level;
+}
+
+export function readLevelWithVersion(path: string): { level: Level; migratedFrom?: '1.0' | '1.1' } {
     const result = parseLevel(readFileSync(path, 'utf8'));
-    if (result.ok) return result.level;
+    if (result.ok) return result;
     throw new Error(result.errors.map(({ path: field, message }) => `${field} : ${message}`).join(' ; '));
 }

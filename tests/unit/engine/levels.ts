@@ -12,7 +12,7 @@ export interface MiniSpec {
 export function makeLevel(spec: MiniSpec): Level {
     const categories = [...new Set([...spec.boxes.map(([c]) => c), ...spec.objects.map(([, c]) => c)])];
     return {
-        schemaVersion: '1.1', rulesVersion: '1', id: 'test', name: 'Niveau de test', theme: 'salon', difficulty: 'easy', seed: 1,
+        schemaVersion: '1.2', rulesVersion: '1', id: 'test', name: 'Niveau de test', theme: 'salon', difficulty: 'easy', seed: 1,
         rules: { bufferCapacity: 3, activeBoxCount: 1, allowUndo: true, allowHints: true, timeLimitSeconds: null, ...spec.rules },
         categories: categories.map(id => ({ id, label: id })),
         boxes: spec.boxes.map(([category, capacity], i) => ({ id: `box-${i + 1}`, category, capacity })),

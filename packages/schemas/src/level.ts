@@ -60,4 +60,4 @@ export interface Level {
 
 export interface LevelError { path: string; message: string }
 
-export type ValidationResult = { ok: true; level: Level } | { ok: false; errors: readonly LevelError[] };
+export type ValidationResult = { ok: true; level: Level; migratedFrom?: '1.0' | '1.1' } | { ok: false; errors: readonly LevelError[] };

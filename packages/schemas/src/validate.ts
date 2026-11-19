@@ -164,7 +164,12 @@ export function validateLevel(raw: unknown): ValidationResult {
         }
     }
 
-    return errors.length === 0 ? { ok: true, level: input as unknown as Level } : { ok: false, errors };
+    if (errors.length > 0) return { ok: false, errors };
+    const level = input as unknown as Level;
+    const sourceVersion = isObj(raw) ? raw['schemaVersion'] : undefined;
+    return sourceVersion === '1.0' || sourceVersion === '1.1'
+        ? { ok: true, level, migratedFrom: sourceVersion }
+        : { ok: true, level };
 }
 
 /** Parcours en profondeur à trois couleurs ; rend le cycle trouvé, premier sommet répété à la fin. */

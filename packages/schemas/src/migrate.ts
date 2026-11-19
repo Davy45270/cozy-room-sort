@@ -1,4 +1,4 @@
-export const SCHEMA_VERSION = '1.1';
+export const SCHEMA_VERSION = '1.2';
 
 export const isObject = (value: unknown): value is Record<string, unknown> =>
     typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -22,7 +22,9 @@ function migrateScoring(raw: Record<string, unknown>): unknown {
 }
 
 export function migrateLevel(raw: unknown): unknown {
-    if (!isObject(raw) || raw['schemaVersion'] !== '1.0') return raw;
+    if (!isObject(raw)) return raw;
+    if (raw['schemaVersion'] === '1.1') return { ...raw, schemaVersion: SCHEMA_VERSION };
+    if (raw['schemaVersion'] !== '1.0') return raw;
     return {
         ...raw,
         schemaVersion: SCHEMA_VERSION,

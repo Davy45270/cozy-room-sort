@@ -1,0 +1,190 @@
+{
+  "schemaVersion": "1.1",
+  "rulesVersion": "1",
+  "id": "001-salon",
+  "name": "Le salon en désordre",
+  "theme": "salon",
+  "difficulty": "easy",
+  "seed": 43004,
+  "rules": {
+    "bufferCapacity": 5,
+    "activeBoxCount": 1,
+    "allowUndo": true,
+    "allowHints": true,
+    "timeLimitSeconds": null
+  },
+  "categories": [
+    {
+      "id": "plantes",
+      "label": "Plantes et fleurs"
+    },
+    {
+      "id": "cadres",
+      "label": "Cadres"
+    },
+    {
+      "id": "lumieres",
+      "label": "Lumières"
+    }
+  ],
+  "boxes": [
+    {
+      "id": "carton-1",
+      "category": "plantes",
+      "capacity": 3
+    },
+    {
+      "id": "carton-2",
+      "category": "cadres",
+      "capacity": 3
+    },
+    {
+      "id": "carton-3",
+      "category": "lumieres",
+      "capacity": 3
+    }
+  ],
+  "objects": [
+    {
+      "id": "objet-43004-1",
+      "category": "plantes",
+      "asset": "cactus",
+      "blockedBy": [],
+      "position": {
+        "x": 0.833,
+        "y": 0.167
+      },
+      "layer": 9
+    },
+    {
+      "id": "objet-43004-4",
+      "category": "plantes",
+      "asset": "monstera-panier",
+      "blockedBy": [],
+      "position": {
+        "x": 0.5,
+        "y": 0.167
+      },
+      "layer": 8
+    },
+    {
+      "id": "objet-43004-7",
+      "category": "plantes",
+      "asset": "tournesols",
+      "blockedBy": [
+        "objet-43004-1",
+        "objet-43004-4"
+      ],
+      "position": {
+        "x": 0.167,
+        "y": 0.167
+      },
+      "layer": 7
+    },
+    {
+      "id": "objet-43004-2",
+      "category": "cadres",
+      "asset": "cadre-tulipe",
+      "blockedBy": [
+        "objet-43004-7"
+      ],
+      "position": {
+        "x": 0.167,
+        "y": 0.5
+      },
+      "layer": 6
+    },
+    {
+      "id": "objet-43004-5",
+      "category": "cadres",
+      "asset": "cadre-feuille",
+      "blockedBy": [
+        "objet-43004-7"
+      ],
+      "position": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layer": 5
+    },
+    {
+      "id": "objet-43004-8",
+      "category": "cadres",
+      "asset": "cadre-paysage",
+      "blockedBy": [
+        "objet-43004-7",
+        "objet-43004-2",
+        "objet-43004-5"
+      ],
+      "position": {
+        "x": 0.833,
+        "y": 0.5
+      },
+      "layer": 4
+    },
+    {
+      "id": "objet-43004-3",
+      "category": "lumieres",
+      "asset": "cloche-lumineuse",
+      "blockedBy": [
+        "objet-43004-7"
+      ],
+      "position": {
+        "x": 0.833,
+        "y": 0.833
+      },
+      "layer": 3
+    },
+    {
+      "id": "objet-43004-6",
+      "category": "lumieres",
+      "asset": "lampe-chevet",
+      "blockedBy": [
+        "objet-43004-8"
+      ],
+      "position": {
+        "x": 0.5,
+        "y": 0.833
+      },
+      "layer": 2
+    },
+    {
+      "id": "objet-43004-9",
+      "category": "lumieres",
+      "asset": "lampe-table",
+      "blockedBy": [
+        "objet-43004-8",
+        "objet-43004-3",
+        "objet-43004-6"
+      ],
+      "position": {
+        "x": 0.167,
+        "y": 0.833
+      },
+      "layer": 1
+    }
+  ],
+  "scoring": {
+    "threeStarsMaxBuffered": 0,
+    "twoStarsMaxBuffered": 2
+  },
+  "meta": {
+    "solution": [
+      "objet-43004-1",
+      "objet-43004-4",
+      "objet-43004-7",
+      "objet-43004-2",
+      "objet-43004-5",
+      "objet-43004-8",
+      "objet-43004-3",
+      "objet-43004-6",
+      "objet-43004-9"
+    ],
+    "engineVersion": "0.1.0",
+    "statesExplored": 13,
+    "nonTrivialDecisions": 4,
+    "legalMoves": 24,
+    "blockingMoves": 0,
+    "blockingMoveShare": 0
+  }
+}

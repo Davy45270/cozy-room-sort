@@ -11,7 +11,8 @@ if (path === undefined) {
     console.error('usage : level:solve <fichier> [--write]');
     process.exit(2);
 }
-const parsed = parseLevel(readFileSync(path, 'utf8'));
+const source = readFileSync(path, 'utf8');
+const parsed = parseLevel(source);
 if (!parsed.ok) {
     for (const e of parsed.errors) console.log(`ÉCHEC ${e.path} : ${e.message}`);
     process.exit(1);
@@ -25,6 +26,8 @@ console.log(`${parsed.level.id} : ${result.trace.length} coups, ${result.buffere
 console.log(result.trace.join(' '));
 if (args.includes('--write')) {
     const meta = { ...parsed.level.meta, solution: result.trace, engineVersion: enginePackage.version, statesExplored: result.statesExplored };
-    writeFileSync(path, `${JSON.stringify({ ...parsed.level, meta }, null, 2)}\n`);
+    // Enregistrer une trace ne valide pas la conformité d'un ancien fichier au format courant.
+    const original = JSON.parse(source) as Partial<typeof parsed.level>;
+    writeFileSync(path, `${JSON.stringify({ ...original, meta }, null, 2)}\n`);
     console.log(`solution écrite dans ${path}`);
 }
