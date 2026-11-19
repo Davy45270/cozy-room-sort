@@ -1,12 +1,17 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type { Level } from '@cozy-room-sort/schemas';
-import { drawOrder, layoutRoom, MIN_SIZE } from '../../../apps/web/src/scene/layout.ts';
+import { drawOrder, layoutRoom, MIN_SIZE, roomView } from '../../../apps/web/src/scene/layout.ts';
 
 const levels = readdirSync('content/levels').map(f => JSON.parse(readFileSync(`content/levels/${f}`, 'utf8')) as Level);
 const viewports = [{ width: 360, height: 300 }, { width: 412, height: 480 }, { width: 900, height: 620 }, { width: 1280, height: 700 }];
 
 describe('projection de la pièce', () => {
+    it('inscrit la plus grande vue carrée dans la zone de jeu', () => {
+        expect(roomView({ width: 390, height: 390 })).toEqual({ x: 195, y: 195, size: 390 });
+        expect(roomView({ width: 880, height: 732 })).toEqual({ x: 440, y: 366, size: 732 });
+    });
+
     it.each(viewports)('$width×$height : chaque objet reste dans la zone, à 44 px au moins', viewport => {
         for (const level of levels) {
             const placed = layoutRoom(level, viewport);

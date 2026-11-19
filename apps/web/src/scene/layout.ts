@@ -10,7 +10,7 @@ export function roomView(viewport: Viewport): Placed {
     return {
         x: viewport.width / 2,
         y: viewport.height / 2,
-        size: Math.min(640, viewport.width * 0.96, viewport.height * 0.98)
+        size: Math.min(viewport.width, viewport.height)
     };
 }
 

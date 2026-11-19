@@ -4,21 +4,24 @@ import { atlasImage, h, iconButton, stars } from '../dom.ts';
 
 export async function levelsScreen(ctx: AppContext, room?: string): Promise<Screen> {
     const progress = await ctx.store.progress();
-    const recent = LEVELS.find(level => level.id === ctx.settings.lastLevelId)?.theme;
-    const available = LEVELS.find(level => !progress[level.id] && isUnlocked(level, progress))?.theme;
-    const defaultRoom = room ?? recent ?? available ?? ROOM_ORDER[0];
+    const recent = LEVELS.find(level => level.id === ctx.settings.lastLevelId);
+    const available = LEVELS.find(level => !progress[level.id] && isUnlocked(level, progress));
+    const current = recent ?? available ?? LEVELS[0];
+    const defaultRoom = room ?? current?.theme ?? ROOM_ORDER[0];
     const tabs = ROOM_ORDER.map(id => h('button', {
         type: 'button', class: 'room-choice', id: `onglet-${id}`, 'data-testid': `onglet-${id}`,
         'aria-label': THEMES[id]!.label, role: 'tab', 'aria-controls': `piece-${id}`
     }, atlasImage(THEMES[id]!.selecteur)));
     const panels = ROOM_ORDER.map(id => h('section', {
-        id: `piece-${id}`, role: 'tabpanel', 'aria-labelledby': `onglet-${id}`
+        id: `piece-${id}`, role: 'tabpanel', 'aria-labelledby': `onglet-${id}`,
+        style: `--room-accent: var(--crs-room-${id}, var(--crs-accent))`
     }, h('ul', { class: 'level-grid' }, ...LEVELS.filter(level => level.theme === id).map(level => {
         const open = isUnlocked(level, progress);
         const result = progress[level.id];
         const number = levelNumber(level);
         return h('li', {}, h('button', {
             type: 'button', class: 'level-card', disabled: !open, 'data-testid': `niveau-${level.id}`,
+            'aria-current': level === current ? 'true' : undefined,
             'aria-label': `Niveau ${number}, ${level.name}${open ? '' : ', verrouillé'}${result ? `, ${result.stars} étoile${result.stars > 1 ? 's' : ''}` : ''}`,
             onclick: () => ctx.go({ screen: 'play', level })
         }, h('span', { class: 'level-number', text: String(number) }), h('span', { class: 'level-name', text: level.name }),

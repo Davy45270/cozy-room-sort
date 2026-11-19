@@ -41,10 +41,18 @@ it('ferme les cartons complets et pose une coche par catégorie rangée', () => 
     };
     draw();
     expect(boxes.querySelectorAll('[data-frame="sprite-carton-ouvert"]')).toHaveLength(level.rules.activeBoxCount);
+    expect(controller.state.pendingBoxIds.length).toBeGreaterThan(0);
+    expect([...boxes.querySelectorAll('.box-pending')].map(box => box.getAttribute('data-box')))
+        .toEqual(controller.state.pendingBoxIds);
+    for (const box of boxes.querySelectorAll('.box-pending')) {
+        expect(box.querySelector('[data-frame="sprite-carton-ferme"]')).not.toBeNull();
+        expect(box.querySelector('.box-icon')).not.toBeNull();
+    }
     expect(quotas.querySelectorAll('[data-frame="sprite-coche"]')).toHaveLength(0);
     for (const id of level.meta?.solution ?? []) controller.select(id);
     draw();
     expect(boxes.querySelectorAll('[data-frame="sprite-carton-ouvert"]')).toHaveLength(0);
     expect(boxes.querySelectorAll('[data-frame="sprite-carton-ferme"]')).toHaveLength(level.boxes.length);
+    expect(boxes.querySelectorAll('[data-frame="sprite-coche"]')).toHaveLength(level.boxes.length);
     expect(quotas.querySelectorAll('[data-frame="sprite-coche"]')).toHaveLength(level.categories.length);
 });

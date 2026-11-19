@@ -7,15 +7,17 @@ import type { Controller } from './game/controller.ts';
 export function renderBoxes(container: HTMLElement, level: Level, state: GameState): void {
     container.replaceChildren(...level.boxes.map(box => {
         const pending = state.pendingBoxIds.includes(box.id);
-        if (pending) return h('div', { class: 'box-space', 'aria-hidden': 'true' });
         const fill = state.boxFillCounts[box.id] ?? 0;
         const completed = state.completedBoxIds.includes(box.id);
+        const status = pending ? 'en attente' : completed ? 'fermé' : 'actif';
+        const closed = pending || completed;
         const label = labelOf(level, box.category);
-        return h('div', { class: 'box', 'data-box': box.id, role: 'group',
-            'aria-label': `Carton ${label}, ${fill} sur ${box.capacity}${completed ? ', fermé' : ''}` },
+        return h('div', { class: pending ? 'box box-pending' : 'box', 'data-box': box.id, role: 'group',
+            'aria-label': `Carton ${label}, ${fill} sur ${box.capacity}, ${status}` },
             h('span', { class: 'box-picture' },
-                atlasImage(completed ? 'carton-ferme' : 'carton-ouvert', '', 'box-art'),
-                atlasImage(pictoOf(level, box.category), '', completed ? 'box-icon closed' : 'box-icon')),
+                atlasImage(closed ? 'carton-ferme' : 'carton-ouvert', '', 'box-art'),
+                atlasImage(pictoOf(level, box.category), '', 'box-icon'),
+                completed ? atlasImage('coche', '', 'box-check') : null),
             h('span', { class: 'box-count', text: `${fill}/${box.capacity}` }));
     }));
 }

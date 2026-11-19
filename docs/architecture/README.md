@@ -34,3 +34,13 @@ difficulté et le titre français. Les parties en cours des anciennes dispositio
 identifiants d’objets renouvelés. Les identifiants de niveau conservent la progression du catalogue.
 
 Le [contrat du niveau et les règles](../specifications/regles.md) détaillent les versions et le score.
+
+## Rendu des écrans
+
+L’accueil met en avant la pièce du dernier niveau joué, ou le salon pour une nouvelle partie. Le catalogue
+reprend les vignettes des planches et signale le niveau courant avec la couleur de sa pièce. Les titres
+reçoivent le focus après la navigation et les boutons illustrés affichent un anneau au focus clavier.
+
+Le panneau de jeu projette la file du moteur dans l’ordre du niveau. Les cartons en attente portent leur
+pictogramme sur un carton fermé, réduit et grisé. Une coche identifie chaque carton rempli. La scène inscrit
+la vue carrée dans la zone de jeu et réutilise cette projection pour les objets.

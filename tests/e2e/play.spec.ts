@@ -16,7 +16,8 @@ test('gagner le premier niveau en suivant la meilleure solution donne trois éto
     await expect(dialog.getByRole('img', { name: '3 étoiles sur 3' })).toBeVisible();
     await expect(dialog.getByRole('button', { name: 'Niveau suivant' }).locator('[data-frame="sprite-btn-jouer"]')).toBeVisible();
     await expect(screen.locator('[data-frame="sprite-carton-ferme"]')).toHaveCount(level.boxes.length);
-    await expect(screen.locator('[data-frame="sprite-coche"]')).toHaveCount(level.categories.length);
+    await expect(screen.locator('.box [data-frame="sprite-coche"]')).toHaveCount(level.boxes.length);
+    await expect(screen.locator('.quotas [data-frame="sprite-coche"]')).toHaveCount(level.categories.length);
     await expect(screen.locator('.progress')).toHaveAttribute('aria-valuenow', String(level.objects.length));
     await expect(guide).toHaveCount(0);
     expect(errors).toEqual([]);
