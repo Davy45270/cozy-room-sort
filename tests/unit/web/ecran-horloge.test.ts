@@ -134,3 +134,22 @@ it('expert : la défaite dit que ce mode ne permet pas d’annuler', async () =>
     expect(message(screen)).toBe('Il ne reste aucun coup possible, et ce mode ne permet pas d’annuler.');
     screen.dispose?.();
 });
+
+// R-008 : le coup gagnant s'annule aussi depuis le dialogue de victoire (la barre est inerte sous le dialogue).
+it('détente : le dialogue de victoire offre « Annuler », qui remet le dernier objet dans la pièce et ferme le dialogue', async () => {
+    const base = impasseAvecCadres();
+    const level: Level = { ...base, rules: { ...base.rules, bufferCapacity: 3 } };
+    const screen = await playScreen({ ...context(level), settings: { ...DEFAULT_SETTINGS, mode: 'detente', lastLevelId: level.id } }, level);
+    screen.mounted?.();
+    room.onReady?.();
+    for (const id of ['b1', 'b2', 'a1', 'a2']) controller().select(id);
+    expect(controller().state.status).toBe('won');
+    const annuler = screen.element.querySelector<HTMLButtonElement>('[data-testid="ecran-victoire"] [data-action="undo"]');
+    expect(annuler).not.toBeNull();
+    expect(annuler?.disabled).toBe(false);
+    annuler?.click();
+    expect(controller().state.status).toBe('playing');
+    expect(controller().state.remainingObjectIds).toEqual(['a2']);
+    expect(screen.element.querySelector<HTMLElement>('[data-testid="ecran-victoire"]')?.closest('[hidden]')).not.toBeNull();
+    screen.dispose?.();
+});

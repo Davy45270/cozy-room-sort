@@ -89,8 +89,9 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
         const actions = h('div', { class: 'dialog-actions' },
             won && next ? iconButton('btn-jouer', 'Niveau suivant', () => ctx.go({ screen: 'play', level: next }),
                 { class: 'icon-button play-button', 'data-action': 'next' }) : null,
-            !won && !lost && rules.allowUndo ? iconButton('btn-annuler', 'Annuler', () => { controller.undo(); redo.focus(); },
-                { disabled: undo.disabled }) : null,
+            // Annuler reste offert après une victoire (R-008 : le coup gagnant s'annule aussi) ; jamais après une défaite.
+            !lost && rules.allowUndo ? iconButton('btn-annuler', 'Annuler', () => { controller.undo(); redo.focus(); },
+                { disabled: undo.disabled, 'data-action': 'undo' }) : null,
             iconButton('btn-recommencer', won ? 'Rejouer' : 'Recommencer', restart, { 'data-action': 'replay' }),
             won ? h('button', { type: 'button', class: 'button', onclick: () => ctx.go({ screen: 'levels' }), text: 'Niveaux' }) : null);
         overlay.replaceChildren(h('div', { class: 'dialog', role: won ? 'dialog' : 'alertdialog', 'aria-modal': 'true',

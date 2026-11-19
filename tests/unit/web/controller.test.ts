@@ -55,7 +55,7 @@ describe('contrôleur de partie', () => {
         expect(controller.hint()).toEqual({ none: 'not-found' });
     });
 
-    it('une victoire notifie LEVEL_WON avec les étoiles, puis la sauvegarde est vidée', async () => {
+    it('une victoire notifie LEVEL_WON avec les étoiles, et la partie gagnée reste enregistrée', async () => {
         const { controller, seen, saves } = setup();
         for (const id of ['a1', 'b1', 'a2']) controller.select(id);
         await controller.idle();
