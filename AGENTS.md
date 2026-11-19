@@ -7,12 +7,12 @@ la conception détaillée et les plans de travail sont tenus hors de ce dépôt.
 
 - **Garde de marque** : aucun nom de jeu du commerce, aucune marque d'objet (consoles, outillage, jouets,
   logos de logiciels), aucun identifiant de ticket (majuscules, tiret, chiffres) dans les fichiers suivis par
-  git, messages de commit compris (`tests/brand-guard.test.ts`). Les règles se nomment `R-001`…, les tests
+  git, messages de commit compris (`tests/integration/brand-guard.test.ts`). Les règles se nomment `R-001`…, les tests
   d'acceptation `T-001`… Le jeu est original : on ne copie ni graphismes ni niveaux d'un autre jeu.
 - **Pas de règle métier dans le rendu.** `packages/schemas/src/**`, `packages/engine/src/**` et
-  `packages/solver/src/**` n'utilisent ni `window`, `document`, `navigator`, `self`, `Date`, `localStorage`,
+  `packages/solver/src/**` et `packages/generator/src/**` n'utilisent ni `window`, `document`, `navigator`, `self`, `Date`, `localStorage`,
   `indexedDB`, `fetch`, `performance`, `requestAnimationFrame`, ni `Math.random`, et n'importent ni
-  `phaser` ni `node:fs` (oxlint, vérifié par `tests/engine-purity.test.ts`). Le solveur reçoit son horloge
+  `phaser` ni `node:fs` (oxlint, vérifié par `tests/integration/engine-purity.test.ts`). Le solveur reçoit son horloge
   en paramètre.
 - **Moteur** : `applyAction(level, state, action)` ne modifie jamais ses arguments ; un coup refusé rend
   **le même objet** état et un seul événement `ACTION_REJECTED`. Mêmes niveau, version de règles, état
@@ -34,12 +34,16 @@ la conception détaillée et les plans de travail sont tenus hors de ce dépôt.
 - `packages/schemas` : types du niveau, validateur sans dépendance, `level.schema.json`.
 - `packages/engine` : état, actions, règles (accessibilité, cartons, tampon, statut), réducteur, modes,
   sauvegarde par rejeu.
-- `packages/solver` : recherche en largeur bornée, empreinte d'état, indice, rejeu de trace.
-- `tools/` : `validate-levels.ts`, `solve-level.ts`. `content/levels/` : niveaux JSON.
+- `packages/solver` porte BFS et A* bornés, empreinte d'état, indice, rejeu et mesures.
+- `packages/generator` construit et vérifie des niveaux déterministes à partir des thèmes.
+- `packages/level-tools` charge les niveaux et prépare leurs captures.
+- Les commandes `level:validate`, `level:solve`, `level:generate`, `level:render` et `level:benchmark` vivent dans
+  `tools/`. Les recettes régénèrent `content/levels/` avec `npm run level:generate -- --catalog`.
 
 ## Tests : ciblés, jamais la suite complète
 
-En local, on ne lance que les fichiers touchés : `npx vitest run <fichier>`. La CI Woodpecker joue tout.
+Les tests sont rangés dans `tests/unit/<paquet>/`, `tests/property/`, `tests/integration/` et `tests/e2e/`.
+En local, lancer uniquement les fichiers touchés avec `npx vitest run <fichier>`. La CI Woodpecker joue tout.
 
 ## Commits
 
