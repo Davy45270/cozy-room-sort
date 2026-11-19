@@ -44,3 +44,12 @@ it('chaque cadre possède une provenance et une boîte utile dans ses dimensions
     }
     expect(entries).toHaveLength(count);
 });
+
+it('documente le polygone effacé de la vue de la salle de bain', () => {
+    const source = json(`${root}/source/p04-vues.decoupe.json`) as { elements: { effacer?: number[][] }[] };
+    const polygon = source.elements[0]?.effacer;
+    expect(polygon).toBeDefined();
+    const entry = (json('content/assets/provenance.json') as Entry[]).find(item => item.id === 'vue-salle-de-bain');
+    expect(entry?.origine.transformations).toContain(
+        `polygone effacé : pastille voisine collée ${JSON.stringify(polygon)}`);
+});

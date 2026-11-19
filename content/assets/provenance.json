@@ -5696,6 +5696,7 @@
       "transformations": [
         "Découpe avec marge",
         "Mise à l’échelle dans un cadre carré transparent",
+        "polygone effacé : pastille voisine collée [[378,0],[415,0],[415,98],[388,84],[378,80]]",
         "Assemblage en atlas WebP"
       ]
     },

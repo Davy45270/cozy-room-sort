@@ -13,6 +13,10 @@ const provenancePath = fileURLToPath(new URL('../../content/assets/provenance.js
 
 export default defineConfig({
     base: './',
+    resolve: {
+        // La distribution légère conserve le rendu, les entrées et les atlas utilisés par la scène.
+        alias: { phaser: fileURLToPath(new URL('./dist/phaser-arcade-physics.min.js', import.meta.resolve('phaser/package.json'))) }
+    },
     build: { outDir: '../../dist', emptyOutDir: true, chunkSizeWarningLimit: 1600 },
     plugins: [{
         name: 'crs-atlas-hitboxes',
