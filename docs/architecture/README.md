@@ -32,8 +32,8 @@ contrôleur lui transmet l’état courant et une horloge.
 Les fichiers JSON du catalogue sont produits hors jeu. Les recettes fixent la graine, l’index, le thème, la
 difficulté et le titre français. Le stockage compare l’empreinte du niveau et du mode à celle du journal
 avant tout rejeu. Une empreinte différente donne un motif de reprise au début. Un journal sans empreinte,
-écrit par une version précédente, est repris s’il se rejoue entièrement sur le niveau actuel (aucun coup
-refusé) et signé à la prochaine écriture ; sinon, même motif de reprise au début. Les identifiants
+écrit par une version précédente, reçoit le même motif de reprise au début : un journal qui se rejoue
+encore peut donner un autre état que celui enregistré. Les identifiants
 de niveau conservent la progression du catalogue.
 
 Le [contrat du niveau et les règles](../specifications/regles.md) détaillent les versions et le score.

@@ -60,10 +60,8 @@ directement ne l’incrémente pas. Les cartes de niveau affichent la meilleure 
 identifiant de niveau. Une réédition qui conserve cet identifiant conserve la note et le niveau terminé.
 Chaque journal de partie porte une empreinte des identifiants et dépendances des objets, de la file des
 cartons, du score et des règles appliquées dans le mode courant. La graine, les métadonnées de génération
-et la présentation sont indépendantes du rejeu. Un journal sans empreinte (version précédente du jeu) est
-repris s’il se rejoue entièrement sur le niveau actuel, sans coup refusé, et reçoit l’empreinte à la prochaine
-écriture. Si l’empreinte est différente, ou absente sur un journal qui ne se rejoue pas,
-le chargement écarte la partie en cours et fournit le motif à l’écran de jeu pour annoncer
+et la présentation sont indépendantes du rejeu. Si l’empreinte est différente, ou absente (journal d’une version précédente du jeu, qui pourrait se rejouer
+vers un autre état que celui enregistré), le chargement écarte la partie en cours et fournit le motif à l’écran de jeu pour annoncer
 « Ce niveau a changé : la partie reprend au début. »
 
 En mode `auto`, la recherche utilise BFS à coûts 0 et 1 sous 16 objets restants, et A* à partir de 16.
