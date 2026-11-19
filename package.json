@@ -26,7 +26,8 @@
     "test:e2e": "playwright test",
     "level:generate": "node tools/generate-levels.ts",
     "level:benchmark": "node tools/benchmark-solver.ts",
-    "level:render": "node tools/render-level.ts"
+    "level:render": "node tools/render-level.ts",
+    "assets:inventaire": "node tools/inventaire-assets.ts"
   },
   "devDependencies": {
     "@playwright/test": "1.65.0",

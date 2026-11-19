@@ -1,0 +1,1028 @@
+[
+  {
+    "chemin": "apps/web/public/icons/cozy-room-sort-192.png",
+    "sha256": "5ec86821d672437a6647ece28bc8e361641ea71ed206c13bb9e01b356051bb23",
+    "octets": 10806,
+    "type": "icône",
+    "origine": {
+      "derive_de": "p01-objets/sprite-carton-ouvert",
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/icons/cozy-room-sort-512.png",
+    "sha256": "64740b6b345acdb67b1c9f6eead610e2816f8656197b26caafca0bb82d41645f",
+    "octets": 41840,
+    "type": "icône",
+    "origine": {
+      "derive_de": "p01-objets/sprite-carton-ouvert",
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/icons/cozy-room-sort-maskable-512.png",
+    "sha256": "b7f3821d8049331b21c01472e973cf2a1f0a6bcb8e5c70fef1787c06a2285bea",
+    "octets": 30251,
+    "type": "icône",
+    "origine": {
+      "derive_de": "p01-objets/sprite-carton-ouvert",
+      "planche": "Cozy_Room_Sort_Planche_01.webp",
+      "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+    },
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/sons/carton-ferme.mp3",
+    "sha256": "752ea15fefe8ecb1c0613a23b69398463107b35e0f54a95129a3ad4e086a6123",
+    "octets": 2968,
+    "type": "son",
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/sons/carton-ferme.ogg",
+    "sha256": "ea85bc8a4ce7375a22cdf33d81c281fe006a28ec2d639ada85854844c65462a0",
+    "octets": 4067,
+    "type": "son",
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/sons/rangement.mp3",
+    "sha256": "bf413ca6ebd8b8d574663e2a3422df54958eae0c8018980d2e94ec83470c1650",
+    "octets": 2759,
+    "type": "son",
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/sons/rangement.ogg",
+    "sha256": "491c46bf40ec52ec989705524dc20d301300ba20365a9862164d20dab4c095a4",
+    "octets": 3942,
+    "type": "son",
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/sons/selection.mp3",
+    "sha256": "dfb0c21024bc0d89f8002f1dfc26804271a766c6f34ac0345ee0f901ff9c45c7",
+    "octets": 1296,
+    "type": "son",
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/sons/selection.ogg",
+    "sha256": "7254668a11476cbbcc0794d7b9e4cc253e9400ac763a0241a3249c132b1434be",
+    "octets": 3544,
+    "type": "son",
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/sons/victoire.mp3",
+    "sha256": "6e3ac35251dde71ccfd2bb79dda67bf9cfcd6e3a6325e86419edc200afd9384c",
+    "octets": 6312,
+    "type": "son",
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "apps/web/public/sons/victoire.ogg",
+    "sha256": "1b338af46a9eb20679d1f2e847e3012d87de01d09ee75a7335dcff7865cae148",
+    "octets": 5367,
+    "type": "son",
+    "origine": "Synthétisé par tools/synth-sons.ts",
+    "licence": "CC-BY-4.0"
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-meubles.json",
+    "sha256": "8c9fd955d95f01c8fdf38169e09b0eb6dd0d48665601cd02a40694152e850f81",
+    "octets": 2567,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "chaise-bois",
+        "commode",
+        "etagere-plante",
+        "evier-vert",
+        "fauteuil-terracotta",
+        "frigo",
+        "lit-bleu",
+        "table-ronde"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-meubles.webp",
+    "sha256": "da334dc5b80fcad8a6acce81c41b2260eb465060aa63ade5c49848d1a31fa4a6",
+    "octets": 86528,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "chaise-bois",
+        "commode",
+        "etagere-plante",
+        "evier-vert",
+        "fauteuil-terracotta",
+        "frigo",
+        "lit-bleu",
+        "table-ronde"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-objets.json",
+    "sha256": "d85962a5f5f82bc70414c3ff5efd3debee7b883915ab1362ab82f44462bf1bff",
+    "octets": 5585,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "bac-bleu",
+        "bac-creme",
+        "bac-osier",
+        "boite-creme",
+        "boite-fleurie",
+        "boite-terracotta",
+        "bouquet-blanc",
+        "cadre-feuille",
+        "cadre-paysage",
+        "carton-ferme",
+        "carton-ouvert",
+        "chat-dort",
+        "coussin-creme",
+        "lampe-chevet",
+        "livres-trio",
+        "panier-osier",
+        "plaid-bleu",
+        "plante-panier"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-objets.webp",
+    "sha256": "62b9a12cc669e444706b1b0cc9463c27027e521098ab41c9fc879691bd50943b",
+    "octets": 111156,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "bac-bleu",
+        "bac-creme",
+        "bac-osier",
+        "boite-creme",
+        "boite-fleurie",
+        "boite-terracotta",
+        "bouquet-blanc",
+        "cadre-feuille",
+        "cadre-paysage",
+        "carton-ferme",
+        "carton-ouvert",
+        "chat-dort",
+        "coussin-creme",
+        "lampe-chevet",
+        "livres-trio",
+        "panier-osier",
+        "plaid-bleu",
+        "plante-panier"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-panneaux.json",
+    "sha256": "8d4b519399f35b658a62ece491a0c247be9a9430ba148e39e9cb4629ac73ba1b",
+    "octets": 3486,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "barre-progression",
+        "case-tampon",
+        "case-tampon-aide",
+        "mur-fenetre",
+        "panneau-quotas",
+        "sol-carreaux",
+        "sol-chevrons",
+        "sol-moquette",
+        "sol-parquet",
+        "sol-vert",
+        "tapis-rond"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-panneaux.webp",
+    "sha256": "43e44dbe96585787676ad18f5f52594c9a24bf47f2294e309c129c9e275fe69a",
+    "octets": 104732,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "barre-progression",
+        "case-tampon",
+        "case-tampon-aide",
+        "mur-fenetre",
+        "panneau-quotas",
+        "sol-carreaux",
+        "sol-chevrons",
+        "sol-moquette",
+        "sol-parquet",
+        "sol-vert",
+        "tapis-rond"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-ui.json",
+    "sha256": "8f92b0dd486f68b42f8b9164d21b674325bb6e3fc7b43b773d147459cb8bdc45",
+    "octets": 3461,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "btn-accueil",
+        "btn-annuler",
+        "btn-indice",
+        "btn-jouer",
+        "btn-recommencer",
+        "btn-refaire",
+        "btn-reglages",
+        "coche",
+        "etoile",
+        "etoile-droite",
+        "etoile-milieu"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-ui.webp",
+    "sha256": "60babef3f91a0299df37bf6b3c1856d653b33011589ee9e66b582432d3a9f538",
+    "octets": 53116,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "btn-accueil",
+        "btn-annuler",
+        "btn-indice",
+        "btn-jouer",
+        "btn-recommencer",
+        "btn-refaire",
+        "btn-reglages",
+        "coche",
+        "etoile",
+        "etoile-droite",
+        "etoile-milieu"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-vues.json",
+    "sha256": "c364093571da853e3b4c60ef2ad9a7d9ff20e1f7df969d1177441258169b79a2",
+    "octets": 1064,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "vue-chambre",
+        "vue-cuisine",
+        "vue-salon"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p01-vues.webp",
+    "sha256": "7ac0d07f692d8b1f385ccade77e9835531155ff07d381dead65fa9ed8b31f335",
+    "octets": 139806,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_01.webp",
+          "sha256": "295a8fca9186e91b40e7d2f5e2878e57ac9d52627a72f38f7ea6600e28cb28f3"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "vue-chambre",
+        "vue-cuisine",
+        "vue-salon"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p02-meubles.json",
+    "sha256": "c536f026bd9540da26771f4dafadcf1ad5a4e2a1b304ef0ca5fd75fd498dd9a9",
+    "octets": 2285,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_02.webp",
+          "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "bibliotheque-arche",
+        "canape-plaid",
+        "fauteuil-fleur",
+        "gueridon-tasse",
+        "lampadaire",
+        "monstera-coeur",
+        "tapis-nuage"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p02-meubles.webp",
+    "sha256": "5b0ca3cc6a2eab92df00801388d30de33291c3d98367b672ff7de01dbe9a5ab5",
+    "octets": 78598,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_02.webp",
+          "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "bibliotheque-arche",
+        "canape-plaid",
+        "fauteuil-fleur",
+        "gueridon-tasse",
+        "lampadaire",
+        "monstera-coeur",
+        "tapis-nuage"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p02-objets.json",
+    "sha256": "bc96a513f3ab25f7338eadde48af00bd5c65a703685e9b95c63936d74e0fb509",
+    "octets": 2284,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_02.webp",
+          "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "bougie-ruban",
+        "cadre-suspendu",
+        "cloche-lumineuse",
+        "coussins-duo",
+        "lanterne-maison",
+        "livres-plante",
+        "ours-panier"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p02-objets.webp",
+    "sha256": "14992dbd6350ba5687fbb6551866fb4a628e58396f045fddca57487dffd8b171",
+    "octets": 45880,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_02.webp",
+          "sha256": "2768f96d65ffc1ae25d78ac19763d358eb847bbbbed10ca8f1702618d575bbfc"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "bougie-ruban",
+        "cadre-suspendu",
+        "cloche-lumineuse",
+        "coussins-duo",
+        "lanterne-maison",
+        "livres-plante",
+        "ours-panier"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p03-meubles.json",
+    "sha256": "ca397b2f3b8121d02e22be1b6a353736475a5af7875ed1e8806efecf50e98aaf",
+    "octets": 7986,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_03.webp",
+          "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "armoire",
+        "bureau-chaise",
+        "canape-jaune",
+        "chat-dort-rose",
+        "cheminee",
+        "commode-miel",
+        "desserte",
+        "etagere-bougies",
+        "etagere-livres",
+        "etagere-murale",
+        "fauteuil-rose",
+        "fauteuil-vert",
+        "gueridon-livre",
+        "guirlande",
+        "liseuse",
+        "lit-vichy",
+        "macrame",
+        "meuble-tele",
+        "petit-cadre",
+        "pouf-rose",
+        "suspension-plante",
+        "tapis-feuille",
+        "tapis-fleur",
+        "tapis-ovale",
+        "tapis-vichy",
+        "vaisselier"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p03-meubles.webp",
+    "sha256": "8546ddfd64fae191d5aee6fd9d3cadc568973b9106ff1b8f4660d1e1558b2901",
+    "octets": 262564,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_03.webp",
+          "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "armoire",
+        "bureau-chaise",
+        "canape-jaune",
+        "chat-dort-rose",
+        "cheminee",
+        "commode-miel",
+        "desserte",
+        "etagere-bougies",
+        "etagere-livres",
+        "etagere-murale",
+        "fauteuil-rose",
+        "fauteuil-vert",
+        "gueridon-livre",
+        "guirlande",
+        "liseuse",
+        "lit-vichy",
+        "macrame",
+        "meuble-tele",
+        "petit-cadre",
+        "pouf-rose",
+        "suspension-plante",
+        "tapis-feuille",
+        "tapis-fleur",
+        "tapis-ovale",
+        "tapis-vichy",
+        "vaisselier"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p03-objets.json",
+    "sha256": "2c61545c69537ec2fe34f7889dc08cb420baca9b72f075534eab1fea30c77fc5",
+    "octets": 6766,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_03.webp",
+          "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "boite-carton",
+        "boite-poignee",
+        "boite-pois",
+        "boite-rayee",
+        "bougie-pot",
+        "cactus",
+        "cadre-chat",
+        "cadre-collines",
+        "cadre-montagne",
+        "cadre-tulipe",
+        "coussin-patte",
+        "diffuseur",
+        "hortensias",
+        "lampe-table",
+        "lapin",
+        "livres-pile",
+        "miroir-rond",
+        "monstera-panier",
+        "ours",
+        "panier-anses",
+        "plante-pot",
+        "tournesols"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p03-objets.webp",
+    "sha256": "30fc38531eefc63ae8977fca77e8e4c8c79bdc842d9e5bd0a3f728acae20e2a1",
+    "octets": 134392,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_03.webp",
+          "sha256": "4e2496817ba12afaa780c43c0ffe93b5e083f980a4cfcc35ec49bf9bced8314a"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "boite-carton",
+        "boite-poignee",
+        "boite-pois",
+        "boite-rayee",
+        "bougie-pot",
+        "cactus",
+        "cadre-chat",
+        "cadre-collines",
+        "cadre-montagne",
+        "cadre-tulipe",
+        "coussin-patte",
+        "diffuseur",
+        "hortensias",
+        "lampe-table",
+        "lapin",
+        "livres-pile",
+        "miroir-rond",
+        "monstera-panier",
+        "ours",
+        "panier-anses",
+        "plante-pot",
+        "tournesols"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-meubles.json",
+    "sha256": "25f1747f1c37d9114cbfa4fd759f3f7fbfddb239676bd02beca455ebb7714908",
+    "octets": 5570,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "baignoire",
+        "balayette",
+        "douche",
+        "etagere-sdb",
+        "lavabo-miroir",
+        "lave-linge",
+        "panier-linge",
+        "pese-personne",
+        "porte-serviettes",
+        "rideau-douche",
+        "sol-bleu",
+        "sol-creme",
+        "sol-fleuri",
+        "sol-lattes",
+        "tapis-bleu",
+        "tapis-bouclette",
+        "tapis-pieds",
+        "toilettes"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-meubles.webp",
+    "sha256": "2638d51ee230a1aee94a909022d91b29fb801913f4fd9efa447cf917b53a4020",
+    "octets": 208240,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "baignoire",
+        "balayette",
+        "douche",
+        "etagere-sdb",
+        "lavabo-miroir",
+        "lave-linge",
+        "panier-linge",
+        "pese-personne",
+        "porte-serviettes",
+        "rideau-douche",
+        "sol-bleu",
+        "sol-creme",
+        "sol-fleuri",
+        "sol-lattes",
+        "tapis-bleu",
+        "tapis-bouclette",
+        "tapis-pieds",
+        "toilettes"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-objets.json",
+    "sha256": "209e1652e0ebeb5050849c49a50a314d6c7b9c1405b4f0f090a4b257bb028a2a",
+    "octets": 10090,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "boite-sdb-bois",
+        "boite-sdb-creme",
+        "boite-sdb-peche",
+        "bougie-rose",
+        "bougie-verre",
+        "brosse",
+        "canard",
+        "cotons",
+        "diffuseur-bambou",
+        "eponge",
+        "flacon-bleu",
+        "flacon-creme",
+        "flacon-pompe",
+        "flacon-rose",
+        "fleur-douche",
+        "gobelet-brosses",
+        "mouchoirs",
+        "panier-anse",
+        "panier-serviette",
+        "papier-rouleaux",
+        "peigne",
+        "peignoir",
+        "plante-blanche",
+        "pot-bleu",
+        "pot-creme",
+        "rasoir",
+        "seche-cheveux",
+        "sels-peche",
+        "sels-roses",
+        "serviette-anneau",
+        "serviette-barre",
+        "serviettes-pile",
+        "tube-creme"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-objets.webp",
+    "sha256": "6a3907d09a2bef47ec540a551c855ed6b7375bf966b5a0a7373c8aae893830fa",
+    "octets": 214334,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "boite-sdb-bois",
+        "boite-sdb-creme",
+        "boite-sdb-peche",
+        "bougie-rose",
+        "bougie-verre",
+        "brosse",
+        "canard",
+        "cotons",
+        "diffuseur-bambou",
+        "eponge",
+        "flacon-bleu",
+        "flacon-creme",
+        "flacon-pompe",
+        "flacon-rose",
+        "fleur-douche",
+        "gobelet-brosses",
+        "mouchoirs",
+        "panier-anse",
+        "panier-serviette",
+        "papier-rouleaux",
+        "peigne",
+        "peignoir",
+        "plante-blanche",
+        "pot-bleu",
+        "pot-creme",
+        "rasoir",
+        "seche-cheveux",
+        "sels-peche",
+        "sels-roses",
+        "serviette-anneau",
+        "serviette-barre",
+        "serviettes-pile",
+        "tube-creme"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-selecteur.json",
+    "sha256": "10aa5ab1582a32643e4f65d74f3b184d28d7bc44a9beb0b9eca3945bd2f268fc",
+    "octets": 1691,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "choix-chambre",
+        "choix-cuisine",
+        "choix-salle-de-bain",
+        "choix-salon",
+        "titre-salle-de-bain"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-selecteur.webp",
+    "sha256": "2c2cdc5fd73e65fa27a883e926e1e597421fdcb264b790a56798c8b4e0116ad8",
+    "octets": 76944,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "choix-chambre",
+        "choix-cuisine",
+        "choix-salle-de-bain",
+        "choix-salon",
+        "titre-salle-de-bain"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-ui.json",
+    "sha256": "81d7820ae475cb245ab88b44e2f5b9dd76710750a38f731c8f86220f15f97ea0",
+    "octets": 2281,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "barre-sdb",
+        "boutons-bas",
+        "boutons-haut",
+        "etoile-sdb",
+        "etoile-sdb-droite",
+        "etoile-sdb-milieu",
+        "panneau-quotas-sdb"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-ui.webp",
+    "sha256": "a18cac2344eb61db504162b4a4e6f2c9e0a93d53a6bc739282198b426a5a6d90",
+    "octets": 85504,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "barre-sdb",
+        "boutons-bas",
+        "boutons-haut",
+        "etoile-sdb",
+        "etoile-sdb-droite",
+        "etoile-sdb-milieu",
+        "panneau-quotas-sdb"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-vues.json",
+    "sha256": "1e278a013df12f182d56b4a5c11c1940ce69f060ebe96c1ed24adf2cc75402fd",
+    "octets": 474,
+    "type": "index d’atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "vue-salle-de-bain"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/atlas/p04-vues.webp",
+    "sha256": "2c9bac2d933bda4e89da32159f9071041125775c7b98d9d67a0e32c98407002f",
+    "octets": 63612,
+    "type": "atlas",
+    "origine": {
+      "planches": [
+        {
+          "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+          "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+        }
+      ]
+    },
+    "licence": "CC-BY-4.0",
+    "cadres": {
+      "provenance": "content/assets/provenance.json",
+      "ids": [
+        "vue-salle-de-bain"
+      ]
+    }
+  },
+  {
+    "chemin": "content/assets/planches/derives/choix-salle-de-bain-normal.webp",
+    "sha256": "a50a0d43a54589c87655e64e1e6032515365c67c042875ea48428825c25227fd",
+    "octets": 13656,
+    "type": "dérivé",
+    "origine": {
+      "derive_de": "p04-selecteur/sprite-choix-salle-de-bain",
+      "planche": "Cozy_Room_Sort_Planche_04_Salle_de_bain.webp",
+      "sha256": "f7cddd336c108528f3d2bf3260990838eb8060a63007efb5f77750b2143afc59"
+    },
+    "licence": "CC-BY-4.0"
+  }
+]

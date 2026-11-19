@@ -15,9 +15,9 @@ const workName = new RegExp(['mochi', 'room'].join(''), 'i');
 const ticket = /\b[A-Z]{2,10}-\d+\b/;
 const bad = (line: string): boolean => brand.test(line) || workName.test(line) || ticket.test(line);
 it('public text has no commercial names or internal ticket identifiers', () => {
-    // Seul le champ de licence normalisé est exempté de la forme réservée aux tickets.
+    // Seul le champ de licence normalisé (provenance et inventaire des assets) est exempté de la forme réservée aux tickets.
     const violations = publicLines(process.cwd()).filter(({ file, line }) =>
-        !(file === 'content/assets/provenance.json' && /^\s*"licence": "CC-BY\x2d4\.0",?$/.test(line)) && bad(line)).map(({ file, number }) => `${file}:${number}`);
+        !(['content/assets/provenance.json', 'content/assets/inventaire.json'].includes(file) && /^\s*"licence": "CC-BY\x2d4\.0",?$/.test(line)) && bad(line)).map(({ file, number }) => `${file}:${number}`);
     expect(violations).toEqual([]);
 });
 it('the guard matches separated commercial names and uppercase ticket shapes only', () => {
