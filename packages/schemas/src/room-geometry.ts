@@ -7,7 +7,6 @@ export interface Placed { x: number; y: number; size: number }
 /** Partie utile d'un cadre, en fractions de son côté. */
 export interface Bounds { x: number; y: number; w: number; h: number }
 
-export const MIN_SIZE = 44;
 /** L'hexagone de la vue touche les bords de son cadre : une marge le garde entier dans la zone. */
 export const VIEW_MARGIN = 0.03;
 /** En portrait étroit, la marge latérale reste sous 2 % de la largeur. */
@@ -25,8 +24,13 @@ export function roomView(viewport: Viewport): Placed {
 const OBJECT_WIDTH = 0.8;
 const OBJECT_HEIGHT = 0.48;
 
+const REFERENCE_SIDE = roomView(REFERENCE_ROOM).size;
+
 export function objectSize(count: number, view: Placed): number {
-    return Math.round(Math.max(MIN_SIZE, view.size * (0.18 - Math.min(count, 20) * 0.0025)));
+    // On arrondit dans la pièce de référence où le catalogue a été placé.
+    // La projection de ce cadre et celle de son centre partagent ensuite la même échelle.
+    const referenceSize = Math.round(REFERENCE_SIDE * (0.18 - Math.min(count, 20) * 0.0025));
+    return referenceSize * (view.size / REFERENCE_SIDE);
 }
 
 /** Position normalisée d’un objet dont la boîte utile doit être centrée en (x, y), en pixels de la vue. */

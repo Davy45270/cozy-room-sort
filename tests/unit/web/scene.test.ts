@@ -2,6 +2,8 @@
 // La scène tourne sur un Phaser d'essai qui enregistre ce que la scène demande à ses images ; le crochet de test
 // `images()` rend ensuite cet état (cadre, visibilité, opacité, mode de teinte, marque « ? »).
 import type { Level } from '@cozy-room-sort/schemas';
+import { layoutRoom, usefulBox } from '@cozy-room-sort/schemas/room-geometry';
+import { boundsOf } from '../../../content/assets/object-bounds.ts';
 import { afterEach, expect, it, vi } from 'vitest';
 
 vi.mock('phaser', () => {
@@ -171,11 +173,13 @@ it('le toucher traverse un pixel transparent, privilégie le pixel de devant pui
     tap(195, 156);
     expect(selected()).toEqual([back!.id]);
     controller.restart();
-    // Les deux boîtes s’arrêtent à x = 166. L'égalité à 22 px désigne l'objet de devant.
-    tap(144, 195);
+    // Les deux boîtes partagent le même bord gauche. À exactement 22 px, l'objet de devant l'emporte.
+    const placed = layoutRoom(level, { width: 390, height: 390 });
+    const edge = usefulBox(placed.get(front!.id)!, boundsOf('boite-creme')!).x;
+    tap(edge - 22, 195);
     expect(selected()).toEqual([front!.id]);
     controller.restart();
-    tap(143.99, 195);
+    tap(edge - 22.01, 195);
     expect(selected()).toEqual([]);
     remove();
 });

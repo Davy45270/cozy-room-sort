@@ -5,7 +5,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { pickObject } from '../../../apps/web/src/scene/pick-object.ts';
 import { describe, expect, it } from 'vitest';
 import type { Level } from '@cozy-room-sort/schemas';
-import { catSpot, drawOrder, layoutRoom, MIN_SIZE, overlapRatio, roomView, type Bounds, type Placed } from '../../../apps/web/src/scene/layout.ts';
+import { catSpot, drawOrder, layoutRoom, overlapRatio, roomView, type Bounds, type Placed } from '../../../apps/web/src/scene/layout.ts';
 
 interface Provenance { id: string; dimensions: { w: number; h: number }; hitbox: { x: number; y: number; w: number; h: number } }
 const provenance = new Map((JSON.parse(readFileSync('content/assets/provenance.json', 'utf8')) as Provenance[]).map(entry => [entry.id, entry]));
@@ -77,12 +77,12 @@ describe('projection de la pièce', () => {
         }
     });
 
-    it.each(viewports)('$width×$height : chaque objet reste dans la zone, à 44 px au moins', viewport => {
+    it.each(viewports)('$width×$height : chaque objet reste dans la zone', viewport => {
         for (const level of levels) {
             const placed = layoutRoom(level, viewport);
             expect(placed.size).toBe(level.objects.length);
             for (const p of placed.values()) {
-                expect(p.size).toBeGreaterThanOrEqual(MIN_SIZE);
+                expect(p.size).toBeGreaterThan(0);
                 expect(p.x - p.size / 2).toBeGreaterThanOrEqual(0);
                 expect(p.x + p.size / 2).toBeLessThanOrEqual(viewport.width);
                 expect(p.y - p.size / 2).toBeGreaterThanOrEqual(0);
@@ -183,6 +183,49 @@ it.each(touchViewports)('$window : chaque objet accessible garde une zone propre
     if (viewport.width === 360) {
         // Le toucher du 16ᵉ coup de ce niveau choisissait le coussin dessiné devant.
         expect(errors.filter(error => error.startsWith('011-chambre, coup 15, '))).toEqual([]);
+    }
+    expect(errors.slice(0, 10)).toEqual([]);
+});
+
+
+it('garde les mêmes recouvrements aux quatre tailles après chaque coup du catalogue', () => {
+    const sizes = [
+        { width: 360, height: 360 },
+        { width: 360, height: 215, compact: true },
+        { width: 390, height: 844, compact: true },
+        { width: 1280, height: 800 }
+    ];
+    const errors: string[] = [];
+    expect(levels).toHaveLength(20);
+    for (const source of levels) {
+        const level = withMode(source, 'classique');
+        const trace = level.meta!.solution!;
+        const reference = layoutRoom(level, { width: 360, height: 360 });
+        const projections = sizes.map(viewport => layoutRoom(level, viewport));
+        const pairs = level.objects.flatMap((a, i) => level.objects.slice(i + 1).map(b => {
+            const ratio = (placed: Map<string, Placed>): number =>
+                overlapRatio(box(placed.get(a.id)!, boundsOf(a.asset)), box(placed.get(b.id)!, boundsOf(b.asset)));
+            const expected = ratio(reference);
+            const actual = projections.map(ratio);
+            const linked = a.blockedBy.includes(b.id) || b.blockedBy.includes(a.id);
+            return { a: a.id, b: b.id, expected, actual, linked };
+        }));
+        let state = createInitialState(level);
+        for (let move = 0; move <= trace.length; move++) {
+            const remaining = new Set(state.remainingObjectIds);
+            for (const { a, b, expected, actual, linked } of pairs) {
+                if (!remaining.has(a) || !remaining.has(b)) continue;
+                for (const [i, value] of actual.entries()) {
+                    if (Math.abs(value - expected) > .005 || (linked ? value < .25 : value >= .10)) {
+                        const { width, height } = sizes[i]!;
+                        errors.push(`${width}×${height}, ${level.id}, coup ${move}, ${a} / ${b} : ${(expected * 100).toFixed(2)} % → ${(value * 100).toFixed(2)} %`);
+                    }
+                }
+            }
+            const id = trace[move];
+            if (id !== undefined) state = applyAction(level, state, { type: 'SELECT_OBJECT', objectId: id }).state;
+        }
+        expect(state.status, level.id).toBe('won');
     }
     expect(errors.slice(0, 10)).toEqual([]);
 });

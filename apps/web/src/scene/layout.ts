@@ -1,6 +1,6 @@
 import type { Level } from '@cozy-room-sort/schemas';
 import { layoutRoom, overlapRatio, roomView, usefulBox, type Bounds, type Placed, type Viewport } from '@cozy-room-sort/schemas/room-geometry';
-export { layoutRoom, MIN_SIZE, overlapRatio, roomView, type Bounds, type Placed, type Viewport } from '@cozy-room-sort/schemas/room-geometry';
+export { layoutRoom, overlapRatio, roomView, type Bounds, type Placed, type Viewport } from '@cozy-room-sort/schemas/room-geometry';
 
 /** Portrait étroit (même requête que la feuille de styles). */
 export const COMPACT_QUERY = '(max-width: 600px) and (orientation: portrait)';

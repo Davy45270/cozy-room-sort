@@ -6,7 +6,7 @@ import { spriteOf } from '../atlas.ts';
 import { themeOf } from '../content.ts';
 import type { Controller } from '../game/controller.ts';
 import { FADE_DEPTH, FADE_TEXTURE, fadeBox, fadeFraction, paintFade, pageColor } from './view-fade.ts';
-import { catSpot, COMPACT_QUERY, drawOrder, layoutRoom, MIN_SIZE, roomView, type Bounds, type Placed, type Viewport } from './layout.ts';
+import { catSpot, COMPACT_QUERY, drawOrder, layoutRoom, roomView, type Bounds, type Placed, type Viewport } from './layout.ts';
 
 type MoveEvent = Extract<GameEvent, { type: 'OBJECT_PACKED' | 'OBJECT_BUFFERED' }>;
 export const PACK_MS = 180;
@@ -167,7 +167,7 @@ export class RoomScene extends Phaser.Scene {
                 const object = level.objects.find(item => item.id === event.objectId);
                 if (!slot || !object) continue;
                 const start = this.center(slot);
-                const size = Math.min(MIN_SIZE, slot.getBoundingClientRect().width);
+                const size = Math.min(44, slot.getBoundingClientRect().width);
                 this.flyAway(object.id, this.image(object.asset, start.x, start.y).setDisplaySize(size, size), target);
             }
         }
