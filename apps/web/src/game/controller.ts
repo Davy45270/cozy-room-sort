@@ -1,11 +1,12 @@
 // Contrôleur de partie : applique les actions au moteur dans l'ordre, notifie l'affichage et sauvegarde par rejeu.
 // Les sauvegardes forment une file : chacune attend la précédente, donc l'ordre sur disque est celui du jeu.
 import { applyAction, createInitialState, recordAction, replayActions, restore, isAccessible, snapshotOf, withMode,
-    type GameAction, type GameEvent, type GameState, type Mode, type SavedGame } from '@cozy-room-sort/engine';
+    type GameAction, type GameEvent, type GameState, type Mode } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
 import { hint as solverHint, HINT_BUDGET } from '@cozy-room-sort/solver';
+import { signatureOf, type ReadableSave, type SignedSave } from './save-signature.ts';
 
-export interface ControllerDeps { save: (save: SavedGame) => Promise<void>; now: () => number }
+export interface ControllerDeps { save: (save: SignedSave) => Promise<void>; now: () => number }
 export type HintResult = { objectId: string } | { none: 'blocked' | 'not-found' | 'unavailable' };
 export type Listener = (state: GameState, events: readonly GameEvent[]) => void;
 
@@ -28,21 +29,22 @@ export interface Controller {
 /** Limite de temps de l'indice : au-delà, on préfère ne rien proposer que figer l'écran. */
 export const HINT_MAX_MS = 300;
 
-export function createController(baseLevel: Level, mode: Mode, deps: ControllerDeps, saved?: SavedGame): Controller {
+export function createController(baseLevel: Level, mode: Mode, deps: ControllerDeps, saved?: ReadableSave): Controller {
     const level = withMode(baseLevel, mode);
-    let record: SavedGame = { levelId: level.id, rulesVersion: level.rulesVersion, actions: [] };
+    const levelSignature = signatureOf(level);
+    let record: SignedSave = { levelId: level.id, rulesVersion: level.rulesVersion, levelSignature, actions: [] };
     let state: GameState = createInitialState(level);
     let redoId: string | undefined;
     const recoveredObject = (before: GameState, after: GameState): string | undefined =>
         after.remainingObjectIds.find(id => !before.remainingObjectIds.includes(id));
 
-    // Les niveaux réédités utilisent de nouveaux identifiants. Une ancienne trace ne peut plus être rejouée.
     const objectIds = new Set(level.objects.map(object => object.id));
-    if (saved?.actions.every(action => action.type !== 'SELECT_OBJECT' || objectIds.has(action.objectId))) {
+    if (saved?.levelSignature === levelSignature
+        && saved.actions.every(action => action.type !== 'SELECT_OBJECT' || objectIds.has(action.objectId))) {
         const restored = restore(level, saved);
         if (!('error' in restored)) {
             state = restored;
-            record = { ...saved, actions: [...saved.actions] };
+            record = { ...saved, levelSignature, actions: [...saved.actions] };
             let lastMove = record.actions.length - 1;
             while (record.actions[lastMove]?.type === 'HINT_USED' || record.actions[lastMove]?.type === 'TICK') lastMove--;
             if (record.actions[lastMove]?.type === 'UNDO') {
@@ -67,7 +69,7 @@ export function createController(baseLevel: Level, mode: Mode, deps: ControllerD
         if (action.type === 'UNDO') redoId = recoveredObject(state, transition.state);
         if (action.type === 'SELECT_OBJECT' || action.type === 'RESTART') redoId = undefined;
         state = transition.state;
-        record = action.type === 'RESTART' ? { ...record, actions: [] } : recordAction(record, action);
+        record = action.type === 'RESTART' ? { ...record, actions: [] } : { ...recordAction(record, action), levelSignature };
         persist();
         for (const l of listeners) l(state, transition.events);
         return transition.events;

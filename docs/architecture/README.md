@@ -30,8 +30,9 @@ Le solveur emprunte la même transition de sélection que le moteur, sans histor
 contrôleur lui transmet l’état courant et une horloge.
 
 Les fichiers JSON du catalogue sont produits hors jeu. Les recettes fixent la graine, l’index, le thème, la
-difficulté et le titre français. Les parties en cours des anciennes dispositions repartent du début grâce aux
-identifiants d’objets renouvelés. Les identifiants de niveau conservent la progression du catalogue.
+difficulté et le titre français. Le stockage compare l’empreinte du niveau et du mode à celle du journal
+avant tout rejeu. Une empreinte différente ou absente donne un motif de reprise au début. Les identifiants
+de niveau conservent la progression du catalogue.
 
 Le [contrat du niveau et les règles](../specifications/regles.md) détaillent les versions et le score.
 

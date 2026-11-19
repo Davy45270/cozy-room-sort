@@ -73,9 +73,11 @@ describe('contrôleur de partie', () => {
         expect(saves.at(-1)?.actions).toEqual([]);
     });
 
-    it('reprend une partie sauvegardée', () => {
-        const c = createController(level, 'detente', { save: () => Promise.resolve(), now: () => 0 },
-            { levelId: level.id, rulesVersion: level.rulesVersion, actions: [{ type: 'SELECT_OBJECT', objectId: 'a1' }] });
+    it('reprend une partie sauvegardée', async () => {
+        const { controller, saves } = setup();
+        controller.select('a1');
+        await controller.idle();
+        const c = createController(level, 'detente', { save: () => Promise.resolve(), now: () => 0 }, saves[0]);
         expect(c.state.moveCount).toBe(1);
     });
 });

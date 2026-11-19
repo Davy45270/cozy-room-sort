@@ -1,16 +1,28 @@
 // Progression, parties en cours et réglages dans IndexedDB. Chaque écriture attend la fin de sa transaction.
-import type { Mode, SavedGame } from '@cozy-room-sort/engine';
+import { withMode, type Mode } from '@cozy-room-sort/engine';
+import type { Level } from '@cozy-room-sort/schemas';
+import { signatureOf, type ReadableSave, type SignedSave } from '../game/save-signature.ts';
 import type { ThemePreference } from '../theme/tokens.ts';
 
 export interface LevelResult { stars: 1 | 2 | 3; bestBuffered: number }
 export interface Settings { mode: Mode; theme: ThemePreference; sons: boolean; lastLevelId: string | null }
 type StoreName = 'progress' | 'saves' | 'settings';
 
+export type SaveLoadResult =
+    | { kind: 'empty' | 'invalid' | 'level-changed'; save: undefined }
+    | { kind: 'ready'; save: SignedSave };
+
+export function saveLoadAnnouncement(result: SaveLoadResult): string | undefined {
+    return result.kind === 'level-changed' ? 'Ce niveau a changé : la partie reprend au début.' : undefined;
+}
+
 export interface Store {
     progress(): Promise<Record<string, LevelResult>>;
     recordResult(levelId: string, result: LevelResult): Promise<void>;
-    readSave(levelId: string, rulesVersion: string): Promise<SavedGame | null>;
-    writeSave(save: SavedGame): Promise<void>;
+    /** Lecture utilisée par l'écran avant le branchement de l'annonce. */
+    readSave(levelId: string, rulesVersion: string): Promise<ReadableSave | null>;
+    loadSave(level: Level, mode: Mode): Promise<SaveLoadResult>;
+    writeSave(save: SignedSave): Promise<void>;
     clearSave(levelId: string): Promise<void>;
     clearAllSaves(): Promise<void>;
     settings(): Promise<Settings>;
@@ -31,8 +43,8 @@ const result = <T>(request: IDBRequest<T>): Promise<T> => new Promise((resolve, 
     request.onerror = () => reject(request.error ?? new Error('requête IndexedDB en échec'));
 });
 
-const isSave = (v: unknown): v is SavedGame => typeof v === 'object' && v !== null
-    && typeof (v as SavedGame).levelId === 'string' && typeof (v as SavedGame).rulesVersion === 'string' && Array.isArray((v as SavedGame).actions);
+const isSave = (v: unknown): v is ReadableSave => typeof v === 'object' && v !== null
+    && typeof (v as ReadableSave).levelId === 'string' && typeof (v as ReadableSave).rulesVersion === 'string' && Array.isArray((v as ReadableSave).actions);
 const better = (a: LevelResult, b: LevelResult): boolean => a.stars > b.stars || (a.stars === b.stars && a.bestBuffered < b.bestBuffered);
 
 export function openStore(name = 'cozy-room-sort'): Promise<Store> {
@@ -58,6 +70,18 @@ function wrap(db: IDBDatabase): Store {
         tx.objectStore(store).delete(key);
         await done(tx);
     };
+    // Lecture et effacement conditionnel dans la même transaction : une autre écriture ne peut pas s'intercaler.
+    const readJournal = async <T>(levelId: string, check: (value: unknown) => { value: T; discard: boolean }): Promise<T> => {
+        const tx = db.transaction('saves', 'readwrite');
+        const os = tx.objectStore('saves');
+        const checked = result(os.get(levelId)).then(raw => {
+            const evaluated = check(raw);
+            if (evaluated.discard) os.delete(levelId);
+            return evaluated.value;
+        });
+        const [value] = await Promise.all([checked, done(tx)]);
+        return value;
+    };
     return {
         async progress() {
             const tx = db.transaction('progress');
@@ -72,14 +96,19 @@ function wrap(db: IDBDatabase): Store {
             if (previous === undefined || better(next, previous)) os.put(next, levelId);
             await done(tx);
         },
-        async readSave(levelId, rulesVersion) {
-            const value = await get('saves', levelId);
-            if (value === undefined) return null;
-            if (!isSave(value) || value.rulesVersion !== rulesVersion || value.levelId !== levelId) {
-                await remove('saves', levelId);
-                return null;
-            }
-            return value;
+        readSave: (levelId, rulesVersion) => readJournal(levelId, raw => {
+            if (isSave(raw) && raw.levelId === levelId && raw.rulesVersion === rulesVersion) return { value: raw, discard: false };
+            return { value: null, discard: raw !== undefined };
+        }),
+        loadSave(level, mode) {
+            const levelSignature = signatureOf(withMode(level, mode));
+            return readJournal<SaveLoadResult>(level.id, raw => {
+                if (raw === undefined) return { value: { kind: 'empty', save: undefined }, discard: false };
+                if (!isSave(raw) || raw.levelId !== level.id) return { value: { kind: 'invalid', save: undefined }, discard: true };
+                if (raw.levelSignature !== levelSignature) return { value: { kind: 'level-changed', save: undefined }, discard: true };
+                if (raw.rulesVersion !== level.rulesVersion) return { value: { kind: 'invalid', save: undefined }, discard: true };
+                return { value: { kind: 'ready', save: { ...raw, levelSignature } }, discard: false };
+            });
         },
         writeSave: save => put('saves', save.levelId, save),
         clearSave: levelId => remove('saves', levelId),
