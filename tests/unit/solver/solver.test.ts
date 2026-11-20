@@ -44,6 +44,16 @@ describe('solveur', () => {
         expect(solve(easy, undefined, { maxStates: 1000, maxMs: 50, now }).kind).toBe('unverified');
     });
 
+    it('une échéance passée pendant la dernière expansion rend « non vérifié », pas « insoluble »', () => {
+        // Sans échéance, l'espace d'un niveau impossible s'épuise après `explored` expansions. On rejoue la même recherche
+        // avec une horloge à 0 pour le départ et une lecture par expansion, puis au-delà de l'échéance de 50 ms.
+        const free = solve(impossible, undefined, { maxStates: 1000, maxMs: 50, now: () => 0 });
+        expect(free.kind).toBe('unsolvable');
+        let reads = 0;
+        const now = (): number => (++reads <= 1 + free.statesExplored ? 0 : 51);
+        expect(solve(impossible, undefined, { maxStates: 1000, maxMs: 50, now }).kind).toBe('unverified');
+    });
+
     it('l\'empreinte ignore l\'ordre de la pièce mais pas celui du tampon', () => {
         const s = snapshotOf(createInitialState(easy));
         expect(stateKey({ ...s, remainingObjectIds: [...s.remainingObjectIds].reverse() })).toBe(stateKey(s));
