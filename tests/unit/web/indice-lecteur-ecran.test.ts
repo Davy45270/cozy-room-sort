@@ -52,3 +52,32 @@ it('l’annonce de l’indice nomme l’objet à jouer, comme la liste des objet
     expect(room.controller?.state.hintCount).toBe(1);
     screen.dispose?.();
 });
+
+it('impasse encore jouable : l’indice le dit à l’écran et au lecteur d’écran, sans parler de délai', async () => {
+    const level = levelById('004-salon');
+    if (!level) throw new Error('niveau absent');
+    room.shown = [];
+    const context: AppContext = {
+        store: { loadSave: () => Promise.resolve({ kind: 'empty', save: undefined }), writeSave: () => Promise.resolve(),
+            recordResult: () => Promise.resolve() } as unknown as Store,
+        settings: { ...DEFAULT_SETTINGS, mode: 'classique', lastLevelId: level.id },
+        go: () => undefined,
+        updateSettings: () => Promise.resolve()
+    };
+    const screen = await playScreen(context, level);
+    screen.mounted?.();
+    room.onReady?.();
+    for (const id of ['pile-11', 'pile-15', 'pile-2']) room.controller?.select(id);
+    expect(room.controller?.state.status).toBe('playing');
+    screen.element.querySelector<HTMLButtonElement>('button[aria-label="Indice"]')?.click();
+    expect(room.shown).toEqual([]);
+    const live = screen.element.querySelector('[role="status"][aria-live="polite"]')?.textContent ?? '';
+    expect(live).toMatch(/annule|recommence/i);
+    expect(live).not.toMatch(/temps/);
+    // Message visible : hors des zones réservées au lecteur d'écran, et pas masqué.
+    const note = screen.element.querySelector<HTMLElement>('[data-testid="message-indice"]');
+    expect(note?.hidden).toBe(false);
+    expect(note?.closest('.sr-only, [hidden], [aria-hidden="true"]')).toBeNull();
+    expect(note?.textContent).toBe(live);
+    screen.dispose?.();
+});

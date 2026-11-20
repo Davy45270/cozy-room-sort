@@ -4,6 +4,8 @@ import { makeLevel } from '../engine/levels.ts';
 import { createController } from '../../../apps/web/src/game/controller.ts';
 import { signatureOf, type ReadableSave } from '../../../apps/web/src/game/save-signature.ts';
 import { withMode } from '@cozy-room-sort/engine';
+import { levelById } from '../../../apps/web/src/content.ts';
+import { BLOCKED_LEVEL } from '../../../apps/web/src/test-hooks.ts';
 
 // a1 accessible ; b1 recouvre a2 ; carton a (2) puis carton b (1), un seul carton ouvert.
 const level = makeLevel({ boxes: [['a', 2], ['b', 1]], objects: [['a1', 'a'], ['b1', 'b'], ['a2', 'a', ['b1']]], rules: { bufferCapacity: 1 }, stars: [1, 2] });
@@ -53,6 +55,18 @@ describe('contrôleur de partie', () => {
         let t = 0;
         const { controller } = setup(() => (t += 400));
         expect(controller.hint()).toEqual({ none: 'not-found' });
+    });
+
+    it('impasse encore jouable (aucune victoire possible) : « dead-end », distinct du délai dépassé', () => {
+        // 004-salon en Classique après pile-11, pile-15, pile-2 : quatre coups restent légaux, aucun ne mène à la victoire.
+        // Le solveur l'établit dans son budget (5 états) : ce n'est pas un délai dépassé.
+        const salon = levelById(BLOCKED_LEVEL);
+        if (!salon) throw new Error('niveau absent');
+        const c = createController(salon, 'classique', { save: () => Promise.resolve(), now: () => 0 });
+        for (const id of ['pile-11', 'pile-15', 'pile-2']) c.select(id);
+        expect(c.state.status).toBe('playing');
+        expect(c.hint()).toEqual({ none: 'dead-end' });
+        expect(c.state.hintCount).toBe(0);
     });
 
     it('une victoire notifie LEVEL_WON avec les étoiles, et la partie gagnée reste enregistrée', async () => {
