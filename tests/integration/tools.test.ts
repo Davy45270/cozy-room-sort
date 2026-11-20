@@ -36,6 +36,23 @@ describe('commandes en ligne', () => {
         expect(r.out).toContain('trois étoiles à 0 passage(s)');
     });
 
+    it('level:validate refuse une pièce que le catalogue du jeu écarterait', () => {
+        const dir = mkdtempSync(join(tmpdir(), 'cozy-theme-'));
+        try {
+            const level = JSON.parse(readFileSync(`${fixtures}/valid-mini.json`, 'utf8')) as Level;
+            const path = join(dir, 'piece-inconnue.json');
+            writeFileSync(path, JSON.stringify({ ...level, theme: 'piece-inconnue' }));
+            const r = run('validate-levels', path);
+            expect(r.code).toBe(1);
+            expect(r.out).toContain('ÉCHEC piece-inconnue : pièce absente du catalogue (piece-inconnue)');
+            const inactive = ['cuisine', 'salle-de-bain'].find(id => !activeThemes.some(theme => theme.id === id));
+            if (inactive) {
+                writeFileSync(path, JSON.stringify({ ...level, theme: inactive }));
+                expect(run('validate-levels', path).out).toContain(`pièce absente du catalogue (${inactive})`);
+            }
+        } finally { rmSync(dir, { recursive: true, force: true }); }
+    });
+
     it('level:solve --write enregistre une solution rejouable', () => {
         const dir = mkdtempSync(join(tmpdir(), 'cozy-solve-'));
         try {
