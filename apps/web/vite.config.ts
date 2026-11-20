@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import { manifest } from './pwa-manifest.ts';
-import type { Level } from '@cozy-room-sort/schemas';
+import { migrateLevel, type Level } from '@cozy-room-sort/schemas';
 import type { Rectangle } from './src/atlas.ts';
 
 interface AtlasEntry { id: string; atlas: string; hitbox: Rectangle }
@@ -33,7 +33,8 @@ export default defineConfig({
         enforce: 'pre',
         transform(source, id) {
             if (!id.startsWith(levelsFolder) || !id.endsWith('.json')) return;
-            const { meta, ...level } = JSON.parse(source) as Level;
+            // Le niveau embarqué est celui que valide la CLI : migré au format et aux règles courants.
+            const { meta, ...level } = migrateLevel(JSON.parse(source)) as Level;
             // Seule la trace de démonstration est lue dans le navigateur.
             return JSON.stringify({ ...level, meta: meta?.solution ? { solution: meta.solution } : undefined });
         }
