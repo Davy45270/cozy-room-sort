@@ -95,12 +95,13 @@ export function renderQuotas(container: HTMLElement, level: Level, state: GameSt
  * piste brune. Pixels de référence : tests/fixtures/jauge-p01-lignes.json.
  *
  * Hauteur, mesurée le 20/11/2026 sur le même atlas : le vert imprimé occupe les lignes 19 à 52 (x 22 à 114 sur la 52).
- * La piste va donc jusqu'à la ligne 52 incluse ; sur la partie vide, cette ligne est le liseré clair du cadre. L'arrondi
- * gauche de 16 px (styles.css) couvre tout le vert ; 17 px (demi-hauteur) en laisse 4 pixels.
+ * La piste va jusqu'à la ligne 53 incluse (liseré clair du cadre, sans vert) : réduite à 190 px de large (× 0,74), la
+ * ligne 52 seule laissait une rangée d'écran mêlée de vert. L'arrondi gauche de 16 px (styles.css) couvre tout le vert ;
+ * 17 px en laisse 3 pixels.
  */
-export const PROGRESS_TRACK: Readonly<Rectangle> = { x: 8, y: 19, w: 182, h: 34 };
-export const PROGRESS_FILLED: Readonly<Rectangle> = { x: 8, y: 19, w: 128, h: 34 };
-export const PROGRESS_EMPTY: Readonly<Rectangle> = { x: 145, y: 19, w: 45, h: 34 };
+export const PROGRESS_TRACK: Readonly<Rectangle> = { x: 8, y: 19, w: 182, h: 35 };
+export const PROGRESS_FILLED: Readonly<Rectangle> = { x: 8, y: 19, w: 128, h: 35 };
+export const PROGRESS_EMPTY: Readonly<Rectangle> = { x: 145, y: 19, w: 45, h: 35 };
 
 /** Part des objets rangés, en pour cent, bornée à [0, 100]. */
 export function progressPercent(packed: number, total: number): number {
