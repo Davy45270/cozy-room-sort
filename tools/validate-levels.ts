@@ -15,7 +15,8 @@ function check(path: string): Verdict {
     const migrated = migratedFrom ? `format ${migratedFrom} migré ; contrôle géométrique appliqué` : undefined;
     if (migrated) console.warn(`AVERTISSEMENT ${basename(path, '.json')} : ${migrated}`);
     // Même filtre que le catalogue du jeu : une pièce absente ou désactivée ne serait jamais proposée.
-    if (!activeThemes.some(theme => theme.id === level.theme)) return { ok: false, problem: `pièce absente du catalogue (${level.theme})` };
+    const theme = activeThemes.find(item => item.id === level.theme);
+    if (!theme) return { ok: false, problem: `pièce absente du catalogue (${level.theme})` };
     const geometry = roomGeometryError(level, boundsOf);
     if (geometry) return { ok: false, problem: migrated ? `${migrated} : ${geometry}` : geometry };
     if (level.meta?.solution && replayTrace(level, level.meta.solution) !== 'won') return { ok: false, problem: 'la solution enregistrée ne mène pas à la victoire' };
@@ -25,6 +26,9 @@ function check(path: string): Verdict {
     if (level.scoring.threeStarsMaxBuffered < result.buffered) {
         return { ok: false, problem: `trois étoiles à ${level.scoring.threeStarsMaxBuffered} passage(s) par le tampon, mais la meilleure solution en demande ${result.buffered}` };
     }
+    // L'écran cherche le pictogramme de chaque catégorie dans la pièce : une catégorie inconnue l'empêcherait de s'ouvrir.
+    const unknown = level.categories.find(category => !theme.categories.some(known => known.id === category.id));
+    if (unknown) return { ok: false, problem: `catégorie absente de la pièce ${theme.id} (${unknown.id})` };
     return { ok: true, objects: level.objects.length, buffered: result.buffered, states: result.statesExplored };
 }
 

@@ -15,39 +15,39 @@
   },
   "categories": [
     {
-      "id": "books",
+      "id": "livres",
       "label": "Livres"
     },
     {
-      "id": "plants",
-      "label": "plants"
+      "id": "plantes",
+      "label": "plantes"
     },
     {
-      "id": "toys",
-      "label": "toys"
+      "id": "coussins",
+      "label": "coussins"
     }
   ],
   "boxes": [
     {
       "id": "box-1",
-      "category": "books",
+      "category": "livres",
       "capacity": 3
     },
     {
       "id": "box-plants",
       "capacity": 3,
-      "category": "plants"
+      "category": "plantes"
     },
     {
       "id": "box-toys",
       "capacity": 3,
-      "category": "toys"
+      "category": "coussins"
     }
   ],
   "objects": [
     {
       "id": "o1",
-      "category": "books",
+      "category": "livres",
       "asset": "livres-trio",
       "position": {
         "x": 0.23,
@@ -58,7 +58,7 @@
     },
     {
       "id": "o2",
-      "category": "books",
+      "category": "livres",
       "asset": "livres-trio",
       "position": {
         "x": 0.23,
@@ -71,7 +71,7 @@
     },
     {
       "id": "o3",
-      "category": "books",
+      "category": "livres",
       "asset": "livres-trio",
       "position": {
         "x": 0.23,
@@ -85,7 +85,7 @@
     },
     {
       "id": "plants1",
-      "category": "plants",
+      "category": "plantes",
       "asset": "livres-trio",
       "position": {
         "x": 0.5,
@@ -96,7 +96,7 @@
     },
     {
       "id": "plants2",
-      "category": "plants",
+      "category": "plantes",
       "asset": "livres-trio",
       "position": {
         "x": 0.5,
@@ -109,7 +109,7 @@
     },
     {
       "id": "plants3",
-      "category": "plants",
+      "category": "plantes",
       "asset": "livres-trio",
       "position": {
         "x": 0.5,
@@ -123,7 +123,7 @@
     },
     {
       "id": "toys1",
-      "category": "toys",
+      "category": "coussins",
       "asset": "livres-trio",
       "position": {
         "x": 0.77,
@@ -134,7 +134,7 @@
     },
     {
       "id": "toys2",
-      "category": "toys",
+      "category": "coussins",
       "asset": "livres-trio",
       "position": {
         "x": 0.77,
@@ -147,7 +147,7 @@
     },
     {
       "id": "toys3",
-      "category": "toys",
+      "category": "coussins",
       "asset": "livres-trio",
       "position": {
         "x": 0.77,
