@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
 // La scène tourne sur un Phaser d'essai qui enregistre ce que la scène demande à ses images ; le crochet de test
 // `images()` rend ensuite cet état (cadre, visibilité, opacité, mode de teinte, marque « ? »).
+import type { GameEvent, GameState } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
 import { layoutRoom, usefulBox } from '@cozy-room-sort/schemas/room-geometry';
 import { boundsOf } from '../../../content/assets/object-bounds.ts';
@@ -67,7 +68,7 @@ vi.mock('phaser', () => {
     }
     const rect = (): DOMRect => ({ left: 0, top: 0, x: 0, y: 0, width: 390, height: 390, right: 390, bottom: 390, toJSON: () => ({}) });
     class Scene {
-        add = { image: (_x: number, _y: number, _key: string, frame: string) => new Image(frame), text: (_x: number, _y: number, text: string) => new Text(text) };
+        add = { image: (x: number, y: number, _key: string, frame: string) => new Image(frame).setPosition(x, y), text: (_x: number, _y: number, text: string) => new Text(text) };
         load = { atlas: () => undefined };
         textures = { getPixelAlpha: vi.fn((): number => 0), createCanvas: vi.fn((_key: string, w: number, h: number) => new CanvasTexture(w, h)) };
         scale = { on: () => undefined, off: () => undefined, refresh: () => undefined };
@@ -81,7 +82,7 @@ vi.mock('phaser', () => {
 
 const { levelById, themeOf } = await import('../../../apps/web/src/content.ts');
 const { createController } = await import('../../../apps/web/src/game/controller.ts');
-const { RoomScene, SILHOUETTE } = await import('../../../apps/web/src/scene/room-scene.ts');
+const { PACK_MS, RoomScene, SILHOUETTE } = await import('../../../apps/web/src/scene/room-scene.ts');
 const { installTestHooks } = await import('../../../apps/web/src/test-hooks.ts');
 const { default: Phaser } = await import('phaser');
 
@@ -280,4 +281,54 @@ it('en Canvas, une silhouette est dessinée sombre par un filtre, puis le contex
         expect(context.filter).toBe('none');
     }
     expect(restore).toHaveBeenCalledTimes(masked.length);
+});
+
+// Vols vers le tampon et vidage du tampon : la destination et le départ sont lus sur les éléments de la page.
+function flightScene() {
+    const level = levelById('001-salon')!;
+    const controller = createController(level, 'classique', { save: () => Promise.resolve(), now: () => 0 });
+    const room = document.createElement('section');
+    room.getBoundingClientRect = () => ({ left: 0, top: 0, x: 0, y: 0, width: 390, height: 390, right: 390, bottom: 390, toJSON: () => ({}) });
+    const element = (left: number, top: number, size: number): Element => {
+        const node = document.createElement('div');
+        node.getBoundingClientRect = () => ({ left, top, x: left, y: top, width: size, height: size, right: left + size, bottom: top + size, toJSON: () => ({}) });
+        return node;
+    };
+    const box = element(300, 200, 40);
+    const slot = element(100, 500, 32);
+    const scene = new RoomScene(room, { controller, targetOf: () => box, bufferSlot: index => (index === 0 ? slot : null), onReady: () => undefined });
+    scene.create();
+    type Tween = { targets: { x: number; y: number }; x: number; y: number; duration: number };
+    const tweens: Tween[] = [];
+    scene.tweens.add = ((config: Tween) => { tweens.push(config); }) as unknown as typeof scene.tweens.add;
+    const reconcile = (state: GameState, events: GameEvent[]): void =>
+        (scene as unknown as { reconcile: (s: GameState, e: GameEvent[]) => void }).reconcile(state, events);
+    return { level, controller, reconcile, tweens };
+}
+
+it('un objet envoyé au tampon vole jusqu’au centre de sa case, en PACK_MS', () => {
+    const { controller, reconcile, tweens } = flightScene();
+    const before = controller.state;
+    const id = before.remainingObjectIds[0]!;
+    const after = { ...before, remainingObjectIds: before.remainingObjectIds.filter(other => other !== id), bufferObjectIds: [id], moveCount: 1 };
+    reconcile(after, [{ type: 'OBJECT_BUFFERED', objectId: id }]);
+    expect(tweens).toHaveLength(1);
+    expect({ x: tweens[0]!.x, y: tweens[0]!.y }).toEqual({ x: 320, y: 220 });
+    expect(tweens[0]!.duration).toBe(PACK_MS);
+});
+
+it('le vidage du tampon part de la case de l’objet immobile et vole jusqu’au carton', () => {
+    const { controller, reconcile, tweens } = flightScene();
+    const before = controller.state;
+    const id = before.remainingObjectIds[0]!;
+    // L'objet est déjà au tampon, immobile : son vol d'arrivée est fini (aucune destination, aucun vol en cours).
+    const buffered = { ...before, remainingObjectIds: before.remainingObjectIds.filter(other => other !== id), bufferObjectIds: [id], moveCount: 1 };
+    reconcile(buffered, []);
+    expect(tweens).toHaveLength(0);
+    reconcile({ ...buffered, bufferObjectIds: [], moveCount: 2 }, [{ type: 'OBJECT_PACKED', objectId: id, boxId: 'b', fromBuffer: true }]);
+    expect(tweens).toHaveLength(1);
+    const sprite = tweens[0]!.targets;
+    expect({ x: sprite.x, y: sprite.y }).toEqual({ x: 116, y: 516 });
+    expect({ x: tweens[0]!.x, y: tweens[0]!.y }).toEqual({ x: 320, y: 220 });
+    expect(tweens[0]!.duration).toBe(PACK_MS);
 });
