@@ -9,7 +9,7 @@ export interface Rules {
     allowUndo: boolean;
     allowHints: boolean;
     timeLimitSeconds: number | null;
-    /** Nombre d'annulations permises ; absent = 200. Posé par `withMode`. */
+    /** Quota d'annulations sur la partie ; absent = à volonté (l'historique garde les 200 derniers coups). Posé par `withMode`. */
     undoLimit?: number;
     /** Nombre d'indices permis ; absent = illimité. Posé par `withMode`. */
     hintLimit?: number;
