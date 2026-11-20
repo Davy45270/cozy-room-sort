@@ -227,9 +227,12 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
     .topbar-title { text-align: left; }
     .topbar-actions { grid-row: 1; grid-column: 4; }
     .progress { grid-row: 1; grid-column: 5; margin-left: 16px; }
+    /* Paysage court : le panneau ne dépasse jamais sa ligne (ni sous l'en-tête, ni hors de la fenêtre) ; ce qui ne
+       tient pas défile dans le panneau. */
     .tray {
         align-self: center; grid-template-columns: minmax(0, 1fr); justify-items: stretch;
         margin: 12px 12px 12px 0; padding: 18px; border: 1px solid var(--crs-outline); border-radius: 22px; gap: 12px;
+        max-height: calc(100% - 24px); overflow-y: auto; overscroll-behavior: contain;
     }
     .quotas { width: 100%; }
     .boxes { max-width: none; }
