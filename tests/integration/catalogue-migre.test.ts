@@ -9,8 +9,8 @@ import config from '../../apps/web/vite.config.ts';
 import { levelById } from '../../apps/web/src/content.ts';
 
 it('le plugin du catalogue émet le niveau migré, pas le JSON brut', () => {
-    const plugins = (config as { plugins: Plugin[] }).plugins.flat() as Plugin[];
-    const catalog = plugins.find(plugin => plugin?.name === 'crs-playable-catalog');
+    const plugins = (config as { plugins: Plugin[] }).plugins.flat();
+    const catalog = plugins.find(plugin => plugin.name === 'crs-playable-catalog');
     if (!catalog || typeof catalog.transform !== 'function') throw new Error('plugin du catalogue absent');
     const current = levelById('001-salon');
     if (!current) throw new Error('niveau absent');
