@@ -13,7 +13,7 @@ it('le panneau des quotas de la salle de bain a son propre atlas, avec ce seul c
 it('l’atlas du panneau entre au précache : ni exclu du build, ni chargé à la demande, plafond inchangé', () => {
     for (const file of ['apps/web/src/atlas.ts', 'apps/web/vite.config.ts']) expect(read(file), file).not.toMatch(/p04-quotas/);
     const vite = read('apps/web/vite.config.ts');
-    expect(vite).toMatch(/globPatterns:\s*\['\*\*\/\*\.\{html,js,css,png,webp,json\}'\]/);
+    expect(vite).toMatch(/globPatterns:\s*\['\*\*\/\*\.\{html,js,css,png,webp,json,ogg,mp3\}'\]/);
     expect(vite).not.toMatch(/globIgnores/);
     const script = read('scripts/check-precache.js');
     const library = new RegExp(/const library = \/(.+)\/;/.exec(script)![1]!);

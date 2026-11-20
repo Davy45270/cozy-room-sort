@@ -27,11 +27,16 @@ for (const file of atlasFiles) {
 // Le panneau des quotas de la salle de bain s'affiche hors ligne dès la première visite : il est au précache.
 assert(atlasFiles.includes('p04-quotas.webp'), 'Atlas du panneau de la salle de bain absent du précache : p04-quotas.webp');
 
+// Les sons facultatifs s'activent aussi hors ligne : les deux formats sont au précache.
+for (const name of ['selection', 'rangement', 'carton-ferme', 'victoire']) for (const ext of ['ogg', 'mp3']) {
+    assert(urls.includes(`sons/${name}.${ext}`), `Son absent du précache : sons/${name}.${ext}`);
+}
+
 let raw = 0;
 let compressed = 0;
 let atlases = 0;
 for (const url of urls) {
-    assert(!url.startsWith('sons/') && !url.startsWith('catalog/'), `Ressource de bibliothèque ou audio précachée : ${url}`);
+    assert(!url.startsWith('catalog/'), `Ressource de bibliothèque précachée : ${url}`);
     assert(!/^(?:[a-z]+:|\/)|\.\./i.test(url), `Ressource non locale : ${url}`);
     const contents = readFileSync(new URL(url, root));
     raw += contents.byteLength;

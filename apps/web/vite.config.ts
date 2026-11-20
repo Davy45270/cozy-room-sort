@@ -49,12 +49,8 @@ export default defineConfig({
             skipWaiting: true,
             cleanupOutdatedCaches: true,
             maximumFileSizeToCacheInBytes: 3_000_000,
-            globPatterns: ['**/*.{html,js,css,png,webp,json}'],
-            runtimeCaching: [{
-                urlPattern: /\/sons\/(?:selection|rangement|carton-ferme|victoire)\.(?:ogg|mp3)$/,
-                handler: 'CacheFirst',
-                options: { cacheName: 'cozy-room-sort-sons', cacheableResponse: { statuses: [200] } }
-            }]
+            // Les sons sont au précache : un joueur peut les activer pour la première fois hors ligne.
+            globPatterns: ['**/*.{html,js,css,png,webp,json,ogg,mp3}']
         }
     })]
 });
