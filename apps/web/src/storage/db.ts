@@ -8,6 +8,9 @@ export interface LevelResult { stars: 1 | 2 | 3; bestBuffered: number }
 export interface Settings { mode: Mode; theme: ThemePreference; sons: boolean; lastLevelId: string | null }
 type StoreName = 'progress' | 'saves' | 'settings';
 
+/** Écriture d'une partie : refusée si un autre onglet a écrit depuis la révision lue (`expected`). */
+export type SaveWrite = { ok: true; revision: number } | { ok: false };
+
 export type SaveLoadResult =
     | { kind: 'empty' | 'invalid' | 'level-changed'; save: undefined }
     | { kind: 'ready'; save: SignedSave };
@@ -20,7 +23,8 @@ export interface Store {
     progress(): Promise<Record<string, LevelResult>>;
     recordResult(levelId: string, result: LevelResult): Promise<void>;
     loadSave(level: Level, mode: Mode): Promise<SaveLoadResult>;
-    writeSave(save: SignedSave): Promise<void>;
+    /** Sans `expected`, écrit sans condition ; avec, seulement si la révision stockée vaut encore `expected`. */
+    writeSave(save: SignedSave, expected?: number): Promise<SaveWrite>;
     clearSave(levelId: string): Promise<void>;
     clearAllSaves(): Promise<void>;
     settings(): Promise<Settings>;
@@ -44,7 +48,9 @@ const result = <T>(request: IDBRequest<T>): Promise<T> => new Promise((resolve, 
 const isSave = (v: unknown): v is ReadableSave => typeof v === 'object' && v !== null
     && typeof (v as ReadableSave).levelId === 'string' && typeof (v as ReadableSave).rulesVersion === 'string'
     && isGameJournal((v as ReadableSave).actions)
-    && ((v as ReadableSave).levelSignature === undefined || typeof (v as ReadableSave).levelSignature === 'string');
+    && ((v as ReadableSave).levelSignature === undefined || typeof (v as ReadableSave).levelSignature === 'string')
+    && ((v as ReadableSave).revision === undefined || Number.isSafeInteger((v as ReadableSave).revision));
+const revisionOf = (v: unknown): number => isSave(v) ? v.revision ?? 0 : 0;
 const better = (a: LevelResult, b: LevelResult): boolean => a.stars > b.stars || (a.stars === b.stars && a.bestBuffered < b.bestBuffered);
 
 export function openStore(name = 'cozy-room-sort'): Promise<Store> {
@@ -108,7 +114,19 @@ function wrap(db: IDBDatabase): Store {
                 return { value: { kind: 'ready', save: { ...raw, levelSignature } }, discard: false };
             });
         },
-        writeSave: save => put('saves', save.levelId, save),
+        async writeSave(save, expected) {
+            // Lecture et écriture dans la même transaction : deux onglets ne peuvent pas s'intercaler.
+            const tx = db.transaction('saves', 'readwrite');
+            const os = tx.objectStore('saves');
+            const written = result(os.get(save.levelId)).then((stored): SaveWrite => {
+                const current = revisionOf(stored);
+                if (expected !== undefined && current !== expected) return { ok: false };
+                os.put({ ...save, revision: current + 1 }, save.levelId);
+                return { ok: true, revision: current + 1 };
+            });
+            const [outcome] = await Promise.all([written, done(tx)]);
+            return outcome;
+        },
         clearSave: levelId => remove('saves', levelId),
         async clearAllSaves() {
             const tx = db.transaction('saves', 'readwrite');

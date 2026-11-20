@@ -28,7 +28,7 @@ const context = (level: Level, moves: readonly string[]): AppContext => {
     return {
         store: {
             loadSave: () => Promise.resolve({ kind: 'ready', save }),
-            writeSave: () => Promise.resolve(),
+            writeSave: () => Promise.resolve({ ok: true, revision: 1 }),
             recordResult: () => Promise.resolve()
         } as unknown as Store,
         settings: { ...DEFAULT_SETTINGS, lastLevelId: level.id },

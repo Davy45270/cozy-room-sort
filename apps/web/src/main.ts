@@ -39,7 +39,7 @@ async function boot(): Promise<void> {
         if (route.screen === 'home') return homeScreen(ctx);
         if (route.screen === 'levels') return levelsScreen(ctx, route.room);
         if (route.screen === 'settings') return settingsScreen(ctx, route.back);
-        return playScreen(ctx, route.level);
+        return playScreen(ctx, route.level, route.notice);
     };
     const show = async (route: Route): Promise<void> => {
         const mine = ++generation;

@@ -10,18 +10,34 @@ import { defeatReason } from '../game/defeat.ts';
 import { createProgress, objectLabel, renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachable, renderScore } from '../hud.ts';
 import { PACK_MS, reducedMotion, startRoom, type RoomScene } from '../scene/room-scene.ts';
 import { playSound } from '../sons.ts';
+import type { SignedSave } from '../game/save-signature.ts';
 import { saveLoadAnnouncement } from '../storage/db.ts';
 import { BLOCKED_LEVEL, BLOCKED_MOVES, demonstration, installTestHooks } from '../test-hooks.ts';
 
-export async function playScreen(ctx: AppContext, level: Level): Promise<Screen> {
+/** Partie reprise après un refus d'écriture : un autre onglet a sauvegardé ce niveau entre-temps. */
+export const OTHER_TAB_NOTICE = 'Partie poursuivie dans un autre onglet : elle reprend ici là où il l’a laissée.';
+
+/** `notice` : message affiché et annoncé à l'ouverture (rechargement après un autre onglet). */
+export async function playScreen(ctx: AppContext, level: Level, notice?: string): Promise<Screen> {
     const demo = demonstration();
     const trace = demo === 'gagner' ? level.meta?.solution : demo === 'bloquer' && level.id === BLOCKED_LEVEL ? BLOCKED_MOVES : undefined;
     const loaded = trace ? undefined : await ctx.store.loadSave(level, ctx.settings.mode);
+    // Révision lue avec la partie : le magasin refuse d'écrire si un autre onglet a sauvegardé depuis. L'écran recharge
+    // alors la partie sauvegardée (la plus récente) au lieu de la faire reculer.
+    let revision = loaded?.save?.revision ?? 0;
+    let reloading = false;
+    const persist = async (save: SignedSave): Promise<void> => {
+        if (trace || reloading) return;
+        const written = await ctx.store.writeSave(save, revision);
+        if (written.ok) { revision = written.revision; return; }
+        reloading = true;
+        if (!disposed) ctx.go({ screen: 'play', level, notice: OTHER_TAB_NOTICE });
+    };
     const controller = createController(level, trace ? 'classique' : ctx.settings.mode, {
-        save: s => trace ? Promise.resolve() : ctx.store.writeSave(s),
+        save: persist,
         now: () => performance.now()
     }, loaded?.save);
-    const announcement = loaded ? saveLoadAnnouncement(loaded) : undefined;
+    const announcement = notice ?? (loaded ? saveLoadAnnouncement(loaded) : undefined);
     const rules = controller.level.rules;
 
     const room = h('section', { class: 'room', 'aria-label': 'Pièce en désordre' });
@@ -46,8 +62,9 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
     let stopClock: (() => void) | undefined;
     let disposed = false;
     const say = (text: string): void => { live.textContent = text; };
-    // Sans indice, la raison s'affiche aussi dans la pièce : la scène ne montre rien et l'annonce est réservée au lecteur d'écran.
-    const hintNote = h('p', { class: 'hint-note', 'data-testid': 'message-indice', hidden: true });
+    // Message visible dans la pièce (indice impossible, partie rechargée) : la scène ne montre rien et l'annonce est
+    // réservée au lecteur d'écran.
+    const hintNote = h('p', { class: 'hint-note', hidden: true });
     room.append(hintNote);
     let hintNoteTimer: number | undefined;
     // Le message disparaît au coup suivant (annulation et recommencement compris), pas au passage du temps.
@@ -55,6 +72,15 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
         `${state.moveCount}:${state.undoCount}:${state.remainingObjectIds.length}:${state.bufferObjectIds.length}:${state.status}`;
     let hintNoteMoves = '';
     const hideHintNote = (): void => { window.clearTimeout(hintNoteTimer); hintNote.hidden = true; };
+    const showNote = (text: string, testId: string, ms: number): void => {
+        hintNote.textContent = text;
+        hintNote.dataset['testid'] = testId;
+        hintNote.hidden = false;
+        hintNoteMoves = progressKey(controller.state);
+        window.clearTimeout(hintNoteTimer);
+        hintNoteTimer = window.setTimeout(hideHintNote, ms);
+    };
+    if (notice) showNote(notice, 'message-partie', 8000);
     const NO_HINT = {
         blocked: 'Plus aucun coup possible.',
         'dead-end': 'Plus de victoire possible : annule un coup ou recommence.',
@@ -64,13 +90,8 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
     const hint = iconButton('btn-indice', 'Indice', () => {
         const result = controller.hint();
         if ('objectId' in result) { hideHintNote(); scene?.showHint(result.objectId); say(`Indice : jouer ${objectLabel(level, result.objectId)}.`); return; }
-        const text = NO_HINT[result.none];
-        say(text);
-        hintNote.textContent = text;
-        hintNote.hidden = false;
-        hintNoteMoves = progressKey(controller.state);
-        window.clearTimeout(hintNoteTimer);
-        hintNoteTimer = window.setTimeout(hideHintNote, 4000);
+        say(NO_HINT[result.none]);
+        showNote(NO_HINT[result.none], 'message-indice', 4000);
     });
     hint.hidden = !rules.allowHints;
     undo.hidden = !rules.allowUndo;

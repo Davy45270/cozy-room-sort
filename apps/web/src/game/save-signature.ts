@@ -1,8 +1,9 @@
 import type { GameAction, SavedGame } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
 
-export type ReadableSave = SavedGame & { levelSignature?: string };
-export type SignedSave = SavedGame & { levelSignature: string };
+/** `revision` : numéro d'écriture posé par le magasin (deux onglets ne s'écrasent pas, voir `Store.writeSave`). */
+export type ReadableSave = SavedGame & { levelSignature?: string; revision?: number };
+export type SignedSave = SavedGame & { levelSignature: string; revision?: number };
 
 /** Une action lue sur disque : un objet d'un type connu, avec ses champs typés. Toute autre forme rend le journal illisible. */
 export function isGameAction(value: unknown): value is GameAction {

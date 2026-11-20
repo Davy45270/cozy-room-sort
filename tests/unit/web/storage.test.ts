@@ -91,7 +91,7 @@ describe('stockage IndexedDB', () => {
 it.each(['same', 'changed', 'missing'] as const)('compatibilité du journal en base (%s)', async kind => {
     const level = makeLevel({ boxes: [['a', 2]], objects: [['a1', 'a'], ['a2', 'a']] });
     const revised = { ...level, rules: { ...level.rules, bufferCapacity: level.rules.bufferCapacity + 1 } };
-    const deps: ControllerDeps = { save: value => store.writeSave(value), now: () => 0 };
+    const deps: ControllerDeps = { save: async value => { await store.writeSave(value); }, now: () => 0 };
     const original = createController(level, 'classique', deps);
     original.select('a1');
     await original.idle();
@@ -129,7 +129,7 @@ describe('journal sans empreinte (version précédente)', () => {
     const published = JSON.parse(readFileSync('tests/fixtures/sauvegardes/version-en-ligne-002-salon.json', 'utf8')) as
         { base: string; store: string; cle: string; valeur: { levelId: string; rulesVersion: string; actions: unknown[] } };
     const firstMove = salon.meta?.solution?.[0] ?? '';
-    const deps: ControllerDeps = { save: value => store.writeSave(value), now: () => 0 };
+    const deps: ControllerDeps = { save: async value => { await store.writeSave(value); }, now: () => 0 };
 
     it('la fixture a la forme écrite par la version en ligne', () => {
         expect([published.base, published.store, published.cle]).toEqual(['cozy-room-sort', 'saves', salon.id]);

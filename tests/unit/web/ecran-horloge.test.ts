@@ -36,7 +36,7 @@ const timed = (seconds: number): Level => {
 const context = (level: Level): AppContext => ({
     store: {
         loadSave: () => Promise.resolve({ kind: 'empty', save: undefined }),
-        writeSave: () => Promise.resolve(),
+        writeSave: () => Promise.resolve({ ok: true, revision: 1 }),
         recordResult: () => Promise.resolve()
     } as unknown as Store,
     settings: { ...DEFAULT_SETTINGS, lastLevelId: level.id },

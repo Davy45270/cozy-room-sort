@@ -31,7 +31,7 @@ it('l’annonce de l’indice nomme l’objet à jouer, comme la liste des objet
     const level = levelById('001-salon');
     if (!level) throw new Error('Premier niveau absent');
     const context: AppContext = {
-        store: { loadSave: () => Promise.resolve({ kind: 'empty', save: undefined }), writeSave: () => Promise.resolve(),
+        store: { loadSave: () => Promise.resolve({ kind: 'empty', save: undefined }), writeSave: () => Promise.resolve({ ok: true, revision: 1 }),
             recordResult: () => Promise.resolve() } as unknown as Store,
         settings: { ...DEFAULT_SETTINGS, lastLevelId: level.id },
         go: () => undefined,
@@ -58,7 +58,7 @@ it('impasse encore jouable : l’indice le dit à l’écran et au lecteur d’�
     if (!level) throw new Error('niveau absent');
     room.shown = [];
     const context: AppContext = {
-        store: { loadSave: () => Promise.resolve({ kind: 'empty', save: undefined }), writeSave: () => Promise.resolve(),
+        store: { loadSave: () => Promise.resolve({ kind: 'empty', save: undefined }), writeSave: () => Promise.resolve({ ok: true, revision: 1 }),
             recordResult: () => Promise.resolve() } as unknown as Store,
         settings: { ...DEFAULT_SETTINGS, mode: 'classique', lastLevelId: level.id },
         go: () => undefined,
