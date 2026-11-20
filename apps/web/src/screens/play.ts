@@ -7,7 +7,7 @@ import { h, iconButton, stars } from '../dom.ts';
 import { startClock } from '../game/clock.ts';
 import { createController } from '../game/controller.ts';
 import { defeatReason } from '../game/defeat.ts';
-import { createProgress, renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachable, renderScore } from '../hud.ts';
+import { createProgress, objectLabel, renderBoxes, renderBuffer, renderProgress, renderQuotas, renderReachable, renderScore } from '../hud.ts';
 import { PACK_MS, reducedMotion, startRoom, type RoomScene } from '../scene/room-scene.ts';
 import { playSound } from '../sons.ts';
 import { saveLoadAnnouncement } from '../storage/db.ts';
@@ -48,7 +48,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
     const say = (text: string): void => { live.textContent = text; };
     const hint = iconButton('btn-indice', 'Indice', () => {
         const result = controller.hint();
-        if ('objectId' in result) { scene?.showHint(result.objectId); say('Indice. L’objet à toucher est agrandi.'); }
+        if ('objectId' in result) { scene?.showHint(result.objectId); say(`Indice : jouer ${objectLabel(level, result.objectId)}.`); }
         else say(result.none === 'blocked' ? 'Plus aucun coup possible.' : result.none === 'unavailable' ? 'Plus d’indice pour ce niveau.' : 'Pas d’indice trouvé à temps.');
     });
     hint.hidden = !rules.allowHints;

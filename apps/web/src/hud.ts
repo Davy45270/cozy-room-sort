@@ -129,13 +129,19 @@ export function renderScore(container: HTMLElement, level: Level, state: GameSta
 }
 
 /** Le clavier conserve sa place dans la liste lorsqu'un objet disparaît. */
+/** Nom d'un objet tel que le lit le lecteur d'écran : la liste des objets à portée et l'annonce de l'indice. */
+export function objectLabel(level: Level, id: string): string {
+    const object = level.objects.find(item => item.id === id);
+    return object ? `${objectName(object.asset)} (${labelOf(level, object.category)})` : id;
+}
+
 export function renderReachable(list: HTMLElement, controller: Controller): void {
     const previous = document.activeElement instanceof HTMLButtonElement && list.contains(document.activeElement)
         ? document.activeElement.dataset['object'] : undefined;
     const oldIndex = [...list.querySelectorAll('button')].findIndex(button => button.dataset['object'] === previous);
     const objects = controller.level.objects.filter(object => controller.isObjectAccessible(object.id));
     const buttons = objects.map(object => h('button', { type: 'button', 'data-object': object.id, onclick: () => controller.select(object.id),
-        text: `${objectName(object.asset)} (${labelOf(controller.level, object.category)})` }));
+        text: objectLabel(controller.level, object.id) }));
     list.replaceChildren(...buttons.map(button => h('li', {}, button)));
     if (oldIndex >= 0) (buttons.find(button => button.dataset['object'] === previous) ?? buttons[Math.min(oldIndex, buttons.length - 1)])?.focus();
 }
