@@ -22,6 +22,13 @@ for (const [w, h] of [[1024, 400], [844, 390], [1280, 600]] as const) {
                 expect(m.tray.bottom).toBeLessThanOrEqual(m.vh + 0.5);
                 expect(m.page).toBeLessThanOrEqual(m.vh);
                 expect(m.scrolls).toBe(true);
+                // Le haut du panneau (titre « Cartons ») reste atteignable : rien ne déborde au-dessus de la zone qui défile.
+                const top = await page.evaluate(() => {
+                    const tray = document.querySelector('.tray')!;
+                    tray.scrollTop = 0;
+                    return { tray: tray.getBoundingClientRect().top, first: tray.querySelector('h2')!.getBoundingClientRect().top };
+                });
+                expect(top.first).toBeGreaterThanOrEqual(top.tray);
                 // La dernière case du tampon s'atteint en faisant défiler le panneau.
                 const last = page.locator('.tray .buffer .slot').last();
                 await last.scrollIntoViewIfNeeded();
