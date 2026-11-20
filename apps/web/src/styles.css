@@ -233,6 +233,8 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
         align-self: center; grid-template-columns: minmax(0, 1fr); justify-items: stretch;
         margin: 12px 12px 12px 0; padding: 18px; border: 1px solid var(--crs-outline); border-radius: 22px; gap: 12px;
         max-height: calc(100% - 24px); overflow-y: auto; overscroll-behavior: contain;
+        /* Contenu calé en haut : centré, ce qui dépasse en haut ne s'atteindrait pas en défilant. */
+        align-content: start;
     }
     .quotas { width: 100%; }
     .boxes { max-width: none; }
