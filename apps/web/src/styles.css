@@ -297,6 +297,10 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
     .quota-list[data-columns="2"] .quota { --quota-line: 17px; grid-template-columns: 18px minmax(0, 1fr) auto 16px; gap: 4px; font-size: 14px; }
     .quota-list[data-columns="2"] .quota-icon { width: 18px; }
     .quota-list[data-columns="2"] .quota-check { width: 16px; }
+    /* Firefox, police de 13 à 16 px : la dernière ligne du libellé déborde d'un pixel arrondi sous sa boîte (scrollHeight =
+       clientHeight + 1). Un pixel de marge intérieure en bas, repris par une marge négative : la boîte contient sa ligne,
+       la grille ne bouge pas d'un pixel. */
+    .quota .quota-label { padding-bottom: 1px; margin-bottom: -1px; }
 }
 
 /* Portrait très étroit (320 px) : tout tient sans défilement en 320 × 568, sans texte coupé. La pièce descend jusqu'à
