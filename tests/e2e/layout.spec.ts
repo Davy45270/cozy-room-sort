@@ -40,9 +40,17 @@ test.describe('petit téléphone', () => {
         }
     });
 
-    for (const id of ['001-salon', '007-salon', `020-${thirdRoom.id}`]) {
-        test(`${id} : ni défilement horizontal, ni bouton ou carton hors de l'écran`, async ({ page }) => {
+    // Détente : six cases au tampon sur 001-salon, le panneau du bas doit les tenir aussi.
+    for (const [id, mode] of [['001-salon', 'Classique'], ['007-salon', 'Classique'], [`020-${thirdRoom.id}`, 'Classique'], ['001-salon', 'Détente']] as const) {
+        test(`${id}${mode === 'Détente' ? ' en Détente' : ''} : ni défilement horizontal, ni bouton ou carton hors de l'écran`, async ({ page }) => {
             await openLevel(page, id);
+            if (mode === 'Détente') {
+                await levelScreen(page).getByRole('button', { name: 'Réglages' }).click();
+                await page.getByRole('radio', { name: /Détente/ }).check();
+                await page.getByRole('button', { name: 'Retour' }).click();
+                await expect(levelScreen(page)).toHaveAttribute('data-ready', 'true', { timeout: 20_000 });
+                await expect(levelScreen(page).locator('.slot')).toHaveCount(levelFile(id).rules.bufferCapacity + 1);
+            }
             expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
             for (const el of await levelScreen(page).locator('.topbar button:visible, .box, .slot').all()) {
                 const box = await el.boundingBox();
@@ -56,7 +64,7 @@ test.describe('petit téléphone', () => {
                     expect(box.height).toBeGreaterThanOrEqual(44);
                 }
             }
-            await capture(page, `partie-${id}`);
+            await capture(page, `partie-${id}${mode === 'Détente' ? '-detente' : ''}`);
         });
     }
 });
