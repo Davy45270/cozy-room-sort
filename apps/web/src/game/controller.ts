@@ -3,11 +3,12 @@
 import { applyAction, createInitialState, recordAction, replayActions, restore, isAccessible, snapshotOf, withMode,
     type GameAction, type GameEvent, type GameState, type Mode } from '@cozy-room-sort/engine';
 import type { Level } from '@cozy-room-sort/schemas';
-import { hint as solverHint, HINT_BUDGET } from '@cozy-room-sort/solver';
+import { HINT_BUDGET, solve } from '@cozy-room-sort/solver';
 import { isGameJournal, signatureOf, type ReadableSave, type SignedSave } from './save-signature.ts';
 
 export interface ControllerDeps { save: (save: SignedSave) => Promise<void>; now: () => number }
-export type HintResult = { objectId: string } | { none: 'blocked' | 'not-found' | 'unavailable' };
+/** `dead-end` : des coups restent légaux mais le solveur établit qu'aucun ne mène à la victoire ; `not-found` : budget dépassé. */
+export type HintResult = { objectId: string } | { none: 'blocked' | 'dead-end' | 'not-found' | 'unavailable' };
 export type Listener = (state: GameState, events: readonly GameEvent[]) => void;
 
 export interface Controller {
@@ -114,8 +115,10 @@ export function createController(baseLevel: Level, mode: Mode, deps: ControllerD
             catchUp();
             if (state.status === 'blocked') return { none: 'blocked' };
             if (!level.rules.allowHints || state.status !== 'playing' || state.hintCount >= (level.rules.hintLimit ?? Infinity)) return { none: 'unavailable' };
-            const objectId = solverHint(level, snapshotOf(state), { ...HINT_BUDGET, maxMs: HINT_MAX_MS, now: deps.now });
-            if (objectId === null) return { none: 'not-found' };
+            const result = solve(level, snapshotOf(state), { ...HINT_BUDGET, maxMs: HINT_MAX_MS, now: deps.now });
+            if (result.kind === 'unsolvable') return { none: 'dead-end' };
+            const objectId = result.kind === 'solved' ? result.trace[0] : undefined;
+            if (objectId === undefined) return { none: 'not-found' };
             dispatch({ type: 'HINT_USED' });
             return { objectId };
         },

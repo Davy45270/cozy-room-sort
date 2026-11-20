@@ -46,10 +46,31 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
     let stopClock: (() => void) | undefined;
     let disposed = false;
     const say = (text: string): void => { live.textContent = text; };
+    // Sans indice, la raison s'affiche aussi dans la pièce : la scène ne montre rien et l'annonce est réservée au lecteur d'écran.
+    const hintNote = h('p', { class: 'hint-note', 'data-testid': 'message-indice', hidden: true });
+    room.append(hintNote);
+    let hintNoteTimer: number | undefined;
+    // Le message disparaît au coup suivant (annulation et recommencement compris), pas au passage du temps.
+    const progressKey = (state: GameState): string =>
+        `${state.moveCount}:${state.undoCount}:${state.remainingObjectIds.length}:${state.bufferObjectIds.length}:${state.status}`;
+    let hintNoteMoves = '';
+    const hideHintNote = (): void => { window.clearTimeout(hintNoteTimer); hintNote.hidden = true; };
+    const NO_HINT = {
+        blocked: 'Plus aucun coup possible.',
+        'dead-end': 'Plus de victoire possible : annule un coup ou recommence.',
+        unavailable: 'Plus d’indice pour ce niveau.',
+        'not-found': 'Pas d’indice trouvé à temps.'
+    } as const;
     const hint = iconButton('btn-indice', 'Indice', () => {
         const result = controller.hint();
-        if ('objectId' in result) { scene?.showHint(result.objectId); say(`Indice : jouer ${objectLabel(level, result.objectId)}.`); }
-        else say(result.none === 'blocked' ? 'Plus aucun coup possible.' : result.none === 'unavailable' ? 'Plus d’indice pour ce niveau.' : 'Pas d’indice trouvé à temps.');
+        if ('objectId' in result) { hideHintNote(); scene?.showHint(result.objectId); say(`Indice : jouer ${objectLabel(level, result.objectId)}.`); return; }
+        const text = NO_HINT[result.none];
+        say(text);
+        hintNote.textContent = text;
+        hintNote.hidden = false;
+        hintNoteMoves = progressKey(controller.state);
+        window.clearTimeout(hintNoteTimer);
+        hintNoteTimer = window.setTimeout(hideHintNote, 4000);
     });
     hint.hidden = !rules.allowHints;
     undo.hidden = !rules.allowUndo;
@@ -111,6 +132,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
             return;
         }
         window.clearTimeout(endTimer);
+        if (progressKey(state) !== hintNoteMoves) hideHintNote();
         renderBoxes(boxes, level, state);
         renderBuffer(buffer, controller.level, state, levelNumber(level) === 1 && !controller.hasPlayed);
         renderQuotas(quotas, level, state);
@@ -180,6 +202,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
             stopClock?.();
             window.clearTimeout(demoTimer);
             window.clearTimeout(endTimer);
+            window.clearTimeout(hintNoteTimer);
             unsubscribe();
             removeHooks?.();
             game?.destroy(true);

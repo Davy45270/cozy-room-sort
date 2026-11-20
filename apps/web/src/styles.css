@@ -142,6 +142,13 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
 .room { grid-area: room; position: relative; min-width: 0; touch-action: none; }
 .stage { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
 .stage canvas { display: block; }
+.hint-note {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%); z-index: 3; max-width: calc(100% - 24px);
+    margin: 0; padding: 8px 14px; border: 1px solid var(--crs-outline); border-radius: 14px;
+    background: var(--crs-surface); color: var(--crs-text); font-size: 15px; line-height: 1.3; text-align: center;
+    pointer-events: none;
+}
+.hint-note[hidden] { display: none; }
 
 .tray {
     grid-area: tray; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
