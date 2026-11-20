@@ -6,6 +6,8 @@ import { DIFFICULTIES, isDifficulty } from './difficulty.ts';
 const isInt = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v);
 const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
 const isStr = (v: unknown): v is string => typeof v === 'string' && v.length > 0;
+/** Identifiants refusés : le moteur range objets, cartons et catégories par identifiant dans des objets ordinaires. */
+const RESERVED_IDS: ReadonlySet<string> = new Set(['__proto__', 'constructor', 'prototype']);
 const textOf = (v: unknown): string => typeof v === 'string' ? v : '(identifiant invalide)';
 
 export function parseLevel(text: string): ValidationResult {
@@ -57,6 +59,7 @@ export function validateLevel(raw: unknown): ValidationResult {
     const ids = new Set<string>();
     const unique = (path: string, id: unknown): void => {
         if (!isStr(id)) { err(path, 'identifiant non vide attendu'); return; }
+        if (RESERVED_IDS.has(id)) err(path, `identifiant « ${id} » réservé (propriété de tout objet JavaScript)`);
         if (ids.has(id)) err(path, `identifiant « ${id} » déjà utilisé`);
         ids.add(id);
     };
