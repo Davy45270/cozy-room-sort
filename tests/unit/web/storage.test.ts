@@ -273,7 +273,8 @@ describe('deux onglets sur le même niveau', () => {
     const level: Level = { ...makeLevel({ boxes: [['a', 3]], objects: [['a1', 'a'], ['a2', 'a'], ['a3', 'a']] }), id: '001-salon' };
     const journal = (...ids: string[]) => ({ levelId: level.id, rulesVersion: level.rulesVersion,
         levelSignature: signatureOf(withMode(level, 'classique')), actions: ids.map(objectId => ({ type: 'SELECT_OBJECT' as const, objectId })) });
-    const revisionOf = (loaded: Awaited<ReturnType<Store['loadSave']>>): number => loaded.save?.revision ?? 0;
+    // Révision lue : celle de la partie reprise, ou celle d'une partie laissée en place (autre mode).
+    const revisionOf = (loaded: Awaited<ReturnType<Store['loadSave']>>): number => (loaded.save ? loaded.save.revision : loaded.revision) ?? 0;
 
     it('un onglet dans un autre mode n’efface pas la partie de l’autre onglet en l’ouvrant', async () => {
         const name = `cozy-onglets-${n++}`;

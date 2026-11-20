@@ -15,7 +15,7 @@ import { saveLoadAnnouncement } from '../storage/db.ts';
 import { BLOCKED_LEVEL, BLOCKED_MOVES, demonstration, installTestHooks } from '../test-hooks.ts';
 
 /** Partie reprise après un refus d'écriture : un autre onglet a sauvegardé ce niveau entre-temps. */
-export const OTHER_TAB_NOTICE = 'Partie poursuivie dans un autre onglet : elle reprend ici là où il l’a laissée.';
+export const OTHER_TAB_NOTICE = 'Partie modifiée dans un autre onglet : elle a été rechargée.';
 
 /** `notice` : message affiché et annoncé à l'ouverture (rechargement après un autre onglet). */
 export async function playScreen(ctx: AppContext, level: Level, notice?: string): Promise<Screen> {
@@ -24,7 +24,7 @@ export async function playScreen(ctx: AppContext, level: Level, notice?: string)
     const loaded = trace ? undefined : await ctx.store.loadSave(level, ctx.settings.mode);
     // Révision lue avec la partie : le magasin refuse d'écrire si un autre onglet a sauvegardé depuis. L'écran recharge
     // alors la partie sauvegardée (la plus récente) au lieu de la faire reculer.
-    let revision = loaded?.save?.revision ?? 0;
+    let revision = (loaded?.save ? loaded.save.revision : loaded?.revision) ?? 0;
     let reloading = false;
     const persist = async (save: SignedSave): Promise<void> => {
         if (trace || reloading) return;

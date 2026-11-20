@@ -11,8 +11,13 @@ type StoreName = 'progress' | 'saves' | 'settings';
 /** Écriture d'une partie : refusée si un autre onglet a écrit depuis la révision lue (`expected`). */
 export type SaveWrite = { ok: true; revision: number } | { ok: false };
 
+/**
+ * `other-mode` : partie du même niveau jouée dans un autre mode (un autre onglet) ; elle n'est ni reprise ni effacée à la
+ * lecture. `revision` : révision stockée, point de départ des écritures de cet onglet (voir `writeSave`).
+ */
 export type SaveLoadResult =
-    | { kind: 'empty' | 'invalid' | 'level-changed'; save: undefined }
+    | { kind: 'empty' | 'invalid' | 'level-changed'; save: undefined; revision?: number }
+    | { kind: 'other-mode'; save: undefined; revision: number }
     | { kind: 'ready'; save: SignedSave };
 
 export function saveLoadAnnouncement(result: SaveLoadResult): string | undefined {
@@ -51,6 +56,7 @@ const isSave = (v: unknown): v is ReadableSave => typeof v === 'object' && v !==
     && ((v as ReadableSave).levelSignature === undefined || typeof (v as ReadableSave).levelSignature === 'string')
     && ((v as ReadableSave).revision === undefined || Number.isSafeInteger((v as ReadableSave).revision));
 const revisionOf = (v: unknown): number => isSave(v) ? v.revision ?? 0 : 0;
+const MODES: readonly Mode[] = ['detente', 'classique', 'expert'];
 const better = (a: LevelResult, b: LevelResult): boolean => a.stars > b.stars || (a.stars === b.stars && a.bestBuffered < b.bestBuffered);
 
 export function openStore(name = 'cozy-room-sort'): Promise<Store> {
@@ -109,7 +115,11 @@ function wrap(db: IDBDatabase): Store {
                 if (!isSave(raw) || raw.levelId !== level.id) return { value: { kind: 'invalid', save: undefined }, discard: true };
                 // Sans empreinte (version précédente) : traité comme un niveau changé. Un journal qui se rejoue encore peut
                 // donner un autre état (mêmes identifiants, cartons dans un autre ordre) ; rien ne prouve qu'il est le même.
-                if (raw.levelSignature !== levelSignature) return { value: { kind: 'level-changed', save: undefined }, discard: true };
+                if (raw.levelSignature !== levelSignature) {
+                    const otherMode = MODES.some(other => other !== mode && raw.levelSignature === signatureOf(withMode(level, other)));
+                    if (otherMode) return { value: { kind: 'other-mode', save: undefined, revision: revisionOf(raw) }, discard: false };
+                    return { value: { kind: 'level-changed', save: undefined }, discard: true };
+                }
                 if (raw.rulesVersion !== level.rulesVersion) return { value: { kind: 'invalid', save: undefined }, discard: true };
                 return { value: { kind: 'ready', save: { ...raw, levelSignature } }, discard: false };
             });
