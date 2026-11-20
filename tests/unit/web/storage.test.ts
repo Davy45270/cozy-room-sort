@@ -275,6 +275,25 @@ describe('deux onglets sur le même niveau', () => {
         levelSignature: signatureOf(withMode(level, 'classique')), actions: ids.map(objectId => ({ type: 'SELECT_OBJECT' as const, objectId })) });
     const revisionOf = (loaded: Awaited<ReturnType<Store['loadSave']>>): number => loaded.save?.revision ?? 0;
 
+    it('un onglet dans un autre mode n’efface pas la partie de l’autre onglet en l’ouvrant', async () => {
+        const name = `cozy-onglets-${n++}`;
+        const [a, b] = [await openStore(name), await openStore(name)];
+        // A joue en Détente ; B, resté en Classique, ouvre le même niveau sans jouer.
+        const detente = { ...journal('a1'), levelSignature: signatureOf(withMode(level, 'detente')) };
+        const first = await a.writeSave(detente, revisionOf(await a.loadSave(level, 'detente')));
+        expect(first.ok).toBe(true);
+        const seen = await b.loadSave(level, 'classique');
+        expect(seen.save).toBeUndefined();
+        expect(saveLoadAnnouncement(seen)).toBeUndefined();
+        // La partie Détente est intacte et A continue d'écrire.
+        const kept = await a.loadSave(level, 'detente');
+        expect(kept.save?.actions).toHaveLength(1);
+        if (!first.ok) return;
+        expect((await a.writeSave({ ...detente, actions: [...detente.actions, { type: 'SELECT_OBJECT', objectId: 'a2' }] }, first.revision)).ok).toBe(true);
+        // Si B joue ensuite, il écrit par-dessus à partir de la révision qu'il a lue : c'est alors A qui rechargera.
+        expect((await b.writeSave(journal('a1'), revisionOf(await b.loadSave(level, 'classique')))).ok).toBe(true);
+    });
+
     it('l’onglet resté en arrière ne fait pas reculer la sauvegarde, et l’apprend', async () => {
         const name = `cozy-onglets-${n++}`;
         const [a, b] = [await openStore(name), await openStore(name)];

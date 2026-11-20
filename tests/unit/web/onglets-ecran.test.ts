@@ -62,6 +62,8 @@ it('une écriture refusée recharge la partie de l’autre onglet et l’annonce
     expect(note?.hidden).toBe(false);
     expect(note?.closest('.sr-only, [hidden], [aria-hidden="true"]')).toBeNull();
     expect(note?.textContent).toMatch(/autre onglet/);
+    // L'autre onglet a pu jouer dans un autre mode : le message ne promet pas de reprendre à son dernier coup.
+    expect(note?.textContent).not.toMatch(/laissée|dernier coup/);
     expect(again.element.querySelector('[role="status"][aria-live="polite"]')?.textContent).toBe(note?.textContent);
     again.dispose?.();
 });
