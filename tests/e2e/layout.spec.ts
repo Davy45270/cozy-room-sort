@@ -193,9 +193,16 @@ test.describe('bureau à 1280×800', () => {
         await capture(page, 'partie-1280');
     });
 
-    for (const id of ['001-salon', `020-${thirdRoom.id}`]) {
-        test(`${id} : le panneau latéral est à l’échelle de l’écran, texte de 15 px et cases de 64 px au moins`, async ({ page }) => {
+    // Détente ajoute une case au tampon : 001-salon en a alors six, la plus grande capacité du jeu.
+    for (const [id, mode] of [['001-salon', 'Classique'], [`020-${thirdRoom.id}`, 'Classique'], ['001-salon', 'Détente']] as const) {
+        test(`${id}${mode === 'Détente' ? ' en Détente' : ''} : le panneau latéral est à l’échelle de l’écran, texte de 15 px et cases de 64 px au moins`, async ({ page }) => {
             await openLevel(page, id);
+            if (mode === 'Détente') {
+                await levelScreen(page).getByRole('button', { name: 'Réglages' }).click();
+                await page.getByRole('radio', { name: /Détente/ }).check();
+                await page.getByRole('button', { name: 'Retour' }).click();
+                await expect(levelScreen(page)).toHaveAttribute('data-ready', 'true', { timeout: 20_000 });
+            }
             const screen = levelScreen(page);
             const tray = screen.locator('.tray');
             // Toute ligne de texte visible du panneau mesure au moins 15 px.
@@ -212,7 +219,7 @@ test.describe('bureau à 1280×800', () => {
             });
             expect(small).toEqual([]);
             const slots = await screen.locator('.slot').all();
-            expect(slots.length).toBe(levelFile(id).rules.bufferCapacity);
+            expect(slots.length).toBe(levelFile(id).rules.bufferCapacity + (mode === 'Détente' ? 1 : 0));
             for (const slot of slots) expect((await slot.boundingBox())!.width).toBeGreaterThanOrEqual(64);
             for (const picture of await screen.locator('.box-picture').all()) expect((await picture.boundingBox())!.height).toBeGreaterThanOrEqual(64);
             // Rien ne dépasse la hauteur de l'écran ; pas de défilement.
@@ -224,7 +231,7 @@ test.describe('bureau à 1280×800', () => {
             }
             expect(await page.evaluate(() => document.scrollingElement!.scrollHeight)).toBeLessThanOrEqual(800.5);
             await expectSlotsDrawnToScale(page, 0);
-            await capture(page, `panneau-${id}-1280x800`);
+            await capture(page, `panneau-${id}${mode === 'Détente' ? '-detente' : ''}-1280x800`);
         });
     }
 });

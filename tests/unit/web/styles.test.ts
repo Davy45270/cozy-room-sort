@@ -111,11 +111,15 @@ it('à partir de 1024 px de large, le panneau latéral grandit : texte d’au mo
     expect(wide.length).toBeGreaterThan(0);
     const px = (value: string): number => value.endsWith('rem') ? Number.parseFloat(value) * 16 : Number.parseFloat(value);
     const rule = (selector: string): CSSStyleRule | undefined => wide.find(item => item.selectorText.split(/,\s*/).includes(selector));
-    // Colonne du panneau assez large pour 5 cases de 64 px, marges comprises.
-    const columns = rule('.play')?.style.getPropertyValue('grid-template-columns') ?? '';
-    const tray = Number.parseFloat(/(\d+)px\s*$/.exec(columns)?.[1] ?? '0');
+    // Colonne du panneau assez large pour 64 px par case, marges comprises : 5 cases au plus en Classique et Expert,
+    // 6 en Détente (une place de plus). L'écran de jeu porte le nombre de cases dans data-slots.
     const padding = px(rule('.tray')?.style.getPropertyValue('padding') ?? '0');
-    expect(tray - 2 * padding - 4 * px(rule('.buffer')?.style.getPropertyValue('gap') ?? '0')).toBeGreaterThanOrEqual(5 * 64);
+    const gap = px(rule('.buffer')?.style.getPropertyValue('gap') ?? '0');
+    for (const slots of [3, 4, 5, 6]) {
+        const columns = (rule(`.play[data-slots="${slots}"]`) ?? rule('.play'))?.style.getPropertyValue('grid-template-columns') ?? '';
+        const tray = Number.parseFloat(/(\d+)px\s*$/.exec(columns)?.[1] ?? '0');
+        expect(tray - 2 * padding - (slots - 1) * gap, `${slots} cases`).toBeGreaterThanOrEqual(slots * 64);
+    }
     // Tout texte du panneau à 15 px au moins.
     for (const selector of ['.tray h2', '.quota', '.box-count', '.score']) {
         const size = rule(selector)?.style.getPropertyValue('font-size') ?? '';
