@@ -151,8 +151,9 @@ La salle de bain occupe provisoirement la troisième place. Pour basculer vers l
 ## Sons
 
 Le réglage **Sons** est désactivé à l’installation et enregistré dans IndexedDB. Une fois activé,
-un son est chargé à la première action qui l’utilise. Le service worker met le fichier entier en cache
-à la demande. La préférence de réduction des animations est indépendante des sons.
+un son est chargé à la première action qui l’utilise. Les deux formats (ogg, mp3) sont au précache du
+service worker : un son activé pour la première fois hors ligne est disponible. La préférence de réduction
+des animations est indépendante des sons.
 
 Les fichiers OGG et MP3 sont synthétisés hors ligne par `node tools/synth-sons.ts` avec un encodeur
 installé localement. Les fichiers et leur licence CC BY 4.0 figurent dans `content/assets/provenance.json`.
