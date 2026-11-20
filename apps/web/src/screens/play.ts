@@ -140,6 +140,8 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
     return {
         element,
         mounted: () => {
+            // Partie restaurée déjà finie : le dialogue a été construit hors du document, le focus n'a pas pu y aller.
+            if (!overlay.hidden) overlay.querySelector<HTMLButtonElement>('.dialog-actions button:not(:disabled)')?.focus();
             if (!trace && ctx.settings.lastLevelId !== level.id) void ctx.updateSettings({ lastLevelId: level.id });
             ({ game, scene } = startRoom(stage, room, {
                 controller,
