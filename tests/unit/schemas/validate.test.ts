@@ -19,6 +19,21 @@ describe('validateLevel', () => {
         if (result.ok) expect(result.level.objects).toHaveLength(9);
     });
 
+    it('refuse les identifiants qui désignent une propriété de tout objet JavaScript', () => {
+        // Le moteur range objets, cartons et catégories par identifiant : « __proto__ » n'y crée aucune entrée.
+        for (const reserved of ['__proto__', 'constructor', 'prototype']) {
+            const level = mini();
+            const old = level.objects[0]!.id;
+            const objects = level.objects.map(o => ({ ...o, id: o.id === old ? reserved : o.id,
+                blockedBy: o.blockedBy.map(id => id === old ? reserved : id) }));
+            const renamed = { ...level, objects };
+            expect(validateLevel(renamed).ok, reserved).toBe(false);
+            expect(has(errorsOf(renamed), 'objects[0].id', 'réservé'), reserved).toBe(true);
+            expect(has(errorsOf({ ...level, boxes: level.boxes.map((b, i) => i === 0 ? { ...b, id: reserved } : b) }), 'boxes[0].id', 'réservé')).toBe(true);
+            expect(has(errorsOf({ ...level, categories: level.categories.map((c, i) => i === 0 ? { ...c, id: reserved } : c) }), 'categories[0].id', 'réservé')).toBe(true);
+        }
+    });
+
     it('rejette un cycle de blocage en citant les objets', () => {
         const errors = errorsOf(JSON.parse(fixture('cycle')));
         const cycle = errors.find(e => e.message.includes('cycle'));
