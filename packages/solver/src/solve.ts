@@ -76,7 +76,7 @@ export function solve(level: Level, input?: SolveOptions | Snapshot, budget?: Bu
             enqueue(childKey, child);
         }
     }
-    return { kind: 'unsolvable', statesExplored: explored };
+    return { kind: timedOut() ? 'unverified' : 'unsolvable', statesExplored: explored };
 }
 
 function traceTo(last: Node): string[] {
