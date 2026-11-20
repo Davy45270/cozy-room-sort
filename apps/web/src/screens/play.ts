@@ -189,9 +189,14 @@ export async function playScreen(ctx: AppContext, level: Level, notice?: string)
             ({ game, scene } = startRoom(stage, room, {
                 controller,
                 bufferSlot: index => buffer.querySelector(`[data-buffer-slot="${index}"]`),
-                targetOf: event => event.type === 'OBJECT_PACKED'
-                    ? boxes.querySelector(`[data-box="${event.boxId}"] .box-picture`)
-                    : buffer.querySelector(`[data-buffer-object="${event.objectId}"]`),
+                targetOf: event => {
+                    const target = event.type === 'OBJECT_PACKED'
+                        ? boxes.querySelector(`[data-box="${event.boxId}"] .box-picture`)
+                        : buffer.querySelector(`[data-buffer-object="${event.objectId}"]`);
+                    // Paysage court : le panneau défile jusqu'à la destination, le vol y atterrit (la page ne défile pas).
+                    target?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+                    return target;
+                },
                 onReady: () => {
                     if (disposed) return;
                     element.dataset['ready'] = 'true';
