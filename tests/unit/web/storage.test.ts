@@ -266,3 +266,32 @@ describe('empreinte du niveau', () => {
         expect(saveLoadAnnouncement(loaded)).toBe('Ce niveau a changé : la partie reprend au début.');
     });
 });
+
+describe('deux onglets sur le même niveau', () => {
+    // Chaque onglet ouvre sa propre connexion et part de la révision qu'il a lue. Une écriture partie d'une révision
+    // dépassée (l'autre onglet a écrit depuis) est refusée : la sauvegarde la plus récente n'est jamais écrasée.
+    const level: Level = { ...makeLevel({ boxes: [['a', 3]], objects: [['a1', 'a'], ['a2', 'a'], ['a3', 'a']] }), id: '001-salon' };
+    const journal = (...ids: string[]) => ({ levelId: level.id, rulesVersion: level.rulesVersion,
+        levelSignature: signatureOf(withMode(level, 'classique')), actions: ids.map(objectId => ({ type: 'SELECT_OBJECT' as const, objectId })) });
+    const revisionOf = (loaded: Awaited<ReturnType<Store['loadSave']>>): number => loaded.save?.revision ?? 0;
+
+    it('l’onglet resté en arrière ne fait pas reculer la sauvegarde, et l’apprend', async () => {
+        const name = `cozy-onglets-${n++}`;
+        const [a, b] = [await openStore(name), await openStore(name)];
+        let ra = revisionOf(await a.loadSave(level, 'classique'));
+        const rb = revisionOf(await b.loadSave(level, 'classique'));
+        for (const ids of [['a1'], ['a1', 'a2']]) {
+            const written = await a.writeSave(journal(...ids), ra);
+            expect(written.ok).toBe(true);
+            if (written.ok) ra = written.revision;
+        }
+        const late = await b.writeSave(journal('a3'), rb);
+        expect(late.ok).toBe(false);
+        const reloaded = await a.loadSave(level, 'classique');
+        expect(reloaded.save?.actions.map(action => action.type === 'SELECT_OBJECT' ? action.objectId : '')).toEqual(['a1', 'a2']);
+        expect(revisionOf(reloaded)).toBe(ra);
+        // Rechargé à la dernière révision, l'onglet B peut reprendre la main.
+        const resumed = await b.writeSave(journal('a1', 'a2', 'a3'), revisionOf(await b.loadSave(level, 'classique')));
+        expect(resumed.ok).toBe(true);
+    });
+});
