@@ -93,10 +93,14 @@ export function renderQuotas(container: HTMLElement, level: Level, state: GameSt
  * (139, 141, 83), x 136 (145, 138, 85), brun (151, 134, 90)) ; lignes 30 à 38 : 135 à 138, médiane 136 ; lignes 21 à
  * 49 : 127 à 142, la limite penche. Le remplissage va de x 8 à 136 exclu : la transition entière sur la médiane, sans la
  * piste brune. Pixels de référence : tests/fixtures/jauge-p01-lignes.json.
+ *
+ * Hauteur, mesurée le 20/11/2026 sur le même atlas : le vert imprimé occupe les lignes 19 à 52 (x 22 à 114 sur la 52).
+ * La piste va donc jusqu'à la ligne 52 incluse ; sur la partie vide, cette ligne est le liseré clair du cadre. L'arrondi
+ * gauche de 16 px (styles.css) couvre tout le vert ; 17 px (demi-hauteur) en laisse 4 pixels.
  */
-export const PROGRESS_TRACK: Readonly<Rectangle> = { x: 8, y: 19, w: 182, h: 33 };
-export const PROGRESS_FILLED: Readonly<Rectangle> = { x: 8, y: 19, w: 128, h: 33 };
-export const PROGRESS_EMPTY: Readonly<Rectangle> = { x: 145, y: 19, w: 45, h: 33 };
+export const PROGRESS_TRACK: Readonly<Rectangle> = { x: 8, y: 19, w: 182, h: 34 };
+export const PROGRESS_FILLED: Readonly<Rectangle> = { x: 8, y: 19, w: 128, h: 34 };
+export const PROGRESS_EMPTY: Readonly<Rectangle> = { x: 145, y: 19, w: 45, h: 34 };
 
 /** Part des objets rangés, en pour cent, bornée à [0, 100]. */
 export function progressPercent(packed: number, total: number): number {
@@ -128,13 +132,13 @@ export function renderScore(container: HTMLElement, level: Level, state: GameSta
         h('span', { text: `${n} passage${n > 1 ? 's' : ''} au tampon` }));
 }
 
-/** Le clavier conserve sa place dans la liste lorsqu'un objet disparaît. */
 /** Nom d'un objet tel que le lit le lecteur d'écran : la liste des objets à portée et l'annonce de l'indice. */
 export function objectLabel(level: Level, id: string): string {
     const object = level.objects.find(item => item.id === id);
     return object ? `${objectName(object.asset)} (${labelOf(level, object.category)})` : id;
 }
 
+/** Le clavier conserve sa place dans la liste lorsqu'un objet disparaît. */
 export function renderReachable(list: HTMLElement, controller: Controller): void {
     const previous = document.activeElement instanceof HTMLButtonElement && list.contains(document.activeElement)
         ? document.activeElement.dataset['object'] : undefined;

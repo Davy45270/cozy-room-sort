@@ -135,7 +135,8 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
 .progress { position: relative; grid-column: 2 / 4; grid-row: 2; justify-self: end; width: min(38vw, 100vw - 232px, 190px); }
 /* Intérieur de la jauge (position posée par `createProgress`) : la partie sombre du cadre étirée sur toute la piste, puis
    la partie verte du même cadre étirée à la largeur de la progression. Aucun aplat, aucun dégradé. */
-.progress-track { position: absolute; display: block; overflow: hidden; border-radius: 999px 0 0 999px; }
+/* Arrondi gauche de 16 px du cadre (piste de 182 × 34) : 16/182 en largeur, 16/34 en hauteur. */
+.progress-track { position: absolute; display: block; overflow: hidden; border-radius: 8.79% 0 0 8.79% / 47.06% 0 0 47.06%; }
 .progress-fill { position: absolute; inset: 0 auto 0 0; display: block; overflow: hidden; transition: width .18s ease-out; }
 .atlas-crop { position: absolute; inset: 0; display: block; overflow: hidden; }
 .atlas-crop img { position: absolute; display: block; max-width: none; pointer-events: none; user-select: none; }
