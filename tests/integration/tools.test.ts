@@ -53,6 +53,19 @@ describe('commandes en ligne', () => {
         } finally { rmSync(dir, { recursive: true, force: true }); }
     });
 
+    it('level:validate refuse une catégorie que la pièce ne connaît pas', () => {
+        const dir = mkdtempSync(join(tmpdir(), 'cozy-categorie-'));
+        try {
+            const raw = readFileSync('content/levels/001-salon.json', 'utf8').replaceAll('"plantes"', '"categorie-inconnue"');
+            expect(raw).toContain('categorie-inconnue');
+            const path = join(dir, 'categorie-inconnue.json');
+            writeFileSync(path, raw);
+            const r = run('validate-levels', path);
+            expect(r.code).toBe(1);
+            expect(r.out).toContain('ÉCHEC categorie-inconnue : catégorie absente de la pièce salon (categorie-inconnue)');
+        } finally { rmSync(dir, { recursive: true, force: true }); }
+    });
+
     it('level:solve --write enregistre une solution rejouable', () => {
         const dir = mkdtempSync(join(tmpdir(), 'cozy-solve-'));
         try {
