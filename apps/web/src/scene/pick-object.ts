@@ -9,9 +9,10 @@ export interface Target {
     bounds: Bounds;
 }
 
-/** Les cibles accessibles sont fournies de la plus proche à la plus éloignée dans l'ordre de dessin. */
+/** Les cibles suivent l'ordre de dessin, du premier plan vers le fond. Le rattrapage ignore les objets bloqués. */
 export function pickObject(x: number, y: number, frontToBack: readonly Target[],
-    opaqueAt: (target: Target, u: number, v: number) => boolean): string | undefined {
+    opaqueAt: (target: Target, u: number, v: number) => boolean,
+    isAccessible: (id: string) => boolean): string | undefined {
     let nearest: string | undefined;
     let bestDistance = Infinity;
     for (const target of frontToBack) {
@@ -21,6 +22,7 @@ export function pickObject(x: number, y: number, frontToBack: readonly Target[],
             && opaqueAt(target, (x - at.x) / at.size + .5, (y - at.y) / at.size + .5)) {
             return target.id;
         }
+        if (!isAccessible(target.id)) continue;
         const dx = Math.max(0, box.x - x, x - box.x - box.w);
         const dy = Math.max(0, box.y - y, y - box.y - box.h);
         const distance = dx * dx + dy * dy;

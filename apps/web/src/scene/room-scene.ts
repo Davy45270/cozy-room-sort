@@ -78,7 +78,9 @@ export class RoomScene extends Phaser.Scene {
             if (id !== undefined) this.tap(id);
         };
         const hover = (event: PointerEvent): void => {
-            if (event.pointerType === 'mouse') this.room.style.cursor = this.pick(event) === undefined ? '' : 'pointer';
+            if (event.pointerType !== 'mouse') return;
+            const id = this.pick(event);
+            this.room.style.cursor = id !== undefined && this.opts.controller.isObjectAccessible(id) ? 'pointer' : '';
         };
         const resetCursor = (): void => { this.room.style.cursor = ''; };
         this.room.addEventListener('pointerdown', press);
@@ -239,14 +241,13 @@ export class RoomScene extends Phaser.Scene {
         const canvas = this.game.canvas.getBoundingClientRect();
         const targets: Target[] = [];
         for (const id of this.frontToBack) {
-            if (!controller.isObjectAccessible(id)) continue;
             const target = this.target(id);
             if (target) targets.push(target);
         }
         return pickObject(event.clientX - canvas.left, event.clientY - canvas.top, targets, ({ asset }, u, v) => {
             const { atlas, key, frame } = spriteOf(asset);
             return this.textures.getPixelAlpha(Math.floor(u * frame.w), Math.floor(v * frame.h), atlas.key, key) > 0;
-        });
+        }, id => controller.isObjectAccessible(id));
     }
 
     tap(id: string): void {

@@ -166,8 +166,8 @@ it.each(touchViewports)('$window : chaque objet accessible garde une zone propre
                         Math.max(0, b.y - point.y - half, point.y - half - b.y - b.h))));
                 if (farthest > 22 || clearance <= farthest || point.x - half < 0 || point.y - half < 0
                     || point.x + half > viewport.width || point.y + half > viewport.height
-                    || pickObject(point.x, point.y, accessible, () => true) !== target.id
-                    || pickObject(point.x, point.y, accessible, () => false) !== target.id) {
+                    || pickObject(point.x, point.y, accessible, () => true, () => true) !== target.id
+                    || pickObject(point.x, point.y, accessible, () => false, () => true) !== target.id) {
                     errors.push(`${level.id}, coup ${move}, ${target.id} : marge ${clearance.toFixed(2)} px`);
                 }
             }
