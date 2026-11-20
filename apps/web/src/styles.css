@@ -229,10 +229,13 @@ h1, h2 { margin: 0; line-height: 1.15; font-weight: 800; color: var(--crs-text);
     .box-art { width: min(100%, 60px); }
 }
 
-/* Grand écran (1024 px et plus) : le panneau latéral grandit, texte à 15 px au moins, cases du tampon d'au moins 64 px
-   (5 cases au plus : 420 − 2 × 22 − 4 × 8 = 344 px, soit 68 px par case). Les portraits ne sont pas concernés. */
+/* Grand écran (1024 px et plus) : le panneau latéral grandit, texte à 15 px au moins, cases du tampon d'au moins 64 px.
+   Panneau de 420 px, marge droite de 12 px, bordures de 2 px, padding de 2 × 18 px : 370 px utiles. Jusqu'à 5 cases,
+   370 − 4 × 8 = 338 px, soit 67 px par case. La Détente ajoute une place (6 au plus) : le panneau passe à 476 px,
+   426 − 5 × 8 = 386 px, soit 64,3 px par case. Les portraits ne sont pas concernés. */
 @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
     .play { grid-template-columns: minmax(0, 1fr) 420px; }
+    .play[data-slots="6"] { grid-template-columns: minmax(0, 1fr) 476px; }
     .tray { padding: 18px; gap: 10px; }
     .tray h2 { font-size: 1.1rem; }
     .boxes { gap: 6px 8px; margin-top: 6px; }

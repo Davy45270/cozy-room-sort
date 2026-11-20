@@ -67,7 +67,7 @@ export async function playScreen(ctx: AppContext, level: Level): Promise<Screen>
         h('section', { class: 'box-area', 'aria-label': 'Cartons' }, h('h2', { text: 'Cartons' }), boxes), quotas,
         h('div', { class: 'buffer-wrap' }, h('h2', { text: 'Tampon' }), buffer), score);
     const keyboard = h('nav', { class: 'sr-only', 'aria-label': 'Objets à portée' }, h('h2', { text: 'Objets à portée' }), reachable);
-    const element = h('main', { class: 'screen play', 'data-testid': 'ecran-jeu', 'data-level': level.id,
+    const element = h('main', { class: 'screen play', 'data-testid': 'ecran-jeu', 'data-level': level.id, 'data-slots': String(rules.bufferCapacity),
         style: `--room-accent: var(--crs-room-${theme.id}, var(--crs-accent))` },
         header, room, stage, tray, keyboard, live, overlay);
 
